@@ -3,7 +3,7 @@
   "name": "Starter Kit",
   "logo": {
     "dark": "/logo/dark.svg",
-    "light": "/logo/light.svg"
+    "light": "/logo/ditto-logo.png"
   },
   "favicon": "/favicon.svg",
   "colors": {
@@ -22,49 +22,37 @@
     }
   ],
   "topbarCtaButton": {
-    "name": "Dashboard",
-    "url": "https://dashboard.mintlify.com"
+    "name": "Cloud Portal",
+    "url": "https://portal.ditto.live"
   },
   "primaryTab": {
-    "name": "Welcome"
+    "name": "Getting Started"
   },
   "tabs": [
     {
-      "name": "Ditto Concepts",
-      "url": "api-reference"
-    },
-    {
-      "name": "SDK",
+      "name": "Ditto SDK",
       "url": "sdk"
     },
     { "name": "Cloud Platform",
       "url": "cloud-platform"
-    }
-  ],
-  "anchors": [
-    {
-      "name": "Documentation",
-      "icon": "book-open-cover",
-      "url": "https://mintlify.com/docs"
     },
     {
-      "name": "Community",
-      "icon": "slack",
-      "url": "https://mintlify.com/community"
+      "name": "Examples",
+      "url": "examples"
     },
     {
-      "name": "Blog",
-      "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
+      "name": "Releases",
+      "url": "releases"
     }
   ],
   "navigation": [
     {
-      "group": "Get Started",
+      "group": "Topics",
       "pages": [
-        "introduction",
-        "quickstart",
-        "development"
+        "getting-started/overview",
+        "getting-started/Foundation-Concepts",
+        "getting-started/Install-Guides",
+        "getting-started/Platform-Guides"
       ]
     },
     {
@@ -102,6 +90,18 @@
       "group": "Cloud Platform",
       "pages": [
         "cloud-platform/introduction"
+      ]
+    },
+    {
+      "group": "Examples",
+      "pages": [
+        "examples/introduction"
+      ]
+    },
+    {
+      "group": "Releases",
+      "pages": [
+        "releases/introduction"
       ]
     }
   ],
