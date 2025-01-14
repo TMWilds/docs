@@ -16,7 +16,9 @@
       "to": "#0066ff"
     }
   },
-  "background": { "style": "gradient" },
+  "background": {
+    "style": "gradient"
+  },
   "topbarLinks": [
     {
       "name": "Log in",
@@ -29,7 +31,14 @@
     "arrow": true,
     "style": "roundedRectangle"
   },
-  "versions": [{"name": "v4.9", "default": true}, "v4.8", "v4.7"],
+  "versions": [
+    {
+      "name": "v4.9",
+      "default": true
+    },
+    "v4.8",
+    "v4.7"
+  ],
   "api": {
     "playground": {
       "mode": "hide"
@@ -63,17 +72,28 @@
       "name": "Cloud Platform",
       "url": "cloud"
     },
-    { "name": "Best Practices", "url": "best-practices" },
+    {
+      "name": "Best Practices",
+      "url": "best-practices"
+    },
     {
       "name": "Support",
       "url": "support"
     }
   ],
-  "primaryTab": { "name": "Home" },
+  "primaryTab": {
+    "name": "Home"
+  },
   "navigation": [
-    {"group": "Home", "pages": ["home/introduction", "home/about-ditto"]},
     {
-      "group": "SDK",
+      "group": "Home",
+      "pages": [
+        "home/introduction",
+        "home/about-ditto"
+      ]
+    },
+    {
+      "group": "Getting Started",
       "version": "v4.9",
       "pages": [
         {
@@ -112,6 +132,33 @@
               ]
             }
           ]
+        }
+      ]
+    },
+    {
+      "group": "Data",
+      "version": "v4.9",
+      "pages": [
+        {
+          "group": "Document Model",
+          "icon": "folder-tree",
+          "iconType": "solid",
+          "pages": [
+            "sdk/v4-9/document-model/fields",
+            "sdk/v4-9/document-model/Collections",
+            "sdk/v4-9/document-model/identifiers",
+            "sdk/v4-9/document-model/relationships"
+          ]
+        },
+        {
+          "group": "Data Types",
+          "icon": "share-nodes",
+          "iconType": "solid",
+          "pages": [
+            "sdk/v4-9/data-types/register",
+            "sdk/v4-9/data-types/map",
+            "sdk/v4-9/data-types/attachment"
+          ]
         },
         {
           "group": "Data Store CRUD",
@@ -127,7 +174,7 @@
           ]
         },
         {
-          "group": "Data Sync",
+          "group": "Syncing Data",
           "version": "v4.9",
           "icon": "rotate",
           "iconType": "solid",
@@ -163,28 +210,13 @@
               ]
             }
           ]
-        },
-        {
-          "group": "Document Model",
-          "icon": "folder-tree",
-          "iconType": "solid",
-          "pages": [
-            "sdk/v4-9/document-model/fields",
-            "sdk/v4-9/document-model/Collections",
-            "sdk/v4-9/document-model/identifiers",
-            "sdk/v4-9/document-model/relationships"
-          ]
-        },
-        {
-          "group": "Data Types",
-          "icon": "share-nodes",
-          "iconType": "solid",
-          "pages": [
-            "sdk/v4-9/data-types/register",
-            "sdk/v4-9/data-types/map",
-            "sdk/v4-9/data-types/attachment"
-          ]
-        },
+        }
+      ]
+    },
+    {
+      "group": "Security",
+      "version": "v4.9",
+      "pages": [
         {
           "group": "Authentication & Authorization",
           "version": "v4.9",
@@ -196,7 +228,13 @@
             "sdk/v4-9/auth-and-authorization/data-authorization",
             "sdk/v4-9/auth-and-authorization/certificate-based-security"
           ]
-        },
+        }
+      ]
+    },
+    {
+      "group": "Reference",
+      "version": "v4.9",
+      "pages": [
         {
           "group": "API Reference",
           "version": "v4.9",
@@ -251,7 +289,7 @@
       ]
     },
     {
-      "group": "SDK",
+      "group": "Getting Started",
       "version": "v4.8",
       "pages": [
         {
@@ -290,58 +328,13 @@
               ]
             }
           ]
-        },
-        {
-          "group": "Data Store CRUD",
-          "version": "v4.8",
-          "icon": "database",
-          "iconType": "solid",
-          "pages": [
-            "sdk/v4-8/crud/create",
-            "sdk/v4-8/crud/read",
-            "sdk/v4-8/crud/update",
-            "sdk/v4-8/crud/delete",
-            "sdk/v4-8/crud/observing-data-changes"
-          ]
-        },
-        {
-          "group": "Data Sync",
-          "version": "v4.8",
-          "icon": "rotate",
-          "iconType": "solid",
-          "pages": [
-            "sdk/v4-8/sync/start-and-stop-sync",
-            "sdk/v4-8/sync/syncing-data",
-            "sdk/v4-8/sync/mongodb-connector",
-            "sdk/v4-8/sync/using-mesh-presence",
-            {
-              "group": "Advanced Customization",
-              "version": "v4.8",
-              "pages": [
-                "sdk/v4-8/sync/customizing-transport-configurations",
-                "sdk/v4-8/sync/creating-sync-groups",
-                "sdk/v4-8/sync/handling-connection-requests",
-                {
-                  "group": "Using Alert System",
-                  "version": "v4.8",
-                  "pages": [
-                    "sdk/v4-8/sync/using-alter-system",
-                    "sdk/v4-8/sync/managing-redundant-bluetooth-le-connections"
-                  ]
-                }
-              ]
-            },
-            {
-              "group": "Sync Concepts",
-              "version": "v4.8",
-              "pages": [
-                "sdk/v4-8/sync/concepts/mesh-networking-101",
-                "sdk/v4-8/sync/concepts/transports-overview",
-                "sdk/v4-8/sync/consistency-models"
-              ]
-            }
-          ]
-        },
+        }
+      ]
+    },
+    {
+      "group": "Data",
+      "version": "v4.8",
+      "pages": [
         {
           "group": "Document Model",
           "icon": "folder-tree",
@@ -366,6 +359,63 @@
           ]
         },
         {
+          "group": "Data Store CRUD",
+          "version": "v4.8",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "sdk/v4-8/crud/create",
+            "sdk/v4-8/crud/read",
+            "sdk/v4-8/crud/update",
+            "sdk/v4-8/crud/delete",
+            "sdk/v4-8/crud/observing-data-changes"
+          ]
+        },
+        {
+          "group": "Syncing Data",
+          "version": "v4.8",
+          "icon": "rotate",
+          "iconType": "solid",
+          "pages": [
+            "sdk/v4-8/sync/start-and-stop-sync",
+            "sdk/v4-8/sync/syncing-data",
+            "sdk/v4-8/sync/mongodb-connector",
+            "sdk/v4-8/sync/using-mesh-presence",
+            {
+              "group": "Advanced Customization",
+              "version": "v4.8",
+              "pages": [
+                "sdk/v4-8/sync/customizing-transport-configurations",
+                "sdk/v4-8/sync/creating-sync-groups",
+                "sdk/v4-8/sync/handling-connection-requests",
+                {
+                  "group": "Using Alter System",
+                  "version": "v4.8",
+                  "pages": [
+                    "sdk/v4-8/sync/using-alter-system",
+                    "sdk/v4-8/sync/managing-redundant-bluetooth-le-connections"
+                  ]
+                }
+              ]
+            },
+            {
+              "group": "Sync Concepts",
+              "version": "v4.8",
+              "pages": [
+                "sdk/v4-8/sync/concepts/mesh-networking-101",
+                "sdk/v4-8/sync/concepts/transports-overview",
+                "sdk/v4-8/sync/consistency-models"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Security",
+      "version": "v4.8",
+      "pages": [
+        {
           "group": "Authentication & Authorization",
           "version": "v4.8",
           "icon": "lock",
@@ -376,7 +426,13 @@
             "sdk/v4-8/auth-and-authorization/data-authorization",
             "sdk/v4-8/auth-and-authorization/certificate-based-security"
           ]
-        },
+        }
+      ]
+    },
+    {
+      "group": "Reference",
+      "version": "v4.8",
+      "pages": [
         {
           "group": "API Reference",
           "version": "v4.8",
@@ -431,44 +487,35 @@
       ]
     },
     {
-      "group": "SDK",
+      "group": "Getting Started",
       "version": "v4.7",
       "pages": [
+        "sdk/v4-7/getting-started/sync-credentials",
         {
-          "group": "Get Started",
+          "group": "Install Guides",
           "version": "v4.7",
-          "icon": "play",
+          "icon": "download",
           "iconType": "solid",
           "pages": [
-            "sdk/v4-7/getting-started/sync-credentials",
+            "sdk/v4-7/install-guides",
+            "sdk/v4-7/install-guides/swift",
+            "sdk/v4-7/install-guides/kotlin",
+            "sdk/v4-7/install-guides/js",
+            "sdk/v4-7/install-guides/nodejs",
+            "sdk/v4-7/install-guides/react-native",
+            "sdk/v4-7/install-guides/java",
+            "sdk/v4-7/install-guides/c-sharp",
+            "sdk/v4-7/install-guides/cpp",
+            "sdk/v4-7/install-guides/rust",
             {
-              "group": "Install Guides",
+              "group": "Flutter",
               "version": "v4.7",
-              "icon": "download",
+              "icon": "flutter",
               "iconType": "solid",
               "pages": [
-                "sdk/v4-7/install-guides",
-                "sdk/v4-7/install-guides/swift",
-                "sdk/v4-7/install-guides/kotlin",
-                "sdk/v4-7/install-guides/js",
-                "sdk/v4-7/install-guides/nodejs",
-                "sdk/v4-7/install-guides/react-native",
-                "sdk/v4-7/install-guides/java",
-                "sdk/v4-7/install-guides/c-sharp",
-                "sdk/v4-7/install-guides/cpp",
-                "sdk/v4-7/install-guides/rust",
-                {
-                  "group": "Flutter",
-                  "version": "v4.7",
-                  "icon": "flutter",
-                  "iconType": "solid",
-                  "pages": [
-                    "sdk/v4-7/install-guides/flutter",
-                    "sdk/v4-7/install-guides/flutter/quick-start",
-                    "sdk/v4-7/install-guides/flutter/roadmap"
-                  ]
-                },
-                "sdk/v4-7/getting-started/hello-world-sync"
+                "sdk/v4-7/install-guides/flutter",
+                "sdk/v4-7/install-guides/flutter/quick-start",
+                "sdk/v4-7/install-guides/flutter/roadmap"
               ]
             }
           ]
@@ -484,6 +531,13 @@
             "sdk/v4-7/basic/data-handling-essentials"
           ]
         },
+        "sdk/v4-7/getting-started/hello-world-sync"
+      ]
+    },
+    {
+      "group": "Data",
+      "version": "v4.7",
+      "pages": [
         {
           "group": "Document Model",
           "icon": "folder-tree",
@@ -518,7 +572,7 @@
           ]
         },
         {
-          "group": "Data Sync",
+          "group": "Syncing Data",
           "version": "v4.7",
           "icon": "rotate",
           "iconType": "solid",
@@ -551,19 +605,25 @@
               ]
             }
           ]
-        },
-        {
-          "group": "Security",
-          "version": "v4.7",
-          "icon": "lock",
-          "iconType": "solid",
-          "pages": [
-            "sdk/v4-7/security/authentication",
-            "sdk/v4-7/security/shared-key",
-            "sdk/v4-7/security/end-user-access",
-            "sdk/v4-7/security/certificate-based-security"
-          ]
-        },
+        }
+      ]
+    },
+    {
+      "group": "Security",
+      "version": "v4.7",
+      "icon": "lock",
+      "iconType": "solid",
+      "pages": [
+        "sdk/v4-7/security/authentication",
+        "sdk/v4-7/security/shared-key",
+        "sdk/v4-7/security/end-user-access",
+        "sdk/v4-7/security/certificate-based-security"
+      ]
+    },
+    {
+      "group": "Reference",
+      "version": "v4.7",
+      "pages": [
         {
           "group": "API Reference",
           "version": "v4.7",
@@ -619,16 +679,26 @@
       ]
     },
     {
-      "group": "Ditto Query Language",
+      "group": "Clauses",
       "pages": [
         "dql/dql",
         "dql/select",
         "dql/insert",
         "dql/update",
-        "dql/evict",
+        "dql/evict"
+      ]
+    },
+    {
+      "group": "Types and Functions",
+      "pages": [
         "dql/types-and-definitions",
         "dql/ids-paths-strings-keywords",
-        "dql/operator-expressions",
+        "dql/operator-expressions"
+      ]
+    },
+    {
+      "group": "Reference",
+      "pages": [
         "dql/roadmap",
         {
           "group": "Legacy Query Language",
@@ -642,46 +712,56 @@
       ]
     },
     {
-      "group": "Cloud Platform",
+      "group": "Overview",
       "pages": [
-        "cloud/overview",
+        "cloud/overview"
+      ]
+    },
+    {
+      "group": "Cloud Portal",
+      "icon": "browser",
+      "iconType": "solid",
+      "pages": [
+        "cloud/portal/creating-a-ditto-account",
+        "cloud/portal/creating-a-new-app",
+        "cloud/portal/getting-playground-token-credentials",
+        "cloud/portal/data-browser-and-editor",
+        "cloud/portal/role-based-access-control",
+        "cloud/portal/capturing-small-peer-info"
+      ]
+    },
+    {
+      "group": "HTTP Data API",
+      "icon": "globe",
+      "iconType": "solid",
+      "pages": [
+        "cloud/http-api/getting-started",
+        "cloud/http-api/auth-and-params",
+        "cloud/http-api/api/post-storeexecute",
+        "cloud/http-api/attachments",
         {
-          "group": "HTTP Data API",
-          "icon": "globe",
+          "group": "Legacy HTTP API",
+          "icon": "puzzle-piece",
           "iconType": "solid",
           "pages": [
-            "cloud/http-api/getting-started",
-            "cloud/http-api/auth-and-params",
-            "cloud/http-api/api/post-storeexecute",
-            "cloud/http-api/attachments",
-            {
-              "group": "Legacy HTTP API",
-              "icon": "puzzle-piece",
-              "iconType": "solid",
-              "pages": [
-                "cloud/http-api/api/post-storefind",
-                "cloud/http-api/api/post-storefindbyid",
-                "cloud/http-api/api/post-storewrite",
-                "cloud/http-api/api/post-storecount"
-              ]
-            }
+            "cloud/http-api/api/post-storefind",
+            "cloud/http-api/api/post-storefindbyid",
+            "cloud/http-api/api/post-storewrite",
+            "cloud/http-api/api/post-storecount"
           ]
-        },
-        {
-          "group": "Cloud Portal",
-          "icon": "browser",
-          "iconType": "solid",
-          "pages": [
-            "cloud/portal/creating-a-ditto-account",
-            "cloud/portal/creating-a-new-app",
-            "cloud/portal/getting-playground-token-credentials",
-            "cloud/portal/data-browser-and-editor",
-            "cloud/portal/role-based-access-control",
-            "cloud/portal/capturing-small-peer-info"
-          ]
-        },
+        }
+      ]
+    },
+    {
+      "group": "Data Integration",
+      "pages": [
         "cloud/cdc",
-        "cloud/mongodb-connector",
+        "cloud/mongodb-connector"
+      ]
+    },
+    {
+      "group": "Reference",
+      "pages": [
         {
           "group": "Backend Architecture",
           "icon": "cubes-stacked",
