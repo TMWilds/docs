@@ -37,18 +37,22 @@
   },
   "tabs": [
     {
+      "name": "Home",
+      "url": "home"
+    },
+    {
       "name": "SDK",
-      "url": "v4.9",
+      "url": "sdk/v4-9",
       "version": "v4.9"
     },
     {
       "name": "SDK",
-      "url": "v4.8",
+      "url": "sdk/v4-8",
       "version": "v4.8"
     },
     {
       "name": "SDK",
-      "url": "v4.7",
+      "url": "sdk/v4-7",
       "version": "v4.7"
     },
     {
@@ -65,48 +69,46 @@
       "url": "support"
     }
   ],
-  "primaryTab": { "name": "SDK" },
+  "primaryTab": { "name": "Home" },
   "navigation": [
+    {"group": "Home", "pages": ["home/introduction", "home/about-ditto"]},
     {
       "group": "SDK",
       "version": "v4.9",
       "pages": [
-        "introduction",
-        "about-ditto",
         {
           "group": "Install Guides",
           "version": "v4.9",
           "icon": "download",
           "iconType": "solid",
           "pages": [
-            "install-guides",
-            "install-guides/swift",
+            "sdk/v4-9/install-guides",
+            "sdk/v4-9/install-guides/swift",
             {
               "group": "Kotlin",
               "icon": "code",
               "iconType": "solid",
               "version": "v4.9",
               "pages": [
-                "install-guides/kotlin",
-                "install-guides/kotlin/android-permissions"
+                "sdk/v4-9/install-guides/kotlin"
               ]
             },
-            "install-guides/js",
-            "install-guides/nodejs",
-            "install-guides/react-native",
-            "install-guides/java",
-            "install-guides/c-sharp",
-            "install-guides/cpp",
-            "install-guides/rust",
+            "sdk/v4-9/install-guides/js",
+            "sdk/v4-9/install-guides/nodejs",
+            "sdk/v4-9/install-guides/react-native",
+            "sdk/v4-9/install-guides/java",
+            "sdk/v4-9/install-guides/c-sharp",
+            "sdk/v4-9/install-guides/cpp",
+            "sdk/v4-9/install-guides/rust",
             {
               "group": "Flutter",
               "version": "v4.9",
               "icon": "flutter",
               "iconType": "solid",
               "pages": [
-                "install-guides/flutter",
-                "install-guides/flutter/quick-start",
-                "install-guides/flutter/roadmap"
+                "sdk/v4-9/install-guides/flutter",
+                "sdk/v4-9/install-guides/flutter/quick-start",
+                "sdk/v4-9/install-guides/flutter/roadmap"
               ]
             }
           ]
@@ -117,11 +119,11 @@
           "icon": "database",
           "iconType": "solid",
           "pages": [
-            "crud/create",
-            "crud/read",
-            "crud/update",
-            "crud/delete",
-            "crud/observing-data-changes"
+            "sdk/v4-9/crud/create",
+            "sdk/v4-9/crud/read",
+            "sdk/v4-9/crud/update",
+            "sdk/v4-9/crud/delete",
+            "sdk/v4-9/crud/observing-data-changes"
           ]
         },
         {
@@ -130,23 +132,23 @@
           "icon": "rotate",
           "iconType": "solid",
           "pages": [
-            "sync/start-and-stop-sync",
-            "sync/syncing-data",
-            "sync/mongodb-connector",
-            "sync/using-mesh-presence",
+            "sdk/v4-9/sync/start-and-stop-sync",
+            "sdk/v4-9/sync/syncing-data",
+            "sdk/v4-9/sync/mongodb-connector",
+            "sdk/v4-9/sync/using-mesh-presence",
             {
               "group": "Advanced Customization",
               "version": "v4.9",
               "pages": [
-                "sync/customizing-transport-configurations",
-                "sync/creating-sync-groups",
-                "sync/handling-connection-requests",
+                "sdk/v4-9/sync/customizing-transport-configurations",
+                "sdk/v4-9/sync/creating-sync-groups",
+                "sdk/v4-9/sync/handling-connection-requests",
                 {
                   "group": "Using Alert System",
                   "version": "v4.9",
                   "pages": [
-                    "sync/using-alter-system",
-                    "sync/managing-redundant-bluetooth-le-connections"
+                    "sdk/v4-9/sync/using-alter-system",
+                    "sdk/v4-9/sync/managing-redundant-bluetooth-le-connections"
                   ]
                 }
               ]
@@ -155,9 +157,9 @@
               "group": "Sync Concepts",
               "version": "v4.9",
               "pages": [
-                "sync/concepts/mesh-networking-101",
-                "sync/concepts/transports-overview",
-                "sync/consistency-models"
+                "sdk/v4-9/sync/concepts/mesh-networking-101",
+                "sdk/v4-9/sync/concepts/transports-overview",
+                "sdk/v4-9/sync/consistency-models"
               ]
             }
           ]
@@ -167,10 +169,10 @@
           "icon": "folder-tree",
           "iconType": "solid",
           "pages": [
-            "document-model/fields",
-            "document-model/Collections",
-            "document-model/identifiers",
-            "document-model/relationships"
+            "sdk/v4-9/document-model/fields",
+            "sdk/v4-9/document-model/Collections",
+            "sdk/v4-9/document-model/identifiers",
+            "sdk/v4-9/document-model/relationships"
           ]
         },
         {
@@ -178,9 +180,9 @@
           "icon": "share-nodes",
           "iconType": "solid",
           "pages": [
-            "data-types/register",
-            "data-types/map",
-            "data-types/attachment"
+            "sdk/v4-9/data-types/register",
+            "sdk/v4-9/data-types/map",
+            "sdk/v4-9/data-types/attachment"
           ]
         },
         {
@@ -189,10 +191,10 @@
           "icon": "lock",
           "iconType": "solid",
           "pages": [
-            "auth-and-authorization/cloud-authentication",
-            "auth-and-authorization/shared-key",
-            "auth-and-authorization/data-authorization",
-            "auth-and-authorization/certificate-based-security"
+            "sdk/v4-9/auth-and-authorization/cloud-authentication",
+            "sdk/v4-9/auth-and-authorization/shared-key",
+            "sdk/v4-9/auth-and-authorization/data-authorization",
+            "sdk/v4-9/auth-and-authorization/certificate-based-security"
           ]
         },
         {
@@ -201,15 +203,15 @@
           "icon": "book",
           "iconType": "solid",
           "pages": [
-            "api-reference/api-reference",
-            "api-reference/swift",
-            "api-reference/kotlin",
-            "api-reference/js",
-            "api-reference/java",
-            "api-reference/c-sharp",
-            "api-reference/cpp",
-            "api-reference/rust",
-            "api-reference/flutter"
+            "sdk/v4-9/api-reference/api-reference",
+            "sdk/v4-9/api-reference/swift",
+            "sdk/v4-9/api-reference/kotlin",
+            "sdk/v4-9/api-reference/js",
+            "sdk/v4-9/api-reference/java",
+            "sdk/v4-9/api-reference/c-sharp",
+            "sdk/v4-9/api-reference/cpp",
+            "sdk/v4-9/api-reference/rust",
+            "sdk/v4-9/api-reference/flutter"
           ]
         },
         {
@@ -218,15 +220,15 @@
           "icon": "bullhorn",
           "iconType": "solid",
           "pages": [
-            "release-notes/release-notes",
-            "release-notes/swift",
-            "release-notes/kotlin",
-            "release-notes/js",
-            "release-notes/java",
-            "release-notes/c-sharp",
-            "release-notes/cpp",
-            "release-notes/rust",
-            "release-notes/flutter"
+            "sdk/v4-9/release-notes/release-notes",
+            "sdk/v4-9/release-notes/swift",
+            "sdk/v4-9/release-notes/kotlin",
+            "sdk/v4-9/release-notes/js",
+            "sdk/v4-9/release-notes/java",
+            "sdk/v4-9/release-notes/c-sharp",
+            "sdk/v4-9/release-notes/cpp",
+            "sdk/v4-9/release-notes/rust",
+            "sdk/v4-9/release-notes/flutter"
           ]
         },
         {
@@ -234,16 +236,16 @@
           "icon": "map",
           "iconType": "solid",
           "pages": [
-            "compatibility/compatibility",
-            "compatibility/swift",
-            "compatibility/kotlin",
-            "compatibility/js-web",
-            "compatibility/react-native",
-            "compatibility/java",
-            "compatibility/c-sharp",
-            "compatibility/cpp",
-            "compatibility/rust",
-            "compatibility/flutter"
+            "sdk/v4-9/compatibility/compatibility",
+            "sdk/v4-9/compatibility/swift",
+            "sdk/v4-9/compatibility/kotlin",
+            "sdk/v4-9/compatibility/js-web",
+            "sdk/v4-9/compatibility/react-native",
+            "sdk/v4-9/compatibility/java",
+            "sdk/v4-9/compatibility/c-sharp",
+            "sdk/v4-9/compatibility/cpp",
+            "sdk/v4-9/compatibility/rust",
+            "sdk/v4-9/compatibility/flutter"
           ]
         }
       ]
@@ -252,42 +254,39 @@
       "group": "SDK",
       "version": "v4.8",
       "pages": [
-        "v4-8/introduction",
-        "v4-8/about-ditto",
         {
           "group": "Install Guides",
           "version": "v4.8",
           "icon": "download",
           "iconType": "solid",
           "pages": [
-            "v4-8/install-guides",
-            "v4-8/install-guides/swift",
+            "sdk/v4-8/install-guides",
+            "sdk/v4-8/install-guides/swift",
             {
               "group": "Kotlin",
               "icon": "code",
               "iconType": "solid",
               "version": "v4.8",
               "pages": [
-                "v4-8/install-guides/kotlin",
-                "v4-8/install-guides/kotlin/android-permissions"
+                "sdk/v4-8/install-guides/kotlin"
               ]
             },
-            "v4-8/install-guides/js",
-            "v4-8/install-guides/nodejs",
-            "v4-8/install-guides/react-native",
-            "v4-8/install-guides/java",
-            "v4-8/install-guides/c-sharp",
-            "v4-8/install-guides/cpp",
-            "v4-8/install-guides/rust",
+            "sdk/v4-8/install-guides/js",
+            "sdk/v4-8/install-guides/nodejs",
+            "sdk/v4-8/install-guides/react-native",
+            "sdk/v4-8/install-guides/java",
+            "sdk/v4-8/install-guides/c-sharp",
+            "sdk/v4-8/install-guides/cpp",
+            "sdk/v4-8/install-guides/rust",
             {
               "group": "Flutter",
               "version": "v4.8",
               "icon": "flutter",
               "iconType": "solid",
               "pages": [
-                "v4-8/install-guides/flutter",
-                "v4-8/install-guides/flutter/quick-start",
-                "v4-8/install-guides/flutter/roadmap"
+                "sdk/v4-8/install-guides/flutter",
+                "sdk/v4-8/install-guides/flutter/quick-start",
+                "sdk/v4-8/install-guides/flutter/roadmap"
               ]
             }
           ]
@@ -298,11 +297,11 @@
           "icon": "database",
           "iconType": "solid",
           "pages": [
-            "v4-8/crud/create",
-            "v4-8/crud/read",
-            "v4-8/crud/update",
-            "v4-8/crud/delete",
-            "v4-8/crud/observing-data-changes"
+            "sdk/v4-8/crud/create",
+            "sdk/v4-8/crud/read",
+            "sdk/v4-8/crud/update",
+            "sdk/v4-8/crud/delete",
+            "sdk/v4-8/crud/observing-data-changes"
           ]
         },
         {
@@ -311,23 +310,23 @@
           "icon": "rotate",
           "iconType": "solid",
           "pages": [
-            "v4-8/sync/start-and-stop-sync",
-            "v4-8/sync/syncing-data",
-            "v4-8/sync/mongodb-connector",
-            "v4-8/sync/using-mesh-presence",
+            "sdk/v4-8/sync/start-and-stop-sync",
+            "sdk/v4-8/sync/syncing-data",
+            "sdk/v4-8/sync/mongodb-connector",
+            "sdk/v4-8/sync/using-mesh-presence",
             {
               "group": "Advanced Customization",
               "version": "v4.8",
               "pages": [
-                "v4-8/sync/customizing-transport-configurations",
-                "v4-8/sync/creating-sync-groups",
-                "v4-8/sync/handling-connection-requests",
+                "sdk/v4-8/sync/customizing-transport-configurations",
+                "sdk/v4-8/sync/creating-sync-groups",
+                "sdk/v4-8/sync/handling-connection-requests",
                 {
                   "group": "Using Alert System",
                   "version": "v4.8",
                   "pages": [
-                    "v4-8/sync/using-alter-system",
-                    "v4-8/sync/managing-redundant-bluetooth-le-connections"
+                    "sdk/v4-8/sync/using-alter-system",
+                    "sdk/v4-8/sync/managing-redundant-bluetooth-le-connections"
                   ]
                 }
               ]
@@ -336,9 +335,9 @@
               "group": "Sync Concepts",
               "version": "v4.8",
               "pages": [
-                "v4-8/sync/concepts/mesh-networking-101",
-                "v4-8/sync/concepts/transports-overview",
-                "v4-8/sync/consistency-models"
+                "sdk/v4-8/sync/concepts/mesh-networking-101",
+                "sdk/v4-8/sync/concepts/transports-overview",
+                "sdk/v4-8/sync/consistency-models"
               ]
             }
           ]
@@ -349,10 +348,10 @@
           "version": "v4.8",
           "iconType": "solid",
           "pages": [
-            "v4-8/document-model/fields",
-            "v4-8/document-model/Collections",
-            "v4-8/document-model/identifiers",
-            "v4-8/document-model/relationships"
+            "sdk/v4-8/document-model/fields",
+            "sdk/v4-8/document-model/Collections",
+            "sdk/v4-8/document-model/identifiers",
+            "sdk/v4-8/document-model/relationships"
           ]
         },
         {
@@ -361,9 +360,9 @@
           "version": "v4.8",
           "iconType": "solid",
           "pages": [
-            "v4-8/data-types/register",
-            "v4-8/data-types/map",
-            "v4-8/data-types/attachment"
+            "sdk/v4-8/data-types/register",
+            "sdk/v4-8/data-types/map",
+            "sdk/v4-8/data-types/attachment"
           ]
         },
         {
@@ -372,10 +371,10 @@
           "icon": "lock",
           "iconType": "solid",
           "pages": [
-            "v4-8/auth-and-authorization/cloud-authentication",
-            "v4-8/auth-and-authorization/shared-key",
-            "v4-8/auth-and-authorization/data-authorization",
-            "v4-8/auth-and-authorization/certificate-based-security"
+            "sdk/v4-8/auth-and-authorization/cloud-authentication",
+            "sdk/v4-8/auth-and-authorization/shared-key",
+            "sdk/v4-8/auth-and-authorization/data-authorization",
+            "sdk/v4-8/auth-and-authorization/certificate-based-security"
           ]
         },
         {
@@ -384,15 +383,15 @@
           "icon": "book",
           "iconType": "solid",
           "pages": [
-            "v4-8/api-reference/api-reference",
-            "v4-8/api-reference/swift",
-            "v4-8/api-reference/kotlin",
-            "v4-8/api-reference/js",
-            "v4-8/api-reference/java",
-            "v4-8/api-reference/c-sharp",
-            "v4-8/api-reference/cpp",
-            "v4-8/api-reference/rust",
-            "v4-8/api-reference/flutter"
+            "sdk/v4-8/api-reference/api-reference",
+            "sdk/v4-8/api-reference/swift",
+            "sdk/v4-8/api-reference/kotlin",
+            "sdk/v4-8/api-reference/js",
+            "sdk/v4-8/api-reference/java",
+            "sdk/v4-8/api-reference/c-sharp",
+            "sdk/v4-8/api-reference/cpp",
+            "sdk/v4-8/api-reference/rust",
+            "sdk/v4-8/api-reference/flutter"
           ]
         },
         {
@@ -401,15 +400,15 @@
           "icon": "bullhorn",
           "iconType": "solid",
           "pages": [
-            "v4-8/release-notes/release-notes",
-            "v4-8/release-notes/swift",
-            "v4-8/release-notes/kotlin",
-            "v4-8/release-notes/js",
-            "v4-8/release-notes/java",
-            "v4-8/release-notes/c-sharp",
-            "v4-8/release-notes/cpp",
-            "v4-8/release-notes/rust",
-            "v4-8/release-notes/flutter"
+            "sdk/v4-8/release-notes/release-notes",
+            "sdk/v4-8/release-notes/swift",
+            "sdk/v4-8/release-notes/kotlin",
+            "sdk/v4-8/release-notes/js",
+            "sdk/v4-8/release-notes/java",
+            "sdk/v4-8/release-notes/c-sharp",
+            "sdk/v4-8/release-notes/cpp",
+            "sdk/v4-8/release-notes/rust",
+            "sdk/v4-8/release-notes/flutter"
           ]
         },
         {
@@ -417,16 +416,16 @@
           "icon": "map",
           "iconType": "solid",
           "pages": [
-            "v4-8/compatibility/compatibility",
-            "v4-8/compatibility/swift",
-            "v4-8/compatibility/kotlin",
-            "v4-8/compatibility/js-web",
-            "v4-8/compatibility/react-native",
-            "v4-8/compatibility/java",
-            "v4-8/compatibility/c-sharp",
-            "v4-8/compatibility/cpp",
-            "v4-8/compatibility/rust",
-            "v4-8/compatibility/flutter"
+            "sdk/v4-8/compatibility/compatibility",
+            "sdk/v4-8/compatibility/swift",
+            "sdk/v4-8/compatibility/kotlin",
+            "sdk/v4-8/compatibility/js-web",
+            "sdk/v4-8/compatibility/react-native",
+            "sdk/v4-8/compatibility/java",
+            "sdk/v4-8/compatibility/c-sharp",
+            "sdk/v4-8/compatibility/cpp",
+            "sdk/v4-8/compatibility/rust",
+            "sdk/v4-8/compatibility/flutter"
           ]
         }
       ]
@@ -435,42 +434,41 @@
       "group": "SDK",
       "version": "v4.7",
       "pages": [
-        "v4-7/introduction",
         {
           "group": "Get Started",
           "version": "v4.7",
           "icon": "play",
           "iconType": "solid",
           "pages": [
-            "v4-7/getting-started/sync-credentials",
+            "sdk/v4-7/getting-started/sync-credentials",
             {
               "group": "Install Guides",
               "version": "v4.7",
               "icon": "download",
               "iconType": "solid",
               "pages": [
-                "v4-7/install-guides",
-                "v4-7/getting-started/install-guides/swift",
-                "v4-7/getting-started/install-guides/kotlin",
-                "v4-7/getting-started/install-guides/js",
-                "v4-7/getting-started/install-guides/nodejs",
-                "v4-7/getting-started/install-guides/react-native",
-                "v4-7/getting-started/install-guides/java",
-                "v4-7/getting-started/install-guides/c-sharp",
-                "v4-7/getting-started/install-guides/cpp",
-                "v4-7/getting-started/install-guides/rust",
+                "sdk/v4-7/install-guides",
+                "sdk/v4-7/install-guides/swift",
+                "sdk/v4-7/install-guides/kotlin",
+                "sdk/v4-7/install-guides/js",
+                "sdk/v4-7/install-guides/nodejs",
+                "sdk/v4-7/install-guides/react-native",
+                "sdk/v4-7/install-guides/java",
+                "sdk/v4-7/install-guides/c-sharp",
+                "sdk/v4-7/install-guides/cpp",
+                "sdk/v4-7/install-guides/rust",
                 {
                   "group": "Flutter",
                   "version": "v4.7",
                   "icon": "flutter",
                   "iconType": "solid",
                   "pages": [
-                    "v4-7/getting-started/install-guides/flutter",
-                    "v4-7/getting-started/install-guides/flutter/quick-start",
-                    "v4-7/getting-started/install-guides/flutter/roadmap"
+                    "sdk/v4-7/install-guides/flutter",
+                    "sdk/v4-7/install-guides/flutter/quick-start",
+                    "sdk/v4-7/install-guides/flutter/roadmap"
                   ]
                 },
-                "v4-7/getting-started/hello-world-sync"
+                "sdk/v4-7/getting-started/hello-world-sync"
               ]
             }
           ]
@@ -481,9 +479,9 @@
           "icon": "lightbulb",
           "iconType": "solid",
           "pages": [
-            "v4-7/basic/ditto",
-            "v4-7/basic/mesh-networking-101",
-            "v4-7/basic/data-handling-essentials"
+            "sdk/v4-7/basic/ditto",
+            "sdk/v4-7/basic/mesh-networking-101",
+            "sdk/v4-7/basic/data-handling-essentials"
           ]
         },
         {
@@ -491,18 +489,18 @@
           "icon": "folder-tree",
           "iconType": "solid",
           "pages": [
-            "v4-7/document-model/fields",
-            "v4-7/document-model/collections",
-            "v4-7/document-model/identifiers",
-            "v4-7/document-model/relationships",
+            "sdk/v4-7/document-model/fields",
+            "sdk/v4-7/document-model/collections",
+            "sdk/v4-7/document-model/identifiers",
+            "sdk/v4-7/document-model/relationships",
             {
               "group": "Data Types",
               "icon": "share-nodes",
               "iconType": "solid",
               "pages": [
-                "v4-7/document-model/data-types/register",
-                "v4-7/document-model/data-types/map",
-                "v4-7/document-model/data-types/attachment"
+                "sdk/v4-7/document-model/data-types/register",
+                "sdk/v4-7/document-model/data-types/map",
+                "sdk/v4-7/document-model/data-types/attachment"
               ]
             }
           ]
@@ -513,10 +511,10 @@
           "icon": "database",
           "iconType": "solid",
           "pages": [
-            "v4-7/crud/create",
-            "v4-7/crud/read",
-            "v4-7/crud/update",
-            "v4-7/crud/delete"
+            "sdk/v4-7/crud/create",
+            "sdk/v4-7/crud/read",
+            "sdk/v4-7/crud/update",
+            "sdk/v4-7/crud/delete"
           ]
         },
         {
@@ -525,32 +523,31 @@
           "icon": "rotate",
           "iconType": "solid",
           "pages": [
-            "v4-7/sync/start-and-stop-sync",
-            "v4-7/sync/subscriptions-management",
-            "v4-7/sync/using-mesh-presence",
+            "sdk/v4-7/sync/start-and-stop-sync",
+            "sdk/v4-7/sync/subscriptions-management",
+            "sdk/v4-7/sync/using-mesh-presence",
             {
               "group": "Advanced Customization",
               "version": "v4.7",
               "pages": [
-                "v4-7/sync/customizing-transport-configurations",
+                "sdk/v4-7/sync/customizing-transport-configurations",
                 {
                   "group": "Using Alert System",
                   "version": "v4.7",
                   "pages": [
-                    "v4-7/sync/using-alter-system",
-                    "v4-7/sync/managing-redundant-bluetooth-le-connections"
+                    "sdk/v4-7/sync/using-alter-system",
+                    "sdk/v4-7/sync/managing-redundant-bluetooth-le-connections"
                   ]
                 },
-                "v4-7/sync/creating-sync-groups",
-                "v4-7/sync/handling-connection-requests"
+                "sdk/v4-7/sync/handling-connection-requests"
               ]
             },
             {
               "group": "Sync Concepts",
               "version": "v4.7",
               "pages": [
-                "v4-7/sync/concepts/transports-overview",
-                "v4-7/sync/consistency-models"
+                "sdk/v4-7/sync/concepts/transports-overview",
+                "sdk/v4-7/sync/consistency-models"
               ]
             }
           ]
@@ -561,10 +558,10 @@
           "icon": "lock",
           "iconType": "solid",
           "pages": [
-            "v4-7/security/authentication",
-            "v4-7/security/shared-key",
-            "v4-7/security/end-user-access",
-            "v4-7/security/certificate-based-security"
+            "sdk/v4-7/security/authentication",
+            "sdk/v4-7/security/shared-key",
+            "sdk/v4-7/security/end-user-access",
+            "sdk/v4-7/security/certificate-based-security"
           ]
         },
         {
@@ -573,15 +570,15 @@
           "icon": "book",
           "iconType": "solid",
           "pages": [
-            "v4-7/api-reference/api-reference",
-            "v4-7/api-reference/swift",
-            "v4-7/api-reference/kotlin",
-            "v4-7/api-reference/js",
-            "v4-7/api-reference/java",
-            "v4-7/api-reference/c-sharp",
-            "v4-7/api-reference/cpp",
-            "v4-7/api-reference/rust",
-            "v4-7/api-reference/flutter"
+            "sdk/v4-7/api-reference/api-reference",
+            "sdk/v4-7/api-reference/swift",
+            "sdk/v4-7/api-reference/kotlin",
+            "sdk/v4-7/api-reference/js",
+            "sdk/v4-7/api-reference/java",
+            "sdk/v4-7/api-reference/c-sharp",
+            "sdk/v4-7/api-reference/cpp",
+            "sdk/v4-7/api-reference/rust",
+            "sdk/v4-7/api-reference/flutter"
           ]
         },
         {
@@ -589,16 +586,16 @@
           "icon": "map",
           "iconType": "solid",
           "pages": [
-            "v4-7/compatibility/compatibility",
-            "v4-7/compatibility/swift",
-            "v4-7/compatibility/kotlin",
-            "v4-7/compatibility/js-web",
-            "v4-7/compatibility/react-native",
-            "v4-7/compatibility/java",
-            "v4-7/compatibility/c-sharp",
-            "v4-7/compatibility/cpp",
-            "v4-7/compatibility/rust",
-            "v4-7/compatibility/flutter"
+            "sdk/v4-7/compatibility/compatibility",
+            "sdk/v4-7/compatibility/swift",
+            "sdk/v4-7/compatibility/kotlin",
+            "sdk/v4-7/compatibility/js-web",
+            "sdk/v4-7/compatibility/react-native",
+            "sdk/v4-7/compatibility/java",
+            "sdk/v4-7/compatibility/c-sharp",
+            "sdk/v4-7/compatibility/cpp",
+            "sdk/v4-7/compatibility/rust",
+            "sdk/v4-7/compatibility/flutter"
           ]
         },
         {
@@ -607,16 +604,16 @@
           "icon": "bullhorn",
           "iconType": "solid",
           "pages": [
-            "v4-7/release-notes/release-notes",
-            "v4-7/release-notes/swift",
-            "v4-7/release-notes/kotlin",
-            "v4-7/release-notes/js",
-            "v4-7/release-notes/react-native",
-            "v4-7/release-notes/java",
-            "v4-7/release-notes/c-sharp",
-            "v4-7/release-notes/cpp",
-            "v4-7/release-notes/rust",
-            "v4-7/release-notes/flutter"
+            "sdk/v4-7/release-notes/release-notes",
+            "sdk/v4-7/release-notes/swift",
+            "sdk/v4-7/release-notes/kotlin",
+            "sdk/v4-7/release-notes/js",
+            "sdk/v4-7/release-notes/react-native",
+            "sdk/v4-7/release-notes/java",
+            "sdk/v4-7/release-notes/c-sharp",
+            "sdk/v4-7/release-notes/cpp",
+            "sdk/v4-7/release-notes/rust",
+            "sdk/v4-7/release-notes/flutter"
           ]
         }
       ]
