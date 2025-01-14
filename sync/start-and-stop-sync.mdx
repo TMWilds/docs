@@ -7,75 +7,66 @@ description : "Required only once, initiating the sync process automatically con
 
 To initiate the sync process:
 
-<Tabs>
-    <Tab title="Swift">
-    ```swift
-    try! ditto.startSync()
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```kotlin
-    try {
-        ditto.startSync()
-    } catch (e: DittoError) {
-        // handle error
-    }
-    ```
-    </Tab>
-    <Tab title="JS">
-    ```javascript
-    try {
-      ditto.startSync()
-    } catch (err) {
-      // handle error
-    }
-    ```
-    </Tab>
-    <Tab title="Java">
-    ```java
-    try {
-        ditto.startSync();
-    } catch(DittoError e) {
-        // handle error
-    }
-    ```
-    </Tab>
-    <Tab title="C#">
-    ```csharp
-    try
-    {
-        ditto.StartSync();
-    }
-    catch (DittoException ex)
-    {
-        // handle exception
-    }
-    ```
-    </Tab>
-    <Tab title="C++">
-    ```cpp
-    try {
-      ditto.start_sync();
-    } catch (const DittoError &err) {
-      std::cerr << err.what();
-    }
-    ```
-    </Tab>
-    <Tab title="Rust">
-    ```rust
-    ditto.try_start_sync()?;
-    ```
-    </Tab>
-    <Tab title="Dart">
-    ```dart
-    try {
-      await ditto.startSync();
-    } catch (e) {
-      // handle exception
-    }
-    ```
-    </Tab>
-</Tabs>
+<CodeGroup>
+```swift Swift
+try! ditto.startSync()
+```
+
+```kotlin Kotlin
+try {
+    ditto.startSync()
+} catch (e: DittoError) {
+    // handle error
+}
+```
+
+```javascript JS
+try {
+  ditto.startSync()
+} catch (err) {
+  // handle error
+}
+```
+
+```java Java
+try {
+    ditto.startSync();
+} catch(DittoError e) {
+    // handle error
+}
+```
+
+```csharp C#
+try
+{
+    ditto.StartSync();
+}
+catch (DittoException ex)
+{
+    // handle exception
+}
+```
+
+```cpp C++
+try {
+  ditto.start_sync();
+} catch (const DittoError &err) {
+  std::cerr << err.what();
+}
+```
+
+```rust Rust
+ditto.try_start_sync()?;
+```
+
+```dart Dart
+try {
+  await ditto.startSync();
+} catch (e) {
+  // handle exception
+}
+```
+</CodeGroup>
 
 <Info>
 Ensure the sync process remains active throughout your app's lifecycle by starting the sync process (`startSync`) in the top-most scope of your code.
@@ -85,69 +76,60 @@ Ensure the sync process remains active throughout your app's lifecycle by starti
 
 To stop the sync process, call the `stopSync` function. Once called, you will be disconnect from any peers and all active sync subscriptions will be paused.
 
-<Tabs>
-    <Tab title="Swift">
-    ```swift
-    try! ditto.stopSync()
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```kotlin
-    try {
-        ditto.stopSync()
-    } catch (e: DittoError) {
-        // handle error
-    }
-    ```
-    </Tab>
-    <Tab title="JS">
-    ```javascript
-    try {
-      ditto.stopSync()
-    } catch (err) {
-      // handle error
-    }
-    ```
-    </Tab>
-    <Tab title="Java">
-    ```java
-    try {
-        ditto.stopSync();
-    } catch(DittoError e) {
-        // handle error
-    }
-    ```
-    </Tab>
-    <Tab title="C#">
-    ```csharp
-    try
-    {
-        ditto.StopSync();
-    }
-    catch (DittoException ex)
-    {
-        // handle exception
-    }
-    ```
-    </Tab>
-    <Tab title="C++">
-    ```cpp
-    try {
-      ditto.stop_sync();
-    } catch (const DittoError &err) {
-      std::cerr << err.what();
-    }
-    ```
-    </Tab>
-    <Tab title="Rust">
-    ```rust
-    ditto.try_stop_sync()?;
-    ```
-    </Tab>
-    <Tab title="Dart">
-    ```dart
+<CodeGroup>
+```swift Swift
+try! ditto.stopSync()
+```
+
+```kotlin Kotlin
+try {
+    ditto.stopSync()
+} catch (e: DittoError) {
+    // handle error
+}
+```
+
+```javascript JS
+try {
+  ditto.stopSync()
+} catch (err) {
+  // handle error
+}
+```
+
+```java Java
+try {
     ditto.stopSync();
-    ```
-    </Tab>
-</Tabs>
+} catch(DittoError e) {
+    // handle error
+}
+```
+
+```csharp C#
+try
+{
+    ditto.StopSync();
+}
+catch (DittoException ex)
+{
+    // handle exception
+}
+```
+
+```cpp C++
+try {
+  ditto.stop_sync();
+} catch (const DittoError &err) {
+  std::cerr << err.what();
+}
+```
+
+```rust Rust
+ditto.try_stop_sync()?;
+```
+
+```dart Dart
+ditto.stopSync();
+```
+</CodeGroup>
 

@@ -23,39 +23,35 @@ To remove a specific field from a document, use an explicit UPDATE statement and
 </Info>
 
 ## **INSERT Document**
-<Tabs>
-  <Tab title="Swift">
-```swift
+<CodeGroup>
+```swift Swift
+
 await ditto.store.execute(
   query: "INSERT INTO cars DOCUMENTS (:newCar)",
   arguments: ["newCar": ["color": "blue"]]);
 ```
-  </Tab>
-  <Tab title="Kotlin">
-```Kotlin
+
+```kotlin Kotlin
 ditto.store.execute(
   "INSERT INTO cars DOCUMENTS (:newCar)",
   mapOf("newCar" to mapOf("color" to "blue")))
 ```
-  </Tab>
-  <Tab title="JS">
-```JS
+
+```javascript JS
 await ditto.store.execute(
   "INSERT INTO cars DOCUMENTS (:newCar)",
   { newCar: { color: "blue" } }
 );
 ```
-  </Tab>
-  <Tab title="Java">
-```Java
+
+```java Java
 DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
     "INSERT INTO cars DOCUMENTS (:newCar)",
     Collections.singletonMap("newCar", Collections.singletonMap("color", "blue")),
 );
 ```
-  </Tab>
-  <Tab title="C#">
-```C#
+
+```csharp C#
 var args = new Dictionary<string, object>();
 args.Add("newCar", new { color = "blue" });
 
@@ -63,9 +59,8 @@ await ditto.Store.ExecuteAsync(
   "INSERT INTO cars DOCUMENTS (:newCar)",
   args);
 ```
-  </Tab>
-  <Tab title="C++">
-```cpp
+
+```cpp C++
 std::map<std::string, std::map<std::string, std::string>> args;
 args["newCar"] = {{"color", "blue"}};
 
@@ -73,9 +68,8 @@ ditto.get_store().execute(
   "INSERT INTO cars DOCUMENTS (:newCar)",
   args);
 ```
-  </Tab>
-  <Tab title="Rust">
-```Rust
+
+```rust Rust
 let query_result = ditto
     .store()
     .execute(
@@ -87,22 +81,20 @@ let query_result = ditto
         }).into()),
     ).await?;
 ```
-  </Tab>
-  <Tab title="Dart">
-```Dart
+
+```dart Dart
 await ditto.store.execute(
   "INSERT INTO cars DOCUMENTS (:newCar)",
   arguments: {"newCar": {"color": "blue"}},
 );
 ```
-  </Tab>
-</Tabs>
+</CodeGroup>
 
 ## INSERT with Multiple Documents
 
-<Tabs>
-  <Tab title="Swift">
-```swift
+<CodeGroup>
+```swift Swift
+
 await ditto.store.execute(
   query: "INSERT INTO cars DOCUMENTS (:car1), (:car2)",
   arguments: [
@@ -110,9 +102,8 @@ await ditto.store.execute(
     "car2": ["color": "red"]
   ]);
 ```
-  </Tab>
-  <Tab title="Kotlin">
-```Kotlin
+
+```kotlin Kotlin
 ditto.store.execute(
   "INSERT INTO cars DOCUMENTS (:car1),(:car2)",
   mapOf(
@@ -120,9 +111,8 @@ ditto.store.execute(
     "car2" to mapOf("color" to "red")
   ))
 ```
-  </Tab>
-  <Tab title="JS">
-```JS
+
+```javascript JS
 await ditto.store.execute(
   "INSERT INTO cars DOCUMENTS (:car1),(:car2)",
   {
@@ -130,9 +120,8 @@ await ditto.store.execute(
     car2: { color: 'red' }
   });
 ```
-  </Tab>
-  <Tab title="Java">
-```Java
+
+```java Java
 Map<String, Map<String, String>> args = new HashMap<>();
 args.put("car1", Collections.singletonMap("color", "blue"));
 args.put("car2", Collections.singletonMap("color", "red"));
@@ -156,9 +145,8 @@ DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
     }
 );
 ```
-  </Tab>
-  <Tab title="C#">
-```C#
+
+```csharp C#
 var args = new Dictionary<string, object>();
 args.Add("car1", new { color = "blue" });
 args.Add("car2", new { color = "red" });
@@ -167,9 +155,8 @@ await ditto.Store.ExecuteAsync(
   "INSERT INTO cars DOCUMENTS (:car1),(:car2)",
   args);
 ```
-  </Tab>
-  <Tab title="C++">
-```cpp
+
+```cpp C++
 std::map<std::string, std::map<std::string, std::string>> args;
 args["car1"] = {{"color", "blue"}};
 args["car2"] = {{"color", "red"}};
@@ -178,9 +165,8 @@ auto result = ditto.get_store().execute(
     "INSERT INTO cars DOCUMENTS (:car1),(:car2)",
     args).get();
 ```
-  </Tab>
-  <Tab title="Rust">
-```Rust
+
+```rust Rust
 let query_result = ditto
     .store()
     .execute(
@@ -195,9 +181,8 @@ let query_result = ditto
         }).into()),
     ).await?;
 ```
-  </Tab>
-  <Tab title="Dart">
-```Dart
+
+```dart Dart
 await ditto.store.execute(
   "INSERT INTO cars DOCUMENTS (:car1),(:car2)",
   arguments: {
@@ -206,16 +191,14 @@ await ditto.store.execute(
   },
 );
 ```
-  </Tab>
-</Tabs>
+</CodeGroup>
 
 ## INSERT Document with MAP Type
 
 For full `MAP` syntax, see [MAP](/dql/insert#insert-document-with-map-type).
 
-<Tabs>
-  <Tab title="Swift">
-```swift
+<CodeGroup>
+```swift Swift
 let arguments: [String: Any] = [
   "newCar": [
     "_id": "123",
@@ -230,9 +213,8 @@ await ditto.store.execute(
   query: "INSERT INTO COLLECTION cars (properties MAP) DOCUMENTS (:newCar)",
   arguments: arguments);
 ```
-  </Tab>
-  <Tab title="Kotlin">
-```Kotlin
+
+```kotlin Kotlin
 val arguments = mapOf(
   "newCar" to mapOf(
     "_id" to "123",
@@ -250,9 +232,8 @@ ditto.store.execute("""
   """,
   arguments)
 ```
-  </Tab>
-  <Tab title="JS">
-```JS
+
+```javascript JS
 const newCar = {
   _id: "123",
   properties: {
@@ -266,9 +247,8 @@ await ditto.store.execute(`
   DOCUMENTS (:newCar)`,
   { newCar });
 ```
-  </Tab>
-  <Tab title="Java">
-```Java
+
+```java Java
 Map<String, Object> properties = new HashMap<>();
 properties.put("color", "blue");
 properties.put("mileage", 3000);
@@ -296,9 +276,8 @@ DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
     }
 );
 ```
-  </Tab>
-  <Tab title="C#">
-```C#
+
+```csharp C#
 var subMap = new {
   color = "blue",
   mileage = 3000
@@ -310,9 +289,8 @@ var result = await ditto.Store.ExecuteAsync(
   "INSERT INTO COLLECTION cars (properties MAP) DOCUMENTS (:newCar)",
   insertArgs);
 ```
-  </Tab>
-  <Tab title="C++">
-```cpp
+
+```cpp C++
 struct Properties {
   std::string color;
   int mileage;
@@ -332,9 +310,8 @@ ditto.get_store().execute(
 + " DOCUMENTS (:newCar)",
   args).get();
 ```
-  </Tab>
-  <Tab title="Rust">
-```Rust
+
+```rust Rust
 let query_result = ditto
     .store()
     .execute(
@@ -350,9 +327,8 @@ let query_result = ditto
         }).into()),
     ).await?;
 ```
-  </Tab>
-  <Tab title="Dart">
-```Dart
+
+```dart Dart
 final newCar = {
   "_id": "123",
   "properties": {
@@ -367,16 +343,14 @@ await ditto.store.execute("""
   arguments: {"newCar": newCar},
 );
 ```
-  </Tab>
-</Tabs>
+</CodeGroup>
 
 ## INSERT JSON-serialized Document
 
 From SDK 4.8, you can insert JSON-serialized Documents into Ditto directly using the `deserialize_json()` function.
 
-<Tabs>
-  <Tab title="Swift">
-```swift
+<CodeGroup>
+```swift Swift
 await ditto.store.execute(
   query: """
     INSERT INTO cars
@@ -385,34 +359,30 @@ await ditto.store.execute(
     """,
   arguments: [ "jsonData": "{\"_id\": \"123\",\"color\": \"blue\"}" ])
 ```
-  </Tab>
-  <Tab title="Kotlin">
-```Kotlin
+
+```kotlin Kotlin
 ditto.store.execute("""
   INSERT INTO cars
   DOCUMENTS (deserialize_json(:jsonData))
   """,
   mapOf("jsonData", "{\"_id\": \"123\",\"color\": \"blue\"}"))
 ```
-  </Tab>
-  <Tab title="JS">
-```JS
+
+```javascript JS
 await ditto.store.execute(`
   INSERT INTO cars
   DOCUMENTS (deserialize_json(:jsonData))`,
   { jsonData: "{\"_id\": \"123\",\"color\": \"blue\"}" });
 ```
-  </Tab>
-  <Tab title="Java">
-```Java
+
+```java Java
 await ditto.store.execute(`
   INSERT INTO cars
   DOCUMENTS (deserialize_json(:jsonData))`,
   { jsonData: "{\"_id\": \"123\",\"color\": \"blue\"}" });
 ```
-  </Tab>
-  <Tab title="C#">
-```C#
+
+```csharp C#
 var args = new Dictionary<string, string>();
 args.Add("jsonData", "{\"_id\": \"123\",\"color\": \"blue\"}")
 
@@ -421,9 +391,8 @@ var result = await ditto.Store.ExecuteAsync(
 + " DOCUMENTS (deserialize_json(:jsonData))",
   args);
 ```
-  </Tab>
-  <Tab title="C++">
-```cpp
+
+```cpp C++
 std::map<std::string, string> args;
 args["jsonData"] = "{\"_id\": \"123\",\"color\": \"blue\"}";
 
@@ -431,9 +400,8 @@ auto result = ditto.get_store().execute(
   "INSERT INTO cars DOCUMENTS (deserialize_json(:jsonData))",
   args).get();
 ```
-  </Tab>
-  <Tab title="Rust">
-```Rust
+
+```rust Rust
 let json_string = r#"{"_id": "123", "color": "blue"}"#.to_string();
 
 let query_result = ditto
@@ -445,9 +413,8 @@ let query_result = ditto
         }).into()),
     ).await;
 ```
-  </Tab>
-  <Tab title="Dart">
-```Dart
+
+```dart Dart
 final newCar = '{"_id": "123", "color": "blue"}';
 
 await ditto.execute("""
@@ -456,8 +423,7 @@ await ditto.execute("""
   queryArgs: {"jsonData": "{\"_id\": \"123\",\"color\": \"blue\"}"},
 );
 ```
-  </Tab>
-</Tabs>
+</CodeGroup>
 
 ## INSERT with ID Conflict Handling
 
@@ -480,9 +446,8 @@ In this syntax:
 For example, inserting or updating a car — if there is a conflict (ON ID CONFLICT), execute the  DO UPDATE conflict resolution policy:
 
 
-<Tabs>
-  <Tab title="Swift">
-```swift
+<CodeGroup>
+```swift Swift
 let newCar = [
   "_id": "123",
   "color": "blue"
@@ -496,9 +461,8 @@ await ditto.store.execute(
     """,
   arguments: [ "newCar": newCar ])
 ```
-  </Tab>
-  <Tab title="Kotlin">
-```Kotlin
+
+```kotlin Kotlin
 var newCar = mapOf(
   "_id" to "123",
   "color" to "blue"
@@ -511,9 +475,8 @@ ditto.store.execute("""
   """,
   mapOf("newCar", newCar))
 ```
-  </Tab>
-  <Tab title="JS">
-```JS
+
+```javascript JS
 const newCar = {
   _id: "123",
   color: "blue",
@@ -525,17 +488,15 @@ await ditto.store.execute(`
   ON ID CONFLICT DO UPDATE`,
   { newCar });
 ```
-  </Tab>
-  <Tab title="Java">
-```Java
+
+```java Java
 DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
     "INSERT INTO cars DOCUMENTS (:newCar) ON ID CONFLICT DO UPDATE",
     Collections.singletonMap("newCar", Collections.singletonMap("color", "blue")),
 );
 ```
-  </Tab>
-  <Tab title="C#">
-```C#
+
+```csharp C#
 var args = new Dictionary<string, object>();
 args.Add("newCar", new { _id = "123", color = "blue" })
 
@@ -544,9 +505,8 @@ var result = await ditto.Store.ExecuteAsync(
 + " DOCUMENTS (:newCar) ON ID CONFLICT DO UPDATE",
   args);
 ```
-  </Tab>
-  <Tab title="C++">
-```cpp
+
+```cpp C++
 struct Car {
   std::string _id;
   std::string color;
@@ -561,9 +521,8 @@ auto result = ditto.get_store().execute(
   "INSERT INTO cars DOCUMENTS (:newCar) ON ID CONFLICT DO UPDATE",
   args).get();
 ```
-  </Tab>
-  <Tab title="Rust">
-```Rust
+
+```rust Rust
 let query_result = ditto
     .store()
     .execute(
@@ -577,9 +536,8 @@ let query_result = ditto
         }).into()),
     ).await?;
 ```
-  </Tab>
-  <Tab title="Dart">
-```Dart
+
+```dart Dart
 final newCar = {
   "_id": "123",
   "color": "blue",
@@ -592,8 +550,7 @@ await ditto.execute("""
   queryArgs: {"newCar": newCar},
 );
 ```
-  </Tab>
-</Tabs>
+</CodeGroup>
 
 ## INSERT with INITIAL DOCUMENTS
 
@@ -620,9 +577,8 @@ In this syntax:
 For example, setting up default data by inserting the given car details as an initial document:
 
 
-<Tabs>
-  <Tab title="Swift">
-```swift
+<CodeGroup>
+```swift Swift
 let newCar = [
   "_id": "123",
   "color": "blue"
@@ -635,9 +591,8 @@ await ditto.store.execute(
     """,
   arguments: [ "newCar": newCar ])
 ```
-  </Tab>
-  <Tab title="Kotlin">
-```Kotlin
+
+```kotlin Kotlin
 var newCar = mapOf(
   "_id" to "123",
   "color" to "blue"
@@ -649,9 +604,8 @@ ditto.store.execute("""
   """,
   mapOf("newCar", newCar))
 ```
-  </Tab>
-  <Tab title="JS">
-```JS
+
+```javascript JS
 const newCar = {
   _id: "123"
   color: "blue",
@@ -662,17 +616,15 @@ await ditto.store.execute(`
   INITIAL DOCUMENTS (:newCar)`,
   { newCar });
 ```
-  </Tab>
-  <Tab title="Java">
-```Java
+
+```java Java
 DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
     "INSERT INTO cars INITIAL DOCUMENTS (:newCar)",
     Collections.singletonMap("newCar", Collections.singletonMap("color", "blue")),
 );
 ```
-  </Tab>
-  <Tab title="C#">
-```C#
+
+```csharp C#
 var args = new Dictionary<string, object>();
 args.Add("newCar", new { _id = "123", field1 = 0 })
 
@@ -680,9 +632,8 @@ await ditto.Store.ExecuteAsync(
   "INSERT INTO cars INITIAL DOCUMENTS (:newCar)",
   args);
 ```
-  </Tab>
-  <Tab title="C++">
-```cpp
+
+```cpp C++
 struct Car {
   std::string _id;
   std::string color;
@@ -697,9 +648,8 @@ auto result = ditto.get_store().execute(
   "INSERT INTO cars INITIAL DOCUMENTS (:newCar)",
   args).get();
 ```
-  </Tab>
-  <Tab title="Rust">
-```Rust
+
+```rust Rust
 let query_result = ditto
     .store()
     .execute(
@@ -712,9 +662,8 @@ let query_result = ditto
         }).into())
     ).await?;
 ```
-  </Tab>
-  <Tab title="Dart">
-```Dart
+
+```dart Dart
 const newCar = {
   "_id": "123"
   "color": "blue",
@@ -726,6 +675,5 @@ await ditto.execute("""
   {"newCar": newCar},
 );
 ```
-  </Tab>
-</Tabs>
+</CodeGroup>
 

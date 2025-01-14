@@ -1,0 +1,1533 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Ditto HTTP RPC API",
+    "version": "4.0.0",
+    "description": "The Ditto HTTP RPC API provides a RESTful interface for interacting with Ditto's distributed data store. It enables you to query, insert, update and delete data across your Ditto network while maintaining strong consistency guarantees."
+  },
+  "servers": [
+    {
+      "url": "{base_url}/api/v4",
+      "description": "The Ditto Big Peer acts as a central synchronization point and data store in your Ditto network. It coordinates data replication between peers and provides a consistent view of your data.",
+      "variables": {
+        "base_url": {
+          "default": "https://REPLACE_WITH_MY_APP_ID.cloud.ditto.live",
+          "description": "Your unique Ditto application endpoint URL, found in the Ditto Portal under Application Settings. Replace REPLACE_WITH_MY_APP_ID with your actual app ID."
+        }
+      }
+    }
+  ],
+  "paths": {
+    "/store/count": {
+      "post": {
+        "description": "Count the number of documents in a collection that match a specified query. This endpoint is useful for pagination, analytics, and understanding the size of your dataset.",
+        "operationId": "count_endpoint",
+        "parameters": [
+          {
+            "name": "X-DITTO-TXN-ID",
+            "in": "header",
+            "description": "Optional transaction ID header that ensures consistency. If specified, the operation will only proceed if the Big Peer's transaction ID is equal to or greater than this value. This prevents reading stale data by ensuring you're operating on a sufficiently up-to-date version of the database.",
+            "required": false,
+            "deprecated": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CountRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "The count operation completed successfully. Returns the total number of matching documents and the transaction ID of the operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CountResponse"
+                }
+              },
+              "application/cbor": {
+                "schema": {
+                  "$ref": "#/components/schemas/CountResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was malformed. This typically indicates an invalid query syntax, unknown collection, or invalid parameters. Check the error message for specific details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RpcError"
+                }
+              },
+              "application/cbor": {
+                "schema": {
+                  "$ref": "#/components/schemas/RpcError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication failed. Ensure you're providing a valid API key or JWT token in the Authorization header.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RpcError"
+                }
+              },
+              "application/cbor": {
+                "schema": {
+                  "$ref": "#/components/schemas/RpcError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. This could indicate a temporary service disruption or internal error. Retry the request after a brief delay.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RpcError"
+                }
+              },
+              "application/cbor": {
+                "schema": {
+                  "$ref": "#/components/schemas/RpcError"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/store/execute": {
+      "post": {
+        "description": "Execute a Ditto Query Language (DQL) statement against your data store. DQL is a powerful query language that supports complex queries, updates, and data manipulation. This endpoint serves as the primary interface for running DQL operations. See the comprehensive DQL guide at https://docs.ditto.live/dql-guide for detailed syntax and examples.",
+        "summary": "Execute a DQL query",
+        "operationId": "execute_endpoint",
+        "parameters": [
+          {
+            "name": "X-DITTO-TXN-ID",
+            "in": "header",
+            "description": "Optional transaction ID that ensures consistency across operations. When provided, the operation will only execute if the Big Peer's current transaction ID meets or exceeds this value, preventing stale reads and ensuring causal consistency in your application.",
+            "required": false,
+            "deprecated": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The DQL statement to execute, along with any parameterized arguments. Using parameterized queries with the args field helps prevent injection attacks and improves query performance through statement caching.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "The DQL statement executed successfully. The response includes the results of the query, any mutated document IDs, the transaction ID, and any warnings that occurred during execution. For SELECT queries, results appear in the items array. For mutations, affected IDs appear in mutatedDocumentIds.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueryResponse"
+                },
+                "example": {
+                  "transactionId": 100,
+                  "queryType": "select",
+                  "items": [
+                    {
+                      "_id": 1,
+                      "name": "Francis",
+                      "favoriteBook": {
+                        "title": "The Great Gatsby",
+                        "published": 1925
+                      }
+                    }
+                  ],
+                  "mutatedDocumentIds": [],
+                  "error": {},
+                  "warnings": [],
+                  "totalWarningsCount": 0
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The DQL statement was invalid or malformed. This could be due to syntax errors, invalid collection names, type mismatches, or other query validation failures. Check the error response for detailed information about what went wrong.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueryResponse"
+                },
+                "example": {
+                  "queryType": "unknown",
+                  "items": [],
+                  "mutatedDocumentIds": [],
+                  "error": {
+                    "description": "..."
+                  },
+                  "warnings": [],
+                  "totalWarningsCount": 0
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication failed. Ensure you're providing a valid API key or JWT token in the Authorization header and that it has sufficient permissions for the requested operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueryResponse"
+                },
+                "example": {
+                  "queryType": "unknown",
+                  "items": [],
+                  "mutatedDocumentIds": [],
+                  "error": {
+                    "description": "..."
+                  },
+                  "warnings": [],
+                  "totalWarningsCount": 0
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The requested transaction ID (if specified) is not available on the Big Peer. This typically means the Big Peer has not yet reached that transaction ID or the transaction has been garbage collected.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueryResponse"
+                },
+                "example": {
+                  "queryType": "unknown",
+                  "items": [],
+                  "mutatedDocumentIds": [],
+                  "error": {
+                    "description": "..."
+                  },
+                  "warnings": [],
+                  "totalWarningsCount": 0
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "The query execution timed out. This can happen with complex queries over large datasets or when the system is under heavy load. Consider optimizing your query or adding appropriate indexes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueryResponse"
+                },
+                "example": {
+                  "queryType": "unknown",
+                  "items": [],
+                  "mutatedDocumentIds": [],
+                  "error": {
+                    "description": "..."
+                  },
+                  "warnings": [],
+                  "totalWarningsCount": 0
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected server error occurred while executing the query. This could be due to resource constraints, internal errors, or temporary service disruptions. The operation may succeed if retried.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueryResponse"
+                },
+                "example": {
+                  "queryType": "unknown",
+                  "items": [],
+                  "mutatedDocumentIds": [],
+                  "error": {
+                    "description": "..."
+                  },
+                  "warnings": [],
+                  "totalWarningsCount": 0
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "The service is temporarily unavailable, typically due to maintenance or capacity issues. Clients should implement exponential backoff and retry the request later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueryResponse"
+                },
+                "example": {
+                  "queryType": "unknown",
+                  "items": [],
+                  "mutatedDocumentIds": [],
+                  "error": {
+                    "description": "..."
+                  },
+                  "warnings": [],
+                  "totalWarningsCount": 0
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/store/find": {
+      "post": {
+        "description": "Query documents in a collection using a flexible query language. This endpoint supports pagination, sorting, and complex queries to help you efficiently retrieve exactly the data you need.",
+        "operationId": "find_endpoint",
+        "parameters": [
+          {
+            "name": "X-DITTO-TXN-ID",
+            "in": "header",
+            "description": "Optional transaction ID that ensures read consistency. The operation will only proceed if the Big Peer's transaction ID is at least this value, preventing reads of stale data.",
+            "required": false,
+            "deprecated": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Specify the collection to query, the query conditions, and optional parameters like limit, offset, and sort order. The query can be parameterized using the args field for safe and efficient execution.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FindRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "The query executed successfully. Returns an array of matching documents and the transaction ID of the read operation. If no documents match, the documents array will be empty.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FindResponse"
+                }
+              },
+              "application/cbor": {
+                "schema": {
+                  "$ref": "#/components/schemas/FindResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid. This could be due to malformed query syntax, invalid collection name, or invalid parameter values. Check the error message for details on how to correct the request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RpcError"
+                }
+              },
+              "application/cbor": {
+                "schema": {
+                  "$ref": "#/components/schemas/RpcError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication failed. Verify that you're providing a valid API key or JWT token and that it has appropriate read permissions for the requested collection.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RpcError"
+                }
+              },
+              "application/cbor": {
+                "schema": {
+                  "$ref": "#/components/schemas/RpcError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected server error occurred. This could be due to resource constraints or internal errors. The request may succeed if retried after a brief delay.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RpcError"
+                }
+              },
+              "application/cbor": {
+                "schema": {
+                  "$ref": "#/components/schemas/RpcError"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/store/findbyid": {
+      "post": {
+        "description": "Retrieve a single document by its unique identifier. This is the most efficient way to fetch a specific document when you know its ID.",
+        "operationId": "find_by_id_endpoint",
+        "parameters": [
+          {
+            "name": "X-DITTO-TXN-ID",
+            "in": "header",
+            "description": "Optional transaction ID for ensuring read consistency. The operation will only proceed if the Big Peer's transaction ID is at least this value, preventing reads of stale data.",
+            "required": false,
+            "deprecated": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FindByIdRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "The document was found and retrieved successfully. Returns the document data along with the transaction ID of the read operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FindByIdResponse"
+                }
+              },
+              "application/cbor": {
+                "schema": {
+                  "$ref": "#/components/schemas/FindByIdResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid. This could be due to an invalid ID format, unknown collection, or other parameter validation failures. Check the error message for specific details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RpcError"
+                }
+              },
+              "application/cbor": {
+                "schema": {
+                  "$ref": "#/components/schemas/RpcError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication failed. Ensure you're providing a valid API key or JWT token with appropriate read permissions for the requested collection.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RpcError"
+                }
+              },
+              "application/cbor": {
+                "schema": {
+                  "$ref": "#/components/schemas/RpcError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected server error occurred. This could be due to resource constraints or internal errors. The request may succeed if retried after a brief delay.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RpcError"
+                }
+              },
+              "application/cbor": {
+                "schema": {
+                  "$ref": "#/components/schemas/RpcError"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/store/write": {
+      "post": {
+        "description": "Perform one or more write operations (updates, upserts, or removals) in a single atomic transaction. This endpoint ensures all operations either succeed or fail together, maintaining data consistency.",
+        "operationId": "write_endpoint",
+        "parameters": [
+          {
+            "name": "X-DITTO-TXN-ID",
+            "in": "header",
+            "description": "Optional transaction ID that ensures write consistency. The operation will only proceed if the Big Peer's transaction ID is at least this value, preventing concurrent modification issues.",
+            "required": false,
+            "deprecated": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WriteRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "The write operations completed successfully. Returns results for each command, including the new transaction ID and counts of affected documents.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WriteResponse"
+                }
+              },
+              "application/cbor": {
+                "schema": {
+                  "$ref": "#/components/schemas/WriteResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid. This could be due to malformed commands, invalid collection names, or data validation failures. Check the error message for details on the specific issue.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RpcError"
+                }
+              },
+              "application/cbor": {
+                "schema": {
+                  "$ref": "#/components/schemas/RpcError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication failed. Verify that you're providing a valid API key or JWT token with appropriate write permissions for the affected collections.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RpcError"
+                }
+              },
+              "application/cbor": {
+                "schema": {
+                  "$ref": "#/components/schemas/RpcError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The authenticated user lacks permission to perform one or more of the requested write operations. Check your access control settings and ensure proper authorization.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RpcError"
+                }
+              },
+              "application/cbor": {
+                "schema": {
+                  "$ref": "#/components/schemas/RpcError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected server error occurred during the write operation. The transaction was rolled back to maintain consistency. Retry the request after a brief delay.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RpcError"
+                }
+              },
+              "application/cbor": {
+                "schema": {
+                  "$ref": "#/components/schemas/RpcError"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/sync/remote_execute": {
+      "post": {
+        "description": "Execute a DQL statement on specific connected peers in your Ditto network. This powerful feature allows you to query and manipulate data directly on edge devices that match your specified criteria.",
+        "operationId": "remote_execute_endpoint",
+        "requestBody": {
+          "description": "Specify both the peer selection criteria (using SYNC CONTEXT) and the DQL statement to execute on matching peers. This enables targeted operations on specific devices or groups of devices in your network.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RemoteExecuteRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "The remote execution request was processed successfully. Returns results from each matching peer, including any data retrieved, errors encountered, and execution statistics.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RemoteExecuteResponse"
+                }
+              },
+              "application/cbor": {
+                "schema": {
+                  "$ref": "#/components/schemas/RemoteExecuteResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid. This could be due to incorrect SYNC CONTEXT syntax, invalid DQL statement, or other parameter validation failures. Check the error message for specific details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RpcError"
+                }
+              },
+              "application/cbor": {
+                "schema": {
+                  "$ref": "#/components/schemas/RpcError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication failed. Ensure you're providing a valid API key or JWT token with appropriate permissions for remote execution.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RpcError"
+                }
+              },
+              "application/cbor": {
+                "schema": {
+                  "$ref": "#/components/schemas/RpcError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected server error occurred while processing the remote execution request. This could be due to network issues, peer connectivity problems, or internal errors.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RpcError"
+                }
+              },
+              "application/cbor": {
+                "schema": {
+                  "$ref": "#/components/schemas/RpcError"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CountRequest": {
+        "type": "object",
+        "description": "Request parameters for counting documents in a collection. Use this to get the total number of documents matching specific criteria.",
+        "required": [
+          "collection",
+          "query"
+        ],
+        "properties": {
+          "args": {
+            "$ref": "#/components/schemas/AnyValue",
+            "description": "Optional parameters to use in the parameterized query, providing safe value substitution"
+          },
+          "collection": {
+            "type": "string",
+            "description": "The name of the collection to count documents in"
+          },
+          "query": {
+            "type": "string",
+            "description": "A query expression that filters which documents to count. Use parameterized values with :param syntax for better security and performance"
+          }
+        },
+        "example": {
+          "collection": "people",
+          "query": "favoriteBook.title == 'The Great Gatsby'"
+        }
+      },
+      "CountResponse": {
+        "type": "object",
+        "description": "Response from a count operation, providing both the count and transaction ID for consistency tracking.",
+        "required": [
+          "count",
+          "txnId"
+        ],
+        "properties": {
+          "count": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The total number of documents that matched the query criteria"
+          },
+          "txnId": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The transaction ID at which this count was performed, useful for consistency checks"
+          }
+        },
+        "example": {
+          "count": 100,
+          "txnId": 9000
+        }
+      },
+      "Direction": {
+        "type": "string",
+        "description": "Sort direction for query results. Use 'asc' for ascending order (A to Z, 1 to 9) or 'desc' for descending order (Z to A, 9 to 1).",
+        "enum": [
+          "asc",
+          "desc"
+        ]
+      },
+      "Document": {
+        "type": "object",
+        "description": "Represents a document in the Ditto store. Documents are schema-free and can contain nested fields of various CRDT types for conflict-free replication.",
+        "required": [
+          "id",
+          "fields"
+        ],
+        "properties": {
+          "fields": {
+            "$ref": "#/components/schemas/AnyValue",
+            "description": "The document's content, which can include any valid JSON data types and special Ditto CRDT types"
+          },
+          "id": {
+            "$ref": "#/components/schemas/AnyValue",
+            "description": "The unique identifier for this document within its collection"
+          }
+        }
+      },
+      "FindByIdRequest": {
+        "type": "object",
+        "description": "Request parameters for retrieving a specific document by its ID. This is the most efficient way to fetch a single document when you know its identifier.",
+        "required": [
+          "collection",
+          "id"
+        ],
+        "properties": {
+          "collection": {
+            "type": "string",
+            "description": "The name of the collection containing the document"
+          },
+          "formatAttachment": {
+            "type": "boolean",
+            "default": false,
+            "description": "When true, any attachment fields will be formatted for easier consumption"
+          },
+          "id": {
+            "$ref": "#/components/schemas/AnyValue",
+            "description": "The unique identifier of the document to retrieve"
+          },
+          "serializedAs": {
+            "$ref": "#/components/schemas/SerializedAs",
+            "description": "Controls how the document data is serialized in the response"
+          }
+        },
+        "example": {
+          "collection": "people",
+          "id": "abc123"
+        }
+      },
+      "FindByIdResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Document"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "txnId": {
+                "type": "integer",
+                "format": "int64",
+                "description": "The transaction ID at which this document was retrieved, useful for consistency tracking"
+              }
+            }
+          }
+        ]
+      },
+      "FindRequest": {
+        "type": "object",
+        "description": "Request parameters for querying documents in a collection. Supports filtering, pagination, and sorting to help you retrieve exactly the data you need.",
+        "required": [
+          "collection",
+          "query"
+        ],
+        "properties": {
+          "args": {
+            "$ref": "#/components/schemas/AnyValue",
+            "description": "Named parameters to use in the query, providing safe value substitution and better query performance"
+          },
+          "collection": {
+            "type": "string",
+            "description": "The name of the collection to query"
+          },
+          "describe": {
+            "type": "boolean",
+            "default": false,
+            "description": "When true, includes additional metadata about the query execution"
+          },
+          "formatAttachment": {
+            "type": "boolean",
+            "default": false,
+            "description": "When true, formats any attachment fields for easier consumption"
+          },
+          "limit": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Maximum number of documents to return. Use with offset for pagination.",
+            "default": 1000
+          },
+          "offset": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Number of documents to skip before starting to return results. Use with limit for pagination."
+          },
+          "query": {
+            "type": "string",
+            "description": "The query expression that filters which documents to return. Use parameterized values with :param syntax for better security and performance."
+          },
+          "serializedAs": {
+            "$ref": "#/components/schemas/SerializedAs",
+            "description": "Controls how the document data is serialized in the response"
+          },
+          "sort": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Sort"
+            },
+            "description": "Specifies the order in which to return matching documents"
+          }
+        },
+        "example": {
+          "collection": "people",
+          "query": "favoriteBook.title == 'The Great Gatsby'"
+        }
+      },
+      "FindResponse": {
+        "type": "object",
+        "required": [
+          "documents"
+        ],
+        "properties": {
+          "documents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Document"
+            },
+            "description": "Array of documents matching the query criteria"
+          },
+          "txnId": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The transaction ID at which this query was performed"
+          }
+        },
+        "example": {
+          "documents": {
+            "id": 1,
+            "contents": {
+              "name": "Francis",
+              "favoriteBook": {
+                "title": "The Great Gatsby",
+                "published": 1925
+              }
+            }
+          },
+          "txnId": 9000
+        }
+      },
+      "QueryRequest": {
+        "type": "object",
+        "description": "Request parameters for executing a DQL statement. DQL is Ditto's powerful query language that supports complex queries and data modifications.",
+        "required": [
+          "statement"
+        ],
+        "properties": {
+          "args": {
+            "$ref": "#/components/schemas/AnyValue",
+            "description": "Named parameters to use in the DQL statement, providing safe value substitution and better query performance"
+          },
+          "statement": {
+            "type": "string",
+            "description": "The DQL statement to execute. See https://docs.ditto.live/dql-guide for comprehensive documentation on DQL syntax and features."
+          }
+        },
+        "example": {
+          "statement": "SELECT * FROM people WHERE favoriteBook.title = :title",
+          "args": {
+            "title": "The Great Gatsby"
+          }
+        }
+      },
+      "QueryResponse": {
+        "type": "object",
+        "description": "Response from executing a DQL statement. Contains query results, affected document IDs, and any warnings or errors that occurred.",
+        "required": [
+          "queryType",
+          "items",
+          "mutatedDocumentIds",
+          "warnings",
+          "totalWarningsCount"
+        ],
+        "properties": {
+          "error": {
+            "$ref": "#/components/schemas/QueryResponseError"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AnyValue"
+            }
+          },
+          "mutatedDocumentIds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AnyValue"
+            }
+          },
+          "queryType": {
+            "type": "string",
+            "description": "Indicates the type of query that was executed"
+          },
+          "totalWarningsCount": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Total number of warnings generated during query execution"
+          },
+          "transactionId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/QueryResponseWarning"
+            }
+          }
+        }
+      },
+      "QueryResponseError": {
+        "type": "object",
+        "description": "An error occurred that prevented the query from executing or completing successfully",
+        "properties": {
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "QueryResponseWarning": {
+        "type": "object",
+        "description": "Indicates any run-time warnings that might arise during query execution",
+        "required": [
+          "description"
+        ],
+        "properties": {
+          "_id": {
+            "$ref": "#/components/schemas/AnyValue"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "RemoteExecuteError": {
+        "type": "object",
+        "required": [
+          "description"
+        ],
+        "properties": {
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "RemoteExecutePeerItem": {
+        "type": "object",
+        "description": "Represents the response data returned from executing a query on a specific peer in the network. Contains query results, timing information, and any errors or warnings that occurred.",
+        "properties": {
+          "elapsedMilliseconds": {
+            "$ref": "#/components/schemas/AnyValue",
+            "description": "The time taken to execute the query on this peer in milliseconds"
+          },
+          "error": {
+            "$ref": "#/components/schemas/RemoteExecuteError",
+            "description": "Any error that occurred while executing the query on this peer"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AnyValue"
+            },
+            "description": "The array of results returned from executing the query on this peer"
+          },
+          "peer": {
+            "$ref": "#/components/schemas/AnyValue",
+            "description": "Information identifying the specific peer that executed the query"
+          },
+          "totalWarningsCount": {
+            "$ref": "#/components/schemas/AnyValue",
+            "description": "Total number of warnings generated during query execution on this peer"
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AnyValue"
+            },
+            "description": "Array of warnings generated during query execution on this peer"
+          }
+        }
+      },
+      "RemoteExecuteRequest": {
+        "type": "object",
+        "description": "Request object for executing a DQL query remotely on specific peers in the network. The query must include a SYNC CONTEXT clause to specify target peers.",
+        "required": [
+          "statement"
+        ],
+        "properties": {
+          "args": {
+            "$ref": "#/components/schemas/AnyValue",
+            "description": "Optional parameterized arguments to use in the query statement"
+          },
+          "statement": {
+            "type": "string",
+            "description": "A DQL statement that must include a SYNC CONTEXT clause to specify target peers. See https://docs.ditto.live/dql-guide for syntax details."
+          }
+        },
+        "example": {
+          "statement": "SYNC CONTEXT ( PEERS WHERE peerKeyString = 'pkAg' ) SELECT * FROM cars WHERE _id = '1'"
+        }
+      },
+      "RemoteExecuteResponse": {
+        "type": "object", 
+        "description": "Response from executing a remote query across specified peers. Contains results and any errors that occurred.",
+        "required": [
+          "result"
+        ],
+        "properties": {
+          "error": {
+            "$ref": "#/components/schemas/RemoteExecuteError",
+            "description": "Any error that prevented the remote query from executing successfully"
+          },
+          "result": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RemoteExecutePeerItem"
+            },
+            "description": "Array of results from each peer that executed the query"
+          }
+        }
+      },
+      "Remove": {
+        "type": "object",
+        "description": "Command to remove documents or fields from a collection that match the specified query",
+        "required": [
+          "collection",
+          "query"
+        ],
+        "properties": {
+          "args": {
+            "$ref": "#/components/schemas/AnyValue",
+            "description": "Optional parameterized arguments to use in the query"
+          },
+          "collection": {
+            "type": "string",
+            "description": "Name of the collection to remove documents from"
+          },
+          "query": {
+            "type": "string",
+            "description": "Query expression that identifies which documents to remove"
+          }
+        }
+      },
+      "RemoveResult": {
+        "type": "object",
+        "description": "Result of executing a remove operation",
+        "required": [
+          "transactionId",
+          "deleted"
+        ],
+        "properties": {
+          "deleted": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Number of documents successfully deleted"
+          },
+          "internalError": {
+            "type": "integer", 
+            "format": "int64",
+            "description": "Number of documents that failed to delete due to internal errors"
+          },
+          "permissionDenied": {
+            "type": "integer",
+            "format": "int64", 
+            "description": "Number of documents that couldn't be deleted due to insufficient permissions"
+          },
+          "transactionId": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Transaction ID of the remove operation"
+          }
+        }
+      },
+      "RpcError": {
+        "type": "object",
+        "description": "Error response returned when an API request fails",
+        "required": [
+          "message"
+        ],
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Human-readable description of what went wrong"
+          }
+        },
+        "example": {
+          "message": "Some kind of human readable description of the error"
+        }
+      },
+      "SerializedAs": {
+        "type": "string",
+        "description": "Controls how document values are serialized in responses",
+        "default": "latestValues",
+        "enum": [
+          "latestValues",
+          "latestValuesAndTypes"
+        ]
+      },
+      "Sort": {
+        "type": "object",
+        "description": "Specifies how to sort query results by a property",
+        "required": [
+          "property",
+          "direction"
+        ],
+        "properties": {
+          "direction": {
+            "$ref": "#/components/schemas/Direction",
+            "description": "Sort direction (ascending or descending)"
+          },
+          "property": {
+            "type": "string",
+            "description": "Document property to sort by"
+          }
+        }
+      },
+      "TypeOverride": {
+        "type": "string",
+        "description": "Specifies special data types for fields when upserting documents",
+        "enum": [
+          "counter",
+          "register", 
+          "attachment"
+        ]
+      },
+      "Update": {
+        "type": "object",
+        "description": "Command to update existing documents in a collection that match a query",
+        "required": [
+          "collection",
+          "query",
+          "commands"
+        ],
+        "properties": {
+          "args": {
+            "$ref": "#/components/schemas/AnyValue",
+            "description": "Optional parameterized arguments to use in the query"
+          },
+          "collection": {
+            "type": "string",
+            "description": "Name of the collection containing documents to update"
+          },
+          "commands": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UpdateCommand"
+            },
+            "description": "Array of update operations to apply to matching documents"
+          },
+          "query": {
+            "type": "string",
+            "description": "Query expression that identifies which documents to update"
+          }
+        }
+      },
+      "UpdateCommand": {
+        "type": "object",
+        "description": "Specifies how to modify a field in matching documents",
+        "required": [
+          "method",
+          "path",
+          "value"
+        ],
+        "properties": {
+          "method": {
+            "$ref": "#/components/schemas/UpdateCommandMethod",
+            "description": "Type of update operation to perform"
+          },
+          "path": {
+            "type": "string",
+            "description": "Path to the field to update within the document"
+          },
+          "value": {
+            "$ref": "#/components/schemas/AnyValue",
+            "description": "New value to set for the field"
+          }
+        }
+      },
+      "UpdateCommandMethod": {
+        "type": "string",
+        "description": "Types of update operations that can be performed on document fields",
+        "enum": [
+          "set",
+          "setAttachment",
+          "increment",
+          "replaceWithCounter"
+        ]
+      },
+      "UpdateResult": {
+        "type": "object",
+        "description": "Result of executing an update operation",
+        "required": [
+          "transactionId",
+          "updated",
+          "error"
+        ],
+        "properties": {
+          "error": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Number of documents that failed to update due to errors"
+          },
+          "internalError": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Number of documents that failed to update due to internal errors"
+          },
+          "permissionDenied": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Number of documents that couldn't be updated due to insufficient permissions"
+          },
+          "transactionId": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Transaction ID of the update operation"
+          },
+          "updated": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Number of documents successfully updated"
+          }
+        }
+      },
+      "Upsert": {
+        "type": "object",
+        "description": "Command to insert a new document or update an existing one if it already exists",
+        "required": [
+          "collection",
+          "value"
+        ],
+        "properties": {
+          "collection": {
+            "type": "string",
+            "description": "Name of the collection to upsert the document into"
+          },
+          "id": {
+            "$ref": "#/components/schemas/AnyValue",
+            "description": "Optional ID for the document. If not provided, one will be generated"
+          },
+          "value": {
+            "$ref": "#/components/schemas/AnyValue",
+            "description": "Document data to insert or update"
+          },
+          "valueTypeOverrides": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/TypeOverride"
+            },
+            "description": "Optional type overrides for specific fields in the document"
+          }
+        }
+      },
+      "UpsertResult": {
+        "type": "object",
+        "description": "Result of executing an upsert operation",
+        "required": [
+          "transactionId"
+        ],
+        "properties": {
+          "transactionId": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Transaction ID of the upsert operation"
+          }
+        }
+      },
+      "WriteCommand": {
+        "oneOf": [
+          {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Update"
+              },
+              {
+                "type": "object",
+                "required": [
+                  "method"
+                ],
+                "properties": {
+                  "method": {
+                    "type": "string",
+                    "enum": [
+                      "update"
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Upsert"
+              },
+              {
+                "type": "object",
+                "required": [
+                  "method"
+                ],
+                "properties": {
+                  "method": {
+                    "type": "string",
+                    "enum": [
+                      "upsert"
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Remove"
+              },
+              {
+                "type": "object",
+                "required": [
+                  "method"
+                ],
+                "properties": {
+                  "method": {
+                    "type": "string",
+                    "enum": [
+                      "remove"
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "description": "A write operation to perform in a transaction. Can be an update, upsert, or remove command.",
+        "discriminator": {
+          "propertyName": "method",
+          "mapping": {
+            "remove": "#/components/schemas/Remove",
+            "update": "#/components/schemas/Update",
+            "upsert": "#/components/schemas/Upsert"
+          }
+        }
+      },
+      "WriteCommandResult": {
+        "oneOf": [
+          {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/UpdateResult"
+              },
+              {
+                "type": "object",
+                "required": [
+                  "method"
+                ],
+                "properties": {
+                  "method": {
+                    "type": "string",
+                    "enum": [
+                      "update"
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/UpsertResult"
+              },
+              {
+                "type": "object",
+                "required": [
+                  "method"
+                ],
+                "properties": {
+                  "method": {
+                    "type": "string",
+                    "enum": [
+                      "upsert"
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/RemoveResult"
+              },
+              {
+                "type": "object",
+                "required": [
+                  "method"
+                ],
+                "properties": {
+                  "method": {
+                    "type": "string",
+                    "enum": [
+                      "remove"
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "description": "Result of executing a write command. Contains the specific result type based on the command method.",
+        "discriminator": {
+          "propertyName": "method",
+          "mapping": {
+            "remove": "#/components/schemas/RemoveResult",
+            "update": "#/components/schemas/UpdateResult",
+            "upsert": "#/components/schemas/UpsertResult"
+          }
+        }
+      },
+      "WriteRequest": {
+        "type": "object",
+        "description": "Request to execute one or more write commands in a transaction",
+        "required": [
+          "commands"
+        ],
+        "properties": {
+          "commands": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WriteCommand"
+            },
+            "description": "Array of write commands to execute in the transaction"
+          }
+        },
+        "example": {
+          "commands": [
+            {
+              "method": "upsert",
+              "collection": "people",
+              "id": 1,
+              "value": {
+                "name": "Susan",
+                "age": 31,
+                "favoriteBook": {
+                  "published": 1925,
+                  "title": "The Great Gatsby"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "WriteResponse": {
+        "type": "object",
+        "description": "Response containing results of executing a write transaction",
+        "required": [
+          "results"
+        ],
+        "properties": {
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WriteCommandResult"
+            },
+            "description": "Array of results for each write command executed in the transaction"
+          }
+        }
+      },
+      "AnyValue": {}
+    },
+    "securitySchemes": {
+      "api_key_or_jwt_token": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "API Key or JWT",
+        "description": "Authentication using either an API key or JWT token in the Authorization header"
+      }
+    }
+  },
+  "security": [
+    {
+      "api_key_or_jwt_token": []
+    }
+  ],
+  "externalDocs": {
+    "url": "https://docs.ditto.live/http/installation/",
+    "description": "For more detailed instructions on how to use this API and the Ditto SDK, please see the documentation."
+  }
+}

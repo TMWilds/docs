@@ -1,318 +1,219 @@
 ---
-title: Kotlin
-icon: code
+title: "Kotlin"
+icon: android
 iconType: solid
 ---
 
 <Frame>
-  <img src="/images/v4.8/release-2.webp"/>
+  <img src="/images/v4.8/release-3.webp"/>
 </Frame>
 
 
+<Update label="4.8.3 Version Release" description="Release Date:Dec 18, 2024">
 
-<Update label="4.7.4 Version Release">
-### ADDED: Support for specifying the mDNS connection ports for Small Peer SDK instances
+## 4.8.3 Common Release Notes
 
-Allows you to specify a specifc port that can will be used for mDNS announcements and connections on a given device. This can be used for connect with peers across a VLAN while scanning for open ports.
+<Icon icon="screwdriver-wrench"iconType="solid" horizontal /> **Fixed:** iOS 18 crashes related to Bluetooth LE are now resolved. (#15351)
 
-Not setting the config will result in the current default behavior of a random port being assigned.
-
-
-<Warning>
-If running multiple application on the same device, for example a debug and/or test flight application along side a production application, each application needs to have a unique port.
-
-Failure to do this will result in only one application being able to establish connections at a given time.
-
-</Warning>
+<Icon icon="rotate-reverse"iconType="solid" horizontal /> **Changed:** Added more actionable information to common connection handshake issues. (#15298)
 
 
-***Setting the config***
-
-The config can be set using DQL `ALTER SYSTEM` and the `tcp_server_bind_mdns_server_port` config.
-
-```sql DQL
-ALTER SYSTEM SET tcp_server_bind_mdns_server_port TO 1234
-```
-
-This command should be run using the `ditto.store.execute(...)` command within your application.
-
-<Warning>
-  `tcp_server_bind_mdns_server_port` needs to be set ***before ***`startSync()` is called to be applied.
-</Warning>
-
-
-<Tabs>
-  <Tab title="Swift">
-    ```swift
-    let result = await ditto.store.execute(query: "ALTER SYSTEM SET tcp_server_bind_mdns_server_port TO 1234")
-    ```
-  </Tab>
-  <Tab title="Kotlin">
-    ```kotlin
-    val result = ditto.store.execute("ALTER SYSTEM SET tcp_server_bind_mdns_server_port TO 1234")
-    ```
-  </Tab>
-  <Tab title="JS">
-    ```javascript
-    const result = await ditto.store.execute("ALTER SYSTEM SET tcp_server_bind_mdns_server_port TO 1234");
-    ```
-  </Tab>
-  <Tab title="Java">
-    ```java
-    DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
-        "ALTER SYSTEM SET tcp_server_bind_mdns_server_port TO 1234",
-        new Continuation<>() {
-            @NonNull
-            @Override
-            public CoroutineContext getContext() {
-                return EmptyCoroutineContext.INSTANCE;
-            }
-
-            @Override
-            public void resumeWith(@NonNull Object o) {
-                if (o instanceof Result.Failure) {
-                    // Handle failure
-                }
-            }
-        }
-    );
-    ```
-  </Tab>
-  <Tab title="C#">
-    ```csharp
-    var result = await ditto.Store.ExecuteAsync("ALTER SYSTEM SET tcp_server_bind_mdns_server_port TO 1234");
-    ```
-  </Tab>
-  <Tab title="C++">
-    ```cpp
-    auto result = ditto.get_store().execute("ALTER SYSTEM SET tcp_server_bind_mdns_server_port TO 1234").get();
-    ```
-  </Tab>
-  <Tab title="Rust">
-    ```rust
-    let result = ditto.store().execute("ALTER SYSTEM SET tcp_server_bind_mdns_server_port TO 1234", None);
-    ```
-  </Tab>
-  <Tab title="Dart">
-    ```dart
-    final result = await ditto.store.execute("ALTER SYSTEM SET tcp_server_bind_mdns_server_port TO 1234");
-    ```
-  </Tab>
-</Tabs>
-
-
-### FIXED: A finalizer issue that was causing crashes when closing sync subscriptions (#13849, #13732, #13738)
-
-Resolves a race condition that could be hit when closing a sync subscription or stopping sync that caused Ditto to crash.
-
-### IMPROVED: (Linux/Android) Increased mDNS multicast TTL from 1 to 255 to allow for cross-VLAN announcements (#13590)
-
-To support scenarios with cross-VLAN device discovery we increated the TTL to ensure message have enough time to reach their destination and get acknowledged.
-
-### Fixed: Intermittent crash when finalizing a legacy `DittoSubscription` that contained a `sort()` clause. (#13394)
-
-Resolves and issue where using `sort()` in sync subsriptions with the legacy query builder would result in a crash.
-
-### Fixed: Included necessary symbols so that Ditto Core crashes can be properly symbolicated with crash reporters. (#13696)
-
-Previously not all symbols were being included in the package bundle and this led to crashes not being able to be symbolicated and ultimately made readable.
-
-Now the Kotlin bundle includes the correct packages
-
-<Warning>
-The extra symbols slightly increase the bundle size. If this additional size is an issue for your application, we recommend stripping these symbols when compiling your production build.
-
-However, please note that stripping symbols will make crash reports in production unreadable, which could lead to longer resolution times for live site incidents.
-</Warning>
 </Update>
 
-<Update label="4.7.3 Version Release">
-### FIXED: An issue causing a race condition with a Live Query callback. (#13180)
+<Update label="4.8.2 Version Release" description="Release Date: Sept 25, 2024">
 
-This fix addresses the issue causing a Live Query callback to receive a delta update, known as a *diff*, before the initial document.&#x20;
+## 4.8.2 Kotlin/Java Specific Changes
 
-### FIXED: A compatibility issue between documents created using different CRDT versions. (#13236)
+<Icon icon="screwdriver-wrench"iconType="solid" horizontal /> **Fixed:** Crash on WiFi Aware stalling and Ditto being re-created (#14423)
 
-Previously, there was an issue in which two documents on different internal versions could fail to integrate changes created using an older CRDT version.
+<Icon icon="screwdriver-wrench"iconType="solid" horizontal /> **Fixed:** Crash on Android after logout (#14562)
 
-### IMPROVED: Logging for batch write transactions. (#13339, #13339)
+## 4.8.2 Common Changes
 
-Due to a race condition caused by the logging system mistakenly identifying the previous transaction as blocking the current one, the logger would inaccurately indicate the current transaction as being blocked by the previous one from an `unknown` originator.
+<Icon icon="screwdriver-wrench"iconType="solid" horizontal /> **Fixed:** Setting the minimum log level to WARN or ERROR will now correctly filter out very early logger initialization messages. (#14451)
 
-### FIXED: An issue in the Small Peer datastore causing slow performance or process termination. (#13395)
-
-This issue was due to an aging dependency with a race condition, which caused thread tasks to get stuck and transactions to be blocked for extended periods.
-
-### IMPROVED: The Ditto SDKs compilation performance. (#13174)
-
-We've optimized compilation by reducing the size of each binary slice of the Ditto SDKs by 19% and fixing incompatibility with `PLCrashReporter`.
-
-### FIXED: Kotlin and Java Android devices now appear as `JVMBased` in the Device Dashboard instead of `Unknown`. (#13251)
-
-### FIXED: An issue causing a crash with the message `gatt must not be null`. (#13411)
+<Icon icon="screwdriver-wrench"iconType="solid" horizontal /> **Fixed:** A bug that could prevent an attachment created with the same data on multiple peers from syncing. (#14481)
 </Update>
 
-<Update label="4.7.2 Version Release">
-### ADDED: `mesh_chooser_avoid_redundant_bluetooth` system parameter. (#12984)
 
-This new system parameter allows greater control over the use of Bluetooth Low Energy (LE) connections in Ditto's peer-to-peer mesh network. When set to `false`, Ditto creates Bluetooth LE connections alongside other peer-to-peer connections, serving as a fallback if the primary transport, such as Apple Wireless Direct Link (AWDL) or LAN, fails.
+<Update label="4.8.1 Version Release" description="Release Date: Sept 5, 2024">
 
-However, before you enable the `mesh_chooser_avoid_redundant_bluetooth` parameter, consider the following technical tradeoffs:
+## 4.8.1 Kotlin/Java Specific Changes
 
-- Benefits:
-  - Provides additional fallback to maintain connection stability when primary connections cease to function.
-  - Reduces time to establish new connections since, by having multiple fallback options, Ditto can more quickly re-establish connections.
-- Drawbacks:
-  - Increases network traffic since using multiple transports results in additional network overhead
-  - Using Bluetooth LE alongside other transports increases resource consumption. In the worst case, enabling this setting can result in slower sync performance and battery drain.
+<Icon icon="screwdriver-wrench"iconType="solid" horizontal /> **Fixed:** Crash in WiFi Aware when registering network publisher callback (#14013)
 
-To enable  the `mesh_chooser_avoid_redundant_bluetooth` parameter, use the following DQL query:
-`ALTER SYSTEM SET mesh_chooser_avoid_redundant_bluetooth = false`
+## 4.8.1 Common Changes
 
-### CHANGED: The `AuthClient` by improving the log message for certificate issues returned from the Big Peer Authentication Service. (#13138)
+**<Icon icon="plus"iconType="solid" horizontal /> Added:** The presence\_use\_multihop system parameter can be used to disable replicating presence information to other peers in the mesh, reducing network overhead. Use **ONLY** with guidance from the Ditto Customer Experience team. (#14128)
 
-### FIXED: A performance-related issue affecting bulk eviction operations for documents with attachments. (#12331)
+<Icon icon="rotate-reverse"iconType="solid" horizontal /> **Changed:** When failing to load document data sync (replication) metadata, Ditto now attempts to clear and regenerate the metadata. This is a behavior change where previously Ditto would fail to start. This serves to prevent problems after SDK version downgrades. (#13111)
 
-### ADDED: Improved data compression in the handshake protocol when establishing connections to other peers. (#11264)
+**<Icon icon="screwdriver-wrench"iconType="solid" horizontal /> Fixed:** A rare issue where attachments may not be transferred between two peers.(#14158)
 
-This allows peers with large permission sets to establish connections on low bandwidth transports like Bluetooth LE more quickly.&#x20;
+**<Icon icon="screwdriver-wrench"iconType="solid" horizontal /> Fixed:** On-disk logs are more robust in situations with unexpected Ditto shutdown. (#13723)
 
-### FIXED: The HTTP protocol by adding `content-length: 0 header` compliance in empty `POST` requests. (#12346)
-
-Before, if you invoked an empty `POST` request, the cloud load balancer would reject your request with a `411 - Length Required` error message.
-
-Now you must explicitly state that the body of your `POST` request is empty by setting `content-length: 0` in the header of your HTTP API call.
-
-### FIXED: Handling of malformed subscription queries in the legacy query builder API by adding validation logic early to ensure invalid queries are identified early and logged. (#12463)
-
-There was an issue where invoking `subscribe()` on an invalid query caused sync to be silently disabled.
-
-Invalid queries in the `subscribe()` method are now identified, disabled, and logged as errors.
-
-### FIXED: Subscription assumption logic so all acknowledgments are processed, regardless of subscription changes. (#12541)
-
-In scenarios where subscriptions rapidly changed back and forth while documents were being concurrently altered, documents would diverge at merge.
-
-We’ve removed subscription logic ignoring acknowledgements based on assumed subscription mismatch and introduced salting functionality to ensure each document is unique for each occurrence of a subscription. This helps differentiate between new and reverted subscription states.
-
-### FIXED: Sync inefficiency where changing a subscription resulted in unnecessary syncing of redundant update files. (#12967)
-
-To eliminate redundant data from being synced unnecessarily, regardless of whether the remote peer previously acknowledged them, we’ve added validation checks ensuring that only unacknowledged data is synced.
-
-This fix reduces sync update file sizes, leading to more performant session sync updates, particularly in apps consisting of large, stable subscriptions and infrequent document changes.
-
-### CHANGED: Reduced Bluetooth LE `warn` log noise. (#12674)
-
-Changed: handle reverse DNS lookup queries in Android mdns to avoid mdns failing to connect in specific network configs &#x20;
-
-### CHANGED: Android `mdns` to handle reverse DNS lookup queries. (#13000)
-
-By adding reverse DNS lookup queries, Android `mdns` no longer fails to connect in specific network configurations.&#x20;
-
-### FIXED: Wi-fi Aware so it is available on API level 32. (#12631)
-
-### FIXED: Missing version metadata. (#12843)
-
-Now version metadata is correctly included in the string returned from `Ditto.sdkVersion`.
 </Update>
 
-<Update label="4.7.1 Version Release">
-### FIXED: Misleading errors related to attachment fetch operations. Now, associated error logs are more accurate and clear. (#12409)
+<Update label="4.8.0 Version Release" description="Release Date: Aug 28, 2024">
+The version 4.8.0 SDK release update brings a substantial number of improvements and new features designed to enhance your development experience and provide even more powerful tools for building robust, real-time applications.
 
-### FIXED: A specific issue where incorrect sync metadata rollback caused problems with data consistency at merge. (#12422)
+## 4.8.0 Kotlin/Java Specific Changes
 
-### FIXED: The documentation for the DittoStore.fetchAttachment API method. (#11783)
+<Icon icon="star"iconType="solid" horizontal /> <Icon icon="plus"iconType="solid" horizontal /> **Added:** Method exportToFile() to DittoLogger, which exports collected logs to a compressed and JSON-encoded file on the local file system. Logs returned through this method are at DEBUG log level. This new API can be used to do forensic log gathering on a device. Logs are always collected and restricted to a fixed specific size limit to ensure they don't grow endlessly. Once the size limit has reached new logs replace the oldest logs. (#11961)
 
-Before this patch release, the documentation incorrectly stated that the return value had to be kept in scope for the fetch to complete.  As of this release, the documentation specifies that the return value does not need to be kept in scope.
+<Icon icon="plus"iconType="solid" horizontal /> **Added:** Synchronous method exportToFileBlocking() to DittoLogger for Java callers.
 
-### ADDED: DittoExperimental.constructDittoFailable() API method. (#11801)
+<Icon icon="plus"iconType="solid" horizontal /> **Added:** A new getter and setter for Presence.connectionRequestHandler which take a DittoConnectionRequestHandlerCallback, making the API much easier to call from Java. (#12770)
 
-Previously, your app crashed if the persistence directory was already in use by another Ditto instance. Now, rather than crashing in such scenarios, Ditto throws a `DittoError.LockedWorkingDirectoryError` error.&#x20;
+<Icon icon="plus"iconType="solid" horizontal /> **Added:** Properties peerKeyString1 and peerKeyString2 on DittoConnection replacing the deprecated properties peer1 and peer2 (#12799)
 
-### ADDED: DittoExperimental.constructDittoFailable() API method.&#x20;
+<Icon icon="plus"iconType="solid" horizontal /> **Added:** Documentation for startSync() and disableSyncWithV3() to include a recommendation for performance improvement. (#13098)
 
-Now, you can use this experimental alternative to the original Ditto constructor to prevent crashes when the persistence directory is still in use by another Ditto instance at the time of calling the constructor. Now, rather than crashing in such scenarios, Ditto throws a `DittoError.LockedWorkingDirectoryError` error. (#11801)
+Performance of initial sync when bootstrapping a new peer can be improved by calling disableSyncWithV3() before calling startSync(). 
 
-### FIXED: Exceptions that occur while creating or fetching attachments now include more details about the underlying cause in their error message for easier debugging. (#12235)
+Only do this when all peers in the mesh are known to be running Ditto v4 or higher.
 
-### Fixed: An issue that prevented some attachment fetcher events from being delivered to event handlers. (#12331)
+<Icon icon="plus"iconType="solid" horizontal /> **Added:** Documentation for property peerMetadata on DittoPeer to add information about how the property behaves over the lifecycle of the DittoPresenceGraph (#13479)
 
-### FIXED: Closing an attachment fetcher that failed to start downloading no longer results in an exception. (#12490)
+<Icon icon="plus"iconType="solid" horizontal /> **Added:** optional hint parameter to upsert() on DittoCollection and DittoScopedWriteTransaction. By providing a hint you can better track the source of blocked write transactions (#7110)
 
-### FIXED: Handling of document-paths containing non-alphanumeric characters. Previous versions may have removed these characters from document-paths. (#12556)
+<Icon icon="star"iconType="solid" horizontal /> <Icon icon="rotate-reverse"iconType="solid" horizontal /> **Changed:** Android Wifi Aware internal logic to avoid duplicate attempts to create the network and speed up time to successful connection (#12458)
+
+<Icon icon="star"iconType="solid" horizontal /> <Icon icon="rotate-reverse"iconType="solid" horizontal /> **Changed:** Improve Android WifiAware stability by actively terminate when the application goes into the background and resume when the application comes back to the foreground (#12804)
+
+<Icon icon="star"iconType="solid" horizontal /> <Icon icon="rotate-reverse"iconType="solid" horizontal /> **Changed:** Improve staleness detection in Android Wifi Aware leading to a more reliable connection. (#12866)
+
+<Icon icon="rotate-reverse"iconType="solid" horizontal /> **Changed:** API docs no longer include unintentially exposed protected members. (#13200)
+
+<Icon icon="rotate-reverse"iconType="solid" horizontal /> **Changed:** (Linux&Android) Increased mDNS multicast TTL from 1 to 255 to allow for cross-VLAN announcements (#13590)
+
+<Icon icon="rotate-reverse"iconType="solid" horizontal /> **Changed:** Slow or blocked write transactions now log hints showing the waiting and blocking transactions (#7110)
+
+<Icon icon="screwdriver-wrench"iconType="solid" horizontal /> **Fixed:** The SDK will no longer crash when it observes malformed mDNS traffic (#12396)
+
+<Icon icon="screwdriver-wrench"iconType="solid" horizontal /> **Fixed:** The SDK will no longer crash when multiple threads call stopSync() (#11554)
+
+<Icon icon="triangle-exclamation"iconType="solid" horizontal /> **Deprecated:** Properties peer1 and peer2 on DittoConnection, please use peerKeyString1 and peerKeyString2 instead (#12799)
+
+<Icon icon="triangle-exclamation"iconType="solid" horizontal /> **Deprecated:** Property queryOverlapGroup on DittoPeer and DittoRemotePeerV2, always return 0 going forward. Query Overlap Groups was an experiemental feature that has been removed after it was determined this would not support production scenarios. (#13215)
+
+<Icon icon="xmark"iconType="solid" horizontal /> **Removed:** delete(), swigReleaseOwnership() and swigTakeOwnership() methods from DittoLogger. These are internal memory management APIs that were unintentially exposed and can cause memory leaks or crashes if used (#12617)
+
+<Icon icon="xmark"iconType="solid" horizontal /> **Removed (Experimental):** property queryOverlapGroup of DittoExperimental
+
+<Icon icon="xmark"iconType="solid" horizontal /> **Removed (Experimental):** method setPriorityForQueryOverlapGroup() from DittoExperimental. (#13215)
+
+<Icon icon="xmark"iconType="solid" horizontal /> **Removed (Experimental):** deprecated methods setQueryOverlapGroup(queryOverlapGroup:) and setPriority(_:forQueryOverlapGroup:ditto:) of DittoExperimental
+
+
+
+## 4.8.0 Common Changes
+
+<Icon icon="exclamation"iconType="solid" horizontal /><Icon icon="rotate-reverse"iconType="solid" horizontal /> **Changed:** The Logging output format for Ditto SDKs has been changed in 4.8.0 as part of our process to improve readablility and observability across the Ditto platform. Customers should validate the new data format in their existing data ingestion pipelines.
+
+***New Logging Schema:***
+
+YYYY-MM-DDTHH:MM:SS.ssssss LEVEL TARGET: MESSAGE \{field1=value1, field2=value2, ...}
+
+- **Timestamp (YYYY-MM-DDTHH:MM.ssssss):**
+
+- **Format:** ISO 8601 format (e.g., 2024-08-16T14:23:05.123456Z).
+- **Description:** The exact time when the log entry was generated.
+- **Log Level (LEVEL):**
+
+- **Format:** One of the following levels— DEBUG, INFO, WARNING, ERROR.
+- **Description:** Indicates the severity or importance of the log entry.
+- **Target (TARGET):**
+
+- **Format:** A string, representing the internal module/area
+- **Description:** The source of the log entry, often corresponding to the internal module where the error was called. (e.g. ditto\_init or peer\_event\_listener)
+- **Message (MESSAGE):**
+
+- **Format:** A human-readable string.
+- **Description:** The main content of the log entry.
+- **Structured Fields (\{field1=value1, field2=value2, ...}):**
+
+- **Format:** A list of key-value pairs enclosed in curly braces.
+- **Description:** Any additional structured data associated with the log entry. These fields can include custom data that you attach to the log entry using the tracing::info!(field1 = value1, "Message") syntax.
+
+
+
+***4.7 and earlier Logging Format Example***
+
+\[INFO\] 2024-08-02T10:25:39.981Z: AuthClient: using cached SiteId; site\_id = 16248337916605943930
+
+***4.8.0 and later Logging Format Example***
+
+2024-08-02T11:32:25.905562+01:00 INFO ditto\_init:new\_auth\_client: ditto\_auth: using cached SiteId site\_id=16248337916605943930
+
+
+
+<Icon icon="star"iconType="solid" horizontal /> <Icon icon="plus"iconType="solid" horizontal /> **Added:** DQL support for string functions byte\_length and char\_length #12147
+
+<Icon icon="star"iconType="solid" horizontal /> <Icon icon="plus"iconType="solid" horizontal /> **Added:** DQL support for inline object and array literal creation #12312
+
+<Icon icon="star"iconType="solid" horizontal /> <Icon icon="plus"iconType="solid" horizontal /> **Added:** object\_length and deserialize\_json functions in DQL #12605
+
+<Icon icon="star"iconType="solid" horizontal /> <Icon icon="plus"iconType="solid" horizontal /> **Added:** DQL INSERT statements support inlining the construction of an object #12761
+
+<Icon icon="plus"iconType="solid" horizontal /> **Added:** Remote query capability allows Big Peer to execute read-only queries on Small Peers. Usagne currently internal to Ditto Customer Experience team members #12268
+
+<Icon icon="plus"iconType="solid" horizontal /> **Added:** Diagnostics are now provided when collecting Small Peer Info on-disk logs #12080
+
+<Icon icon="plus"iconType="solid" horizontal /> **Added:** output version, sdk and build information on startup for easier debugging #12845
+
+<Icon icon="plus"iconType="solid" horizontal /> **Added:** Introduced new internal capabilities ensure a large data payload (e.g. a large attachment file) cannot use all the bandwidth and prevent other data from being synced.
+
+<Icon icon="plus"iconType="solid" horizontal /> **Added:** mDNS transport can now be configured with a static port for the TCP server using the tcp\_server\_bind\_mdns\_server\_port system parameter #13442
+
+
+
+<Icon icon="star"iconType="solid" horizontal /> <Icon icon="rotate-reverse"iconType="solid" horizontal /> **Changed:** New logging format that includes detailed information #10794
+
+<Icon icon="star"iconType="solid" horizontal /> <Icon icon="rotate-reverse"iconType="solid" horizontal /> **Changed:** The Ditto logger is now more verbose by default, with a minimum log level of INFO instead of WARNING #11141
+
+<Icon icon="star"iconType="solid" horizontal /> <Icon icon="rotate-reverse"iconType="solid" horizontal /> **Changed:** small peer info collection is now enabled by default and its default sync scope is now BigPeerOnly #12709 (Device dashboard will populate information automatically)
+
+<Icon icon="exclamation"iconType="solid" horizontal /><Icon icon="rotate-reverse"iconType="solid" horizontal /> **Changed:** (**Experimental**) Multihop connections are formed more efficiently, e.g., for Ditto Bus. This is an incompatible protocol change from previous versions #12108, #12623
+
+<Icon icon="rotate-reverse"iconType="solid" horizontal /> **Changed:** Improve performance by avoiding deserializing the entire Document if only part of it is required #10887
+
+<Icon icon="rotate-reverse"iconType="solid" horizontal /> **Changed:** Attachments now sync independently of documents, improving rainbow connection efficiency #11156
+
+<Icon icon="rotate-reverse"iconType="solid" horizontal /> **Changed:** Updating several depdencies for security patching (Patch multiple old packages #12087)
+
+<Icon icon="rotate-reverse"iconType="solid" horizontal /> **Changed:** How network OS capabilities are internally linked into the library to allow for more relaiable and reusable internal logic #12362
+
+<Icon icon="rotate-reverse"iconType="solid" horizontal /> **Changed:** API documentation for execute method to include information about its interaction with sync subscriptions #12365
+
+<Icon icon="rotate-reverse"iconType="solid" horizontal /> **Changed:** Default to creating backup Bluetooth connections when there is an existing WiFi connection (Default mesh\_chooser\_avoid\_redundant\_bluetooth to false #13398)
+
+<Icon icon="rotate-reverse"iconType="solid" horizontal /> **Changed:** console logging will now output to STDERR instead of STDOUT (\[logs\] logging now outputs to STDERR instead of STDOUT #13477)
+
+
+
+<Icon icon="screwdriver-wrench"iconType="solid" horizontal /> **Fixed:** Bytes and Arrays not being always comparable in the legacy query language #10887
+
+<Icon icon="screwdriver-wrench"iconType="solid" horizontal /> **Fixed:** Legacy query language casting counters and maps with tombstones to the wrong boolean value #10887
+
+**<Icon icon="screwdriver-wrench"iconType="solid" horizontal /> Fixed:** Lowered the log level of a few SQLite3 notices that were being unnecessarily logged as warnings #12032
+
+**<Icon icon="screwdriver-wrench"iconType="solid" horizontal /> Fixed:** A crash that can occur if a DQL query contains a multi-byte character #12324
+
+**<Icon icon="screwdriver-wrench"iconType="solid" horizontal /> Fixed:** An issue with the transports multiplexer that could lead to a hung process. This occured when dealing with large messages spanning multiple chunks (>64KB) #12428
+
+**<Icon icon="screwdriver-wrench"iconType="solid" horizontal /> Fixed:** A rare edge case that could slow down data sync betten peers #12527
+
+**<Icon icon="screwdriver-wrench"iconType="solid" horizontal /> Fixed:** Frequent subscription changes along with eviction calls could cause failure to converge on data leading to inconsistent data state #11431
+
+**<Icon icon="screwdriver-wrench"iconType="solid" horizontal /> Fixed:** Memory leak in third party library used for peer-internal messaging #12895
+
+**<Icon icon="screwdriver-wrench"iconType="solid" horizontal /> Fixed:** Transport inactive connection tracking no longer stores identifiers indefinitely. This could lead to a slow growth in memory consumption for long lived applications (~ 1MB/day on transports with high rate, unreliable discovery - such as BLE) #13147
+
+**<Icon icon="screwdriver-wrench"iconType="solid" horizontal /> Fixed:** Unexpected failures to obtain a certificate for peer-to-peer sync are now logged at ERROR level instead of WARNING #13323
+
+
+
+<Icon icon="exclamation"iconType="solid" horizontal /><Icon icon="bin-recycle"iconType="solid" horizontal /> **Removed:** (**Experimental**) Ditto no longer supports the experimental Query Overlap Groups feature and support has been removed. This experimental feature has been removed after running a determining a lack of feasability in production scenarios. The team is iterating and plan on interoducing improved capabilitites. #13075
+
 </Update>
-
-<Update label="4.7 Version Release">
-### FIXED: The legacy query language error-throwing mechanism to accept invalid field names properly. (#11888)
-
-After upgrading to version 4.7 of the SDK, you may notice unexpected errors while using the legacy query builder language. These errors are likely due to invalid field names or path expressions previously undetected.
-
-In addition, make sure to start `unquoted_string` with an underscore (`_`), a letter, or an alphanumeric character. For example, the following equivalent regular expression: `[A-Za-z_][A-Za-z0-9_]*`.
-
-For specific examples, see [Query Syntax (Legacy) > Field Path Navigation](<./../Legacy/Query Syntax (Legacy).md>).
-
-
-<Warning>
-In the legacy query builder language, invalid field names and path expressions now throw explicit errors. Previously these invalid names did not throw and would cause undefined behavior.
-
-**Note: This new error-throwing behavior applies only to the legacy query builder language; DQL is unaffected by this improvement.**
-
-</Warning>
-
-### REMOVED: The `is_connected_to_big_peer` field from the Small Peer Info document. (#11883)
-
-### CHANGED: The small peer info JSON metadata by increasing the depth limit to 64 levels. (#11891)
-
-### IMPROVED: Transaction contention time for the `ATTACHMENT` data type, reducing potential timeouts. (#11893)
-
-Before this improvement, concurrent write transactions were long-lived, potentially causing deadlocks and request timeouts. Now you'll experience more effective handling of multiple attachments being processed at the same time.
-
-### FIXED: The issue causing sync crashes due to missing update files. (#11952)
-
-With the latest release, Ditto handles unexpected situations or errors in a way that allows it to recover and continue functioning without crashing or causing disruptions.
-
-### ADDED: Parameters for adjusting certain settings during runtime. (#11968)
-
-This rollout includes new system parameters for the `MeshChooser` feature for configuring a limited set of variables, allowing you to adjust certain settings during runtime.
-
-### RESOLVED: The warning message when peers connect is no more. (#11977)
-
-The warning message previously logged when peers connected within the mesh is no longer recorded or printed.&#x20;
-
-### IMPROVED: Sync performance by sending the entire state of the data. (#12029)
-
-Previously, when syncing in mixed mesh environments from Ditto SDK version 4.0.0 of the SDK to version 3.0.0, only partial updates were transmitted. With this release, all updates are transmitted, resulting in greater data consistency and completeness when syncing across different versions of the SDK.
-
-### FIXED: The issue causing the Small Peer Info collector to become stuck. (#12051)
-
-Previously, the Small Peer Info collector would become stuck when attempting to upload logs in certain situations. Since resolving this issue, the Small Peer Info collector functions properly in those conditions.
-
-### FIXED: The issue causing fetch operations to appear unresponsive. (#9501, #12067)&#x20;
-
-With this fix, operations related to fetching attachments function as expected.
-
-### FIXED: The issue causing type check failures when setting duration parameters through ALTER SYSTEM SET. (#12070)
-
-When using `SystemParameter` to configure timeouts before this fix, if using different types to encode the values representing the timeout, for instance, `Milliseconds` and `Seconds`, the values failed to downcast, an error log printed, and the new value ignored.
-
-Now, when using mismatched wrapper types, Ditto performs a compatibility check, validates, and, if needed, converts them as appropriate.
-
-### FIXED: P2P LAN now advertises on newly added interfaces, such as enabling WiFi at runtime.
-
-### FIXED: The deviceName property on Ditto instances now reflects the truncation of the value to 24 bytes when starting sync.
-
-### ADDED: Property connectionRequestHandler to ditto.presence, including related types, allowing filtering of incoming connections from other peers.
-
-### Added: Properties `peerMetadata` and `peerMetadataJsonString` to `ditto.presence`.
-
-### Added: Property `identityServiceMetadata` to DittoPeer.
-
-### Added: Property `peerKeyString` to `DittoPeer` as a replacement for the now deprecated `peerKey`.
-
-### DEPRECATED: Property peerKey on DittoPeer, please use the newly added peerKeyString instead.
-
-### ADDED: Runtime checks and locks to guard against dangling raw Ditto pointer usage in extremely unlucky race condition scenarios.
-
-### FIXED: Possible crash while downloading an attachment due to improper decoding of the attachment token.
-</Update>
-

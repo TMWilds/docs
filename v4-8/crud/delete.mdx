@@ -21,65 +21,58 @@ To prevent the evicted data from reappearing on the screen in a single flicker, 
 
 ## Sample `EVICT` Query
 
-<Tabs>
-    <Tab title="Swift">
-    ```swift
-    await ditto.store.execute("EVICT FROM cars WHERE _id = '123'");
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```kotlin
-    ditto.store.execute("EVICT FROM cars WHERE _id = '123'")
-    ```
-    </Tab>
-    <Tab title="JS">
-    ```javascript
-    await ditto.store.execute("EVICT FROM cars WHERE _id = '123'");
-    ```
-    </Tab>
-    <Tab title="Java">
-    ```java
-    DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
-        "EVICT FROM cars WHERE _id = '123'",
-        new Continuation<>() {
-            @NonNull
-            @Override
-            public CoroutineContext getContext() {
-                return EmptyCoroutineContext.INSTANCE;
-            }
+<CodeGroup>
 
-            @Override
-            public void resumeWith(@NonNull Object o) {
-                if (o instanceof Result.Failure) {
-                    // Handle failure
-                }
+```swift Swift
+
+await ditto.store.execute("EVICT FROM cars WHERE _id = '123'");
+```
+
+```kotlin Kotlin
+ditto.store.execute("EVICT FROM cars WHERE _id = '123'")
+```
+
+```javascript JavaScript
+await ditto.store.execute("EVICT FROM cars WHERE _id = '123'");
+```
+
+```java Java
+DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
+    "EVICT FROM cars WHERE _id = '123'",
+    new Continuation<>() {
+        @NonNull
+        @Override
+        public CoroutineContext getContext() {
+            return EmptyCoroutineContext.INSTANCE;
+        }
+
+        @Override
+        public void resumeWith(@NonNull Object o) {
+            if (o instanceof Result.Failure) {
+                // Handle failure
             }
         }
-    );
-    ```
-    </Tab>
-    <Tab title="C#">
-    ```csharp
-    ditto.Store.ExecuteAsync("EVICT FROM cars WHERE _id = '123'");
-    ```
-    </Tab>
-    <Tab title="C++">
-    ```cpp
-    ditto.get_store().execute("EVICT FROM cars WHERE _id = '123'");
-    ```
-    </Tab>
-    <Tab title="Rust">
-    ```rust
-    ditto.store().execute("EVICT FROM cars WHERE _id = '123'", None);
-    ```
-    </Tab>
-    <Tab title="Dart">
-    ```dart
-    await ditto.store.execute("EVICT FROM cars WHERE _id = '123'");
-    ```
-    </Tab>
+    }
+);
+```
 
-</Tabs>
+```csharp C#
+ditto.Store.ExecuteAsync("EVICT FROM cars WHERE _id = '123'");
+```
+
+```cpp C++
+ditto.get_store().execute("EVICT FROM cars WHERE _id = '123'");
+```
+
+```rust Rust
+ditto.store().execute("EVICT FROM cars WHERE _id = '123'", None);
+```
+
+```dart Dart
+await ditto.store.execute("EVICT FROM cars WHERE _id = '123'");
+```
+
+</CodeGroup>
 
 ## Evicting Multiple Documents in a Collection
 
@@ -87,90 +80,82 @@ The `EVICT` operation functions based on a condition, allowing updates to multip
 
 For example, the following snippet, once executed, purges all `blue` cars stored in the local Ditto store.
 
-<Tabs>
-    <Tab title="Swift">
-    ```swift
-    let result = await ditto.store.execute(
-      "EVICT FROM cars WHERE color = 'blue'");
+<CodeGroup>
+```swift Swift
 
-    result.mutatedDocumentIDs.forEach() { print($0) }
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```kotlin
-    var result = ditto.store.execute("EVICT FROM cars WHERE color = 'blue'")
+let result = await ditto.store.execute(
+  "EVICT FROM cars WHERE color = 'blue'");
 
-    result.mutatedDocumentIDs().forEach { id ->
-        println(id)
-    }
-    ```
-    </Tab>
-    <Tab title="JS">
-    ```javascript
-    const result = await ditto.store.execute(
-      "EVICT FROM cars WHERE color = 'blue'"
-    );
+result.mutatedDocumentIDs.forEach() { print($0) }
+```
 
-    console.log(result.mutatedDocumentIDs());
-    ```
-    </Tab>
-    <Tab title="Java">
-    ```java
-    DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
-        "EVICT FROM cars WHERE color = 'blue'",
-        new Continuation<>() {
-            @NonNull
-            @Override
-            public CoroutineContext getContext() {
-                return EmptyCoroutineContext.INSTANCE;
-            }
+```kotlin Kotlin
+var result = ditto.store.execute("EVICT FROM cars WHERE color = 'blue'")
 
-            @Override
-            public void resumeWith(@NonNull Object o) {
-                if (o instanceof Result.Failure) {
-                    // Handle failure
-                }
+result.mutatedDocumentIDs().forEach { id ->
+    println(id)
+}
+```
+
+```javascript JavaScript
+const result = await ditto.store.execute(
+  "EVICT FROM cars WHERE color = 'blue'"
+);
+
+console.log(result.mutatedDocumentIDs());
+```
+
+```java Java
+DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
+    "EVICT FROM cars WHERE color = 'blue'",
+    new Continuation<>() {
+        @NonNull
+        @Override
+        public CoroutineContext getContext() {
+            return EmptyCoroutineContext.INSTANCE;
+        }
+
+        @Override
+        public void resumeWith(@NonNull Object o) {
+            if (o instanceof Result.Failure) {
+                // Handle failure
             }
         }
-    );
-    ```
-    </Tab>
-    <Tab title="C#">
-    ```csharp
-    var result = await ditto.Store.ExecuteAsync(
-      "EVICT FROM cars WHERE color = 'blue'");
-
-    result.MutatedDocumentIds.ForEach(id => Console.WriteLine(id));
-    ```
-    </Tab>
-    <Tab title="C++">
-    ```cpp
-    auto result = ditto.get_store().execute(
-      "EVICT FROM cars WHERE color = 'blue'");
-
-    for (DocumentId id : result) {
-        std::cout << id.to_string();
     }
-    ```
-    </Tab>
-    <Tab title="Rust">
-    ```rust
-    let result = ditto.store().execute(
-      "EVICT FROM cars WHERE color = 'blue'",
-      None);
+);
+```
 
-    for id in &result {
-        println!("{}", id.to_string());
-    }
-    ```
-    </Tab>
-    <Tab title="Dart">
-    ```dart
-    await ditto.store.execute("EVICT FROM cars WHERE color = 'blue'");
-    ```
-    </Tab>
+```csharp C#
+var result = await ditto.Store.ExecuteAsync(
+  "EVICT FROM cars WHERE color = 'blue'");
 
-</Tabs>
+result.MutatedDocumentIds.ForEach(id => Console.WriteLine(id));
+```
+
+```cpp C++
+auto result = ditto.get_store().execute(
+  "EVICT FROM cars WHERE color = 'blue'");
+
+for (DocumentId id : result) {
+    std::cout << id.to_string();
+}
+```
+
+```rust Rust
+let result = ditto.store().execute(
+  "EVICT FROM cars WHERE color = 'blue'",
+  None);
+
+for id in &result {
+    println!("{}", id.to_string());
+}
+```
+
+```dart Dart
+await ditto.store.execute("EVICT FROM cars WHERE color = 'blue'");
+```
+
+</CodeGroup>
 
 ## Using Evict with Sync Subscriptions
 
@@ -193,77 +178,69 @@ Key considerations for using Subscription and Eviction methods include:
 
 If you want to indicate that a batch of documents are irrelevant and, although they are to be retained, should *not* sync across peers, add the isSafeToEvict field to the document property tree. Then, use a method to alert clients to flag any documents they consider irrelevant.
 
-```ditto Ditto Document
-
-
-{ "\_id": "abc123", "color": "red", "mileage": 40000, "isSafeToEvict": true, "createdAt": "2023-05-22T22:24:24.217Z" }
+<CodeGroup>
+```json Ditto Document
+{ "_id": "abc123", "color": "red", "mileage": 40000, "isSafeToEvict": true, "createdAt": "2023-05-22T22:24:24.217Z" }
 ```
+</CodeGroup>
 
 To ensure that peers continue replicating documents that are considered relevant, incorporate isSafeToEvict == false into their sync subscription query.
 
 This approach restricts replication only to documents that peers mark as 'true' for isSafeToEvict. Once flagged, the peers clear irrelevant documents from their caches, all the while normal transactional operations continues without interruption.
 
-<Tabs>
-    <Tab title="Swift">
-    ```swift
-    await ditto.store.execute("EVICT FROM cars WHERE isSafeToEvict = true");
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```kotlin
-    ditto.store.execute("EVICT FROM cars WHERE isSafeToEvict = true").await()
-    ```
-    </Tab>
-    <Tab title="JS">
-    ```javascript
-    ditto.store.execute("EVICT FROM cars WHERE isSafeToEvict = true");
-    ```
-    </Tab>
-    <Tab title="Java">
-    ```java
-    DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
-        "EVICT FROM cars WHERE isSafeToEvict = true",
-        new Continuation<>() {
-            @NonNull
-            @Override
-            public CoroutineContext getContext() {
-                return EmptyCoroutineContext.INSTANCE;
-            }
+<CodeGroup>
+```swift Swift
 
-            @Override
-            public void resumeWith(@NonNull Object o) {
-                if (o instanceof Result.Failure) {
-                    // Handle failure
-                }
+await ditto.store.execute("EVICT FROM cars WHERE isSafeToEvict = true");
+```
+
+```kotlin Kotlin
+ditto.store.execute("EVICT FROM cars WHERE isSafeToEvict = true").await()
+```
+
+```javascript JavaScript
+ditto.store.execute("EVICT FROM cars WHERE isSafeToEvict = true");
+```
+
+```java Java
+DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
+    "EVICT FROM cars WHERE isSafeToEvict = true",
+    new Continuation<>() {
+        @NonNull
+        @Override
+        public CoroutineContext getContext() {
+            return EmptyCoroutineContext.INSTANCE;
+        }
+
+        @Override
+        public void resumeWith(@NonNull Object o) {
+            if (o instanceof Result.Failure) {
+                // Handle failure
             }
         }
-    );
-    ```
-    </Tab>
-    <Tab title="C#">
-    ```csharp
-    ditto.Store.ExecuteAsync(
-      "EVICT FROM cars WHERE isSafeToEvict = true");
-    ```
-    </Tab>
-    <Tab title="C++">
-    ```cpp
-    ditto.get_store().execute(
-      "EVICT FROM cars WHERE isSafeToEvict = true");
-    ```
-    </Tab>
-    <Tab title="Rust">
-    ```rust
-    ditto.store().execute("EVICT FROM cars WHERE isSafeToEvict = true", None);
-    ```
-    </Tab>
-    <Tab title="Dart">
-    ```dart
-    await ditto.store.execute("EVICT FROM cars WHERE isSafeToEvict = true");
-    ```
-    </Tab>
+    }
+);
+```
 
-</Tabs>
+```csharp C#
+ditto.Store.ExecuteAsync(
+  "EVICT FROM cars WHERE isSafeToEvict = true");
+```
+
+```cpp C++
+ditto.get_store().execute(
+  "EVICT FROM cars WHERE isSafeToEvict = true");
+```
+
+```rust Rust
+ditto.store().execute("EVICT FROM cars WHERE isSafeToEvict = true", None);
+```
+
+```dart Dart
+await ditto.store.execute("EVICT FROM cars WHERE isSafeToEvict = true");
+```
+
+</CodeGroup>
 
 # Deleting Attachments
 
@@ -296,17 +273,15 @@ A soft-delete pattern is a way to flag data as inactive while retaining it for v
 
 To add a soft-delete pattern, set the `isArchived` field value to `true`:
 
-<Tabs>
-    <Tab title="Ditto Document">
-    ```json
-    {
-      "_id": "123",
-      "color": "blue",
-      "isArchived": true // add this field
-    }
-    ```
-    </Tab>
-</Tabs>
+<CodeGroup>
+```json Ditto Document
+{
+  "_id": "123",
+  "color": "blue",
+  "isArchived": true // add this field
+}
+```
+</CodeGroup>
 
 ## Querying Non-Archived Documents
 
@@ -315,167 +290,151 @@ To query to monitor documents that are `NOT`\* \*archived, establish a live quer
 It's likely that the `isArchived` field is set lazily (i.e. has no value until it is `true`), so you can use the `coalesce()` function to automatically return `false` if the value is unset.
 The following code demonstrates searching for documents that are unarchived:
 
-<Tabs>
-    <Tab title="Swift">
-    ```swift
-    let result = await ditto.store.execute("""
-      SELECT *
-      FROM cars
-      WHERE coalesce(isArchived, false) = false
-      """)
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```kotlin
-    var result = ditto.store.execute("""
-      SELECT *
-      FROM cars
-      WHERE coalesce(isArchived, false) = false
-      """)
-    ```
-    </Tab>
-    <Tab title="JS">
-    ```javascript
-    const result = await ditto.store.execute(`
-      SELECT *
-      FROM cars
-      WHERE coalesce(isArchived, false) = false`
-    );
-    ```
-    </Tab>
-    <Tab title="Java">
-    ```java
-    DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
-        "SELECT * FROM cars WHERE coalesce(isArchived, false) = false",
-        new Continuation<>() {
-            @NonNull
-            @Override
-            public CoroutineContext getContext() {
-                return EmptyCoroutineContext.INSTANCE;
-            }
+<CodeGroup>
+```swift Swift
 
-            @Override
-            public void resumeWith(@NonNull Object o) {
-                if (o instanceof Result.Failure) {
-                    // Handle failure
-                }
+let result = await ditto.store.execute("""
+  SELECT *
+  FROM cars
+  WHERE coalesce(isArchived, false) = false
+  """)
+```
+
+```kotlin Kotlin
+var result = ditto.store.execute("""
+  SELECT *
+  FROM cars
+  WHERE coalesce(isArchived, false) = false
+  """)
+```
+
+```javascript JavaScript
+const result = await ditto.store.execute(`
+  SELECT *
+  FROM cars
+  WHERE coalesce(isArchived, false) = false`
+);
+```
+
+```java Java
+DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
+    "SELECT * FROM cars WHERE coalesce(isArchived, false) = false",
+    new Continuation<>() {
+        @NonNull
+        @Override
+        public CoroutineContext getContext() {
+            return EmptyCoroutineContext.INSTANCE;
+        }
+
+        @Override
+        public void resumeWith(@NonNull Object o) {
+            if (o instanceof Result.Failure) {
+                // Handle failure
             }
         }
-    );
-    ```
-    </Tab>
-    <Tab title="C#">
-    ```csharp
-    var result = await ditto.Store.ExecuteAsync(
-      "SELECT * FROM cars WHERE coalesce(isArchived, false) = false");
-    ```
-    </Tab>
-    <Tab title="C++">
-    ```cpp
-    auto result = ditto.get_store().execute(
-      "SELECT * FROM cars WHERE coalesce(isArchived, false) = false");
-    ```
-    </Tab>
-    <Tab title="Rust">
-    ```rust
-    let result = ditto.store().execute(
-      "SELECT * FROM cars WHERE coalesce(isArchived, false) = false", None);
-    ```
-    </Tab>
-    <Tab title="Dart">
-    ```dart
-    await ditto.store.execute("""
-      SELECT *
-      FROM cars
-      WHERE coalesce(isArchived, false) = false
-      """);
-    ```
-    </Tab>
+    }
+);
+```
 
-</Tabs>
+```csharp C#
+var result = await ditto.Store.ExecuteAsync(
+  "SELECT * FROM cars WHERE coalesce(isArchived, false) = false");
+```
+
+```cpp C++
+auto result = ditto.get_store().execute(
+  "SELECT * FROM cars WHERE coalesce(isArchived, false) = false");
+```
+
+```rust Rust
+let result = ditto.store().execute(
+  "SELECT * FROM cars WHERE coalesce(isArchived, false) = false", None);
+```
+
+```dart Dart
+await ditto.store.execute("""
+  SELECT *
+  FROM cars
+  WHERE coalesce(isArchived, false) = false
+  """);
+```
+
+</CodeGroup>
 
 ## Removing Soft-Delete Flag
 
 To remove the flag and reactivate the document, set the `isArchived` field to `false`:
 
-<Tabs>
-    <Tab title="Swift">
-    ```swift
-    await ditto.store.execute("""
-      UPDATE cars
-      SET isArchived = false
-      WHERE _id = '123'
-      """)
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```kotlin
-    ditto.store.execute("""
-      UPDATE cars
-      SET isArchived = false
-      WHERE _id = '123'
-      """)
-    ```
-    </Tab>
-    <Tab title="JS">
-    ```javascript
-    await ditto.store.execute(`
-      UPDATE cars
-      SET isArchived = false
-      WHERE _id = '123'`
-    );
-    ```
-    </Tab>
-    <Tab title="Java">
-    ```java
-    DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
-        "UPDATE cars SET isArchived = false WHERE _id = '123'",
-        new Continuation<>() {
-            @NonNull
-            @Override
-            public CoroutineContext getContext() {
-                return EmptyCoroutineContext.INSTANCE;
-            }
+<CodeGroup>
+```swift Swift
 
-            @Override
-            public void resumeWith(@NonNull Object o) {
-                if (o instanceof Result.Failure) {
-                    // Handle failure
-                }
+await ditto.store.execute("""
+  UPDATE cars
+  SET isArchived = false
+  WHERE _id = '123'
+  """)
+```
+
+```kotlin Kotlin
+ditto.store.execute("""
+  UPDATE cars
+  SET isArchived = false
+  WHERE _id = '123'
+  """)
+```
+
+```javascript JavaScript
+await ditto.store.execute(`
+  UPDATE cars
+  SET isArchived = false
+  WHERE _id = '123'`
+);
+```
+
+```java Java
+DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
+    "UPDATE cars SET isArchived = false WHERE _id = '123'",
+    new Continuation<>() {
+        @NonNull
+        @Override
+        public CoroutineContext getContext() {
+            return EmptyCoroutineContext.INSTANCE;
+        }
+
+        @Override
+        public void resumeWith(@NonNull Object o) {
+            if (o instanceof Result.Failure) {
+                // Handle failure
             }
         }
-    );
-    ```
-    </Tab>
-    <Tab title="C#">
-    ```csharp
-    await ditto.Store.ExecuteAsync(`
-      "UPDATE cars SET isArchived = false WHERE _id = '123'");
-    ```
-    </Tab>
-    <Tab title="C++">
-    ```cpp
-    ditto.get_store().execute(
-      "UPDATE cars SET isArchived = false WHERE _id = '123'");
-    ```
-    </Tab>
-    <Tab title="Rust">
-    ```rust
-    ditto.store().execute(
-      "UPDATE cars SET isArchived = false WHERE _id = '123'", None);
-    ```
-    </Tab>
-    <Tab title="Dart">
-    ```dart
-    await ditto.store.execute("""
-      UPDATE cars
-      SET isArchived = false
-      WHERE _id = '123'
-      """)
-    ```
-    </Tab>
+    }
+);
+```
 
-</Tabs>
+```csharp C#
+await ditto.Store.ExecuteAsync(`
+  "UPDATE cars SET isArchived = false WHERE _id = '123'");
+```
+
+```cpp C++
+ditto.get_store().execute(
+  "UPDATE cars SET isArchived = false WHERE _id = '123'");
+```
+
+```rust Rust
+ditto.store().execute(
+  "UPDATE cars SET isArchived = false WHERE _id = '123'", None);
+```
+
+```dart Dart
+await ditto.store.execute("""
+  UPDATE cars
+  SET isArchived = false
+  WHERE _id = '123'
+  """)
+```
+
+</CodeGroup>
 
 # Removing Data from Big Peer
 

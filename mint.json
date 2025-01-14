@@ -5,6 +5,7 @@
     "dark": "/logo/dark.svg",
     "light": "/logo/light.svg"
   },
+  "theme": "prism",
   "favicon": "/favicon.png",
   "colors": {
     "primary": "#0066ff",
@@ -23,13 +24,23 @@
     }
   ],
   "topbarCtaButton": {
-    "name": "Get started",
+    "name": "Get Started",
     "url": "https://portal.ditto.live/create-account?_gl=1*1bow2wn*_ga*NTY3MzI4MDE4LjE3Mjc3NjM2Njg.*_ga_D8PMW3CCL2*MTcyNzc2MzY2Ny4xLjAuMTcyNzc2MzY2Ny42MC4wLjA.",
-    "arrow": false,
+    "arrow": true,
     "style": "roundedRectangle"
   },
-  "versions": ["v4.9", "v4.8", "v4.7", "v4.6", "v4.5", "v4.4"],
+  "versions": [{"name": "v4.9", "default": true}, "v4.8", "v4.7"],
+  "api": {
+    "playground": {
+      "mode": "hide"
+    }
+  },
   "tabs": [
+    {
+      "name": "SDK",
+      "url": "v4.9",
+      "version": "v4.9"
+    },
     {
       "name": "SDK",
       "url": "v4.8",
@@ -41,22 +52,7 @@
       "version": "v4.7"
     },
     {
-      "name": "SDK",
-      "url": "v4.6",
-      "version": "v4.6"
-    },
-    {
-      "name": "SDK",
-      "url": "v4.5",
-      "version": "v4.5"
-    },
-    {
-      "name": "SDK",
-      "url": "v4.4",
-      "version": "v4.4"
-    },
-    {
-      "name": "Ditto Query Language",
+      "name": "Query Language (DQL)",
       "url": "dql"
     },
     {
@@ -67,58 +63,6 @@
     {
       "name": "Support",
       "url": "support"
-    },
-    {
-      "name": "API Reference",
-      "url": "reference",
-      "openapi": "/openapi.json"
-    },
-    {
-      "name": "Release Notes",
-      "url": "release-notes",
-      "version": "v4.9"
-    },
-    {
-      "name": "Release Notes",
-      "url": "v4-8/release-notes",
-      "version": "v4.8"
-    },
-    {
-      "name": "Release Notes",
-      "url": "v4-7/release-notes",
-      "version": "v4.7"
-    },
-    {
-      "name": "Release Notes",
-      "url": "v4-6/release-notes",
-      "version": "v4.6"
-    },
-    {
-      "name": "Release Notes",
-      "url": "v4-5/release-notes",
-      "version": "v4.5"
-    },
-    {
-      "name": "Release Notes",
-      "url": "v4-4/release-notes",
-      "version": "v4.4"
-    }
-  ],
-  "anchors": [
-    {
-      "name": "About",
-      "icon": "users",
-      "url": "https://ditto.live/about"
-    },
-    {
-      "name": "Careers",
-      "icon": "graduation-cap",
-      "url": "https://job-boards.greenhouse.io/dittoliveincorporated"
-    },
-    {
-      "name": "Blog",
-      "icon": "newspaper",
-      "url": "https://ditto.live/blog"
     }
   ],
   "primaryTab": { "name": "SDK" },
@@ -269,6 +213,23 @@
           ]
         },
         {
+          "group": "Release Notes",
+          "version": "v4.9",
+          "icon": "bullhorn",
+          "iconType": "solid",
+          "pages": [
+            "release-notes/release-notes",
+            "release-notes/swift",
+            "release-notes/kotlin",
+            "release-notes/js",
+            "release-notes/java",
+            "release-notes/c-sharp",
+            "release-notes/cpp",
+            "release-notes/rust",
+            "release-notes/flutter"
+          ]
+        },
+        {
           "group": "Compatibility",
           "icon": "map",
           "iconType": "solid",
@@ -285,23 +246,6 @@
             "compatibility/flutter"
           ]
         }
-      ]
-    },
-    {
-      "group": "Release Notes",
-      "version": "v4.9",
-      "icon": "bullhorn",
-      "iconType": "solid",
-      "pages": [
-        "release-notes/release-notes",
-        "release-notes/swift",
-        "release-notes/kotlin",
-        "release-notes/js",
-        "release-notes/java",
-        "release-notes/c-sharp",
-        "release-notes/cpp",
-        "release-notes/rust",
-        "release-notes/flutter"
       ]
     },
     {
@@ -452,6 +396,23 @@
           ]
         },
         {
+          "group": "Release Notes",
+          "version": "v4.8",
+          "icon": "bullhorn",
+          "iconType": "solid",
+          "pages": [
+            "v4-8/release-notes/release-notes",
+            "v4-8/release-notes/swift",
+            "v4-8/release-notes/kotlin",
+            "v4-8/release-notes/js",
+            "v4-8/release-notes/java",
+            "v4-8/release-notes/c-sharp",
+            "v4-8/release-notes/cpp",
+            "v4-8/release-notes/rust",
+            "v4-8/release-notes/flutter"
+          ]
+        },
+        {
           "group": "Compatibility",
           "icon": "map",
           "iconType": "solid",
@@ -468,23 +429,6 @@
             "v4-8/compatibility/flutter"
           ]
         }
-      ]
-    },
-    {
-      "group": "Release Notes",
-      "version": "v4.8",
-      "icon": "bullhorn",
-      "iconType": "solid",
-      "pages": [
-        "v4-8/release-notes/release-notes",
-        "v4-8/release-notes/swift",
-        "v4-8/release-notes/kotlin",
-        "v4-8/release-notes/js",
-        "v4-8/release-notes/java",
-        "v4-8/release-notes/c-sharp",
-        "v4-8/release-notes/cpp",
-        "v4-8/release-notes/rust",
-        "v4-8/release-notes/flutter"
       ]
     },
     {
@@ -656,853 +600,23 @@
             "v4-7/compatibility/rust",
             "v4-7/compatibility/flutter"
           ]
-        }
-      ]
-    },
-    {
-      "group": "Release Notes",
-      "version": "v4.7",
-      "icon": "bullhorn",
-      "iconType": "solid",
-      "pages": [
-        "v4-7/release-notes/release-notes",
-        "v4-7/release-notes/swift",
-        "v4-7/release-notes/kotlin",
-        "v4-7/release-notes/js",
-        "v4-7/release-notes/react-native",
-        "v4-7/release-notes/java",
-        "v4-7/release-notes/c-sharp",
-        "v4-7/release-notes/cpp",
-        "v4-7/release-notes/rust",
-        "v4-7/release-notes/flutter"
-      ]
-    },
-    {
-      "group": "SDK",
-      "version": "v4.6",
-      "pages": [
-        "v4-6/introduction",
-        {
-          "group": "Get Started",
-          "version": "v4.6",
-          "icon": "play",
-          "iconType": "solid",
-          "pages": [
-            "v4-6/getting-started/sync-credentials",
-            {
-              "group": "Install Guides",
-              "version": "v4.6",
-              "icon": "download",
-              "iconType": "solid",
-              "pages": [
-                "v4-6/install-guides",
-                "v4-6/getting-started/install-guides/swift",
-                "v4-6/getting-started/install-guides/kotlin",
-                "v4-6/getting-started/install-guides/js",
-                "v4-6/getting-started/install-guides/nodejs",
-                "v4-6/getting-started/install-guides/react-native",
-                "v4-6/getting-started/install-guides/java",
-                "v4-6/getting-started/install-guides/c-sharp",
-                "v4-6/getting-started/install-guides/cpp",
-                "v4-6/getting-started/install-guides/rust",
-                {
-                  "group": "Flutter",
-                  "version": "v4.6",
-                  "icon": "flutter",
-                  "iconType": "solid",
-                  "pages": [
-                    "v4-6/getting-started/install-guides/flutter",
-                    "v4-6/getting-started/install-guides/flutter/quick-start",
-                    "v4-6/getting-started/install-guides/flutter/roadmap"
-                  ]
-                },
-                "v4-6/getting-started/hello-world-sync"
-              ]
-            }
-          ]
         },
-        {
-          "group": "Basic Concepts",
-          "version": "v4.6",
-          "icon": "lightbulb",
-          "iconType": "solid",
-          "pages": [
-            "v4-6/basic/ditto",
-            "v4-6/basic/mesh-networking-101",
-            "v4-6/basic/data-handling-essentials"
-          ]
-        },
-        {
-          "group": "Document Model",
-          "icon": "folder-tree",
-          "iconType": "solid",
-          "pages": [
-            "v4-6/document-model/fields",
-            "v4-6/document-model/collections",
-            "v4-6/document-model/identifiers",
-            "v4-6/document-model/relationships",
-            {
-              "group": "Data Types",
-              "icon": "share-nodes",
-              "iconType": "solid",
-              "pages": [
-                "v4-6/document-model/data-types/register",
-                "v4-6/document-model/data-types/map",
-                "v4-6/document-model/data-types/attachment"
-              ]
-            }
-          ]
-        },
-        {
-          "group": "CRUD Operations",
-          "version": "v4.6",
-          "icon": "database",
-          "iconType": "solid",
-          "pages": [
-            "v4-6/crud/create",
-            "v4-6/crud/read",
-            "v4-6/crud/update",
-            "v4-6/crud/delete"
-          ]
-        },
-        {
-          "group": "Data Sync",
-          "version": "v4.6",
-          "icon": "rotate",
-          "iconType": "solid",
-          "pages": [
-            "v4-6/sync/start-and-stop-sync",
-            "v4-6/sync/subscriptions-management",
-            "v4-6/sync/using-mesh-presence",
-            "v4-6/sync/creating-sync-groups",
-            {
-              "group": "Advanced Customization",
-              "version": "v4.6",
-              "pages": [
-                "v4-6/sync/customizing-transport-configurations",
-                "v4-6/sync/small-peer-presence",
-                "v4-6/sync/consistency-models"
-              ]
-            },
-            {
-              "group": "Sync Concepts",
-              "version": "v4.6",
-              "pages": [
-                "v4-6/sync/concepts/transports-overview",
-                "v4-6/sync/consistency-models"
-              ]
-            }
-          ]
-        },
-        {
-          "group": "Security",
-          "version": "v4.6",
-          "icon": "lock",
-          "iconType": "solid",
-          "pages": [
-            "v4-6/security/authentication",
-            "v4-6/security/shared-key",
-            "v4-6/security/end-user-access",
-            "v4-6/security/certificate-based-security"
-          ]
-        },
-        {
-          "group": "API Reference",
-          "version": "v4.6",
-          "icon": "book",
-          "iconType": "solid",
-          "pages": [
-            "v4-6/api-reference/swift",
-            "v4-6/api-reference/kotlin",
-            "v4-6/api-reference/js",
-            "v4-6/api-reference/java",
-            "v4-6/api-reference/c-sharp",
-            "v4-6/api-reference/cpp",
-            "v4-6/api-reference/rust",
-            "v4-6/api-reference/flutter"
-          ]
-        },
-        {
-          "group": "Compatibility",
-          "icon": "map",
-          "iconType": "solid",
-          "pages": [
-            "v4-6/compatibility/compatibility",
-            "v4-8/compatibility/sdk-size",
-            "v4-6/compatibility/swift",
-            "v4-6/compatibility/kotlin",
-            "v4-6/compatibility/js-web",
-            "v4-6/compatibility/react-native",
-            "v4-6/compatibility/java",
-            "v4-6/compatibility/c-sharp",
-            "v4-6/compatibility/cpp",
-            "v4-6/compatibility/rust",
-            "v4-6/compatibility/flutter"
-          ]
-        },
-        {
-          "group": "Legacy",
-          "icon": "clock",
-          "iconType": "solid",
-          "pages": [
-            "v4-6/legacy/legacy-to-dql-reference",
-            "v4-6/legacy/legacy-to-dql-adoption-guide",
-            "v4-6/legacy/query-syntax-legacy",
-            "v4-6/legacy/documentas-and-ids"
-          ]
-        }
-      ]
-    },
-    {
-      "group": "Release Notes",
-      "version": "v4.6",
-      "icon": "bullhorn",
-      "iconType": "solid",
-      "pages": [
-        "v4-6/release-notes/release-notes",
-        "v4-6/release-notes/swift",
-        "v4-6/release-notes/kotlin",
-        "v4-6/release-notes/js",
-        "v4-6/release-notes/react-native",
-        "v4-6/release-notes/java",
-        "v4-6/release-notes/c-sharp",
-        "v4-6/release-notes/cpp",
-        "v4-6/release-notes/rust",
-        "v4-6/release-notes/flutter"
-      ]
-    },
-    {
-      "group": "SDK",
-      "version": "v4.5",
-      "pages": [
-        "v4-5/introduction",
-        "v4-5/onboarding",
-        {
-          "group": "Ditto Basics",
-          "version": "v4.5",
-          "icon": "lightbulb",
-          "iconType": "solid",
-          "pages": [
-            "v4-5/basics",
-            "v4-5//basics/core-components",
-            "v4-5/basics/data-structures-and-types",
-            "v4-5/basics/crud-fundamentals",
-            "v4-5/basics/authentication-and-initialization"
-          ]
-        },
-        {
-          "group": "SDK  Guides",
-          "version": "v4.5",
-          "icon": "code",
-          "iconType": "solid",
-          "pages": [
-            "v4-5/sdk-guides",
-            {
-              "group": "Swift",
-              "version": "v4.5",
-              "icon": "swift",
-              "iconType": "solid",
-              "pages": [
-                "v4-5/swift/installation",
-                {
-                  "group": "Tutorials in Swift",
-                  "version": "v4.5",
-                  "pages": [
-                    "v4-5/swift/tutorials",
-                    "v4-5/swift/tutorials/online-with-authentication",
-                    "v4-5/swift/tutorials/todo-app",
-                    "v4-5/swift/tutorials/task-app",
-                    "v4-5/swift/tutorials/chat-app"
-                  ]
-                },
-                {
-                  "group": "Quick Tips for Swift",
-                  "version": "v4.5",
-                  "pages": [
-                    "v4-5/swift/quick-tips/animating-uitableview-with-the-observe-api",
-                    "v4-5/swift/quick-tips/testing",
-                    "v4-5/swift/quick-tips/preventing-accumulating-combine-publishers",
-                    "v4-5/swift/quick-tips/stateobject-vs-observedobject",
-                    "v4-5/swift/quick-tips/dittoswifttools",
-                    "v4-5/swift/quick-tips/avoiding-excessive-memory-consumption",
-                    "v4-5/swift/quick-tips/preventing-swiftui-previews-from-syncing"
-                  ]
-                },
-                "v4-5/swift/compatibility",
-                "v4-5/swift/release-notes",
-                "v4-5//swift/api-reference-swift"
-              ]
-            },
-            {
-              "group": "Kotlin",
-              "version": "v4.5",
-              "icon": "code",
-              "iconType": "solid",
-              "pages": [
-                "v4-5/kotlin/installing",
-                {
-                  "group": "Task App Tutorials for Kotlin",
-                  "version": "v4.5",
-                  "pages": [
-                    "v4-5/kotlin/task-app-tutorials",
-                    "v4-5/kotlin/task-app-quickstart",
-                    "v4-5/kotlin/jetpack-compose"
-                  ]
-                },
-                "v4-5/kotlin/compatibility",
-                "v4-5/kotlin/release-notes",
-                "v4-5/kotlin/api-reference-kotlin"
-              ]
-            },
-            "v4-5/react-native-quickstart",
-            {
-              "group": "JavaScript",
-              "version": "v4.5",
-              "icon": "js",
-              "iconType": "solid",
-              "pages": [
-                "v4-5/js/installation",
-                "v4-5/js/node-task-app-quickstart",
-                {
-                  "group": "Tutorials in JavaScript",
-                  "version": "v4.5",
-                  "pages": [
-                    "v4-5/js/tutorials",
-                    "v4-5/js/tutorials/online-with-authentication",
-                    "v4-5/js/tutorials/task-app-node",
-                    "v4-5/js/tutorials/svelte",
-                    "v4-5/js/tutorials/kafka-events-node"
-                  ]
-                },
-                "v4-5/js/compatibility",
-                "v4-5/js/release-notes",
-                "v4-5/js/api-reference-js"
-              ]
-            },
-            {
-              "group": "Java",
-              "version": "v4.5",
-              "icon": "java",
-              "iconType": "solid",
-              "pages": [
-                "v4-5/mxQ0NJA-pOhrpYRoNsp4K",
-                "v4-5/AW3yQVrSO2uE4KTSrLE8t",
-                "v4-5/XvGIouo_tfm0qsGKiB9uZ",
-                "v4-5/api-reference-java"
-              ]
-            },
-            {
-              "group": "C#",
-              "version": "v4.5",
-              "icon": "code",
-              "iconType": "solid",
-              "pages": [
-                "v4-5/csharp/installation",
-                "v4-5/csharp/authentication-server",
-                {
-                  "group": "Release Notes",
-                  "version": "v4.5",
-                  "pages": [
-                    "v4-5/csharp/tutorials",
-                    "v4-5/maui-task-app",
-                    "v4-5/csharp/xamarin-task-app",
-                    "v4-5/csharp/console-task-app"
-                  ]
-                },
-                "v4-5/csharp/compatibility",
-                "v4-5/csharp/release-notes",
-                "v4-5/csharp/api-reference-csharp"
-              ]
-            },
-            {
-              "group": "C++",
-              "version": "v4.5",
-              "icon": "code",
-              "iconType": "solid",
-              "pages": [
-                "v4-5/cpp/installation",
-                "v4-5/cpp/compatibility",
-                "v4-5/cpp/release-notes",
-                "v4-5/cpp/api-reference-cpp"
-              ]
-            },
-            {
-              "group": "Rust",
-              "version": "v4.5",
-              "icon": "rust",
-              "iconType": "solid",
-              "pages": [
-                "v4-5/rust/installation",
-                "v4-5/rust/setting-up",
-                "v4-5/rust/compatibility",
-                "v4-5/rust/release-notes",
-                "v4-5/rust/api-reference-rust"
-              ]
-            }
-          ]
-        },
-        {
-          "group": "CRUD Operations",
-          "icon": "database",
-          "iconType": "solid",
-          "version": "v4.5",
-          "pages": [
-            "v4-5/crud-create",
-            "v4-5/crud-read",
-            "v4-5/crud-update",
-            "v4-5/crud-delete"
-          ]
-        },
-        {
-          "group": "Data Sync",
-          "icon": "rotate",
-          "iconType": "solid",
-          "version": "v4.5",
-          "pages": [
-            "v4-5/data-sync",
-            "v4-5/sync-concepts",
-            "v4-5/sync-concepts/cloud-optional-design",
-            "v4-5/sync-concepts/mesh-network",
-            "v4-5/sync-concepts/consistency-models",
-            {
-              "group": "Transports",
-              "pages": [
-                "v4-5/transports",
-                "v4-5/transports/network-deployment",
-                "v4-5/transports/configuring-transports",
-                "v4-5/transports/bluetooth-on-linux"
-              ]
-            }
-          ]
-        },
-        {
-          "group": "Platform Manual",
-          "version": "v4.5",
-          "icon": "layer-group",
-          "iconType": "solid",
-          "pages": [
-            "v4-5/platform-manual",
-            {
-              "group": "Data Types",
-              "pages": [
-                "v4-5/data-types",
-                "v4-5/data-types/register",
-                "v4-5/data-types/map",
-                "v4-5/data-types/attachment"
-              ]
-            },
-            {
-              "group": "Document Model",
-              "pages": [
-                "v4-5/document-model",
-                "v4-5/document-model/document-identifier",
-                "v4-5/document-model/collections",
-                "v4-5/document-model/version-control",
-                {
-                  "group": "Complex Structures",
-                  "pages": [
-                    "v4-5/document-model/complex-structures",
-                    "v4-5/document-model/complex-structures/nested-hierarchy",
-                    "v4-5/document-model/complex-structures/evaluation-criteria",
-                    "v4-5/document-model/complex-structures/relationships"
-                  ]
-                }
-
-              ]
-            },
-            {
-              "group": "Big Peer",
-              "pages": [
-                "v4-5/big-peer",
-                {
-                  "group": "Backend Architecture",
-                  "pages": [
-                    "v4-5/big-peer/backend-architecture",
-                    "v4-5/big-peer/backend-architecture/timestamps",
-                    "v4-5/big-peer/backend-architecture/causally-consistent-transactionstecturer",
-                    "v4-5/big-peer/backend-architecture/failure-handling"
-                  ]
-                },
-                "v4-5/big-peer/compatibility",
-                "v4-5/big-peer/release-notes"
-              ]
-            },
-            {
-              "group": "Security",
-              "pages": [
-                "v4-5/security",
-                {
-                  "group": "Authentication",
-                  "pages": [
-                    "v4-5/security/authentication",
-                    "v4-5/security/onlinewithauthentication",
-                    "v4-5/security/shared-key"
-                  ]
-                },
-                "v4-5/security/access-control-permissions",
-                "v4-5/security/certificate-based-security"
-              ]
-            },
-            "v4-5/best-practices/demo-apps-overview",
-            "v4-5/changelog",
-            "v4-5/sdk-sizes"
-          ]
-        }
-      ]
-    },
-    {
-      "group": "SDK",
-      "version": "v4.4",
-      "pages": [
-        "v4-4/introduction",
-        "v4-4/onboarding",
-        {
-          "group": "Ditto Basics",
-          "version": "v4.4",
-          "icon": "lightbulb",
-          "iconType": "solid",
-          "pages": [
-            "v4-4/ditto-basics",
-            "v4-4/core-components",
-            "v4-4/sync-overview",
-            "v4-4/data-structures-types",
-            "v4-4/crud-fundamentals",
-            "v4-4/authentication-initialization"
-          ]
-        },
-        {
-          "group": "SDK Setup Guides",
-          "version": "v4.4",
-          "icon": "code",
-          "iconType": "solid",
-          "pages": [
-            "v4-4/setup-guides",
-            {
-              "group": "SDK Setup Guides",
-              "version": "v4.4",
-              "icon": "code",
-              "iconType": "solid",
-              "pages": [
-                "v4-4/setup-guides",
-                {
-                  "group": "Swift",
-                  "version": "v4.4",
-                  "icon": "swift",
-                  "iconType": "solid",
-                  "pages": [
-                    "v4-4/swift-compatibility",
-                    "v4-4/swift-installing",
-                    {
-                      "group": "Tutorials in Swift",
-                      "version": "v4.4",
-                      "pages": [
-                        "v4-4/swift-tutorials",
-                        "v4-4/TrzVR0-H8GXwa0Qghhl9T",
-                        "v4-4/NYLU_Yy8AHbGPPEi-06YE",
-                        "v4-4/Fg7ckVoxYuIa105mA3n8k",
-                        "v4-4/JGwlqIYYH5qe3rEvVUv73"
-                      ]
-                    },
-                    {
-                      "group": "Quick Tips for Swift",
-                      "version": "v4.4",
-                      "pages": [
-                        "v4-4/quick-tips-for-swift",
-                        "v4-4/animating-uitableview-with-the-observe-api",
-                        "v4-4/testing",
-                        "v4-4/9A42hFZhxwLPBGFV-8S-h",
-                        "v4-4/bo7e8jc74rzo776RixJDy",
-                        "v4-4/cvAxb9NJLrChaZRPtoViT",
-                        "v4-4/krg1yBNO6QtKZDgQIXPC0",
-                        "v4-4/HhGCQqzXVVqyw2JcoJJyR"
-                      ]
-                    },
-                    "v4-4/api-reference-swift"
-                  ]
-                },
-                {
-                  "group": "Kotlin",
-                  "version": "v4.4",
-                  "icon": "code",
-                  "iconType": "solid",
-                  "pages": [
-                    "v4-4/63iBkuY8dPJYdBUUby82E",
-                    "v4-4/kCukH_z3FQy6iiFBUR1nr",
-                    "v4-4/api-reference-kotlin"
-                  ]
-                },
-                {
-                  "group": "JavaScript",
-                  "version": "v4.4",
-                  "icon": "js",
-                  "iconType": "solid",
-                  "pages": [
-                    "v4-4/compatibility-with-javascript",
-                    "v4-4/eRmOqNTaO8XdwterVoq-E",
-                    "v4-4/api-reference-js"
-                  ]
-                },
-                {
-                  "group": "Java",
-                  "version": "v4.4",
-                  "icon": "java",
-                  "iconType": "solid",
-                  "pages": [
-                    "v4-4/compatibility-with-java",
-                    "v4-4/installing-java-sdk",
-                    "v4-4/api-reference-java"
-                  ]
-                },
-                {
-                  "group": "C#",
-                  "version": "v4.4",
-                  "icon": "code",
-                  "iconType": "solid",
-                  "pages": [
-                    "v4-4/evp6t3-4BL6S9mrVdblGh",
-                    "v4-4/Md9j9mB1RVCGK9K7lgtvI",
-                    "v4-4/authentication-server",
-                    "v4-4/api-reference-csharp"
-                  ]
-                },
-                {
-                  "group": "C++",
-                  "version": "v4.4",
-                  "icon": "code",
-                  "iconType": "solid",
-                  "pages": [
-                    "v4-4/quKQ_-i4hguvjVRXlgYKZ",
-                    "v4-4/2r7gIc2QnR3BxegqIQ5Qr",
-                    "v4-4/api-reference-cpp"
-                  ]
-                },
-                {
-                  "group": "Rust",
-                  "version": "v4.4",
-                  "icon": "rust",
-                  "iconType": "solid",
-                  "pages": [
-                    "v4-4/compatibility-with-rust",
-                    "v4-4/installing-rust-sdk",
-                    "v4-4/setting-up",
-                    "v4-4/api-reference-rust"
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "group": "Platform Manual",
-          "version": "v4.4",
-          "icon": "layer-group",
-          "iconType": "solid",
-          "pages": [
-            "/v4-4/SuPiwTWZQ7VQ-iYmPIjuk",
-            "/v4-4/FtP61n4tNyma6t9k-1WFW",
-            {
-            "group": "Data Types",
-            "pages": [
-              "/v4-4/tAWkWoXz6TuRtoc-1VFVI",
-              "/v4-4/ogNAL-jaJNg_lIrAA6S2E"
-            ]
-            },
-            {
-              "group": "CRUD Operations",
-              "pages": [
-                "v4-4/V5eBeM0ww-xU1B4tE8Czc",
-                "v4-4/jRA2j_xb7X1u_Zagzx-8n",
-                "v4-4/wNiiPaCzTUdAxHZ8OuHhj",
-                "v4-4/1_39PhgLSIDX0rgeCUgyH",
-                "v4-4/aWGbRnWZHcfuXNgGjA-KQ"
-              ]
-            },
-            "v4-4/qa93Zj1Xd610ZXi8WT0Lt",
-            {
-              "group": "Document Model",
-              "pages": [
-                "v4-4/bj6ONuFwHzIfYr9bZHAsf",
-                "v4-4/jErrIcHe0QCEH0nmidvln",
-                "v4-4/PVmJjcZeQTvT3toU3rIxo",
-                "v4-4/-sf0Km4y3-UKpYVn_b5dF",
-                "v4-4/R07whODD6RnYx3yYOuHRz",
-                "v4-4/7oLGf7NkMBlkR8ehnpczC",
-                "v4-4/Lz-6qIUtAhhgaLE77377l",
-                "v4-4/sYl9cRetVk5AmaWx_Iav0"
-              ]
-            },
-            {
-              "group": "Transports",
-              "pages": [
-                "v4-4/MZEMT9IuC3xFpARHUgaHq",
-                "v4-4/cdxTjSj2RKTncW1yH3ubu",
-                "v4-4/BBr84CdOU1MifabRcHC7M",
-                "v4-4/68Ho3Wwal_5Vtj2FVkvJp"
-              ]
-            },
-            {
-              "group": "Sync and Replication Concepts",
-              "pages": [
-                "v4-4/sync-and-replication-concepts",
-                "v4-4/cloud-optional-design",
-                "v4-4/mesh-network",
-                "v4-4/consistency-models"
-              ]
-            },
-            "v4-4/platform-compatibility",
-            "v4-4/changelog",
-            {
-              "group": "Security",
-              "pages": [
-                "v4-4/security",
-                {
-                  "group": "Authentication",
-                  "pages": [
-                    "v4-4/authentication",
-                    "v4-4/onlinewithauthentication",
-                    "v4-4/shared-key"
-                  ]
-                },
-                "v4-4/access-control-permissions",
-                "v4-4/certificate-based-security"
-              ]
-            },
-            "v4-4/glossary"
-          ]
-        }
-      ]
-    },
-    {
-      "group": "Swift",
-      "version": "v4.4",
-      "icon": "swift",
-      "iconType": "solid",
-      "pages": [
         {
           "group": "Release Notes",
-          "version": "v4.4",
+          "version": "v4.7",
+          "icon": "bullhorn",
+          "iconType": "solid",
           "pages": [
-            "v4-4/release-notes/U3Uk-release-notes",
-            "v4-4/release-notes/UvCC8vaPp82x1aSBvex4_",
-            "v4-4/release-notes/QdAOrquYFraFzWRILJ6XP",
-            "v4-4/release-notes/s4onivzJKwk_muwD5TzUy",
-            "v4-4/release-notes/JmAqFPtnJy6YKPGHxpBS9"
-          ]
-        }
-      ]
-    },
-    {
-      "group": "Kotlin",
-      "version": "v4.4",
-      "icon": "code",
-      "iconType": "solid",
-      "pages": [
-
-        {
-          "group": "Release Notes",
-          "version": "v4.4",
-          "pages": [
-            "v4-4/release-notes/iwY2-release-notes",
-            "v4-4/release-notes/cPgQaljRV8q2E5SxiZoVM",
-            "v4-4/release-notes/rx_Ps4jZ5cRrFCmBdRQS6",
-            "v4-4/release-notes/Lk1CjRxRvKGwZ5vqlx-sD",
-            "v4-4/release-notes/IY4SiO1YqXSxycrxYUatq"
-          ]
-        }
-      ]
-    },
-    {
-      "group": "JavaScript",
-      "version": "v4.4",
-      "icon": "js",
-      "iconType": "solid",
-      "pages": [
-        {
-          "group": "Release Notes",
-          "version": "v4.4",
-          "pages": [
-            "v4-4/release-notes/release-notes",
-            "v4-4/release-notes/nl1EBvddCEDFLJFuLXD4Y",
-            "v4-4/release-notes/4HtM8Gxyj6k0RIQXh9wtZ",
-            "v4-4/release-notes/6hOpqrmD6lYl2mhI4Rs65",
-            "v4-4/release-notes/CE6-VxN0wJ15pl31zuuXY"
-          ]
-        }
-      ]
-    },
-    {
-      "group": "Java",
-      "version": "v4.4",
-      "icon": "java",
-      "iconType": "solid",
-      "pages": [
-        {
-          "group": "Release Notes",
-          "version": "v4.4",
-          "pages": [
-            "v4-4/release-notes/M0E6-release-notes",
-            "v4-4/release-notes/VggjEew_rQyXsJZUMeqB0",
-            "v4-4/release-notes/r91zbgLkzS3RCv9fC0546",
-            "v4-4/release-notes/TPPrsRxec-uVl_bvAGFGl",
-            "v4-4/release-notes/a9NAWhpkcWykBWfEKH7l9"
-          ]
-        }
-      ]
-    },
-    {
-      "group": "C#",
-      "version": "v4.4",
-      "icon": "code",
-      "iconType": "solid",
-      "pages": [
-        {
-          "group": "Release Notes",
-          "version": "v4.4",
-          "pages": [
-            "v4-4/release-notes/dKDC-release-notes",
-            "v4-4/release-notes/ZPHC2rdpFQBrOsoSH73w8",
-            "v4-4/release-notes/8aPssSkVtY3NImD-FDj8m",
-            "v4-4/release-notes/rZeDrZfmUcIBs6_xMRWAk",
-            "v4-4/release-notes/vkVS7XL06518anD2yK2fw"
-          ]
-        }
-      ]
-    },
-    {
-      "group": "C++",
-      "version": "v4.4",
-      "icon": "code",
-      "iconType": "solid",
-      "pages": [
-        {
-          "group": "Release Notes",
-          "version": "v4.4",
-          "pages": [
-            "v4-4/release-notes/zrpS-release-notes",
-            "v4-4/release-notes/RmNS3OiHffinY5tHnEWD3",
-            "v4-4/release-notes/BeP6OmbF49EEQwW_Mh8am",
-            "v4-4/release-notes/IjbM31rsgT460HQROVNel",
-            "v4-4/release-notes/pDHL9D1ZVBtGZ8W4vnXKT"
-          ]
-        }
-      ]
-    },
-    {
-      "group": "Rust",
-      "version": "v4.4",
-      "icon": "rust",
-      "iconType": "solid",
-      "pages": [
-
-        {
-          "group": "Release Notes",
-          "version": "v4.4",
-          "pages": [
-            "v4-4/release-notes/2wD7-release-notes",
-            "v4-4/release-notes/SeoGopaFD9Ydhce0Uz7A0",
-            "v4-4/release-notes/I9KmdQPvXYHwb_UkMXdWE",
-            "v4-4/release-notes/5Bmb3o50JsrfvVYO0JR77",
-            "v4-4/release-notes/o_lWehn-vK9KIMPm1j7E3"
+            "v4-7/release-notes/release-notes",
+            "v4-7/release-notes/swift",
+            "v4-7/release-notes/kotlin",
+            "v4-7/release-notes/js",
+            "v4-7/release-notes/react-native",
+            "v4-7/release-notes/java",
+            "v4-7/release-notes/c-sharp",
+            "v4-7/release-notes/cpp",
+            "v4-7/release-notes/rust",
+            "v4-7/release-notes/flutter"
           ]
         }
       ]
@@ -1540,32 +654,18 @@
           "iconType": "solid",
           "pages": [
             "cloud/http-api/getting-started",
-            "cloud/http-api/dql-queries",
+            "cloud/http-api/auth-and-params",
+            "cloud/http-api/api/post-storeexecute",
             "cloud/http-api/attachments",
-            "cloud/http-api/authorization",
             {
               "group": "Legacy HTTP API",
               "icon": "puzzle-piece",
               "iconType": "solid",
               "pages": [
-                {
-                  "group": "Querying: HTTP (Legacy)",
-                  "icon": "database",
-                  "iconType": "solid",
-                  "pages": [
-                    "cloud/http-api/legacy/legacy-querying-http",
-                    "cloud/http-api/legacy/408-timout-responses-legacy"
-                  ]
-                },
-                "cloud/http-api/legacy/writing-http-legacy"
-              ]
-            },
-            {
-              "group": "HTTP API - Authorization",
-              "icon": "key",
-              "iconType": "solid",
-              "pages": [
-                "cloud/http-api/authorization/configuring-Auth-for-login"
+                "cloud/http-api/api/post-storefind",
+                "cloud/http-api/api/post-storefindbyid",
+                "cloud/http-api/api/post-storewrite",
+                "cloud/http-api/api/post-storecount"
               ]
             }
           ]
@@ -1794,5 +894,11 @@
     "x": "https://www.twitter.com/dittolive",
     "github": "https://github.com/getditto",
     "linkedin": "https://www.linkedin.com/company/dittolive/"
-  }
+  },
+  "redirects": [
+    {
+      "source": "/ZILK-install-guides",
+      "destination": "/install-guides"
+    }
+  ]
 }

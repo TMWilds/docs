@@ -1,0 +1,1322 @@
+v4-7/basic/data-handling-essentials.mdx
+  ./../Data Sync/Advanced Customizations/Handling Connection Requests.md
+  ./../Data Sync/Using Mesh Presence.md
+
+v4-7/basic/ditto.mdx
+  /v4-7/about-ditto#small-peers
+  /v4-7/about-ditto#change-data-capture
+  /v4-6/about-ditto#authentication-service
+  /v4-7/about-ditto#http-data-api
+  /v4-7/about-ditto#change-data-capture
+  /v4-7/sync/concepts/mesh-networking-101#flood-fill-process
+  /ab-redirect-url?docId=h7hpkC46Zk_xijTASLiMc&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=
+
+v4-7/basic/mesh-networking-101.mdx
+  ./../Advanced Customizations/Customizing Transports Configurations.md
+
+v4-7/crud/create.mdx
+  /v4-7//crud/create#SmqTL
+  /v4-7//crud/create#_TG5N
+
+v4-7/crud/delete.mdx
+  /4.7/crud/delete#-BLNB
+  /4.7/crud/delete#sODGf
+  /4.7/crud/delete#bPsqW
+  /4.7/crud/delete#O9KV-
+  /4.7/crud/#ksPbI9CsHPdud0iyuow9E
+
+v4-7/document-model/fields.mdx
+  /v4.7/document-model/fields#4Y_JMJedQeq0-0uDNcJcQ
+  /v4.7/document-model/fields#Z6tbFllqieU_CtkJR845E
+
+v4-7/document-model/identifiers.mdx
+  /v4.7/document-model/identifiers#custom-document-identifier
+
+v4-7/dql/dql.mdx
+  /ab-redirect-url?docId=iMDPwvQgVj4yyV5RalGbi&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=
+  /ab-redirect-url?docId=EMhcouL5Kbus5z05x_pKu&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=
+  /ab-redirect-url?docId=_vxfd7_jJFfTzByIVqoxh&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=
+  /ab-redirect-url?docId=ksPbI9CsHPdud0iyuow9E&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=
+
+v4-7/getting-started/hello-world-sync.mdx
+  ./Sync Credentials.md
+  ./../Basic Concepts/Mesh Networking 101.md
+  ./Install Guides.md
+  ./../CRUD Operations/CREATE.md
+  ./../CRUD Operations/READ.md
+  ./../Ditto Query Language/UPDATE.md
+  ./../CRUD Operations/DELETE.md
+  ./../Data Sync/Starting and Stopping Sync.md
+  ./../Data Sync/Managing Sync Subscriptions.md
+
+v4-7/getting-started/install-guides/c-sharp.mdx
+  /v4-7/get-started/install-guides/c-sharp#Vh6Ct
+  /v4-7/get-started/install-guides/c-sharp#cxPSx
+  /v4-7/get-started/install-guides/c-sharp#0pCl9
+  /v4-7/get-started/install-guides/c-sharp#J-rzQ
+
+v4-7/getting-started/install-guides/cpp.mdx
+  ./../../Compatibility Maps/Directory of Compatibility Maps.md
+
+v4-7/getting-started/install-guides/flutter.mdx
+  ./Flutter/Flutter Quick Start.md
+
+v4-7/getting-started/install-guides/java.mdx
+  /v4-7/get-started/install-guides/#Up5T7Ykh9nwxB6QNGtp4X
+  /v4-7/get-started/install-guides/#7jSFl90n9c8vhPhRsJOxk
+
+v4-7/getting-started/install-guides/js.mdx
+  /v4-7/javascript-installing#sb-Fz
+  /v4-7/javascript-installing#i_i6q
+  /v4-7/javascript-installing#Ajrfc
+  /v4-7/javascript-installing#s71_W
+  /v4-7/javascript-installing
+
+v4-7/getting-started/install-guides/kotlin.mdx
+  /v4-7/kotlin-installing#a-QJt
+  /v4-7/kotlin-installing#VKZJ3
+  /v4-7/kotlin-installing#LsH7a
+  /v4-7/kotlin-installing#XNaBO
+  /v4-7/install-guides/kotlin#byhR_
+  /v4-7/install-guides/kotlin#frqrm
+
+v4-7/getting-started/install-guides/nodejs.mdx
+  /v4-7/get-started/install-guides/nodejs#hK2s3Ld8Sj-Ti5snxwkQ1
+  /ab-redirect-url?docId=U214QhYYMCxbV9jnamRFH&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=
+  /ab-redirect-url?docId=U214QhYYMCxbV9jnamRFH&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=
+  /v4-7/get-started/install-guides/undefined#0bpDy
+
+v4-7/getting-started/install-guides/react-native.mdx
+  /js/Ditto/4.7.1/api-reference/
+  ./../Authentication & Authorization/Cloud Authentication.md
+  ./../Data Store CRUD/Data-Handling Essentials.md
+
+v4-7/getting-started/install-guides/rust.mdx
+  ./../../Compatibility Maps/Rust.md
+  /v4.7/install-guides/rust#eszFD
+  /v4.7/install-guides/rust#_5OsT
+
+v4-7/getting-started/install-guides/swift.mdx
+  /v4-7/install-guides/swift#g0ESg
+  /v4-7/install-guides/swift#kX-Je
+  /v4-7/install-guides/swift#XNaBO
+  /v4-7/install-guides/swift#BPHYO
+  /v4-7/install-guides/swift#tMt7R
+  /v4-7/install-guides/swift#aor0j
+  /v4-7/install-guides/swift#Fb7Ze
+  /v4-7/auth-and-authorization/cloud-authentication
+
+v4-7/getting-started/sync-credentials.mdx
+  /images/v4.7/sync-cred-3.webp
+
+v4-7/introduction.mdx
+  /v4-7/basic/about
+  /v4-7/get-started/sync-credentials
+  /v4-7/get-started/hello-world-sync
+  /v4-7/ios/installation
+  /v4-7/kotlin-installing
+  /v4-7/javascript-installing
+  /v4-7/get-started/install-guides/react-native
+  /v4-7/get-started/install-guides/java
+  /v4-7/get-started/install-guides/c-sharp
+  /v4-7/get-started/install-guides/cpp
+  /v4-7/installing-rust-sdk
+  /v4-7/flutter/installation
+
+v4-7/release-notes/c-sharp.mdx
+  ./../Legacy/Query Syntax (Legacy).md
+
+v4-7/release-notes/cpp.mdx
+  ./../Legacy/Query Syntax (Legacy).md
+
+v4-7/release-notes/java.mdx
+  ./../Legacy/Query Syntax (Legacy).md
+
+v4-7/release-notes/js.mdx
+  undefined#H-_Mj
+
+v4-7/release-notes/kotlin.mdx
+  ./../Legacy/Query Syntax (Legacy).md
+
+v4-7/release-notes/react-native.mdx
+  ./../Legacy/Query Syntax (Legacy).md
+
+v4-7/release-notes/rust.mdx
+  ./../Legacy/Query Syntax (Legacy).md
+
+v4-7/release-notes/swift.mdx
+  ./../Legacy/Query Syntax (Legacy).md
+
+v4-7/sdk/basic/about.mdx
+  /v4-7/about-ditto#small-peers
+  /v4-7/about-ditto#change-data-capture
+  /v4-7/about-ditto#http-data-api
+  /v4-7//about-ditto#change-data-capture
+  /v4-7/sync/concepts/mesh-networking-101#flood-fill-process
+  /ab-redirect-url?docId=h7hpkC46Zk_xijTASLiMc&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=
+
+v4-7/sync/concepts/transports-overview.mdx
+  ./../Advanced Customizations/Customizing Transports Configurations.md
+  ./../../Data Types/ATTACHMENT.md
+
+v4-7/sync/consistency-models.mdx
+  ./../../Data Types/REGISTER.md
+  ./../../Data Types/MAP.md
+  ./../../Data Types/ATTACHMENT.md
+
+v4-7/sync/handling-connection-requests.mdx
+  ./../Using Mesh Presence.md
+
+v4-7/sync/managing-redundant-bluetooth-le-connections.mdx
+  /4.7/sync/managing-redundant-bluetooth-le-connections#U1QPf
+  /4.7/sync/managing-redundant-bluetooth-le-connections#yq6el
+  /4.7/sync/managing-redundant-bluetooth-le-connections#R46YK
+
+v4-7/sync/transports-overview.mdx
+  ./../../Authentication & Authorization/Data Authorization.md
+
+v4-7/sync/using-alter-system.mdx
+  /v4-7/using-alter-system#4O_0R
+  /v4-7/using-alter-system#4O_0R
+  /v4-7/using-alter-system#LsAi_
+  /v4-7/using-alter-system#vOx5k
+  ./Customizing Transports Configurations.md
+
+v4-7/sync/using-mesh-presence.mdx
+  ./../Authentication & Authorization/Data Authorization.md
+
+v4-8/about-ditto.mdx
+  /v4.8/about-ditto#authentication-service
+  /v4-8//about-ditto#change-data-capture
+  /ab-redirect-url?docId=h7hpkC46Zk_xijTASLiMc&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=
+
+v4-8/crud/update.mdx
+  ./READ.md
+
+v4-8/install-guides/flutter.mdx
+  ./Flutter/Flutter Quick Start.md
+
+v4-8/install-guides/js.mdx
+  /ab-redirect-url?docId=yXSJHOqliSNbLUVUYOcSa&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=sb-Fz
+  /ab-redirect-url?docId=yXSJHOqliSNbLUVUYOcSa&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=i_i6q
+  /ab-redirect-url?docId=yXSJHOqliSNbLUVUYOcSa&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=Ajrfc
+  /ab-redirect-url?docId=yXSJHOqliSNbLUVUYOcSa&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=s71_W
+  /ab-redirect-url?docId=U214QhYYMCxbV9jnamRFH&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=
+  /ab-redirect-url?docId=D0B4xrfN45yeM15qCYcOb&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=
+  /ab-redirect-url?docId=DH0VjOd2_OZVncKas9H7x&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=
+
+v4-8/install-guides/nodejs.mdx
+  /ab-redirect-url?docId=U214QhYYMCxbV9jnamRFH&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=
+  /ab-redirect-url?docId=U214QhYYMCxbV9jnamRFH&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=
+  /ab-redirect-url?docId=U214QhYYMCxbV9jnamRFH&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=
+  /ab-redirect-url?docId=Owk-BYJCe9FC9i8pMv_Sl&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=0bpDy
+
+v4-8/install-guides/react-native.mdx
+  ./../Authentication & Authorization/Cloud Authentication.md
+  ./../Data Store CRUD/Data-Handling Essentials.md
+
+v4-8/release-notes/swift.mdx
+  ./../Legacy/Query Syntax (Legacy).md
+
+v4-8/sync/concepts/mesh-networking-101.mdx
+  ./../Advanced Customizations/Customizing Transports Configurations.md
+
+v4-8/sync/concepts/transports-overview.mdx
+  ./../Advanced Customizations/Customizing Transports Configurations.md
+  ./../../Data Types/ATTACHMENT.md
+
+v4-8/sync/consistency-models.mdx
+  ./../../Data Types/REGISTER.md
+  ./../../Data Types/MAP.md
+  ./../../Data Types/ATTACHMENT.md
+
+v4-8/sync/creating-sync-groups.mdx
+  ./../../Authentication & Authorization/Data Authorization.md
+
+v4-8/sync/handling-connection-requests.mdx
+  ./../Using Mesh Presence.md
+
+v4-8/sync/using-alter-system.mdx
+  ./Customizing Transports Configurations.md
+
+v4-8/sync/using-mesh-presence.mdx
+  ./../Authentication & Authorization/Data Authorization.md
+
+  ditto.yaml:
+   71      post:
+   72:       summary: Execute a Ditto Query Language statement. See <https://docs.ditto.live/dql-guide>
+   73        description: |
+   74:         Execute a Ditto Query Language statement. See <https://docs.ditto.live/dql-guide>
+   75        operationId: execute_endpoint
+
+  577            type: string
+  578:           description: A statement written in Ditto Query Language. See <https://docs.ditto.live/dql-guide>
+  579        example:
+
+  669            type: string
+  670:           description: A full statement that contains sync context statement and statement written in Ditto Query Language. See <https://docs.ditto.live/dql-guide>
+  671        example:
+
+  955  externalDocs:
+  956:   url: https://docs.ditto.live/http/installation/
+  957    description: For more detailed instructions on how to use this API and the Ditto SDK, please see the documentation.
+
+introduction.mdx:
+  58      icon="java"
+  59:     href="https://docs.ditto.live/install-guides/java"
+  60        iconType="solid">
+
+auth-and-authorization/cloud-authentication.mdx:
+   48      <Step>
+   49:     If you want to use Ditto in an air-gapped environment that is entirely offline or on‑premise, contact Ditto Customer Engineering. (See [Contact Us](https://docs.ditto.live/auth-and-authorization/#n4CiVTbQAL1SmgjNO8aM8))
+   50      </Step>
+   51      <Step>
+   52:     From the [portal](https://portal.ditto.live/ "portal"), create your app and get your access credentials required for peer-to-peer offline sync. (See [Getting Playground Token Credentials](https://docs.ditto.live/auth-and-authorization/#U214QhYYMCxbV9jnamRFH))
+   53  
+
+  577  ```
+  578: For more information on how to design your app's permissions, see [Data Authorization](https://docs.ditto.live/auth-and-authorization/data-authorization).
+  579  
+
+  584  <Info>
+  585: Please be sure that this endpoint is not behind a firewall or VPN. If you cannot get around this requirement [contact us](https://docs.ditto.live/auth-and-authorization/ "contact us").
+  586  </Info>
+
+auth-and-authorization/data-authorization.mdx:
+  59  <Info>
+  60:   Permissions must be written using the legacy query syntax and not DQL. For more see [Query Syntax (Legacy)](https://docs.ditto.live/auth-and-authorization/data-authorization#Pw82J_oFrBgM-27WMrKJm).
+  61  </Info>
+
+best-practices/how-to/c-sharp/authentication-server.mdx:
+  146  
+  147: This section will walk you through how to create a self-signed certificate to set up an HTTPS authentication server on your own server or locally for development. Another common way to have HTTPS is to make your application server run HTTP and then use a standard reverse proxy to terminate the TLS, which is not covered by these examples.[​](https://legacydocs.ditto.live/csharp/quick-tips/authserver#enabling-https)
+  148  
+
+best-practices/how-to/c-sharp/xamarin-task-app.mdx:
+  112      <Step>
+  113:     Follow the instructions on the [Installation page for C#](https://legacydocs.ditto.live/csharp/installation) to use Package Manager or .NET CLI.
+  114      </Step>
+
+  146  
+  147: Follow the instructions on the [iOS Installation page](https://legacydocs.ditto.live/ios/installation#platform-permissions).
+  148  
+
+best-practices/how-to/js/Kafka-Events_Node.js.mdx:
+  79  
+  80: When `change.oldValue` is equal to `null`, that means that a new document was inserted into the database.[​](https://legacydocs.ditto.live/javascript/common/guides/kafka/nodejs#inserting-a-new-document)
+  81  
+
+best-practices/how-to/swift/Avoiding-Excessive-Memory-Consumption.mdx:
+  91  
+  92: The former three are convenience methods and are implemented in terms of the latter:[​](https://legacydocs.ditto.live/ios/quick-tips/avoiding-excessive-memory-consumption#implementation-details)
+  93  
+
+cloud/http-api/api/openapi.json:
+   114        "post": {
+   115:         "description": "Execute a Ditto Query Language (DQL) statement against your data store. DQL is a powerful query language that supports complex queries, updates, and data manipulation. This endpoint serves as the primary interface for running DQL operations. See the comprehensive DQL guide at https://docs.ditto.live/dql-guide for detailed syntax and examples.",
+   116          "summary": "Execute a DQL query",
+
+   897              "type": "string",
+   898:             "description": "The DQL statement to execute. See https://docs.ditto.live/dql-guide for comprehensive documentation on DQL syntax and features."
+   899            }
+
+  1038              "type": "string",
+  1039:             "description": "A DQL statement that must include a SYNC CONTEXT clause to specify target peers. See https://docs.ditto.live/dql-guide for syntax details."
+  1040            }
+
+  1529    "externalDocs": {
+  1530:     "url": "https://docs.ditto.live/http/installation/",
+  1531      "description": "For more detailed instructions on how to use this API and the Ditto SDK, please see the documentation."
+
+crud/create.mdx:
+    16  <Info>
+    17: Ditto does *not* support nesting documents within documents. Instead, opt for a foreign-key relationship by referencing the document ID. For more information, see [Relationships](https://docs.ditto.live/v4-8/document-model/relationships).
+    18  </Info>
+
+   654  
+   655: Create the attachment in the Ditto store. ([Initiating ATTACHMENT Objects](https://docs.ditto.live/v4-8/crud/create#SmqTL))
+   656  
+
+   659  
+   660: Reference the returned attachment token in a document. ([Referencing Attachment Tokens)](https://docs.ditto.live/v4-8/crud/create#_TG5N)
+   661  
+
+  1003  - In an INSERT operation — Create a new document and nest it with this set of fields.
+  1004: - In an UPDATE operation — If the MAP does not exist, create it. (See [UPDATE](https://docs.ditto.live/v4-8/crud/update))
+  1005  
+
+install-guides/cpp.mdx:
+  118  <Step>
+  119: Review permissions used by Ditto. ([Declaring Permissions](https://docs.ditto.live/install-guides/undefined#byhR_)﻿)
+  120  </Step>
+  121  <Step>
+  122: Proactively check permission status to avoid unnecessary delay between granting access and Ditto being able to use the feature. ([Requesting Permissions](https://docs.ditto.live/install-guides/undefined#frqrm)﻿)
+  123  </Step>
+
+install-guides/js.mdx:
+  95  
+  96: Add a _sync subscription_ to receive updates on documents that match its query from connected peers in the [mesh](/ab-redirect-url?docId=DH0VjOd2_OZVncKas9H7x&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=).
+  97  
+
+install-guides/kotlin.mdx:
+  220  <Step>
+  221: Replace `YOUR_APP_ID` and `YOUR_PLAYGROUND_TOKEN` with your access credentials available from the portal. (See [Getting Playground Token Credentials](https://docs.ditto.live/install-guides/#U214QhYYMCxbV9jnamRFH) )
+  222  </Step>
+
+install-guides/nodejs.mdx:
+  22  <Info>
+  23: * To get your access credentials, see [Getting Playground Token Credentials](/ab-redirect-url?docId=U214QhYYMCxbV9jnamRFH&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=).
+  24  
+
+  51     <Step >
+  52:    In line 14 of the index.ts file, replace 'YOUR\_APP\_ID' and 'YOUR\_TOKEN' with your app ID and playground token. (See [Getting Playground Token Credentials](/ab-redirect-url?docId=U214QhYYMCxbV9jnamRFH&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=))
+  53    ```bash bash
+
+  57    <Step>
+  58:   In line 14 of the index.ts file, replace 'YOUR\_APP\_ID' and 'YOUR\_TOKEN' with your app ID and playground token. (See [Getting Playground Token Credentials](/ab-redirect-url?docId=U214QhYYMCxbV9jnamRFH&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=))
+  59    ```TypeScript TypeScript
+
+  80    <Step>
+  81:   If you want to observe your changes sync with the cloud-optional deployment, the [Big Peer](/ab-redirect-url?docId=Owk-BYJCe9FC9i8pMv_Sl&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=0bpDy), open the data browser in the [Ditto portal](https://portal.ditto.live/ "Ditto portal").
+  82    </Step>
+
+install-guides/rust.mdx:
+  81  <Step>
+  82: Visit the <a href="https://docs.ditto.live/compatibility/rust" target="_blank">Rust Compatibility Map page</a> to find the Rust Toolchain version you need based on the SDK version you chose. For SDK version 4.8.0, you should use Rust `1.74.1`.
+  83  </Step>
+
+release-notes/java.mdx:
+  56  
+  57: <Icon icon="triangle-exclamation"iconType="solid" horizontal /> **Deprecated:** DittoBluetoothLeConfig.maxOutgoing. This value can now be configured using the mesh\_chooser\_max\_active\_ble\_clients system parameter. See docs for details: [https://docs.ditto.live/using-alter-system](https://docs.ditto.live/using-alter-system "https://docs.ditto.live/using-alter-system"). (#12320)
+  58  
+
+release-notes/js.mdx:
+  42  
+  43: <Icon icon="rotate-reverse"iconType="solid" horizontal /> **Changed****: (React Native)** Transitioned from static to shared libraries to improve load times and reduce overall application size. This change requires updates to build configurations to ensure dynamic linking is correctly handled. See our [integration guide](https://docs.ditto.live/install-guides/react-native "integration guide") for detailed instructions on updating your project settings. (#15018)
+  44  
+
+release-notes/kotlin.mdx:
+  70  
+  71: <Icon icon="triangle-exclamation"iconType="solid" horizontal /> **Deprecated:** DittoBluetoothLeConfig.maxOutgoing. This value can now be configured using the mesh\_chooser\_max\_active\_ble\_clients system parameter. See docs for details: [https://docs.ditto.live/using-alter-system](https://docs.ditto.live/using-alter-system "https://docs.ditto.live/using-alter-system"). (#12320)
+  72  
+
+support/contact-us.mdx:
+  18  
+  19: - Visit our [official documentation](https://docs.ditto.live/) for detailed guides, FAQs, and troubleshooting tips.
+  20  - For common issues, you might find the answers in our documentation without needing direct support.
+
+support/faq.mdx:
+  25  <Accordion title="Which Identity should I use to initialize Ditto?">
+  26: Use Online Playground for development and Online With Authentication for production. (See [Cloud Authentication](https://docs.ditto.live/support/faq#D0B4xrfN45yeM15qCYcOb))
+  27  </Accordion>
+
+  43  <Accordion title="What are the device and operating system requirements?">
+  44: Ditto offers a large range of devices and OS support for each of our SDKs. For specific support see the compatibilty map for your given language [Directory of Compatibility Maps](https://docs.ditto.live/support/faq#SVSG_auykclo2O4O_sCy4)
+  45  </Accordion>
+
+  91    <Accordion title="How much memory does Ditto consume during high load times?">
+  92: Your results may vary depending on the size of your documents and the number of them you are querying. Ditto will temporarily store all queried documents in the memory and convert them to a format that your programming language can understand. However, this process can consume a significant amount of memory if your queries are very broad. You can use [`sort` and `limit` together](https://docs.ditto.live/android/common/concepts/querying#sort)  to capture only the most recent and relevant documents. If you need to deserialize an extensive list of documents, we recommend using the `observeWithNextSignal` function, as it allows your application to better manage memory usage (learn more at [https://docs.ditto.live/ios/quick-tips/avoiding-excessive-memory-consumption](https://docs.ditto.live/ios/quick-tips/avoiding-excessive-memory-consumption)).
+  93  
+
+support/Glossary.mdx:
+   11  
+   12: Used by [conflict-free replicated data types](https://docs.ditto.live/support/glossary#jvGsp) (CRDTs) to identify the source or author of a data mutation, an *actor *is made up of a `SiteID` and the site's current [epoch](https://docs.ditto.live/support/glossary#npPcP).
+   13  
+
+   17  
+   18: For more information, see [Apple Wireless Direct Link](https://docs.ditto.live/support/undefined#3mnDB).
+   19  
+
+   37  
+   38: See [Apple Wireless Direct Link](https://docs.ditto.live/support/glossary#ACbDm).
+   39  
+
+   69  
+   70: See [certificate authority](https://docs.ditto.live/support/glossary#qi7x5).
+   71  
+
+   99  
+  100: See [conflict-free replicated data type](https://docs.ditto.live/support/glossary#jvGsp).
+  101  
+
+  125  
+  126: See [data transfer object](https://docs.ditto.live/support/glossary#zUYAI).
+  127  
+
+  141  
+  142: See [Generic ATTribute Profile](https://docs.ditto.live/support/glossary#RJI5H).
+  143  
+
+  155  
+  156: See [hybrid logical clock](https://docs.ditto.live/support/glossary#DJwMm).
+  157  
+
+  185  
+  186: See [logical link control adaptation protocol](https://docs.ditto.live/support/glossary#EB0VD).
+  187  
+
+support/knowledge-base.mdx:
+  44  
+  45: If you can’t find the answer you’re looking for, don’t worry! You can always reach out to our support team. You can <a href="https://docs.ditto.live/support" target="_blank">submit a support ticket</a>, and we’ll be happy to assist you.
+
+support/migrating-authentication-and-authorization-from-atlas-device-sync-to-ditto.mdx:
+  11  
+  12: - **Ditto**: The [Ditto SDKs](https://docs.ditto.live/install-guides) and [Ditto Cloud](https://docs.ditto.live/cloud) services (backend). Developers interact with Ditto via the SDK on the device and via the [Ditto Portal](https://portal.ditto.live/) in the cloud.
+  13  - **Customer Components**: The application (app), the authorization endpoint (a backend service), and the Identity Provider (IdP).
+
+  84  
+  85: <CardGroup> <Card title="Ditto Cloud Authentication" icon="cloud" href="https://docs.ditto.live/auth-and-authorization/cloud-authentication" iconType="solid" horizontal/> <Card title="Ditto Shared Key Authentication" icon="key" href="https://docs.ditto.live/auth-and-authorization/shared-key" iconType="solid" horizontal/> <Card title="Ditto Data Authorization" icon="lock" href="https://docs.ditto.live/auth-and-authorization/data-authorization" iconType="solid" horizontal/> <Card title="Ditto Certificate-Based Security" icon="certificate" href="https://docs.ditto.live/auth-and-authorization/certificate-based-security" iconType="solid" horizontal/> </CardGroup>
+
+support/mongodb-migrationguide.mdx:
+   25  
+   26: If you need further assistance at any point, feel free to [reach out to our support team.](https://docs.ditto.live/support/contact-us)
+   27  
+
+   46  
+   47: Ditto lets your apps sync directly between :comment **clients** (Small Peers)** and a  **Big Peer (**<a href="https://docs.ditto.live/cloud" target="_blank">**Cloud Platform**</a>**)** for real-time data sharing, with an offline-first design. This setup reduces the need for constant cloud access and improves performance.
+   48  
+
+   73  
+   74: - Visit our [Directory of Install Guides](https://docs.ditto.live/install-guides) for instructions specific to your platform.
+   75: - <a href="https://docs.ditto.live/install-guides/swift#kX-Je" target="_blank">Configure Permissions</a>
+   76  
+
+  106  
+  107: Ditto is distributed by default, meaning it will automatically connect to, and sync data across your nearby devices. In order to solely rely on device-to-cloud sync, you can <a href="https://docs.ditto.live/sync/customizing-transport-configurations#OyUOQ" target="_blank">disable local sync</a> by turning off LAN, peer-to-peer Wi-Fi, and Bluetooth transports.
+  108  
+
+  164  
+  165: We also recommend you make yourself familiar with [REGISTER](https://docs.ditto.live/data-types/register), [MAP](https://docs.ditto.live/data-types/map), and [ATTACHMENT](https://docs.ditto.live/data-types/attachment) data types. Read more about best practices for data modelling with Ditto in [this guide](https://docs.ditto.live/best-practices/3-data-modeling-and-sync-logic).
+  166  
+
+  228  
+  229: When reading data in Ditto, the primary method is to set up an <a href="https://docs.ditto.live/crud/observing-data-changes" target="_blank">**observer**</a> that listens for changes and updates in real-time. This ensures your app automatically reflects the latest data from other peers.
+  230  
+
+  292  
+  293: In a distributed data system like Ditto, deletion follows a “<a href="https://docs.ditto.live/crud/delete#bPsqW" target="_blank">soft delete</a>” pattern. This means that when you mark an item as deleted, it’s not immediately removed from the collection or local storage. Instead, the item is flagged as deleted to ensure that other devices in the network remain in sync. To fully remove the item and free up space, you’ll need to evict these “soft deleted” items. For more details, see the section on <a href="https://docs.ditto.live/crud/delete#-BLNB" target="_blank">Evictions</a>.
+  294  
+
+  322  
+  323: Your app needs to react to changes in real-time data. Set up <a href="https://docs.ditto.live/crud/observing-data-changes" target="_blank">observers</a> to make sure your UI updates when the data synced through Ditto changes.
+  324  
+
+  330  
+  331: For more on evictions and deletion, refer to Ditto’s documentation: [Evictions and Delete](https://docs.ditto.live/crud/delete).
+  332  
+
+  339  
+  340: - Need assistance? <a href="https://docs.ditto.live/support/contact-us" target="_blank">Reach out to us</a>!
+  341: - Check out our <a href="https://docs.ditto.live/best-practices" target="_blank">Best Practices</a>
+  342  - Learn more about our <a href="https://ditto.live/platform/mongodb-connector" target="_blank">MongoDB Connector</a> coming soon.
+
+support/proguard-rules-for-android.mdx:
+  47  
+  48: This rule retains all Ditto classes, which is essential for features like [Presence Viewer](https://docs.ditto.live/sync/using-mesh-presence#jhjKK), and ensures Jackson classes are preserved for proper JSON deserialization.
+  49  
+
+  66  
+  67: Need additional help? [Contact us!](https://docs.ditto.live/support) Our support team is ready to assist with any further questions.
+
+support/troubleshooting.mdx:
+  203  
+  204: If you see the above message, your device's locally cached certificate is invalid. The device needs to call `ditto.auth.logout()` and reconnect to the Internet to get a new certificate. Alternatively, you can clear the local cache by reinstalling the mobile application or clearing the local persistence directory.[**​**](https://docs.ditto.live/ios/common/troubleshooting#outdated-certificate)
+  205  
+
+  481  1. `authenticationExpiringSoon` and `authenticationRequired` both need to be
+  482:    implemented according to the [sample code](https://docs.ditto.live/support/troubleshooting).
+  483  2. Since callback objects are only invoked when Ditto initializes and the client authentication certificate expires, do not create subscriptions inside callbacks.
+
+  487  
+  488: **Verify that your webhook provider name is **[**correctly copied in the Ditto portal**](https://docs.ditto.live/support/troubleshooting)**.**
+  489  
+
+  520  <CardGroup>
+  521:  <Card title="Swift" icon="square-1" href="https://docs.ditto.live/support/troubleshooting#AOQCVpFWoPfeRJ-yNN6XF" iconType="solid" horizontal/>
+  522  
+  523:  <Card title="Kotlin" icon="square-2" href="https://docs.ditto.live/support/troubleshooting#ES2xJNhuX53ABacyyBd6r" iconType="solid" horizontal/>
+  524  
+  525: <Card title="JavaScript Web | Node.js | React Native" icon="https://docs.ditto.live/support/troubleshooting#k-dnSQ3kspeBc21VASdSu" iconType="solid" horizontal/>
+  526  
+  527: <Card title="Bluetooth on Linux" icon="square-4" href="https://docs.ditto.live/support/troubleshooting#GPnhy_1_KdnqAHpHCOXFi" iconType="solid" horizontal/>
+  528  
+
+  557  
+  558: A common issue we see in reactive apps is a failure to dispose of resources as conditions change. Your app could create a large accumulation of publishers that infinitely grow. Every liveQuery and subscription in ditto must be explicitly stopped using the **stop** or **cancel** API. See [snycing data](https://legacydocs.ditto.live/javascript/common/concepts/syncing-data) for more information.
+  559  
+
+  589  
+  590: #### Verify that your webhook provider name is [correctly copied in the Ditto portal](https://legacydocs.ditto.live/javascript/common/security/authentication#login)
+  591  
+
+  619  2. Turn Bluetooth Scanning on
+  620: 3. Are permissions set correctly? From [SDK Setup Guides](https://docs.ditto.live/support/troubleshooting#QhVIwDWAiVofdUG_u5zoV), refer to the installation article for your language)
+  621  4. Go to your OS-level permissions for Bluetooth and clear the app permissions for your application.
+
+  626  
+  627: 1. Are permissions set correctly? (From [SDK Setup Guides](https://docs.ditto.live/support/troubleshooting#QhVIwDWAiVofdUG_u5zoV), refer to the installation article for your language)
+  628  2. Go to your OS-level permissions and clear the app permissions for your application.
+
+  633  
+  634: 1. Are permissions set correctly? From [SDK Setup Guides](https://docs.ditto.live/support/troubleshooting#QhVIwDWAiVofdUG_u5zoV), refer to the installation article for your language)
+  635  2. Are both devices connected to the same WiFi network?
+  636: 3. Check your router settings and see [LAN Optimizations](https://docs.ditto.live/support/troubleshooting#bNU17T7dncLapGgfX32a6).
+  637  4. If your device has VPN enabled, then peers can fail to communicate. Ensure that your VPN supports UDP multicasting.
+
+  653  infinitely grow. Every liveQuery and subscription in ditto must be explicitly
+  654: stopped using the `stop` or `cancel` API. See [snycing data](https://docs.ditto.live/support/troubleshooting) for more information.
+  655  
+
+sync/mongodb-connector.mdx:
+  2  title: "Syncing with MongoDB"
+  3: url: https://docs.ditto.live/cloud/mongodb-connector
+  4  ---
+
+sync/concepts/mesh-networking-101.mdx:
+   56  
+   57: For more on Big Peer, see: [Cloud Platform Overview](https://docs.ditto.live/v4-8/sync/concepts/#k51Z-KnUJnM0ge8aqKhba)
+   58  
+
+  115  <Info>
+  116: Before you can establish a connection with the Big Peer using a WebSocket, you need to specify an IP/PORT. (See [Customizing Transports Configurations](https://docs.ditto.live/v4-8/sync/customizing-transport-configurations))
+  117  </Info>
+
+  182  <Info>
+  183: For more information, see [Presence Operations](https://docs.ditto.live/v4-8/sync/concepts/undefined#rbWw3) and [Using Mesh Presence](https://docs.ditto.live/v4-8/sync/using-mesh-presence).
+  184  </Info>
+
+v4-4/9A42hFZhxwLPBGFV-8S-h.mdx:
+   50  
+   51: # Creating a Memory Leak with Combine[​](https://legacydocs.ditto.live/ios/quick-tips/prevent-accumulating-publishers#creating-a-memory-leak-with-combine)
+   52  
+
+   91  
+   92: # A Hacky Fix[​](https://legacydocs.ditto.live/ios/quick-tips/prevent-accumulating-publishers#a-hacky-fix)
+   93  
+
+  132  
+  133: ## The Preferred Approach[​](https://legacydocs.ditto.live/ios/quick-tips/prevent-accumulating-publishers#the-good-way)
+  134  
+
+v4-4/authentication-server.mdx:
+  27  
+  28: - A [shared key.](https://legacydocs.ditto.live/csharp/common/security/shared-key)
+  29  
+
+v4-4/bo7e8jc74rzo776RixJDy.mdx:
+  11  
+  12: ## @ObservedObject[​](https://legacydocs.ditto.live/ios/quick-tips/StateObject-vs-ObservedObject#observedobject)
+  13  
+
+  15  
+  16: ## @StateObject[​](https://legacydocs.ditto.live/ios/quick-tips/StateObject-vs-ObservedObject#stateobject)
+  17  
+
+  19  
+  20: ## Example[​](https://legacydocs.ditto.live/ios/quick-tips/StateObject-vs-ObservedObject#example)
+  21  
+
+  70  
+  71: ## Avoiding side effects when using Ditto[​](https://legacydocs.ditto.live/ios/quick-tips/StateObject-vs-ObservedObject#avoiding-side-effects-when-using-ditto)
+  72  
+
+  76  
+  77: ## Conclusion[​](https://legacydocs.ditto.live/ios/quick-tips/StateObject-vs-ObservedObject#conclusion)
+  78  
+
+  82  
+  83: ### Additional Information[​](https://legacydocs.ditto.live/ios/quick-tips/StateObject-vs-ObservedObject#additional-information)
+  84  
+
+v4-4/introduction.mdx:
+  17  Get set up in just a few steps using any of the following guides to support you along the way:
+  18: https://docs.ditto.live/v4-4#AhOaG3KgvwHOx12xKZDs0
+  19  
+
+v4-4/krg1yBNO6QtKZDgQIXPC0.mdx:
+  25  
+  26: # Back Pressure[​](https://legacydocs.ditto.live/ios/quick-tips/avoiding-excessive-memory-consumption#back-pressure)
+  27  
+
+  73  
+  74: ## General Rule[​](https://legacydocs.ditto.live/ios/quick-tips/avoiding-excessive-memory-consumption#rule-of-thumb)
+  75  
+
+  92  
+  93: The former three are convenience methods and are implemented in terms of the latter:[​](https://legacydocs.ditto.live/ios/quick-tips/avoiding-excessive-memory-consumption#implementation-details)
+  94  
+
+v4-4/Lk1CjRxRvKGwZ5vqlx-sD.mdx:
+  324  
+  325: Removed: observe() and observeWithNextSignal() methods of DittoPendingCollectionsOperation, DittoPendingCursorOperation, and DittoPendingIdSpecificOperation. Please use the corresponding observeLocal() and observeLocalWithNextSignal() variants along with a separate call to subscribe() instead. See https://docs.ditto.live/android/common/concepts/syncing-data#subscribe
+  326  
+
+v4-4/s4onivzJKwk_muwD5TzUy.mdx:
+  246  
+  247: Removed: observe() and observeWithNextSignal() methods of DittoPendingCollectionsOperation, DittoPendingCursorOperation, and DittoPendingIDSpecificOperation. Please use the corresponding observeLocal(deliverOn:eventHandler:) and observeLocalWithNextSignal(deliverOn:eventHandler:) variants along with a separate call to subscribe() instead. See https://docs.ditto.live/ios/common/concepts/syncing-data#subscribe
+  248  
+
+  382  
+  383: Removed: observe() and observeWithNextSignal() methods of DittoPendingCollectionsOperation, DittoPendingCursorOperation, and DittoPendingIDSpecificOperation. Please use the corresponding observeLocal(deliverOn:eventHandler:) and observeLocalWithNextSignal(deliverOn:eventHandler:) variants along with a separate call to subscribe() instead. See https://docs.ditto.live/ios/common/concepts/syncing-data#subscribe
+  384  
+
+v4-4/SuPiwTWZQ7VQ-iYmPIjuk.mdx:
+  26  | --- | --- |
+  27: ⟪ 330 characters skipped ⟫api-reference/ "C# API Reference")<br/>    <br/>* [C++ API Reference](https://software.ditto.live/cpp/Ditto/4.4.1/api-reference/ "C++ API Reference")<br/>    <br/>* [HTTP API Reference](https://legacydocs.ditto.live/http/api "HTTP API Reference")<br/>    <br/>* [JavaScript API Reference](https://software.ditto.live/js/Ditto/4.4.1/api-reference/ "JavaScript API Reference")<br/>    <br/>* [Rust API Reference](https://software.ditto.live/rust/Ditto/4.4.1/x86_64-unknown-linux-gnu/docs/dittolive_ditto/index.html "Rust API Reference")<br/>    <br/>* [Swift API Reference](https://software.ditto.live/cocoa/DittoSwift/4.4.1/api-reference/ "Swift API Reference") |
+  28  | [Ditto Basics](/v4-4/ditto-basics) | An overview of foundational concepts. |
+
+v4-4/testing.mdx:
+   16  
+   17: # Getting Started[​](https://legacydocs.ditto.live/ios/quick-tips/testing#getting-started)
+   18  
+
+   22  
+   23: # Create custom directories[​](https://legacydocs.ditto.live/ios/quick-tips/testing#create-custom-directories)
+   24  
+
+   64  
+   65: # Create your test[​](https://legacydocs.ditto.live/ios/quick-tips/testing#create-your-test)
+   66  
+
+   92  
+   93: # Listen for Data Changes[​](https://legacydocs.ditto.live/ios/quick-tips/testing#listen-for-changes-to-data)
+   94  
+
+  113  
+  114: # Clean up[​](https://legacydocs.ditto.live/ios/quick-tips/testing#clean-up)
+  115  
+
+  137  
+  138: # Full example[​](https://legacydocs.ditto.live/ios/quick-tips/testing#full-example)
+  139  
+
+v4-4/XFF0BRYzJaqrHl17qku2k.mdx:
+  193  
+  194: Instead, the CRDT `map` creates an operation for that field, and subsequently the existing fields remain unchanged.[​](https://docs.ditto.live/javascript/common/datamodel/map#remove)
+  195  
+
+v4-4/release-notes/Lk1CjRxRvKGwZ5vqlx-sD.mdx:
+  324  
+  325: Removed: observe() and observeWithNextSignal() methods of DittoPendingCollectionsOperation, DittoPendingCursorOperation, and DittoPendingIdSpecificOperation. Please use the corresponding observeLocal() and observeLocalWithNextSignal() variants along with a separate call to subscribe() instead. See https://docs.ditto.live/android/common/concepts/syncing-data#subscribe
+  326  
+
+v4-4/release-notes/s4onivzJKwk_muwD5TzUy.mdx:
+  246  
+  247: Removed: observe() and observeWithNextSignal() methods of DittoPendingCollectionsOperation, DittoPendingCursorOperation, and DittoPendingIDSpecificOperation. Please use the corresponding observeLocal(deliverOn:eventHandler:) and observeLocalWithNextSignal(deliverOn:eventHandler:) variants along with a separate call to subscribe() instead. See https://docs.ditto.live/ios/common/concepts/syncing-data#subscribe
+  248  
+
+  382  
+  383: Removed: observe() and observeWithNextSignal() methods of DittoPendingCollectionsOperation, DittoPendingCursorOperation, and DittoPendingIDSpecificOperation. Please use the corresponding observeLocal(deliverOn:eventHandler:) and observeLocalWithNextSignal(deliverOn:eventHandler:) variants along with a separate call to subscribe() instead. See https://docs.ditto.live/ios/common/concepts/syncing-data#subscribe
+  384  
+
+v4-5/Lk1CjRxRvKGwZ5vqlx-sD.mdx:
+  324  
+  325: Removed: observe() and observeWithNextSignal() methods of DittoPendingCollectionsOperation, DittoPendingCursorOperation, and DittoPendingIdSpecificOperation. Please use the corresponding observeLocal() and observeLocalWithNextSignal() variants along with a separate call to subscribe() instead. See https://docs.ditto.live/android/common/concepts/syncing-data#subscribe
+  326  
+
+v4-5/platform-manual.mdx:
+  26  | --- | --- |
+  27: ⟪ 330 characters skipped ⟫api-reference/ "C# API Reference")<br/>    <br/>* [C++ API Reference](https://software.ditto.live/cpp/Ditto/4.4.1/api-reference/ "C++ API Reference")<br/>    <br/>* [HTTP API Reference](https://legacydocs.ditto.live/http/api "HTTP API Reference")<br/>    <br/>* [JavaScript API Reference](https://software.ditto.live/js/Ditto/4.4.1/api-reference/ "JavaScript API Reference")<br/>    <br/>* [Rust API Reference](https://software.ditto.live/rust/Ditto/4.4.1/x86_64-unknown-linux-gnu/docs/dittolive_ditto/index.html "Rust API Reference")<br/>    <br/>* [Swift API Reference](https://software.ditto.live/cocoa/DittoSwift/4.4.1/api-reference/ "Swift API Reference") |
+  28  | [Ditto Basics](/v4-4/ditto-basics) | An overview of foundational concepts. |
+
+v4-5/react-native-quickstart.mdx:
+  80  <Step>
+  81: Create your subscription logic. ([Constructing Subscription Logic](https://docs.ditto.live/v4-8/install-guides/react-native#XlY3i))
+  82  </Step>
+
+v4-5/s4onivzJKwk_muwD5TzUy.mdx:
+  246  
+  247: Removed: observe() and observeWithNextSignal() methods of DittoPendingCollectionsOperation, DittoPendingCursorOperation, and DittoPendingIDSpecificOperation. Please use the corresponding observeLocal(deliverOn:eventHandler:) and observeLocalWithNextSignal(deliverOn:eventHandler:) variants along with a separate call to subscribe() instead. See https://docs.ditto.live/ios/common/concepts/syncing-data#subscribe
+  248  
+
+  382  
+  383: Removed: observe() and observeWithNextSignal() methods of DittoPendingCollectionsOperation, DittoPendingCursorOperation, and DittoPendingIDSpecificOperation. Please use the corresponding observeLocal(deliverOn:eventHandler:) and observeLocalWithNextSignal(deliverOn:eventHandler:) variants along with a separate call to subscribe() instead. See https://docs.ditto.live/ios/common/concepts/syncing-data#subscribe
+  384  
+
+v4-5/XvGIouo_tfm0qsGKiB9uZ.mdx:
+  44  
+  45: If you plan on adopting DQL as part of the migration to v4.5 review [Legacy-to-DQL Adoption Guide](https://docs.ditto.live/v4-5/#e2ZbKPkQwYMyXW5pN4rjM)
+  46  
+
+  86  
+  87: To access release notes for earlier Ditto versions, go to [v4.4](https://docs.ditto.live/v4-4 "v4.4") of the documentation by clicking the version picker located in the upper left corner and selecting **4.4** from the menu.
+
+v4-5/basics/data-structures-and-types.mdx:
+   20  
+   21: 1. *Field* — The name identifying the data. (See [Field Properties](https://docs.ditto.live/v4-5/basics/undefined#Li4_b)﻿)
+   22: 2. *Value* — The value that holds the actual data to store. (See [Field Values](https://docs.ditto.live/v4-5/basics/undefined#OIk42)﻿)
+   23  
+
+   31  ### Assigning \_id
+   32: Ditto automatically generates and assigns each new document a unique identifier, or *\_id*. However, if desired, you can pass your own custom \_id as a parameter when performing an INSERT operation to create a new document. (See [CREATE](https://docs.ditto.live/v4-5/crud-create)﻿)
+   33  
+
+  167  
+  168: For more comprehensive information and how-to instructions, see the *Platform Manual* \> [CRUD Operations](https://docs.ditto.live/v4-5/basics/#LBRSIPPkeZdqTGBM4i5NN)﻿.
+  169  </Info>
+
+  177  <Info>
+  178: For more information, see the *Platform Manual* \> [Data Types](https://docs.ditto.live/v4-5/data-types)﻿.
+  179  </Info>
+
+  196  
+  197: For more information, see *Ditto Basics* > [CRUD Fundamentals](https://docs.ditto.live/v4-5/basics/crud-fundamentals)﻿ and *Platform Manual* \> [CRUD Operations](https://docs.ditto.live/v4-5/basics/#LBRSIPPkeZdqTGBM4i5NN)﻿.
+
+v4-5/cpp/release-notes.mdx:
+  31  <Note>
+  32: If you plan on adopting DQL as part of the migration to v4.5 review [Legacy-to-DQL Adoption Guide](https://docs.ditto.live/v4-5/cpp/#e2ZbKPkQwYMyXW5pN4rjM)﻿﻿
+  33  
+
+  73  
+  74: To access release notes for earlier Ditto versions, go to [v4.4](https://docs.ditto.live/v4-4 "v4.4") of the documentation by clicking the version picker located in the upper left corner and selecting **4.4** from the menu.
+
+v4-5/csharp/authentication-server.mdx:
+  27  
+  28: - A [shared key.](https://legacydocs.ditto.live/csharp/common/security/shared-key)
+  29  
+
+v4-5/csharp/tutorials.mdx:
+   8  <Info>
+   9: For an overview of the C# SDK's compatibility across platforms, transports, and devices, see [Compatibility with C#](https://docs.ditto.live/v4-5/csharp/compatibility)﻿.
+  10  </Info>
+
+  13  | --- | --- |
+  14: | [Xamarin Task App](https://docs.ditto.live/v4-5/csharp/xamarin-task-app) | Using the Xamarin platform, build and interact with a basic cross-platform mobile task app for managing and tracking task items. |
+  15: | [Console Task App](https://docs.ditto.live/v4-5/csharp/console-task-app) | Build and interact with a basic CLI task app for managing and tracking task items. |
+
+v4-5/csharp/xamarin-task-app.mdx:
+  111      <Step>
+  112:     Follow the instructions on the [Installation page for C#](https://legacydocs.ditto.live/csharp/installation) to use Package Manager or .NET CLI.
+  113      </Step>
+
+  145  
+  146: Follow the instructions on the [iOS Installation page](https://legacydocs.ditto.live/ios/installation#platform-permissions).
+  147  
+
+v4-5/js/node-task-app-quickstart.mdx:
+  16  
+  17: - To get your access credentials, complete the [Onboarding](https://docs.ditto.live/v4-5/onboarding)﻿.
+  18  - You can use any IDE you prefer; however, for optimal compatibility with the platform, Ditto recommends using [Visual Studio Code](https://code.visualstudio.com/download "Visual Studio Code").
+
+  60  
+  61: 8.If you want to observe your changes sync with the cloud-optional deployment, the [Big Peer](https://docs.ditto.live/v4-5/basics#0bpDy), open the data browser in the [Ditto portal](https://portal.ditto.live/ "Ditto portal").
+
+v4-5/js/release-notes.mdx:
+  45  
+  46: If you plan on adopting DQL as part of the migration to v4.5 review [Legacy-to-DQL Adoption Guide](https://docs.ditto.live/v4-5/js/#e2ZbKPkQwYMyXW5pN4rjM)﻿﻿
+  47  
+
+  95  
+  96: To access release notes for earlier Ditto versions, go to [v4.4](https://docs.ditto.live/v4-4 "v4.4") of the documentation by clicking the version picker located in the upper left corner and selecting **4.4** from the menu.
+
+v4-5/js/tutorials.mdx:
+  13  | --- | --- | --- |
+  14: | [OnlineWithAuthentication Tutorial: JavaScript](https://docs.ditto.live/v4-5/js/tutorials/online-with-authentication)﻿¹ | Integrating a third-party identity provider for login authentication and authorization. | *Platform Manual* \> [Security](https://docs.ditto.live/v4-5/security) |
+  15: | [Task App: Node.js](https://docs.ditto.live/v4-5/js/tutorials/task-app-node) | Building and interacting with a basic task app for managing and tracking task items. | \-- |
+  16: | [Svelte Framework](https://docs.ditto.live/v4-5/js/tutorials/svelte) | Ensuring your Ditto instance remains accessible throughout your app when using the Svelte framework. | \-- |
+  17: | [Kafka Events: Node.js](https://docs.ditto.live/v4-5/js/tutorials/kafka-events-node) | Listening to Kafka events and pipe them to command line process stdout. | \-- |
+  18  
+
+v4-5/js/tutorials/kafka-events-node.mdx:
+  8  <Info>
+  9: For more information about Kafka, see [Change Data Capture](https://docs.ditto.live/v4-5/js/tutorials/#Zqee8XarjTm0GJPSJbHwY)﻿.
+  10  </Info>
+
+v4-5/js/tutorials/task-app-node.mdx:
+  14  
+  15: 1. [Installing and Setting Up Ditto](https://docs.ditto.live/v4-5/js/tutorials/task-app-node#1ge_5)
+  16: 2. [Building and Running the App](https://docs.ditto.live/v4-5/js/tutorials/task-app-node#ZWCaS)
+  17: 3. [Creating New Task Documents](https://docs.ditto.live/v4-5/js/tutorials/task-app-node#hRPi7)
+  18: 4. [Editing Task Documents](https://docs.ditto.live/v4-5/js/tutorials/task-app-node#TrgJ6)
+  19: 5. [Replicating Data](https://docs.ditto.live/v4-5/js/tutorials/task-app-node#GEtMY)
+  20  
+
+  49  <Info>
+  50: To get your access credentials, you must create an account and register an app in the portal. For instructions, see [Onboarding](https://docs.ditto.live/v4-5/onboarding)﻿.
+  51  </Info>
+
+v4-5/kotlin/release-notes.mdx:
+  40  
+  41: If you plan on adopting DQL as part of the migration to v4.5 review [Legacy-to-DQL Adoption Guide](https://docs.ditto.live/v4-5/kotlin/#e2ZbKPkQwYMyXW5pN4rjM)﻿﻿
+  42  
+
+  83  <Note>
+  84: To access release notes for earlier Ditto versions, go to [v4.4](https://docs.ditto.live/v4-4 "v4.4") of the documentation by clicking the version picker located in the upper left corner and selecting **4.4** from the menu.
+  85  </Note>
+
+v4-5/rust/release-notes.mdx:
+  31  <Note>
+  32: If you plan on adopting DQL as part of the migration to v4.5 review [Legacy-to-DQL Adoption Guide](https://docs.ditto.live/v4-5/rust/#e2ZbKPkQwYMyXW5pN4rjM)﻿﻿
+  33  
+
+  78  <Info>
+  79: To access release notes for earlier Ditto versions, go to [v4.4](https://docs.ditto.live/v4-4 "v4.4") of the documentation by clicking the version picker located in the upper left corner and selecting **4.4** from the menu.
+  80  </Info>
+
+v4-5/security/access-control-permissions.mdx:
+  58  <Info>
+  59:   Permissions must be written using the legacy query syntax and not DQL. For more see [Query Syntax (Legacy)](https://docs.ditto.live/auth-and-authorization/data-authorization#Pw82J_oFrBgM-27WMrKJm).
+  60  </Info>
+
+v4-5/swift/release-notes.mdx:
+  32  <Warning>
+  33: If you plan on adopting DQL as part of the migration to v4.5 review [Legacy-to-DQL Adoption Guide](https://docs.ditto.live/v4-5/swift/#e2ZbKPkQwYMyXW5pN4rjM)﻿﻿
+  34  
+
+  82  <Info>
+  83: To access release notes for earlier Ditto versions, go to [v4.4](https://docs.ditto.live/v4-4 "v4.4") of the documentation by clicking the version picker located in the upper left corner and selecting **4.4** from the menu.
+  84  </Info> 
+
+v4-5/swift/quick-tips/avoiding-excessive-memory-consumption.mdx:
+  25  
+  26: # Back Pressure[​](https://legacydocs.ditto.live/ios/quick-tips/avoiding-excessive-memory-consumption#back-pressure)
+  27  
+
+  73  
+  74: ## General Rule[​](https://legacydocs.ditto.live/ios/quick-tips/avoiding-excessive-memory-consumption#rule-of-thumb)
+  75  
+
+  92  
+  93: The former three are convenience methods and are implemented in terms of the latter:[​](https://legacydocs.ditto.live/ios/quick-tips/avoiding-excessive-memory-consumption#implementation-details)
+  94  
+
+v4-5/swift/quick-tips/preventing-accumulating-combine-publishers.mdx:
+   51  
+   52: # Creating a Memory Leak with Combine[​](https://legacydocs.ditto.live/ios/quick-tips/prevent-accumulating-publishers#creating-a-memory-leak-with-combine)
+   53  
+
+   92  
+   93: # A Hacky Fix[​](https://legacydocs.ditto.live/ios/quick-tips/prevent-accumulating-publishers#a-hacky-fix)
+   94  
+
+  134  
+  135: ## The Preferred Approach[​](https://legacydocs.ditto.live/ios/quick-tips/prevent-accumulating-publishers#the-good-way)
+  136  
+
+v4-5/swift/quick-tips/stateobject-vs-observedobject.mdx:
+  11  
+  12: ## @ObservedObject[​](https://legacydocs.ditto.live/ios/quick-tips/StateObject-vs-ObservedObject#observedobject)
+  13  
+
+  15  
+  16: ## @StateObject[​](https://legacydocs.ditto.live/ios/quick-tips/StateObject-vs-ObservedObject#stateobject)
+  17  
+
+  19  
+  20: ## Example[​](https://legacydocs.ditto.live/ios/quick-tips/StateObject-vs-ObservedObject#example)
+  21  
+
+  70  
+  71: ## Avoiding side effects when using Ditto[​](https://legacydocs.ditto.live/ios/quick-tips/StateObject-vs-ObservedObject#avoiding-side-effects-when-using-ditto)
+  72  
+
+  76  
+  77: ## Conclusion[​](https://legacydocs.ditto.live/ios/quick-tips/StateObject-vs-ObservedObject#conclusion)
+  78  
+
+  82  
+  83: ### Additional Information[​](https://legacydocs.ditto.live/ios/quick-tips/StateObject-vs-ObservedObject#additional-information)
+  84  
+
+v4-5/swift/quick-tips/testing.mdx:
+   16  
+   17: # Getting Started[​](https://legacydocs.ditto.live/ios/quick-tips/testing#getting-started)
+   18  
+
+   22  
+   23: # Create custom directories[​](https://legacydocs.ditto.live/ios/quick-tips/testing#create-custom-directories)
+   24  
+
+   64  
+   65: # Create your test[​](https://legacydocs.ditto.live/ios/quick-tips/testing#create-your-test)
+   66  
+
+   92  
+   93: # Listen for Data Changes[​](https://legacydocs.ditto.live/ios/quick-tips/testing#listen-for-changes-to-data)
+   94  
+
+  113  
+  114: # Clean up[​](https://legacydocs.ditto.live/ios/quick-tips/testing#clean-up)
+  115  
+
+  137  
+  138: # Full example[​](https://legacydocs.ditto.live/ios/quick-tips/testing#full-example)
+  139  
+
+v4-6/basic/ditto.mdx:
+  100    <Step >
+  101:     You're ready to explore and test realtime sync capabilities without the commitment using either a demo app or your own development app. (See ['Hello, World!' Sync Overview](/ab-redirect-url?docId=h7hpkC46Zk_xijTASLiMc&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=) and [Authentication](/v4-6/security/authentication))
+  102    </Step>
+
+v4-6/basic/mesh-networking-101.mdx:
+   61  
+   62: For more on Big Peer, see: [Cloud Platform Overview](https://docs.ditto.live/v4-8/sync/concepts/#k51Z-KnUJnM0ge8aqKhba)
+   63  
+
+  120  <Info>
+  121: Before you can establish a connection with the Big Peer using a WebSocket, you need to specify an IP/PORT. (See [Customizing Transports Configurations](https://docs.ditto.live/v4-8/sync/customizing-transport-configurations)﻿)
+  122  </Info>
+
+  188  <Info>
+  189: For more information, see [Presence Operations](https://docs.ditto.live/v4-8/sync/concepts/undefined#rbWw3)﻿ and [Using Mesh Presence](https://docs.ditto.live/v4-8/sync/using-mesh-presence)﻿.
+  190  </Info>
+
+v4-6/dql/dql.mdx:
+  13  
+  14: ### [SELECT](/ab-redirect-url?docId=iMDPwvQgVj4yyV5RalGbi&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=)
+  15  
+
+  24  
+  25: ### [INSERT](/ab-redirect-url?docId=EMhcouL5Kbus5z05x_pKu&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=)
+  26  
+
+  32  
+  33: ### [UPDATE](/ab-redirect-url?docId=_vxfd7_jJFfTzByIVqoxh&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=)
+  34  
+
+  40  
+  41: ### [EVICT](/ab-redirect-url?docId=ksPbI9CsHPdud0iyuow9E&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=)
+  42  
+
+v4-6/getting-started/hello-world-sync.mdx:
+   9  <Info>
+  10: If you prefer building and exploring through a task app, chat app, and so on, see [Example Projects Overview](https://docs.ditto.live/v4-6/get-started/hello-world-sync#HmL3NunwO5K313jKu_Wyz).
+  11  </Info>
+
+v4-6/getting-started/sync-credentials.mdx:
+  10    <Step >
+  11: Create a Ditto account and then log in. (See [Setting Up Account](https://docs.ditto.live/v4-6/get-started/sync-credentials#_Lub0))
+  12  
+
+  14    <Step >
+  15: Set up a new app in the portal. (See [Creating New App](https://docs.ditto.live/v4-6/get-started/sync-credentials#6ZE1_))
+  16    </Step>
+  17    <Step >
+  18: Obtain your sync credentials for peer-to-peer authentication. (See [Getting Credentials](https://docs.ditto.live/v4-6/get-started/sync-credentials#zYhC6))
+  19    </Step>
+
+v4-6/getting-started/install-guides/kotlin.mdx:
+  249  <Info>
+  250: For instructions on how to obtain your access credentials, see [Get Started](https://docs.ditto.live/v4-6/#67na9LGPtQIlffUGb0Y29)﻿. For an introduction to authentication in Ditto, see *Ditto Basics* > [Authentication and Initialization](https://docs.ditto.live/v4-6/#3Vo4OnmGEpp4S9IAm0HBZ)﻿.
+  251  </Info>
+
+v4-6/getting-started/install-guides/nodejs.mdx:
+  55     <Step >
+  56:    In line 14 of the index.ts file, replace 'YOUR\_APP\_ID' and 'YOUR\_TOKEN' with your app ID and playground token. (See [Getting Playground Token Credentials](/ab-redirect-url?docId=U214QhYYMCxbV9jnamRFH&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=)﻿)
+  57    ```bash bash
+
+  61    <Step>
+  62:   In line 14 of the index.ts file, replace 'YOUR\_APP\_ID' and 'YOUR\_TOKEN' with your app ID and playground token. (See [Getting Playground Token Credentials](/ab-redirect-url?docId=U214QhYYMCxbV9jnamRFH&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=)﻿)
+  63    ```TypeScript TypeScript
+
+v4-6/getting-started/install-guides/react-native.mdx:
+  75  <Step>
+  76: Create your subscription logic. ([Constructing Subscription Logic](https://docs.ditto.live/v4-8/install-guides/react-native#XlY3i)﻿)
+  77  </Step>
+
+v4-6/sdk/basic/about.mdx:
+  97    <Step >
+  98:     You're ready to explore and test realtime sync capabilities without the commitment using either a demo app or your own development app. (See ['Hello, World!' Sync Overview](/ab-redirect-url?docId=h7hpkC46Zk_xijTASLiMc&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=) and [Authentication](/v4-6/security/authentication))
+  99    </Step>
+
+v4-6/security/end-user-access.mdx:
+  60  <Info>
+  61:   Permissions must be written using the legacy query syntax and not DQL. For more see [Query Syntax (Legacy)](https://docs.ditto.live/auth-and-authorization/data-authorization#Pw82J_oFrBgM-27WMrKJm).
+  62  </Info>
+
+v4-6/sync/customizing-transport-configurations.mdx:
+  10  
+  11: Rather, you manually enable peer-to-peer connections using `EnableAllPeerToPeer()`. (See [Enabling and Disabling Transports](https://docs.ditto.live/v4-7/sync/customizing-transport-configurations#OyUOQ))
+  12  </Info>
+
+v4-6/sync/mongodb-connector.mdx:
+  2  title: "Syncing with MongoDB"
+  3: url: https://docs.ditto.live/cloud/mongodb-connector
+  4  noindex: true
+
+v4-6/sync/small-peer-presence.mdx:
+  44  <Info>
+  45:   Approval for NSA-level encryption through collaboration with the military is in progress and expected to be available later this year. For more information, contact Ditto. (See [Human Support](https://docs.ditto.live/v4-6/sync/small-peer-presence#R-R6Mnu5XSKL0xLrzHCwH))
+  46  </Info>
+
+v4-6/sync/subscriptions-management.mdx:
+  12  
+  13: - To get your active `subscriptions`, call the subscriptions method on the `ditto.sync` namespace. ([Retrieving Subscriptions](https://docs.ditto.live/v4-6/sync/subscriptions-management#J8rYE)﻿)
+  14: - To cancel a subscription, call `cancel` on its subscription object you instantiated when setting up your subscription. ([Canceling Subscriptions](https://docs.ditto.live/v4-6/sync/subscriptions-management#aVT0-)﻿)
+  15: - To confirm cancelation, call the i`sCancelled` field on the subscription object. ([Canceling Subscriptions](https://docs.ditto.live/v4-6/sync/subscriptions-management#aVT0-)﻿)
+  16  
+
+v4-7/basic/ditto.mdx:
+   99    <Step >
+  100:     You're ready to explore and test realtime sync capabilities without the commitment using either a demo app or your own development app. (See ['Hello, World!' Sync Overview](/ab-redirect-url?docId=h7hpkC46Zk_xijTASLiMc&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=) and [Authentication](/v4-7/security/authentication))
+  101    </Step>
+
+v4-7/basic/mesh-networking-101.mdx:
+   60  
+   61: For more on Big Peer, see: [Cloud Platform Overview](https://docs.ditto.live/v4-8/sync/concepts/#k51Z-KnUJnM0ge8aqKhba)
+   62  
+
+  119  <Info>
+  120: Before you can establish a connection with the Big Peer using a WebSocket, you need to specify an IP/PORT. (See [Customizing Transports Configurations](https://docs.ditto.live/v4-8/sync/customizing-transport-configurations)﻿)
+  121  </Info>
+
+  187  <Info>
+  188: For more information, see [Presence Operations](https://docs.ditto.live/v4-8/sync/concepts/undefined#rbWw3)﻿ and [Using Mesh Presence](https://docs.ditto.live/v4-8/sync/using-mesh-presence)﻿.
+  189  </Info>
+
+v4-7/dql/dql.mdx:
+  12  
+  13: ### [SELECT](/ab-redirect-url?docId=iMDPwvQgVj4yyV5RalGbi&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=)
+  14  
+
+  23  
+  24: ### [INSERT](/ab-redirect-url?docId=EMhcouL5Kbus5z05x_pKu&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=)
+  25  
+
+  31  
+  32: ### [UPDATE](/ab-redirect-url?docId=_vxfd7_jJFfTzByIVqoxh&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=)
+  33  
+
+  39  
+  40: ### [EVICT](/ab-redirect-url?docId=ksPbI9CsHPdud0iyuow9E&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=)
+  41  
+
+v4-7/getting-started/sync-credentials.mdx:
+   9    <Step >
+  10: Create a Ditto account and then log in. (See [Setting Up Account](https://docs.ditto.live/v4-7/get-started/sync-credentials#_Lub0))
+  11  
+
+  13    <Step >
+  14: Set up a new app in the portal. (See [Creating New App](https://docs.ditto.live/v4-7/get-started/sync-credentials#6ZE1_))
+  15    </Step>
+  16    <Step >
+  17: Obtain your sync credentials for peer-to-peer authentication. (See [Getting Credentials](https://docs.ditto.live/v4-7/get-started/sync-credentials#zYhC6))
+  18    </Step>
+
+v4-7/getting-started/install-guides/nodejs.mdx:
+  61     <Step >
+  62:    In line 14 of the index.ts file, replace 'YOUR\_APP\_ID' and 'YOUR\_TOKEN' with your app ID and playground token. (See [Getting Playground Token Credentials](/ab-redirect-url?docId=U214QhYYMCxbV9jnamRFH&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=)﻿)
+  63    ```bash bash
+
+  67    <Step>
+  68:   In line 14 of the index.ts file, replace 'YOUR\_APP\_ID' and 'YOUR\_TOKEN' with your app ID and playground token. (See [Getting Playground Token Credentials](/ab-redirect-url?docId=U214QhYYMCxbV9jnamRFH&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=)﻿)
+  69    ```TypeScript TypeScript
+
+v4-7/getting-started/install-guides/react-native.mdx:
+  75  <Step>
+  76: Create your subscription logic. ([Constructing Subscription Logic](https://docs.ditto.live/v4-8/install-guides/react-native#XlY3i)﻿)
+  77  </Step>
+
+v4-7/getting-started/install-guides/rust.mdx:
+  90  <Step>
+  91: Visit the <a href="https://docs.ditto.live/compatibility/rust" target="_blank">Rust Compatibility Map page</a> to find the Rust Toolchain version you need based on the SDK version you chose. For SDK version 4.8.0, you should use Rust `1.74.1`.
+  92  </Step>
+
+v4-7/getting-started/install-guides/swift.mdx:
+  15    <Step>
+  16:    Confirm that you meet the minimum requirements. ([Prerequisites](https://docs.ditto.live/v4-7/ios/installation#HHTe7))
+  17    </Step>
+
+v4-7/sdk/basic/about.mdx:
+  96    <Step >
+  97:     You're ready to explore and test realtime sync capabilities without the commitment using either a demo app or your own development app. (See ['Hello, World!' Sync Overview](/ab-redirect-url?docId=h7hpkC46Zk_xijTASLiMc&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=) and [Authentication](/v4-6/security/authentication))
+  98    </Step>
+
+v4-7/security/end-user-access.mdx:
+  59  <Info>
+  60:   Permissions must be written using the legacy query syntax and not DQL. For more see [Query Syntax (Legacy)](https://docs.ditto.live/auth-and-authorization/data-authorization#Pw82J_oFrBgM-27WMrKJm).
+  61  </Info>
+
+v4-7/sync/customizing-transport-configurations.mdx:
+   9  
+  10: Rather, you manually enable peer-to-peer connections using `EnableAllPeerToPeer()`. (See [Enabling and Disabling Transports](https://docs.ditto.live/v4-7/sync/customizing-transport-configurations#OyUOQ))
+  11  </Info>
+
+v4-7/sync/mongodb-connector.mdx:
+  2  title: "Syncing with MongoDB"
+  3: url: https://docs.ditto.live/cloud/mongodb-connector
+  4  ---
+
+v4-7/sync/subscriptions-management.mdx:
+  11  
+  12: - To get your active `subscriptions`, call the subscriptions method on the `ditto.sync` namespace. ([Retrieving Subscriptions](https://docs.ditto.live/v4-7/sync/subscriptions-management#J8rYE))
+  13: - To cancel a subscription, call `cancel` on its subscription object you instantiated when setting up your subscription. ([Canceling Subscriptions](https://docs.ditto.live/v4-7/sync/subscriptions-management#aVT0-)﻿)
+  14: - To confirm cancelation, call the i`sCancelled` field on the subscription object. ([Canceling Subscriptions](https://docs.ditto.live/v4-7/sync/subscriptions-management#aVT0-)﻿)
+  15  
+
+v4-8/about-ditto.mdx:
+  96    <Step >
+  97:     You're ready to explore and test realtime sync capabilities without the commitment using either a demo app or your own development app. (See ['Hello, World!' Sync Overview](/ab-redirect-url?docId=h7hpkC46Zk_xijTASLiMc&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=) and [Authentication](/v4-8/auth-and-authorization/cloud-authentication))
+  98    </Step>
+
+v4-8/crud/create.mdx:
+   16  <Info>
+   17: Ditto does *not* support nesting documents within documents. Instead, opt for a foreign-key relationship by referencing the document ID. For more information, see [Relationships](https://docs.ditto.live/v4-8/document-model/relationships).
+   18  </Info>
+
+  619  
+  620: Create the attachment in the Ditto store. ([Initiating ATTACHMENT Objects](https://docs.ditto.live/v4-8/crud/create#SmqTL))
+  621  
+
+  624  
+  625: Reference the returned attachment token in a document. ([Referencing Attachment Tokens)](https://docs.ditto.live/v4-8/crud/create#_TG5N)
+  626  
+
+  908  - In an INSERT operation — Create a new document and nest it with this set of fields.
+  909: - In an UPDATE operation — If the MAP does not exist, create it. (See [UPDATE](https://docs.ditto.live/v4-8/crud/update))
+  910  
+
+v4-8/crud/delete.mdx:
+   6  
+   7: - [Evict Method](https://docs.ditto.live/v4-8/crud/delete#-BLNB)
+   8: - [Coordinating Evictions](https://docs.ditto.live/v4-8/crud/delete#sODGf)
+   9: - [Soft-Delete Pattern](https://docs.ditto.live/v4-8/crud/delete#bPsqW)
+  10: - [Considerations](https://docs.ditto.live/v4-8/crud/delete#O9KV-)
+  11  
+
+  15  
+  16: For complete DQL syntax, see [EVICT](https://docs.ditto.live/v4-8/crud/#ksPbI9CsHPdud0iyuow9E).
+  17  
+
+v4-8/install-guides/js.mdx:
+  11    <Step>
+  12:     [Prerequisites](/ab-redirect-url?docId=yXSJHOqliSNbLUVUYOcSa&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=sb-Fz): Confirm that you meet the minimum requirements.
+  13    </Step>
+  14    <Step>
+  15:   [Install Dependencies](/ab-redirect-url?docId=yXSJHOqliSNbLUVUYOcSa&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=i_i6q): Add the `ditto` package to your environment.
+  16    </Step>
+  17    <Step>
+  18: [Integrate Ditto](/ab-redirect-url?docId=yXSJHOqliSNbLUVUYOcSa&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=Ajrfc): Import and initialize Ditto in your app.
+  19    </Step>
+  20    <Step>
+  21: [Run Ditto](/ab-redirect-url?docId=yXSJHOqliSNbLUVUYOcSa&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=s71_W): Authenticate with the Big Peer and start syncing offline.
+  22    </Step>
+
+  60  <Info>
+  61:   For instructions on how to obtain your access credentials, see [Getting Playground Token Credentials](/ab-redirect-url?docId=U214QhYYMCxbV9jnamRFH&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=) . For an introduction to authentication in Ditto, see _Security_ > [Cloud Authentication](/ab-redirect-url?docId=D0B4xrfN45yeM15qCYcOb&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=).
+  62  </Info>
+
+  95  
+  96: Add a _sync subscription_ to receive updates on documents that match its query from connected peers in the [mesh](/ab-redirect-url?docId=DH0VjOd2_OZVncKas9H7x&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=).
+  97  
+
+v4-8/install-guides/kotlin.mdx:
+  55  <Step>
+  56: Review permissions used by Ditto. ([Declaring Permissions](https://docs.ditto.live/v4-8/install-guides/kotlin#byhR_))
+  57  </Step>
+  58  <Step>
+  59: Proactively check permission status to avoid unnecessary delay between granting access and Ditto being able to use the feature. ([Requesting Permissions](https://docs.ditto.live/v4-8/install-guides/kotlin#frqrm))
+  60  </Step>
+
+v4-8/install-guides/nodejs.mdx:
+  22  <Info>
+  23: * To get your access credentials, see [Getting Playground Token Credentials](/ab-redirect-url?docId=U214QhYYMCxbV9jnamRFH&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=).
+  24  
+
+  51     <Step >
+  52:    In line 14 of the index.ts file, replace 'YOUR\_APP\_ID' and 'YOUR\_TOKEN' with your app ID and playground token. (See [Getting Playground Token Credentials](/ab-redirect-url?docId=U214QhYYMCxbV9jnamRFH&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=))
+  53    ```bash bash
+
+  57    <Step>
+  58:   In line 14 of the index.ts file, replace 'YOUR\_APP\_ID' and 'YOUR\_TOKEN' with your app ID and playground token. (See [Getting Playground Token Credentials](/ab-redirect-url?docId=U214QhYYMCxbV9jnamRFH&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=))
+  59    ```TypeScript TypeScript
+
+  80    <Step>
+  81:   If you want to observe your changes sync with the cloud-optional deployment, the [Big Peer](/ab-redirect-url?docId=Owk-BYJCe9FC9i8pMv_Sl&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=0bpDy), open the data browser in the [Ditto portal](https://portal.ditto.live/ "Ditto portal").
+  82    </Step>
+
+v4-8/install-guides/react-native.mdx:
+  80  <Step>
+  81: Create your subscription logic. ([Constructing Subscription Logic](https://docs.ditto.live/v4-8/install-guides/react-native#XlY3i))
+  82  </Step>
+
+v4-8/install-guides/rust.mdx:
+   81  <Step>
+   82: Visit the <a href="https://docs.ditto.live/compatibility/rust" target="_blank">Rust Compatibility Map page</a> to find the Rust Toolchain version you need based on the SDK version you chose. For SDK version 4.8.0, you should use Rust `1.74.1`.
+   83  </Step>
+
+  127  | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+  128: | AppRoot/AppExecutable   | The executable file for your app that, unless explicitly specified, the Ditto SDK is statically linked to: - All other files and directories should be relative to this location. - Maintain a clear separation between this executable file and other libraries. - If desired, use the Ditto SDK as a separate shared library. (See [Optional Dynamic Linking](https://docs.ditto.live/v4-8/install-guides/rust#eszFD)) |
+  129: | AppRoot/libdittoffi.dll | The Ditto SDK binary library file linking your Cargo for Rust project with Ditto.¹ By default, the Ditto SDK is statically linked to your executable. However, if desired, you can configure your build for dynamic linking by specifying the shared library version of the Ditto SDK. (See [Optional Dynamic Linking](https://docs.ditto.live/v4-8/install-guides/rust#_5OsT))                                          |
+  130  | AppRoot/ditto_data/     | The base directory designated for Ditto-backed app data stored locally on the end-user device: - Organize all app data within this directory rather than across the entire filesystem for your project. - Maintain a clear and consistent directory structure for your project.                                                                                                                                          |
+
+v4-8/install-guides/swift.mdx:
+   11    <Step>
+   12:    Confirm that you meet the minimum requirements. ([Prerequisites](https://docs.ditto.live/v4-8/install-guides/swift#HHTe7))
+   13    </Step>
+   14    <Step>
+   15:   Install the necessary dependencies. ([Installing Package Dependencies](https://docs.ditto.live/v4-8/install-guides/swift#g0ESg))
+   16    </Step>
+   17    <Step>
+   18: Set up your app permissions. ([Configuring Permissions](https://docs.ditto.live/v4-8/install-guides/swift#kX-Je))
+   19    </Step>
+   20    <Step>
+   21: [Authenticate with the Big Peer and then start syncing offline. ([Integrating and Initializing Sync](https://docs.ditto.live/v4-8/install-guides/swift#XNaBO))
+   22    </Step>
+
+   53  
+   54:       - If building a production-level app, see [Developing for Production](https://docs.ditto.live/v4-8/install-guides/swift#BPHYO).
+   55:       - If testing Ditto with Apple Vision Pro devices, see [Exploring with visionOS beta](https://docs.ditto.live/v4-8/install-guides/swift#tMt7R).
+   56        4. Click **Add Package**.
+
+   97  <Info>
+   98: For an overview of the Ditto SDK for visionOS, including steps outlining example integration with our demo chat app, [*DittoChat*](https://apps.apple.com/us/app/dittochat/id1450111256 "DittoChat"), see [visionOS on Swift](https://docs.ditto.live/v4-8/install-guides/#9eYfPNj_xG4j-R85evDAh).
+   99  </Info>
+
+  151  
+  152: Configure your project's Info.plist file to ensure the necessary permissions for Bluetooth Low Energy (LE) and local network services are included. ([Ensuring Privacy Compliance](https://docs.ditto.live/v4-8/install-guides/swift#aor0j))
+  153  
+
+  156  <Step>
+  157: If enabling the Data Protection entitlement, allow access after your end users have unlocked their device for the first time after a system restart. ([Setting Protection Entitlement](https://docs.ditto.live/v4-8/install-guides/swift#Fb7Ze))
+  158  </Step>
+
+  172    <Info>
+  173: For instructions on configuring permissions for your app, see [Cloud Authentication](https://docs.ditto.live/v4-8/auth-and-authorization/cloud-authentication).
+  174  </Info>
+
+  240  
+  241: For more information, contact Ditto. (See [Contact Us](https://docs.ditto.live/v4-8/install-guides/#n4CiVTbQAL1SmgjNO8aM8))
+  242  
+
+  253  <Info>
+  254: For instructions on how to obtain your access credentials, see [Getting Playground Token Credentials](https://docs.ditto.live/v4-8/install-guides/#U214QhYYMCxbV9jnamRFH)
+  255  </Info>
+
+v4-8/install-guides/kotlin/android-permissions.mdx:
+  10  <Step>
+  11: Review permissions used by Ditto. ([Declaring Permissions](https://docs.ditto.live/v4-8/install-guides/kotlin#byhR_))
+  12  </Step>
+  13  <Step>
+  14: Proactively check permission status to avoid unnecessary delay between granting access and Ditto being able to use the feature. ([Requesting Permissions](https://docs.ditto.live/v4-8/install-guides/kotlin#frqrm))
+  15  </Step>
+
+v4-8/sync/managing-redundant-bluetooth-le-connections.mdx:
+  6  
+  7: - [Default Ditto Behavior](https://docs.ditto.live/v4-8/sync/managing-redundant-bluetooth-le-connections#U1QPf)
+  8: - [Considerations by Mesh Size](https://docs.ditto.live/v4-8/sync/managing-redundant-bluetooth-le-connections#yq6el)
+  9: - [Enabling Redundant Connections](https://docs.ditto.live/v4-8/sync/managing-redundant-bluetooth-le-connections#R46YK)
+  10  
+
+v4-8/sync/mongodb-connector.mdx:
+  2  title: "Syncing with MongoDB"
+  3: url: https://docs.ditto.live/cloud/mongodb-connector
+  4  ---
+
+v4-8/sync/concepts/mesh-networking-101.mdx:
+   56  
+   57: For more on Big Peer, see: [Cloud Platform Overview](https://docs.ditto.live/v4-8/sync/concepts/#k51Z-KnUJnM0ge8aqKhba)
+   58  
+
+  115  <Info>
+  116: Before you can establish a connection with the Big Peer using a WebSocket, you need to specify an IP/PORT. (See [Customizing Transports Configurations](https://docs.ditto.live/v4-8/sync/customizing-transport-configurations))
+  117  </Info>
+
+  182  <Info>
+  183: For more information, see [Presence Operations](https://docs.ditto.live/v4-8/sync/concepts/undefined#rbWw3) and [Using Mesh Presence](https://docs.ditto.live/v4-8/sync/using-mesh-presence).
+  184  </Info>
+
+v4-8/sync/concepts/transports-overview.mdx:
+  82  
+  83: # Multiplexer[​](https://docs.ditto.live/ios/common/how-it-works/mesh-network#using-bandwidth-intelligently)
+  84  

@@ -7,64 +7,58 @@ Just like with conventional database querying, you execute query operations to f
 
 To perform a single execution query on the Ditto store, call the `execute` API method on the `store` namespace as follows:
 
-<Tabs>
-    <Tab title="Swift">
-    ```swift
-    let result = await ditto.store.execute(query: "SELECT * FROM cars")
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```kotlin
-    val result = ditto.store.execute("SELECT * FROM cars")
-    ```
-    </Tab>
-    <Tab title="JS">
-    ```javascript
-    const result = await ditto.store.execute("SELECT * FROM cars");
-    ```
-    </Tab>
-    <Tab title="Java">
-    ```java
-    DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
-        "SELECT * FROM cars",
-        new Continuation<>() {
-            @NonNull
-            @Override
-            public CoroutineContext getContext() {
-                return EmptyCoroutineContext.INSTANCE;
-            }
+<CodeGroup>
 
-            @Override
-            public void resumeWith(@NonNull Object o) {
-                if (o instanceof Result.Failure) {
-                    // Handle failure
-                }
+```swift Swift
+
+let result = await ditto.store.execute(query: "SELECT * FROM cars")
+```
+
+```kotlin Kotlin
+val result = ditto.store.execute("SELECT * FROM cars")
+```
+
+```javascript JS
+const result = await ditto.store.execute("SELECT * FROM cars");
+```
+
+```java Java
+DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
+    "SELECT * FROM cars",
+    new Continuation<>() {
+        @NonNull
+        @Override
+        public CoroutineContext getContext() {
+            return EmptyCoroutineContext.INSTANCE;
+        }
+
+        @Override
+        public void resumeWith(@NonNull Object o) {
+            if (o instanceof Result.Failure) {
+                // Handle failure
             }
         }
-    );
-    ```
-    </Tab>
-    <Tab title="C#">
-    ```csharp
-    var result = await ditto.Store.ExecuteAsync("SELECT * FROM cars");
-    ```
-    </Tab>
-    <Tab title="C++">
-    ```cpp
-    auto result = ditto.get_store().execute("SELECT * FROM cars");
-    ```
-    </Tab>
-    <Tab title="Rust">
-    ```rust
-    auto result = ditto.get_store().execute("SELECT * FROM cars");
-    ```
-    </Tab>
-    <Tab title="Dart">
-    ```dart
-    auto result = ditto.get_store().execute("SELECT * FROM cars");
-    ```
-    </Tab>
-</Tabs>
+    }
+);
+```
+
+```csharp C#
+var result = await ditto.Store.ExecuteAsync("SELECT * FROM cars");
+```
+
+```cpp C++
+auto result = ditto.get_store().execute("SELECT * FROM cars");
+```
+
+```rust Rust
+auto result = ditto.get_store().execute("SELECT * FROM cars");
+```
+
+```dart Dart
+auto result = ditto.get_store().execute("SELECT * FROM cars");
+```
+
+</CodeGroup>
 
 ## Using args to Query Dynamic Values
 
@@ -74,90 +68,84 @@ To pass an argument to the `execute` function, use the `:[argument]` syntax with
 
 For example, here `color` is passed as an argument to the `execute` function, and, within the query string, `:color` placeholder references the `color` defined in a top-level `args` object.
 
-<Tabs>
-    <Tab title="Swift">
-    ```swift
-    let result = await ditto.store.execute(
-      query: "SELECT * FROM cars WHERE color = :color",
-      arguments: [ "color": "blue" ])
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```kotlin
-    val result = ditto.store.execute(
-      "SELECT * FROM cars WHERE color = :color",
-      mapOf("color" to "blue"))
-    ```
-    </Tab>
-    <Tab title="JS">
-    ```javascript
-    const result = await ditto.store.execute(
-      "SELECT * FROM cars WHERE color = :color",
-      { color: "blue" }
-    );
-    ```
-    </Tab>
-    <Tab title="Java">
-    ```java
-    DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
-        "SELECT * FROM cars WHERE color = :color",
-        Collections.singletonMap("color", "blue"),
-        new Continuation<>() {
-            @NonNull
-            @Override
-            public CoroutineContext getContext() {
-                return EmptyCoroutineContext.INSTANCE;
-            }
+<CodeGroup>
 
-            @Override
-            public void resumeWith(@NonNull Object o) {
-                if (o instanceof Result.Failure) {
-                    // Handle failure
-                }
+```swift Swift
+
+let result = await ditto.store.execute(
+  query: "SELECT * FROM cars WHERE color = :color",
+  arguments: [ "color": "blue" ])
+```
+
+```kotlin Kotlin
+val result = ditto.store.execute(
+  "SELECT * FROM cars WHERE color = :color",
+  mapOf("color" to "blue"))
+```
+
+```javascript JS
+const result = await ditto.store.execute(
+  "SELECT * FROM cars WHERE color = :color",
+  { color: "blue" }
+);
+```
+
+```java Java
+DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
+    "SELECT * FROM cars WHERE color = :color",
+    Collections.singletonMap("color", "blue"),
+    new Continuation<>() {
+        @NonNull
+        @Override
+        public CoroutineContext getContext() {
+            return EmptyCoroutineContext.INSTANCE;
+        }
+
+        @Override
+        public void resumeWith(@NonNull Object o) {
+            if (o instanceof Result.Failure) {
+                // Handle failure
             }
         }
-    );
-    ```
-    </Tab>
-    <Tab title="C#">
-    ```csharp
-    const result = await ditto.Store.ExecuteAsync(
-      "SELECT * FROM cars WHERE color = :color",
-      new Dictionary<string, object> { "color", "blue" });
-    ```
-    </Tab>
-    <Tab title="C++">
-    ```cpp
-    auto result = ditto.get_store().execute(
-      "SELECT * FROM cars WHERE color = :color",
-      {{"color", "blue"}});
-    ```
-    </Tab>
-    <Tab title="Rust">
-    ```rust
-    struct Args {
-        color: String,
     }
+);
+```
 
-    //...
+```csharp C#
+const result = await ditto.Store.ExecuteAsync(
+  "SELECT * FROM cars WHERE color = :color",
+  new Dictionary<string, object> { "color", "blue" });
+```
 
-    let args = Args {
-        color: "blue".to_string(),
-    };
+```cpp C++
+auto result = ditto.get_store().execute(
+  "SELECT * FROM cars WHERE color = :color",
+  {{"color", "blue"}});
+```
 
-    let result = ditto.store().execute(
-      "SELECT * FROM cars WHERE color = :color",
-      Some(args.into()));
-    ```
-    </Tab>
-    <Tab title="Dart">
-    ```dart
-    final result = await ditto.store.execute(
-      "SELECT * FROM cars WHERE color = :color",
-      arguments: {"color": "blue"});
-    ```
-    </Tab>
-</Tabs>
+```rust Rust
+struct Args {
+    color: String,
+}
+
+//...
+
+let args = Args {
+    color: "blue".to_string(),
+};
+
+let result = ditto.store().execute(
+  "SELECT * FROM cars WHERE color = :color",
+  Some(args.into()));
+```
+
+```dart Dart
+final result = await ditto.store.execute(
+  "SELECT * FROM cars WHERE color = :color",
+  arguments: {"color": "blue"});
+```
+
+</CodeGroup>
 
 Once the previous example operation executes, the query becomes `SELECT * FROM cars WHERE color = blue`.
 
@@ -169,80 +157,72 @@ Rather than retrieving the items as part of the query execution and making them 
 
 Here is an example query execution to select all documents from the `cars` collection. The result is stored in the variable result. Then, each item is lazy loaded from the result object and stored in the `items`:
 
-<Tabs>
-    <Tab title="Swift">
-    ```swift
-    let result = await ditto.store.execute(query: "SELECT * FROM cars")
+<CodeGroup>
+```swift Swift
 
-    let items = result.items
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```kotlin
-    val result = ditto.store.execute("SELECT * FROM cars")
+let result = await ditto.store.execute(query: "SELECT * FROM cars")
 
-    const items = result.items
-    ```
-    </Tab>
-    <Tab title="JS">
-    ```javascript
-    const result = await ditto.store.execute("SELECT * FROM cars")
+let items = result.items
+```
 
-    const items = result.items
-    ```
-    </Tab>
-    <Tab title="Java">
-    ```java
-    DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
-        "SELECT * FROM cars",
-        new Continuation<>() {
-            @NonNull
-            @Override
-            public CoroutineContext getContext() {
-                return EmptyCoroutineContext.INSTANCE;
-            }
+```kotlin Kotlin
+val result = ditto.store.execute("SELECT * FROM cars")
 
-            @Override
-            public void resumeWith(@NonNull Object o) {
-                if (o instanceof Result.Failure) {
-                    // Handle failure
-                }
+const items = result.items
+```
+
+```javascript JS
+const result = await ditto.store.execute("SELECT * FROM cars")
+
+const items = result.items
+```
+
+```java Java
+DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
+    "SELECT * FROM cars",
+    new Continuation<>() {
+        @NonNull
+        @Override
+        public CoroutineContext getContext() {
+            return EmptyCoroutineContext.INSTANCE;
+        }
+
+        @Override
+        public void resumeWith(@NonNull Object o) {
+            if (o instanceof Result.Failure) {
+                // Handle failure
             }
         }
-    );
+    }
+);
 
-    DittoQueryResultItems items = result.items;
-    ```
-    </Tab>
-    <Tab title="C#">
-    ```csharp
-    var result = await ditto.Store.ExecuteAsync("SELECT * FROM cars");
+DittoQueryResultItems items = result.items;
+```
 
-    var items = result.Items;
-    ```
-    </Tab>
-    <Tab title="C++">
-    ```cpp
-    auto result = ditto.get_store().execute("SELECT * FROM cars");
+```csharp C#
+var result = await ditto.Store.ExecuteAsync("SELECT * FROM cars");
 
-    auto items = result.items();
-    ```
-    </Tab>
-    <Tab title="Rust">
-    ```rust
-    let result = ditto.store().execute("SELECT * FROM cars", None);
+var items = result.Items;
+```
 
-    let items = result.items();
-    ```
-    </Tab>
-    <Tab title="Dart">
-    ```dart
-    final result = await ditto.store.execute("SELECT * FROM cars");
+```cpp C++
+auto result = ditto.get_store().execute("SELECT * FROM cars");
 
-    final items = result.items;
-    ```
-    </Tab>
-</Tabs>
+auto items = result.items();
+```
+
+```rust Rust
+let result = ditto.store().execute("SELECT * FROM cars", None);
+
+let items = result.items();
+```
+
+```dart Dart
+final result = await ditto.store.execute("SELECT * FROM cars");
+
+final items = result.items;
+```
+</CodeGroup>
 
 ## Working with a QueryResultItem
 
@@ -252,95 +232,87 @@ The result `items` object is a collection of`QueryResultItem`. Each item's value
 
 To retrieve the value, call the `value` property on an item:
 
-<Tabs>
-    <Tab title="Swift">
-    ```swift
-    let result = await ditto.store.execute(query: "SELECT * FROM cars")
+<CodeGroup>
+```swift Swift
 
-    let item = result.items[0]
-    let itemValue = item.value
-    let itemValueColor = item.value["color"]
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```kotlin
-    val result = ditto.store.execute("SELECT * FROM cars")
+let result = await ditto.store.execute(query: "SELECT * FROM cars")
 
-    val item = result.items.first()
-    val itemValue = item.value
-    val itemValueColor = item.value["color"]
-    ```
-    </Tab>
-    <Tab title="JS">
-    ```javascript
-    const result = await ditto.store.execute(`SELECT * FROM cars`)
+let item = result.items[0]
+let itemValue = item.value
+let itemValueColor = item.value["color"]
+```
 
-    const item = result.items[0]
-    const itemValue = item.value
-    const itemValueColor = item.value["color"]
-    ```
-    </Tab>
-    <Tab title="Java">
-    ```java
-    DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
-        "SELECT * FROM cars",
-        new Continuation<>() {
-            @NonNull
-            @Override
-            public CoroutineContext getContext() {
-                return EmptyCoroutineContext.INSTANCE;
-            }
+```kotlin Kotlin
+val result = ditto.store.execute("SELECT * FROM cars")
 
-            @Override
-            public void resumeWith(@NonNull Object o) {
-                if (o instanceof Result.Failure) {
-                    // Handle failure
-                }
+val item = result.items.first()
+val itemValue = item.value
+val itemValueColor = item.value["color"]
+```
+
+```javascript JS
+const result = await ditto.store.execute(`SELECT * FROM cars`)
+
+const item = result.items[0]
+const itemValue = item.value
+const itemValueColor = item.value["color"]
+```
+
+```java Java
+DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
+    "SELECT * FROM cars",
+    new Continuation<>() {
+        @NonNull
+        @Override
+        public CoroutineContext getContext() {
+            return EmptyCoroutineContext.INSTANCE;
+        }
+
+        @Override
+        public void resumeWith(@NonNull Object o) {
+            if (o instanceof Result.Failure) {
+                // Handle failure
             }
         }
-    );
+    }
+);
 
-    DittoQueryResultItem item = result.items[0]
-    Map<String, Object> itemValue = item.value
-    String itemValueColor = item.value["color"].toString()
-    ```
-    </Tab>
-    <Tab title="C#">
-    ```csharp
-    var result = await ditto.Store.ExecuteAsync("SELECT * FROM cars");
+DittoQueryResultItem item = result.items[0]
+Map<String, Object> itemValue = item.value
+String itemValueColor = item.value["color"].toString()
+```
 
-    var item = result.Items[0];
-    var itemValue = item.Value;
-    var itemValueColor = item.Value["color"] as string;
-    ```
-    </Tab>
-    <Tab title="C++">
-    ```cpp
-    const auto result = ditto.store.execute(`SELECT * FROM cars`);
+```csharp C#
+var result = await ditto.Store.ExecuteAsync("SELECT * FROM cars");
 
-    auto item = result.get_item(0);
-    auto item_value = item.value();
-    auto item_value_color = item_value["color"];
-    ```
-    </Tab>
-    <Tab title="Rust">
-    ```rust
-    let result = ditto.store().execute("SELECT * FROM cars", None);
+var item = result.Items[0];
+var itemValue = item.Value;
+var itemValueColor = item.Value["color"] as string;
+```
 
-    let item = result.items(0);
-    let itemValue = item.materialize();
-    ```
-    </Tab>
-    <Tab title="Dart">
-    ```dart
-    final result = await ditto.store.execute("SELECT * FROM cars");
+```cpp C++
+const auto result = ditto.store.execute(`SELECT * FROM cars`);
 
-    final item = result.items[0];
-    final itemValue = item.value;
-    final itemValueColor = item.value["color"];
-    ```
-    </Tab>
-</Tabs>
+auto item = result.get_item(0);
+auto item_value = item.value();
+auto item_value_color = item_value["color"];
+```
+
+```rust Rust
+let result = ditto.store().execute("SELECT * FROM cars", None);
+
+let item = result.items(0);
+let itemValue = item.materialize();
+```
+
+```dart Dart
+final result = await ditto.store.execute("SELECT * FROM cars");
+
+final item = result.items[0];
+final itemValue = item.value;
+final itemValueColor = item.value["color"];
+```
+</CodeGroup>
 
 ### Materializing the Value
 
@@ -348,91 +320,83 @@ To help manage memory usage more efficiently, content associated with an `item` 
 
 To load the item's value into memory, use any of the following methods as appropriate:
 
-<Tabs>
-    <Tab title="Swift">
-    ```swift
-    // Returns `true` if value is currently held materialized in memory, otherwise returns `false`
-    item.isMaterialized
+<CodeGroup>
+```swift Swift
 
-    // Loads the item's value into memory
-    item.materialize()
+// Returns `true` if value is currently held materialized in memory, otherwise returns `false`
+item.isMaterialized
 
-    // Release item's value from memory
-    item.dematerialize()
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```kotlin
-    // Returns `true` if value is currently held materialized in memory, otherwise returns `false`
-    item.isMaterialized
+// Loads the item's value into memory
+item.materialize()
 
-    // Loads the item's value into memory
-    item.materialize()
+// Release item's value from memory
+item.dematerialize()
+```
 
-    // Release item's value from memory
-    item.dematerialize()
-    ```
-    </Tab>
-    <Tab title="JS">
-    ```javascript
-    // Returns `true` if value is currently held materialized in memory, otherwise returns `false`
-    item.isMaterialized
+```kotlin Kotlin
+// Returns `true` if value is currently held materialized in memory, otherwise returns `false`
+item.isMaterialized
 
-    // Loads the item's value into memory
-    item.materialize()
+// Loads the item's value into memory
+item.materialize()
 
-    // Release item's value from memory
-    item.dematerialize()
-    ```
-    </Tab>
-    <Tab title="Java">
-    ```java
-    // Returns `true` if value is currently held materialized in memory, otherwise returns `false`
-    item.isMaterialized
+// Release item's value from memory
+item.dematerialize()
+```
 
-    // Loads the item's value into memory
-    item.materialize()
+```javascript JS
+// Returns `true` if value is currently held materialized in memory, otherwise returns `false`
+item.isMaterialized
 
-    // Release item's value from memory
-    item.dematerialize()
-    ```
-    </Tab>
-    <Tab title="C#">
-    ```csharp
-    // Returns `true` if value is currently held materialized in memory, otherwise returns `false`
-    item.IsMaterialized;
+// Loads the item's value into memory
+item.materialize()
 
-    // Loads the item's value into memory
-    item.Materialize();
+// Release item's value from memory
+item.dematerialize()
+```
 
-    // Release item's value from memory
-    item.Dematerialize();
-    ```
-    </Tab>
-    <Tab title="C++">
-    ```cpp
-    // Returns `true` if value is currently held materialized in memory, otherwise returns `false`
-    item.is_materialized()
+```java Java
+// Returns `true` if value is currently held materialized in memory, otherwise returns `false`
+item.isMaterialized
 
-    // Loads the item's value into memory
-    item.materialize()
+// Loads the item's value into memory
+item.materialize()
 
-    // Release item's value from memory
-    item.dematerialize()
-    ```
-    </Tab>
-    <Tab title="Rust">
-    ```rust
-    // Loads the item's value into memory
-    item.materialize();
-    ```
-    </Tab>
-    <Tab title="Dart">
-    ```dart
-    // Query results are always materialized in Dart
-    ```
-    </Tab>
-</Tabs>
+// Release item's value from memory
+item.dematerialize()
+```
+
+```csharp C#
+// Returns `true` if value is currently held materialized in memory, otherwise returns `false`
+item.IsMaterialized;
+
+// Loads the item's value into memory
+item.Materialize();
+
+// Release item's value from memory
+item.Dematerialize();
+```
+
+```cpp C++
+// Returns `true` if value is currently held materialized in memory, otherwise returns `false`
+item.is_materialized()
+
+// Loads the item's value into memory
+item.materialize()
+
+// Release item's value from memory
+item.dematerialize()
+```
+
+```rust Rust
+// Loads the item's value into memory
+item.materialize();
+```
+
+```dart Dart
+// Query results are always materialized in Dart
+```
+</CodeGroup>
 
 ### Raw CBOR Value
 
@@ -442,78 +406,70 @@ To access the result items as CBOR data:
 The result of this method call is not cached.
 </Info>
 
-<Tabs>
-    <Tab title="Swift">
-    ```swift
-    let result = await ditto.store.execute(query: "SELECT * FROM cars")
+<CodeGroup>
+```swift Swift
 
-    let cborSerializedItem = result.items[0].cborData()
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```kotlin
-    val result = ditto.store.execute("SELECT * FROM cars")
+let result = await ditto.store.execute(query: "SELECT * FROM cars")
 
-    val cborItem = result.items.first().cborData()
-    ```
-    </Tab>
-    <Tab title="JS">
-    ```javascript
-    const result = await ditto.store.execute(`SELECT * FROM cars`)
+let cborSerializedItem = result.items[0].cborData()
+```
 
-    const cborItem = result.items[0].cborData()
-    ```
-    </Tab>
-    <Tab title="Java">
-    ```java
-    DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
-        "SELECT * FROM cars",
-        new Continuation<>() {
-            @NonNull
-            @Override
-            public CoroutineContext getContext() {
-                return EmptyCoroutineContext.INSTANCE;
-            }
+```kotlin Kotlin
+val result = ditto.store.execute("SELECT * FROM cars")
 
-            @Override
-            public void resumeWith(@NonNull Object o) {
-                if (o instanceof Result.Failure) {
-                    // Handle failure
-                }
+val cborItem = result.items.first().cborData()
+```
+
+```javascript JS
+const result = await ditto.store.execute(`SELECT * FROM cars`)
+
+const cborItem = result.items[0].cborData()
+```
+
+```java Java
+DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
+    "SELECT * FROM cars",
+    new Continuation<>() {
+        @NonNull
+        @Override
+        public CoroutineContext getContext() {
+            return EmptyCoroutineContext.INSTANCE;
+        }
+
+        @Override
+        public void resumeWith(@NonNull Object o) {
+            if (o instanceof Result.Failure) {
+                // Handle failure
             }
         }
-    );
+    }
+);
 
-    byte[] cborItem = result.items[0].cborData()
-    ```
-    </Tab>
-    <Tab title="C#">
-    ```csharp
-    var result = await ditto.Store.ExecuteAsync("SELECT * FROM cars");
+byte[] cborItem = result.items[0].cborData()
+```
 
-    var cborItem = result.Items[0].CborData();
-    ```
-    </Tab>
-    <Tab title="C++">
-    ```cpp
-    auto result = ditto.get_store().execute("SELECT * FROM cars");
+```csharp C#
+var result = await ditto.Store.ExecuteAsync("SELECT * FROM cars");
 
-    auto cborItem = result.get_item(0).cbor_data();
-    ```
-    </Tab>
-    <Tab title="Rust">
-    ```rust
-    let result = ditto.store().execute("SELECT * FROM cars", None);
+var cborItem = result.Items[0].CborData();
+```
 
-    let cborItem = result.items(0).cbor();
-    ```
-    </Tab>
-    <Tab title="Dart">
-    ```dart
-    // Coming Soon
-    ```
-    </Tab>
-</Tabs>
+```cpp C++
+auto result = ditto.get_store().execute("SELECT * FROM cars");
+
+auto cborItem = result.get_item(0).cbor_data();
+```
+
+```rust Rust
+let result = ditto.store().execute("SELECT * FROM cars", None);
+
+let cborItem = result.items(0).cbor();
+```
+
+```dart Dart
+// Coming Soon
+```
+</CodeGroup>
 
 ### Raw JSON Value
 
@@ -523,79 +479,71 @@ To access the result items as a JSON-string:
 The result of this method call is not cached.
 </Info>
 
-<Tabs>
-    <Tab title="Swift">
-    ```swift
-    let result = await ditto.store.execute(query: "SELECT * FROM cars")
+<CodeGroup>
+```swift Swift
 
-    let jsonSerializedItem: String = result.items[0].jsonString()
+let result = await ditto.store.execute(query: "SELECT * FROM cars")
 
-    let jsonAsData: Data = Data(jsonSerializedItem.utf8)
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```kotlin
-    val result = ditto.store.execute("SELECT * FROM cars")
+let jsonSerializedItem: String = result.items[0].jsonString()
 
-    val jsonItem = result.items.first().jsonString()
-    ```
-    </Tab>
-    <Tab title="JS">
-    ```javascript
-    const result = await ditto.store.execute(`SELECT * FROM cars`)
+let jsonAsData: Data = Data(jsonSerializedItem.utf8)
+```
 
-    const jsonItem = result.items[0].jsonString()
-    ```
-    </Tab>
-    <Tab title="Java">
-    ```java
-    DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
-        "SELECT * FROM cars",
-        Collections.singletonMap("color", "blue"),
-        new Continuation<>() {
-            @NonNull
-            @Override
-            public CoroutineContext getContext() {
-                return EmptyCoroutineContext.INSTANCE;
-            }
+```kotlin Kotlin
+val result = ditto.store.execute("SELECT * FROM cars")
 
-            @Override
-            public void resumeWith(@NonNull Object o) {
-                if (o instanceof Result.Failure) {
-                    // Handle failure
-                }
+val jsonItem = result.items.first().jsonString()
+```
+
+```javascript JS
+const result = await ditto.store.execute(`SELECT * FROM cars`)
+
+const jsonItem = result.items[0].jsonString()
+```
+
+```java Java
+DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
+    "SELECT * FROM cars",
+    Collections.singletonMap("color", "blue"),
+    new Continuation<>() {
+        @NonNull
+        @Override
+        public CoroutineContext getContext() {
+            return EmptyCoroutineContext.INSTANCE;
+        }
+
+        @Override
+        public void resumeWith(@NonNull Object o) {
+            if (o instanceof Result.Failure) {
+                // Handle failure
             }
         }
-    );
+    }
+);
 
-    String cborItem = result.items[0].jsonData()
-    ```
-    </Tab>
-    <Tab title="C#">
-    ```csharp
-    var result = await ditto.Store.ExecuteAsync("SELECT * FROM cars");
+String cborItem = result.items[0].jsonData()
+```
 
-    var jsonItem = result.Items[0].JsonString();
-    ```
-    </Tab>
-    <Tab title="C++">
-    ```cpp
-    auto result = ditto.get_store().execute("SELECT * FROM cars");
+```csharp C#
+var result = await ditto.Store.ExecuteAsync("SELECT * FROM cars");
 
-    auto jsonItem = result.get_item(0).json_string();
-    ```
-    </Tab>
-    <Tab title="Rust">
-    ```rust
-    let result = ditto.store().execute("SELECT * FROM cars", None);
+var jsonItem = result.Items[0].JsonString();
+```
 
-    let jsonItem = result.items(0).json();
-    ```
-    </Tab>
-    <Tab title="Dart">
-    ```dart
-    // Coming Soon
-    ```
-    </Tab>
-</Tabs>
+```cpp C++
+auto result = ditto.get_store().execute("SELECT * FROM cars");
+
+auto jsonItem = result.get_item(0).json_string();
+```
+
+```rust Rust
+let result = ditto.store().execute("SELECT * FROM cars", None);
+
+let jsonItem = result.items(0).json();
+```
+
+```dart Dart
+// Coming Soon
+```
+</CodeGroup>
 

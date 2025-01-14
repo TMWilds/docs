@@ -22,133 +22,121 @@ Devices on Ditto versions 4.4 or earlier are supported, however, they do not syn
 
 To register a new sync subscription in your app. For example, the following snippet demonstrates how to establish a subscription to sync updates to documents in the `cars` collection with a field of `color` set to the value `blue`:
 
-<Tabs>
-    <Tab title="Swift">
-    ```swift
-    ditto.sync.registerSubscription("SELECT * FROM cars")
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```kotlin
-    ditto.sync.registerSubscription("SELECT * FROM cars")
-    ```
-    </Tab>
-    <Tab title="JS">
-    ```javascript
-    ditto.sync.registerSubscription("SELECT * FROM cars")
-    ```
-    </Tab>
-    <Tab title="Java">
-    ```java
-    ditto.sync.registerSubscription("SELECT * FROM cars")
-    ```
-    </Tab>
-    <Tab title="C#">
-    ```csharp
-    ditto.Sync.RegisterSubscription("SELECT * FROM cars");
-    ```
-    </Tab>
-    <Tab title="C++">
-    ```cpp
-    auto subscription =
-      ditto.sync().register_subscription("SELECT * FROM cars");
-    ```
-    </Tab>
-    <Tab title="Rust">
-    ```rust
-    let subscription =
-      ditto.sync().register_subscription("SELECT * FROM cars", None);
-    ```
-    </Tab>
-    <Tab title="Dart">
-    ```dart
-    await ditto.sync.registerSubscription("SELECT * FROM cars");
-    ```
-    </Tab>
-</Tabs>
+<CodeGroup>
+
+```swift Swift
+
+ditto.sync.registerSubscription("SELECT * FROM cars")
+```
+
+```kotlin Kotlin
+ditto.sync.registerSubscription("SELECT * FROM cars")
+```
+
+```javascript JS
+ditto.sync.registerSubscription("SELECT * FROM cars")
+```
+
+```java Java
+ditto.sync.registerSubscription("SELECT * FROM cars")
+```
+
+```csharp C#
+ditto.Sync.RegisterSubscription("SELECT * FROM cars");
+```
+
+```cpp C++
+auto subscription =
+  ditto.sync().register_subscription("SELECT * FROM cars");
+```
+
+```rust Rust
+let subscription =
+  ditto.sync().register_subscription("SELECT * FROM cars", None);
+```
+
+```dart Dart
+await ditto.sync.registerSubscription("SELECT * FROM cars");
+```
+
+</CodeGroup>
 
 Sync subscriptions also support argument injection using the `:argument` syntax in DQL:
 
-<Tabs>
-    <Tab title="Swift">
-    ```swift
-    ditto.sync.registerSubscription("""
-      SELECT *
-      FROM cars
-      WHERE color = :color
-      """,
-      [ "color": "blue" ])
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```kotlin
-    ditto.sync.registerSubscription("""
-      SELECT *
-      FROM cars
-      WHERE color = :color
-      """,
-      mapOf("color" to "blue"))
-    ```
-    </Tab>
-    <Tab title="JS">
-    ```javascript
-    ditto.sync.registerSubscription(`
-      SELECT *
-      FROM cars
-      WHERE color = :color`,
-      { color: 'blue' })
-    ```
-    </Tab>
-    <Tab title="Java">
-    ```java
-    ditto.sync.registerSubscription(
-      "SELECT * FROM cars WHERE color = :color",
-      Collections.singletonMap("color", "blue"))
-    ```
-    </Tab>
-    <Tab title="C#">
-    ```csharp
-    var queryArguments = new Dictionary<string, object>(){{"color", "blue" }};
+<CodeGroup>
 
-    ditto.Sync.RegisterSubscription(
-      "SELECT * FROM cars WHERE color = 'blue'",
-      queryArguments);
-    ```
-    </Tab>
-    <Tab title="C++">
-    ```cpp
-    ditto.sync().register_subscription(
-      "SELECT * FROM cars WHERE color = :color",
-      {{"color", "blue"}});
-    ```
-    </Tab>
-    <Tab title="Rust">
-    ```rust
-    struct Args {
-      color: String,
-    }
+```swift Swift
 
-    // ...
+ditto.sync.registerSubscription("""
+  SELECT *
+  FROM cars
+  WHERE color = :color
+  """,
+  [ "color": "blue" ])
+```
 
-    let args = Args {
-      color: "blue".to_string(),
-    };
-    ditto.sync().register_subscription(
-      "SELECT * FROM cars WHERE color = :color",
-      args);
-    ```
-    </Tab>
-    <Tab title="Dart">
-    ```dart
-    await ditto.sync.registerSubscription("""
-      SELECT *
-      FROM cars
-      WHERE color = :color""",
-      arguments: {"color": "blue"},
-    );
-    ```
-    </Tab>
-</Tabs>
+```kotlin Kotlin
+ditto.sync.registerSubscription("""
+  SELECT *
+  FROM cars
+  WHERE color = :color
+  """,
+  mapOf("color" to "blue"))
+```
+
+```javascript JS
+ditto.sync.registerSubscription(`
+  SELECT *
+  FROM cars
+  WHERE color = :color`,
+  { color: 'blue' })
+```
+
+```java Java
+ditto.sync.registerSubscription(
+  "SELECT * FROM cars WHERE color = :color",
+  Collections.singletonMap("color", "blue"))
+```
+
+```csharp C#
+var queryArguments = new Dictionary<string, object>(){{"color", "blue" }};
+
+ditto.Sync.RegisterSubscription(
+  "SELECT * FROM cars WHERE color = 'blue'",
+  queryArguments);
+```
+
+```cpp C++
+ditto.sync().register_subscription(
+  "SELECT * FROM cars WHERE color = :color",
+  {{"color", "blue"}});
+```
+
+```rust Rust
+struct Args {
+  color: String,
+}
+
+// ...
+
+let args = Args {
+  color: "blue".to_string(),
+};
+ditto.sync().register_subscription(
+  "SELECT * FROM cars WHERE color = :color",
+  args);
+```
+
+```dart Dart
+await ditto.sync.registerSubscription("""
+  SELECT *
+  FROM cars
+  WHERE color = :color""",
+  arguments: {"color": "blue"},
+);
+```
+
+</CodeGroup>
 
 ***
 
@@ -156,139 +144,121 @@ Sync subscriptions also support argument injection using the `:argument` syntax 
 
 Retrieve active sync subscriptions by calling the `subscriptions` method on the `ditto.sync` namespace:
 
-<Tabs>
-    <Tab title="Swift">
-    ```swift
-    let activeSubscriptions = ditto.sync.subscriptions;
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```kotlin
-    val activeSubscriptions = ditto.sync.subscriptions
-    ```
-    </Tab>
-    <Tab title="JS">
-    ```javascript
-    const activeSubscriptions = ditto.sync.subscriptions
-    ```
-    </Tab>
-    <Tab title="Java">
-    ```java
-    DittoSyncSubscription[] activeSubscriptions = ditto.sync.subscriptions;
-    ```
-    </Tab>
-    <Tab title="C#">
-    ```csharp
-    var activeSubscriptions = ditto.Sync.Subscriptions;
-    ```
-    </Tab>
-    <Tab title="C++">
-    ```cpp
-    // Not Supported. Hold the reference to the SyncSubscription object.
-    ```
-    </Tab>
-    <Tab title="Rust">
-    ```rust
-    // Not Supported. Hold the reference to the SyncSubscription object.
-    ```
-    </Tab>
-    <Tab title="Dart">
-    ```dart
-    final activeSubscriptions = ditto.sync.subscriptions;
-    ```
-    </Tab>
-</Tabs>
+<CodeGroup>
+
+```swift Swift
+
+let activeSubscriptions = ditto.sync.subscriptions;
+```
+
+```kotlin Kotlin
+val activeSubscriptions = ditto.sync.subscriptions
+```
+
+```javascript JS
+const activeSubscriptions = ditto.sync.subscriptions
+```
+
+```java Java
+DittoSyncSubscription[] activeSubscriptions = ditto.sync.subscriptions;
+```
+
+```csharp C#
+var activeSubscriptions = ditto.Sync.Subscriptions;
+```
+
+```cpp C++
+// Not Supported. Hold the reference to the SyncSubscription object.
+```
+
+```rust Rust
+// Not Supported. Hold the reference to the SyncSubscription object.
+```
+
+```dart Dart
+final activeSubscriptions = ditto.sync.subscriptions;
+```
+
+</CodeGroup>
 
 ***
 
 ## Canceling Subscriptions
 
-<Tabs>
-    <Tab title="Swift">
-    ```swift
-    subscription.cancel()
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```kotlin
-    subscription.close()
-    ```
-    </Tab>
-    <Tab title="JS">
-    ```javascript
-    subscription.cancel()
-    ```
-    </Tab>
-    <Tab title="Java">
-    ```java
-    subscription.close()
-    ```
-    </Tab>
-    <Tab title="C#">
-    ```csharp
-    subscription.Cancel();
-    ```
-    </Tab>
-    <Tab title="C++">
-    ```cpp
-    // ...
-    ```
-    </Tab>
-    <Tab title="Rust">
-    ```cpp
-    // ...
-    ```
-    </Tab>
-    <Tab title="Dart">
-    ```dart
-    await subscription.cancel()
-    ```
-    </Tab>
-</Tabs>
+<CodeGroup>
+
+```swift Swift
+
+subscription.cancel()
+```
+
+```kotlin Kotlin
+subscription.close()
+```
+
+```javascript JS
+subscription.cancel()
+```
+
+```java Java
+subscription.close()
+```
+
+```csharp C#
+subscription.Cancel();
+```
+
+```cpp C++
+// ...
+```
+
+```rust Rust
+// ...
+```
+
+```dart Dart
+await subscription.cancel()
+```
+
+</CodeGroup>
 
 Check if a sync subscription is canceled by using the `isCancelled` field on the subscription object:
 
-<Tabs>
-    <Tab title="Swift">
-    ```swift
-    subscription.isCancelled
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```kotlin
-    subscription.isClosed
-    ```
-    </Tab>
-    <Tab title="JS">
-    ```javascript
-    subscription.isCancelled
-    ```
-    </Tab>
-    <Tab title="Java">
-    ```java
-    subscription.isCancelled
-    ```
-    </Tab>
-    <Tab title="C#">
-    ```csharp
-    subscription.IsCancelled
-    ```
-    </Tab>
-    <Tab title="C++">
-    ```cpp
-    // ...
-    ```
-    </Tab>
-    <Tab title="Rust">
-    ```cpp
-    // ...
-    ```
-    </Tab>
-    <Tab title="Dart">
-    ```dart
-    subscription.isCancelled
-    ```
-    </Tab>
-</Tabs>
+<CodeGroup>
+
+```swift Swift
+
+subscription.isCancelled
+```
+
+```kotlin Kotlin
+subscription.isClosed
+```
+
+```javascript JS
+subscription.isCancelled
+```
+
+```java Java
+subscription.isCancelled
+```
+
+```csharp C#
+subscription.IsCancelled
+```
+
+```cpp C++
+// ...
+```
+
+```rust Rust
+// ...
+```
+
+```dart Dart
+subscription.isCancelled
+```
+
+</CodeGroup>
 
 

@@ -19,82 +19,75 @@ Ditto does *not* support nesting documents within documents. Instead, opt for a 
 
 For example, the following snippet demonstrates how to insert a new document with a single field "color" set to "blue":
 
-<Tabs>
-    <Tab title="Swift">
-    ```
-    await ditto.store.execute(
+<CodeGroup>
+
+```swift Swift
+
+await ditto.store.execute(
     query: "INSERT INTO cars DOCUMENTS (:newCar)",
     arguments: ["newCar": ["color": "blue"]]);
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```
-    ditto.store.execute(
-        "INSERT INTO cars DOCUMENTS (:newCar)",
-        mapOf("newCar" to mapOf("color" to "blue")))
-    ```
-    </Tab>
-    <Tab title="JS">
-    ```
-    await ditto.store.execute(
-        "INSERT INTO cars DOCUMENTS (:newCar)",
-        { newCar: { color: "blue" } }
-    );
-    ```
-    </Tab>
-    <Tab title="Java">
-    ```
-    DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
-        "INSERT INTO cars DOCUMENTS (:newCar)",
-        Collections.singletonMap("newCar", Collections.singletonMap("color", "blue")),
-    );
-    ```
-    </Tab>
-    <Tab title="C#">
-    ```
-    var args = new Dictionary<string, object>();
-    args.Add("newCar", new { color = "blue" });
+```
 
-    await ditto.Store.ExecuteAsync(
-        "INSERT INTO cars DOCUMENTS (:newCar)",
-        args);
-    ```
-    </Tab>
-    <Tab title="C++">
-    ```
-    std::map<std::string, std::map<std::string, std::string>> args;
+```kotlin Kotlin
+ditto.store.execute(
+    "INSERT INTO cars DOCUMENTS (:newCar)",
+    mapOf("newCar" to mapOf("color" to "blue")))
+```
 
-    args["newCar"] = {{"color", "blue"}};
+```javascript JS
+await ditto.store.execute(
+    "INSERT INTO cars DOCUMENTS (:newCar)",
+    { newCar: { color: "blue" } }
+);
+```
 
-    ditto.get_store().execute(
+```java Java
+DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
+    "INSERT INTO cars DOCUMENTS (:newCar)",
+    Collections.singletonMap("newCar", Collections.singletonMap("color", "blue")),
+);
+```
+
+```csharp C#
+var args = new Dictionary<string, object>();
+args.Add("newCar", new { color = "blue" });
+
+await ditto.Store.ExecuteAsync(
     "INSERT INTO cars DOCUMENTS (:newCar)",
     args);
+```
 
-    ```
-  </Tab>
-  <Tab title="Rust">
-  ```
-  let query_result = ditto
-  .store()
-  .execute(
-      "INSERT INTO cars DOCUMENTS (:newCar)",
-      Some(serde_json::json!({
-          "newCar": {
-              "color": "blue"
-          }
-      }).into()),
-  ).await?;
-  ```
-  </Tab>
-  <Tab title="Dart">
-  ```
-  await ditto.store.execute(
+```cpp C++
+std::map<std::string, std::map<std::string, std::string>> args;
+
+args["newCar"] = {{"color", "blue"}};
+
+ditto.get_store().execute(
+"INSERT INTO cars DOCUMENTS (:newCar)",
+args);
+```
+
+```rust Rust
+let query_result = ditto
+.store()
+.execute(
     "INSERT INTO cars DOCUMENTS (:newCar)",
-    arguments: {"newCar": {"color": "blue"}},
-    );
-  ```
-  </Tab>
-</Tabs>
+    Some(serde_json::json!({
+        "newCar": {
+            "color": "blue"
+        }
+    }).into()),
+).await?;
+```
+
+```dart Dart
+await ditto.store.execute(
+  "INSERT INTO cars DOCUMENTS (:newCar)",
+  arguments: {"newCar": {"color": "blue"}},
+);
+```
+
+</CodeGroup>
 
 To create multiple documents efficiently, batch your CREATE operations in a single operation.
 
@@ -103,9 +96,9 @@ If desired, supply a document ID in your creation request; otherwise, Ditto auto
 ## Inserting Multiple Documents
 To create multiple documents in a single operation, use the INSERT INTO operation as follows:
 
-<Tabs>
-  <Tab title="Swift">
-  ```
+<CodeGroup>
+```swift Swift
+
 let result = await ditto.store.execute(
 query: "INSERT INTO cars DOCUMENTS (:newCar)",
 arguments: [
@@ -114,23 +107,18 @@ arguments: [
 
 // "507f191e810c19729de860ea"
 print(result.mutatedDocumentIDs()[0])
-  ```
+```
 
-  </Tab>
-
-  <Tab title="Kotlin">
-  ```
+```kotlin Kotlin
 var result = ditto.store.execute(
 "INSERT INTO cars DOCUMENTS (:newCar)",
 mapOf("newCar" to mapOf("color" to "blue")))
 
 // "507f191e810c19729de860ea"
 println(result.mutatedDocumentIDs().first())
-  ```
-  </Tab>
+```
 
-  <Tab title="JS">
-  ```
+```javascript JS
 const result = await ditto.store.execute(
 "INSERT INTO cars DOCUMENTS (:newCar)",
 { newCar: { color: 'blue' } }
@@ -138,12 +126,10 @@ const result = await ditto.store.execute(
 
 // "507f191e810c19729de860ea"
 console.log(result.mutatedDocumentIDs()[0].value)
-  ```
-  </Tab>
+```
 
-  <Tab title="Java">
-  ```
-  DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
+```java Java
+DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
   "INSERT INTO cars DOCUMENTS (:newCar)",
   Collections.singletonMap("newCar", Collections.singletonMap("color", "blue")),
   new Continuation<>() {
@@ -164,12 +150,10 @@ console.log(result.mutatedDocumentIDs()[0].value)
 
 // "507f191e810c19729de860ea"
 System.out.println(result.mutatedDocumentIDs()[0]);
-  ```
-  </Tab>
+```
 
-  <Tab title="C#">
-  ```
-  var insertArgs = new Dictionary<string, object>();
+```csharp C#
+var insertArgs = new Dictionary<string, object>();
 insertArgs.Add("newCar", new { color = "blue" });
 
 var result = await ditto.Store.ExecuteAsync(
@@ -178,12 +162,10 @@ insertArgs);
 
 // "507f191e810c19729de860ea"
 result.MutatedDocumentIds.ForEach(id => Console.WriteLine(id));
-  ```
-  </Tab>
+```
 
-  <Tab title="C++">
-  ```
-  std::map<std::string, std::map<std::string, std::string>> args;
+```cpp C++
+std::map<std::string, std::map<std::string, std::string>> args;
 args["newCar"] = {{"color", "blue"}};
 
 auto result = ditto.get_store().execute(
@@ -194,10 +176,8 @@ args);
 std::cout << result.mutated_document_ids()[0].to_string();
 ```
 
-</Tab>
-<Tab title="Rust">
-    ```
-    use serde::Serialize;
+```rust Rust
+use serde::Serialize;
 
 #[derive(Serialize)]
 struct Args {
@@ -221,9 +201,9 @@ Some(args.into()));
 
 // "507f191e810c19729de860ea"
 println!("{}", result.mutated_document_ids()[0].to_string())
-`    </Tab>
-    <Tab title="Dart">
-   `
+```
+
+```dart Dart
 final result = await ditto.store.execute(
 "INSERT INTO cars DOCUMENTS (:doc1),(:doc2)",
 arguments: {
@@ -232,9 +212,8 @@ arguments: {
 },
 );
 ```
-</Tab>
 
-</Tabs>
+</CodeGroup>
 
 ## Identifying Documents
 
@@ -246,9 +225,9 @@ The document identifier is represented as \_id and serves as the primary key for
 
 To access the IDs of the documents affected by the INSERTION INTO operation, call the mutatedDocumentIDs method on the result object after the insertion like this:
 
-<Tabs>
-    <Tab title="Swift">
-    ```
+<CodeGroup>
+```swift Swift
+
 let result = await ditto.store.execute(
   query: "INSERT INTO cars DOCUMENTS (:newCar)",
   arguments: [
@@ -258,9 +237,8 @@ let result = await ditto.store.execute(
 // "507f191e810c19729de860ea"
 print(result.mutatedDocumentIDs()[0])
 ```
-</Tab>
-    <Tab title="Kotlin">
-```
+
+```kotlin Kotlin
 var result = ditto.store.execute(
 "INSERT INTO cars DOCUMENTS (:newCar)",
 mapOf("newCar" to mapOf("color" to "blue")))
@@ -268,9 +246,8 @@ mapOf("newCar" to mapOf("color" to "blue")))
 // "507f191e810c19729de860ea"
 println(result.mutatedDocumentIDs().first())
 ```
-    </Tab>
-    <Tab title="JS">
-```
+
+```javascript JS
 const result = await ditto.store.execute(
 "INSERT INTO cars DOCUMENTS (:newCar)",
 { newCar: { color: 'blue' } }
@@ -279,9 +256,8 @@ const result = await ditto.store.execute(
 // "507f191e810c19729de860ea"
 console.log(result.mutatedDocumentIDs()[0].value)
 ```
-    </Tab>
-    <Tab title="Java">
-```
+
+```java Java
 DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
 "INSERT INTO cars DOCUMENTS (:newCar)",
 Collections.singletonMap("newCar", Collections.singletonMap("color", "blue")),
@@ -305,9 +281,8 @@ return EmptyCoroutineContext.INSTANCE;
 // "507f191e810c19729de860ea"
 System.out.println(result.mutatedDocumentIDs()[0]);
 ```
-   </Tab>
-    <Tab title="C#">
-```
+
+```csharp C#
 var insertArgs = new Dictionary<string, object>();
 insertArgs.Add("newCar", new { color = "blue" });
 
@@ -318,9 +293,8 @@ insertArgs);
 // "507f191e810c19729de860ea"
 result.MutatedDocumentIds.ForEach(id => Console.WriteLine(id));
 ```
-</Tab>
-    <Tab title="C++">
-```
+
+```cpp C++
 std::map<std::string, std::map<std::string, std::string>> args;
 args["newCar"] = {{"color", "blue"}};
 
@@ -330,11 +304,9 @@ args);
 
 // "507f191e810c19729de860ea"
 std::cout << result.mutated_document_ids()[0].to_string();
+```
 
-```
-  </Tab>
-  <Tab title="Rust">
-```
+```rust Rust
 use serde::Serialize;
 
 #[derive(Serialize)]
@@ -361,9 +333,8 @@ Some(args.into()));
 // "507f191e810c19729de860ea"
 println!("{}", result.mutated_document_ids()[0].to_string())
 ```
-  </Tab>
-  <Tab title="Dart">
-```
+
+```dart Dart
 final result = await ditto.store.execute(
 "INSERT INTO cars DOCUMENTS (:newCar)",
 arguments: {
@@ -375,8 +346,8 @@ arguments: {
 // "507f191e810c19729de860ea"
 print(result.mutatedDocumentIDs.first);
 ```
-  </Tab>
-</Tabs>
+
+</CodeGroup>
 
 ### Supplying String IDs
 When creating a document, you can assign it a custom ID. This custom ID can be generated using a single string value or a combination of two or more string values.
@@ -385,9 +356,9 @@ This flexibility in structuring document identifiers allows you to customize doc
 
 The following snippet demonstrates a new document assigned the custom ID "123".
 
-<Tabs>
-  <Tab title="Swift">
-```
+<CodeGroup>
+```swift Swift
+
 var result = ditto.store.execute(
 "INSERT INTO cars DOCUMENTS (:newCar)",
 mapOf("newCar" to mapOf("_id" to "123", "color" to "blue")))
@@ -395,9 +366,8 @@ mapOf("newCar" to mapOf("_id" to "123", "color" to "blue")))
 // "507f191e810c19729de860ea"
 println(result.mutatedDocumentIDs().first())
 ```
-  </Tab>
-  <Tab title="Kotlin">
-```
+
+```kotlin Kotlin
 var result = ditto.store.execute(
 "INSERT INTO cars DOCUMENTS (:newCar)",
 mapOf("newCar" to mapOf("_id" to "123", "color" to "blue")))
@@ -405,9 +375,8 @@ mapOf("newCar" to mapOf("_id" to "123", "color" to "blue")))
 // "507f191e810c19729de860ea"
 println(result.mutatedDocumentIDs().first())
 ```
-  </Tab>
-  <Tab title="JS">
-```
+
+```javascript JS
 Map<String, String> newCar = new HashMap<>();
 newCar.put("_id", "123");
 newCar.put("color", "blue");
@@ -434,9 +403,8 @@ DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
 // "123"
 System.out.println(result.mutatedDocumentIDs()[0]);
 ```
-  </Tab>
-  <Tab title="Java">
-```
+
+```java Java
 Map<String, String> newCar = new HashMap<>();
 newCar.put("_id", "123");
 newCar.put("color", "blue");
@@ -463,9 +431,8 @@ DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
 // "123"
 System.out.println(result.mutatedDocumentIDs()[0]);
 ```
-  </Tab>
-  <Tab title="C#">
-```
+
+```csharp C#
 var insertArgs = new Dictionary<string, object>();
 insertArgs.Add("newCar", new { _id = "123", color = "blue" });
 
@@ -476,9 +443,8 @@ insertArgs);
 // "123"
 result.MutatedDocumentIds.ForEach(id => Console.WriteLine(id));
  ```
-  </Tab>
-  <Tab title="C++">
-```
+
+```cpp C++
 std::map<std::string, std::map<std::string, std::string>> args;
 args["newCar"] = {{"_id", "123"},{"color", "blue"}};
 
@@ -490,22 +456,7 @@ args);
 std::cout << result.mutated_document_ids()[0].to_string();
 ```
 
-</Tab>
-<Tab title="Rust">
-```
-
-final result = await ditto.store.execute(
-"INSERT INTO cars DOCUMENTS (:newCar)",
-arguments: {
-"newCar": {"\_id":"123","color": 'blue'},
-},
-);
-
-// "123"
-print(result.mutatedDocumentIDs.first);
-`    </Tab>
-    <Tab title="Dart">
-   `
+```rust Rust
 final result = await ditto.store.execute(
 "INSERT INTO cars DOCUMENTS (:newCar)",
 arguments: {
@@ -516,9 +467,20 @@ arguments: {
 // "123"
 print(result.mutatedDocumentIDs.first);
 ```
-</Tab>
 
-</Tabs>
+```dart Dart
+final result = await ditto.store.execute(
+"INSERT INTO cars DOCUMENTS (:newCar)",
+arguments: {
+"newCar": {"\_id":"123","color": 'blue'},
+},
+);
+
+// "123"
+print(result.mutatedDocumentIDs.first);
+```
+
+</CodeGroup>
 
 Following is the new 123 document that results:
 
@@ -533,9 +495,9 @@ Following is the new 123 document that results:
 
 The following demonstrates combining the vin and make fields to form the composite key:
 
-<Tabs>
-<Tab title="Swift">
-```
+<CodeGroup>
+```swift Swift
+
 let arguments = [
   newCar: [ "_id": [vin: "123", make: "Toyota"], "color": "blue"]
 ];
@@ -547,9 +509,8 @@ arguments: arguments);
 // "{vin: "123", make: "Toyota"}"
 print(result.mutatedDocumentIDs()[0])
 ```
-</Tab>
-<Tab title="Kotlin">
-```
+
+```kotlin Kotlin
 let arguments = [
 newCar: [ "\_id": [vin: "123", make: "Toyota"], "color": "blue"]
 ];
@@ -561,9 +522,8 @@ arguments: arguments);
 // "{vin: "123", make: "Toyota"}"
 print(result.mutatedDocumentIDs()[0])
 ```
-  </Tab>
-    <Tab title="JS">
-```
+
+```javascript JS
 const newCar = {
 \_id: {
 vin: "123",
@@ -579,9 +539,8 @@ const result = await ditto.store.execute(`
 // { vin: "123", make: "Toyota" }
 console.log(result.mutatedDocumentIDs()[0].value)
 ```
-</Tab>
-<Tab title="Java">
-```
+
+```java Java
 Map<String, String> newCarId = new HashMap<>();
 newCarId.put("vin", "123");
 newCarId.put("make", "Toyota");
@@ -612,9 +571,8 @@ return EmptyCoroutineContext.INSTANCE;
 // "{vin: "123", make: "Toyota"}"
 System.out.println(result.mutatedDocumentIDs()[0]);
 ```
-</Tab>
-<Tab title="C#">
-```
+
+```csharp C#
 var newId = new { vin: "123", make: "Toyota"};
 var insertArgs = new Dictionary<string, object>();
 insertArgs.Add("newCar", new { \_id = newId, color = "blue" });
@@ -627,9 +585,8 @@ insertArgs);
 result.MutatedDocumentIds.ForEach(id => Console.WriteLine(
 System.Text.Json.JsonSerializer.Serialize(id)));
 ```
-</Tab>
-<Tab title="C++">
-```
+
+```cpp C++
 struct CarId {
 std::string vin;
 std::string make;
@@ -649,9 +606,8 @@ args);
 // "{vin: "123", make: "Toyota"}"
 std::cout << result.mutated_document_ids()[0].to_string();
 ```
-</Tab>
-    <Tab title="Rust">
-```
+
+```rust Rust
 struct CarId {
 std::string vin;
 std::string make;
@@ -671,9 +627,8 @@ args);
 // "{vin: "123", make: "Toyota"}"
 std::cout << result.mutated_document_ids()[0].to_string();
 ```
-  </Tab>
-    <Tab title="Dart">
-```
+
+```dart Dart
 final result = await ditto.store.execute(
 "INSERT INTO cars DOCUMENTS (:newCar)",
 arguments: {
@@ -687,8 +642,8 @@ arguments: {
 // "{vin: "123", make: "Toyota"}"
 print(result.mutatedDocumentIDs.first);
 ```
-</Tab>
-</Tabs>
+
+</CodeGroup>
 
 ## Creating Attachments
 
@@ -732,39 +687,33 @@ To use a DQL type other than a REGISTER — the default data type in Ditto — y
 
 If desired, enclose extra information about the attachment, such as name and description. This metadata is useful for attachment fetching operations.
 
-<Tabs>
-    <Tab title="Swift">
-    ```
+<CodeGroup>
+```swift Swift
+
 let newAttachment = try await ditto.store.newAttachment(path: filePath)
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```
+```
+
+```kotlin Kotlin
 val attachment = runBlocking { ditto.store.newAttachment(attachmentPathOrInputStream, attachmentMetadata) }
-    ```
-    </Tab>
-    <Tab title="JS">
-    ```
+```
+
+```javascript JS
 const newAttachment = await ditto.store.newAttachment(filePathOrData)
-    ```
-    </Tab>
-    <Tab title="Java">
-    ```
+```
+
+```java Java
 try (DittoAttachment attachment = ditto.store.newAttachment(attachmentPathOrInputStream, attachmentMetadata)) {
-    ```
-    </Tab>
-    <Tab title="C#">
-    ```
+```
+
+```csharp C#
 var newAttachment = await ditto.Store.NewAttachmentAsync(path: filePath);
-    ```
-    </Tab>
-    <Tab title="C++">
-    ```
+```
+
+```cpp C++
 auto attachment = ditto.get_store().new_attachment("/path/to/my/file.pdf");
-    ```
-    </Tab>
-    <Tab title="Rust">
-    ```
+```
+
+```rust Rust
 use ::dittolive_ditto::prelude::*;
 use ::serde_json::json;
 use ::std::{collections::HashMap, path::Path};
@@ -780,62 +729,55 @@ let new_attachment = peer_a
 .store()
 .new_attachment(filepath, <*>::default())
 .await?;
-`    </Tab>
-    <Tab title="Dart">
-   `
+```
+
+```dart Dart
 final newAttachment = await ditto.store.newAttachment(filePathOrData);
 ```
-</Tab>
 
-</Tabs>
+</CodeGroup>
 
 ### Adding Optional Metadata
 
 If you want to include information about the attachment, such as the attachment filename, as shown in the following snippet, a description, and other relevant details, enclose it in a metadata object as key-value pairs.
 
-<Tabs>
-    <Tab title="Swift">
-    ```
+<CodeGroup>
+```swift Swift
+
 let metadata = ["name": "name_of_file"]
 let newAttachmentWithMetadata = try await ditto.store.newAttachment(path: filePath, metadata: metadata)
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```
+```
+
+```kotlin Kotlin
 val attachmentMetadata = mapOf("name" to attachmentFileName)
 val attachment = runBlocking { ditto.store.newAttachment(attachmentPathOrInputStream, attachmentMetadata) }
-    ```
-    </Tab>
-    <Tab title="JS">
-    ```
+```
+
+```javascript JS
 const metadata = { name: 'image.png' }
 const newAttachment = await ditto.store.newAttachment(imageBytes, metadata)
-    ```
-    </Tab>
-    <Tab title="Java">
-    ```
+```
+
+```java Java
 val attachmentMetadata = mapOf("name" to attachmentFileName)
 val attachment = runBlocking { ditto.store.newAttachment(attachmentPathOrInputStream, attachmentMetadata) }
-    ```
-    </Tab>
-    <Tab title="C#">
-    ```
+```
+
+```csharp C#
 var metadata = new Dictionary<string, string>()
 {
     { "name", "image.png" }
 };
 var newAttachmentWithMetadata = await Ditto.Store.NewAttachmentAsync(filePath, metadata);
-    ```
-    </Tab>
-    <Tab title="C++">
-    ```
+```
+
+```cpp C++
 auto attachment = ditto.get_store().new_attachment("/path/to/my/file.pdf", {
     {"name", "name_of_file"}
 });
-    ```
-    </Tab>
-    <Tab title="Rust">
-    ```
+```
+
+```rust Rust
 let user_data = HashMap::from_iter([
     ("name".into(), "image.png".into()),
     // Idea: attach a small "summary" of the file contents to preview them in
@@ -849,29 +791,27 @@ let user_data = HashMap::from_iter([
         "/9j/4atg9y_zw0ga_x_bzd_w0g_zg9sb...".into(),
     ),
 ]);
-    ```
-    </Tab>
-    <Tab title="Dart">
-    ```
+```
+
+```dart Dart
 // Coming soon
-    ```
-    </Tab>
-</Tabs>
+```
+
+</CodeGroup>
 
 For example, in the following snippet, the metadata property encapsulates the name of the attachment, as well as its description:
 
-<Tabs>
-    <Tab title="Swift">
-    ```
+<CodeGroup>
+```swift Swift
+
 val attachmentMetadata = mapOf(
     "name" to "japan.png",
     "description" to "This is an image of a sunset in Japan."
 )
 val attachment = runBlocking { ditto.store.newAttachment(attachmentPathOrInputStream, attachmentMetadata) }
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```
+```
+
+```kotlin Kotlin
 val attachmentMetadata = mapOf(
     "name" to "japan.png",
     "description" to "This is an image of a sunset in Japan."
@@ -881,9 +821,8 @@ val attachment = runBlocking {
 ditto.store.newAttachment(attachmentPathOrInputStream, attachmentMetadata)
 }
 ```
-   </Tab>
-    <Tab title="JS">
-```
+
+```javascript JS
 val attachmentMetadata = mapOf(
 "name" to "japan.png",
 "description" to "This is an image of a sunset in Japan."
@@ -893,18 +832,16 @@ val attachment = runBlocking {
 ditto.store.newAttachment(attachmentPathOrInputStream, attachmentMetadata)
 }
 ```
-   </Tab>
-    <Tab title="Java">
-```
+
+```java Java
 val attachmentMetadata = mapOf(
 "name" to "japan.png",
 "description" to "This is an image of a sunset in Japan."
 )
 val attachment = runBlocking { ditto.store.newAttachment(attachmentPathOrInputStream, attachmentMetadata) }
 ```
-    </Tab>
-    <Tab title="C#">
-```
+
+```csharp C#
 var metadata = new Dictionary<string, string>()
 {
 { "name", "japan.png" },
@@ -912,9 +849,8 @@ var metadata = new Dictionary<string, string>()
 };
 var newAttachmentWithMetadata = await Ditto.Store.NewAttachmentAsync(filePath, metadata);
 ```
-</Tab>
-    <Tab title="C++">
-```
+
+```cpp C++
 var metadata = new Dictionary<string, string>()
 {
 { "name", "japan.png" },
@@ -922,9 +858,8 @@ var metadata = new Dictionary<string, string>()
 };
 var newAttachmentWithMetadata = await Ditto.Store.NewAttachmentAsync(filePath, metadata);
 ```
-</Tab>
-<Tab title="Rust">
-```
+
+```rust Rust
 var metadata = new Dictionary<string, string>()
 {
 { "name", "japan.png" },
@@ -932,14 +867,12 @@ var metadata = new Dictionary<string, string>()
 };
 var newAttachmentWithMetadata = await Ditto.Store.NewAttachmentAsync(filePath, metadata);
 ```
-</Tab>
-    <Tab title="Dart">
-```
+
+```dart Dart
 // Coming Soon
 ```
-</Tab>
 
-</Tabs>
+</CodeGroup>
 
 ## Referencing Attachment Tokens
 
@@ -953,9 +886,9 @@ After creating and storing a new attachment object in Ditto, you receive an _att
 
 The following snippet demonstrates how to create a new document object containing a new attachment, and then insert it into the cars collection:
 
-<Tabs>
-    <Tab title="Swift">
-    ```
+<CodeGroup>
+```swift Swift
+
 // Create a new document object and store the attachment on the `my_attachment` field.
 let newDocument: [String: Any] = ["_id": "123", "my_attachment": newAttachment]
 
@@ -969,9 +902,8 @@ DOCUMENTS (:newDocument)
 arguments: ["newDocument": newDocument]
 )
 ```
-   </Tab>
-    <Tab title="Kotlin">
-```
+
+```kotlin Kotlin
 // Create a new document object and store the attachment on the `my_attachment` field.
 val document = mapOf("some" to "string", "my_attachment" to attachment)
 val insertQuery = "INSERT INTO COLLECTION cars (my_attachment ATTACHMENT) DOCUMENTS (:document)"
@@ -982,9 +914,8 @@ val insertQuery = "INSERT INTO COLLECTION cars (my_attachment ATTACHMENT) DOCUME
 val insertArguments = mapOf("document" to document)
 val insertQueryResult = runBlocking { ditto.store.execute(insertQuery, insertArguments) }
 ```
-    </Tab>
-    <Tab title="JS">
-```
+
+```javascript JS
 // Create a new document object and store the attachment on the `my_attachment` field.
 const newDocument = { \_id: "123", my_attachment: newAttachment }
 
@@ -996,9 +927,8 @@ await ditto.store.execute(`
 { newDocument }
 );
 ```
-   </Tab>
-    <Tab title="Java">
-```
+
+```java Java
 // Create a new document object and store the attachment on the `my_attachment` field.
 val document = mapOf("some" to "string", "my_attachment" to attachment)
 val insertQuery = "INSERT INTO COLLECTION cars (my_attachment ATTACHMENT) DOCUMENTS (:document)"
@@ -1009,9 +939,8 @@ val insertQuery = "INSERT INTO COLLECTION cars (my_attachment ATTACHMENT) DOCUME
 val insertArguments = mapOf("document" to document)
 val insertQueryResult = runBlocking { ditto.store.execute(insertQuery, insertArguments) }
 ```
-    </Tab>
-    <Tab title="C#">
-```
+
+```csharp C#
 // Create a new document object and store the attachment on the `my_attachment` field.
 val document = mapOf("some" to "string", "my_attachment" to attachment)
 val insertQuery = "INSERT INTO COLLECTION cars (my_attachment ATTACHMENT) DOCUMENTS (:document)"
@@ -1022,9 +951,8 @@ val insertQuery = "INSERT INTO COLLECTION cars (my_attachment ATTACHMENT) DOCUME
 val insertArguments = mapOf("document" to document)
 val insertQueryResult = runBlocking { ditto.store.execute(insertQuery, insertArguments) }
 ```
-    </Tab>
-    <Tab title="C++">
-```
+
+```cpp C++
 // Create a new document object and store the attachment on the `my_attachment` field.
 val document = mapOf("some" to "string", "my_attachment" to attachment)
 val insertQuery = "INSERT INTO COLLECTION cars (my_attachment ATTACHMENT) DOCUMENTS (:document)"
@@ -1035,9 +963,8 @@ val insertQuery = "INSERT INTO COLLECTION cars (my_attachment ATTACHMENT) DOCUME
 val insertArguments = mapOf("document" to document)
 val insertQueryResult = runBlocking { ditto.store.execute(insertQuery, insertArguments) }
 ```
-    </Tab>
-    <Tab title="Rust">
-```
+
+```rust Rust
 // Creating a Ditto document with an attachment
 let new_document /_: impl Serialize _/ = json!({
 "\_id": "123",
@@ -1062,14 +989,12 @@ json!({
 )
 .await?;
 ```
-</Tab>
-    <Tab title="Dart">
-```
+
+```dart Dart
 // Coming Soon
 ```
-</Tab>
 
-</Tabs>
+</CodeGroup>
 
 # Creating MAPs
 
@@ -1090,9 +1015,9 @@ The flat model is a simple, non‑embedded structure in which you spread your da
 
 When inserting a new document in Ditto, you can define a field as a MAP and include the structure of key-value pairs nested within it — a two-in-one approach. For example:
 
-<Tabs>
-    <Tab title="Swift">
-```
+<CodeGroup>
+```swift Swift
+
 let arguments: [String: Any] = [
   "newCar": [
     "_id": "123",
@@ -1107,9 +1032,8 @@ await ditto.store.execute(
 query: "INSERT INTO COLLECTION cars (properties MAP) DOCUMENTS (:newCar)",
 arguments: arguments);
 ```
-</Tab>
-    <Tab title="Kotlin">
-```
+
+```kotlin Kotlin
 val arguments = mapOf(
 "newCar" to mapOf(
 "\_id" to "123",
@@ -1127,9 +1051,8 @@ DOCUMENTS (:newCar)
 """,
 arguments)
 ```
-</Tab>
-    <Tab title="JS">
-```
+
+```javascript JS
 const newCar = {
 \_id: "123",
 properties: {
@@ -1144,9 +1067,8 @@ await ditto.store.execute(`
 { newCar }
 );
 ```
-   </Tab>
-    <Tab title="Java">
-```
+
+```java Java
 Map<String, Object> properties = new HashMap<>();
 properties.put("color", "blue");
 properties.put("mileage", 3000);
@@ -1175,9 +1097,8 @@ return EmptyCoroutineContext.INSTANCE;
 
 );
 ```
-    </Tab>
-    <Tab title="C#">
-```
+
+```csharp C#
 var subMap = new {
 color = "blue",
 mileage = 3000
@@ -1189,9 +1110,8 @@ var result = await ditto.Store.ExecuteAsync(
 "INSERT INTO COLLECTION cars (properties MAP) DOCUMENTS (:newCar)",
 insertArgs);
 ```
-   </Tab>
-    <Tab title="C++">
-```
+
+```cpp C++
 struct Properties {
 std::string color;
 int mileage;
@@ -1212,9 +1132,8 @@ ditto.get_store().execute(
 - " DOCUMENTS (:newCar)",
   args);
 ```
-   </Tab>
-    <Tab title="Rust">
-```
+
+```rust Rust
   struct Args {
   newCar: Car,
   }
@@ -1243,9 +1162,8 @@ await ditto.store().execute(
 "INSERT INTO COLLECTION cars (properties MAP) DOCUMENTS (:newCar)",
 args);
 ```
-   </Tab>
-    <Tab title="Dart">
-```
+
+```dart Dart
 final newCar = {
 "\_id": "123",
 "properties": {
@@ -1260,9 +1178,8 @@ DOCUMENTS (:newCar)""",
 arguments: {"newCar": newCar},
 );
 ```
-</Tab>
 
-</Tabs>
+</CodeGroup>
 
 Another method to creating a MAP within a document is to perform an UPDATE operation.
 

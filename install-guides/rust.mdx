@@ -5,13 +5,13 @@ icon: rust
 iconType: solid
 ---
 
-- [Prerequisites](/install-guides/rust#STCAQ)
-- [Creating a New Project](/install-guides/rust#1JwfY)
-- [Including Ditto Dependencies](/install-guides/rust#PjmtY)
-- [Verifying Project Setup](/install-guides/rust#tH0Ah)
-- [Organizing Filesystem Structure](/install-guides/rust#EYyu6)
-- [Cross-Compiling with the Ditto SDK](/install-guides/rust#GCpmi)
-- [Troubleshooting](/install-guides/rust#5enEt)
+- [Prerequisites](#prerequisites)
+- [Creating a New Project](#creating-a-new-project)
+- [Including Ditto Dependencies](#including-ditto-dependencies)
+- [Verifying Project Setup](#verifying-project-setup)
+- [Organizing Filesystem Structure](#organizing-filesystem-structure)
+- [Cross-Compiling with the Ditto SDK](#cross-compiling-with-the-ditto-sdk)
+- [Troubleshooting](#troubleshooting)
 
 # Prerequisites
 
@@ -25,30 +25,22 @@ If you don't have the `rustup` command, <a href="https://rustup.rs/" target="_bl
 <Step>
 If you already have `rustup`, ensure it's updated to the latest version:
 
-<Tabs>
-<Tab title="bash">
-
-```powershell
+<CodeGroup>
+```bash
 rustup self update
 ```
-
-</Tab>
-</Tabs>
+</CodeGroup>
 </Step>
 
 <Step>
 Now, verify you have both `rustc` and `cargo` available in your shell:
 
-<Tabs>
-<Tab title="bash">
-
-```powershell
+<CodeGroup>
+```bash
 rustc --version
 cargo --version
 ```
-
-</Tab>
-</Tabs>
+</CodeGroup>
 </Step>
 </Steps>
 
@@ -56,15 +48,11 @@ cargo --version
 
 Using Cargo, create a new binary project:
 
-<Tabs>
-<Tab title="bash">
-
-```powershell
+<CodeGroup>
+```bash
 cargo new --bin my_project_name
 ```
-
-</Tab>
-</Tabs>
+</CodeGroup>
 
 <Info>
 Make sure to replace `my_project_name` with your desired project name.
@@ -82,16 +70,12 @@ Visit <a href="https://docs.rs/dittolive-ditto" target="_blank">docs.rs/dittoliv
 <Step>
 From the `Cargo.toml` file located in the root of your project, add a dependency on `dittolive-ditto` at the version chosen, in this case `"=4.8.0"`. We recommend using the `"=x.y.z"` semver syntax to prevent implicit upgrades.
 
-<Tabs>
-<Tab title="Cargo.toml">
-
-```rust
+<CodeGroup>
+```rust Rust
 [dependencies]
 dittolive-ditto = "=4.8.0"
 ```
-
-</Tab>
-</Tabs>
+</CodeGroup>
 </Step>
 
 <Step>
@@ -101,23 +85,17 @@ Visit the <a href="https://docs.ditto.live/compatibility/rust" target="_blank">R
 <Step>
 Create a `rust-toolchain` file next to your `Cargo.toml`and paste the Rust toolchain version you looked up from the compatibiltiy map:
 
-<Tabs>
-<Tab title="./rust-toolchain">
-
+<CodeGroup>
 ```none
 1.74.1
 ```
-
-</Tab>
-</Tabs>
+</CodeGroup>
 </Step>
 
 <Step>
 Save the `Cargo.toml` and `rust-toolchain` files, then check that you can build and run the executable with `cargo run`:
 
-<Tabs>
-<Tab title="bash">
-
+<CodeGroup>
 ```none
 $ cargo run
 info: syncing channel updates for '1.74.1-aarch64-apple-darwin'
@@ -127,9 +105,7 @@ info: syncing channel updates for '1.74.1-aarch64-apple-darwin'
 Hello, world!
 
 ```
-
-</Tab>
-</Tabs>
+</CodeGroup>
 
 <Info>
 The first time running `cargo build` or `cargo run` after updating the `rust-toolchain` file, you should see the "info: syncing channel updates" message. This is `rustup` magically installing the toolchain you specified in `rust-toolchain` behind the scenes.
@@ -145,7 +121,7 @@ For guidelines to keep organized, see [Components and Organization Best Practice
 
 ## Components and Organization Best Practices
 
-The following table provides an overview of the components that make up your app's filesystem structure and best practices for organizing the files on the filesystem of the end user's device:
+The following table provides an overview of the components that make up your app's filesystem structure and best practices for organizing the files on the filesystem of the end-user device:
 
 | **Component**           | **Best Practice**                                                                                                                                                                                                                                                                                                                                                                                                        |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -169,29 +145,21 @@ For an overview of file paths and file extensions by target platform, see [Binar
 
 For example, to configure for the macOS target, configure the linker flag to locate the Ditto SDK shared binary library (`libdittoffi.dylib`) for compilation, use `@executable_path` to specify a relative path from the executable to the library:
 
-<Tabs>
-<Tab title="bash">
-
+<CodeGroup>
 ```none
 @executable_path/../libdittoffi.dylib
 ```
-
-</Tab>
-</Tabs>
+</CodeGroup>
 </Step>
 
 <Step>
 Before distributing your app, ensure the Ditto SDK shared binary library is included and accessible at the specified location and configured for your linker:
 
-<Tabs>
-<Tab title="bash">
-
+<CodeGroup>
 ```none
 target/<profile>/build/dittolive-ditto-sys<hash>/out
 ```
-
-</Tab>
-</Tabs>
+</CodeGroup>
 </Step>
 </Steps>
 
@@ -221,10 +189,8 @@ Specify targets, their root directories, and other configuration settings, such 
 
 For example, the following snippet shows separate configurations for Linux and Windows targets:
 
-<Tabs>
-<Tab title=".cargo/config.toml">
-
-```rust
+<CodeGroup>
+```rust Rust
 [target.'cfg(target_os = "linux")']
 linker = "arm-linux-gnueabihf-gcc"
 ar = "arm-linux-gnueabihf-ar"
@@ -239,9 +205,7 @@ linker = "x86_64-w64-mingw32-gcc"
 ar = "x86_64-w64-mingw32-ar"
 
 ```
-
-</Tab>
-</Tabs>
+</CodeGroup>
 </Step>
 </Steps>
 
@@ -249,15 +213,11 @@ ar = "x86_64-w64-mingw32-ar"
 
 During the build process, you may encounter the following error message indicating the Ditto SDK `build.rs` script failed to locate and download the native static library (`dittoffi`) containing the Ditto binary appropriate for your target:
 
-<Tabs>
-<Tab title="">
-
+<CodeGroup>
 ```none
 "error: could not find native static library dittoffi, perhaps an -L flag is missing". What should I do?
 ```
-
-</Tab>
-</Tabs>
+</CodeGroup>
 
 ## Diagnosing build.rs Failures
 
@@ -267,15 +227,11 @@ However, several factors, such as connectivity issues and misconfigured settings
 
 To diagnose this issue, check the following logs for errors:
 
-<Tabs>
-<Tab title="">
-
+<CodeGroup>
 ```none
  target/<profile>/build/dittolive-ditto-sys-<hash>/stderr
 ```
-
-</Tab>
-</Tabs>
+</CodeGroup>
 
 ## Resolving build.rs Failures
 
@@ -289,31 +245,23 @@ Ensure your internet connection is live and the Ditto SDK version number is corr
 <Step>
 Using a command-line tool like `file`, `otool`, and `readelf`, as follows, inspect the downloaded library located in the build cache to determine if its properties meet the requirements for integration into your Rust project:
 
-<Tabs>
-<Tab title="file">
-
-```none
+<CodeGroup>
+```bash
 file libdittoffi.dylib
 ```
+</CodeGroup>
 
-</Tab>
-
-<Tab title="otool">
-
-```none
+<CodeGroup>
+```bash
 otool -L libdittoffi.dylib
 ```
+</CodeGroup>
 
-</Tab>
-
-<Tab title="readelf">
-
-```none
+<CodeGroup>
+```bash
 readelf -a libdittoffi.so
 ```
-
-</Tab>
-</Tabs>
+</CodeGroup>
 </Step>
 
 <Step>

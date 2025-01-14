@@ -28,86 +28,78 @@ For the full DQL syntax, see *Ditto Query Language *> [UPDATE]().
 
 Here is an example of a basic `UPDATE` operation on the `cars` collection:
 
-<Tabs>
-    <Tab title="Swift">
-    ```swift
-    try await ditto.store.execute("""
-      UPDATE cars
-      SET color = 'blue'
-      WHERE _id = '123'
-      """);
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```kotlin
-    ditto.store.execute("""
-      UPDATE cars
-      SET color = 'blue'
-      WHERE _id = '123'
-      """)
-    ```
-    </Tab>
-    <Tab title="JS">
-    ```javascript
-    await ditto.store.execute(`
-      UPDATE cars
-      SET color = 'blue'
-      WHERE _id = '123'`
-    );
-    ```
-    </Tab>
-    <Tab title="Java">
-    ```java
-    DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
-      "UPDATE cars SET color = 'blue' WHERE _id = '123'",
-      new Continuation<>() {
-        @NonNull
-        @Override
-        public CoroutineContext getContext() {
-          return EmptyCoroutineContext.INSTANCE;
-        }
+<CodeGroup>
+```swift Swift
+try await ditto.store.execute("""
+  UPDATE cars
+  SET color = 'blue'
+  WHERE _id = '123'
+  """);
+```
 
-        @Override
-        public void resumeWith(@NonNull Object o) {
-          if (o instanceof Result.Failure) {
-            // Handle failure
-          }
-        }
+```kotlin Kotlin
+ditto.store.execute("""
+  UPDATE cars
+  SET color = 'blue'
+  WHERE _id = '123'
+  """)
+```
+
+```javascript JS
+await ditto.store.execute(`
+  UPDATE cars
+  SET color = 'blue'
+  WHERE _id = '123'`
+);
+```
+
+```java Java
+DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
+  "UPDATE cars SET color = 'blue' WHERE _id = '123'",
+  new Continuation<>() {
+    @NonNull
+    @Override
+    public CoroutineContext getContext() {
+      return EmptyCoroutineContext.INSTANCE;
+    }
+
+    @Override
+    public void resumeWith(@NonNull Object o) {
+      if (o instanceof Result.Failure) {
+        // Handle failure
       }
-    );
-    ```
-    </Tab>
-    <Tab title="C#">
-    ```csharp
-    await ditto.Store.ExecuteAsync(
-      "UPDATE cars SET color = 'blue' WHERE _id = '123'");
-    ```
-    </Tab>
-    <Tab title="C++">
-    ```cpp
-    ditto.get_store().execute(
-      "UPDATE cars SET color = 'blue' WHERE _id = '123'");
-    ```
-    </Tab>
-    <Tab title="Rust">
-    ```rust
-    ditto.store().execute(
-      "UPDATE cars SET color = 'blue' WHERE _id = '123'",
-      None);
-    ```
-    </Tab>
-    <Tab title="Dart">
-    ```dart
-    await ditto.store.execute("""
-      UPDATE cars
-      SET color = 'blue'
-      WHERE _id = '123'
-    """);
-    ```
-    </Tab>
-</Tabs>
+    }
+  }
+);
+```
 
-## Attachment Token
+```csharp C#
+await ditto.Store.ExecuteAsync(
+  "UPDATE cars SET color = 'blue' WHERE _id = '123'");
+```
+
+```cpp C++
+ditto.get_store().execute(
+  "UPDATE cars SET color = 'blue' WHERE _id = '123'");
+```
+
+```rust Rust
+ditto.store().execute(
+  "UPDATE cars SET color = 'blue' WHERE _id = '123'",
+  None);
+```
+
+```dart Dart
+await ditto.store.execute("""
+  UPDATE cars
+  SET color = 'blue'
+  WHERE _id = '123'
+""");
+```
+
+</CodeGroup>
+
+# Attachment Token
 
 Once an `ATTACHMENT` object is created and linked to a document, it becomes immutable, meaning its contents cannot be changed.
 
@@ -117,149 +109,124 @@ However, you can *indirectly* update attachments by performing an `UPDATE` opera
 Before you can access an attachment in your app, you must actively fetch it, unlike a document, which is always readily accessible. For instructions, see [READ](./READ.md).
 </Info>
 
-<Tabs>
-    <Tab title="Swift">
-    ```swift
-    // Updating a Ditto Document with an attachment
-    // Update the document "123" with a new attachment
-    try await ditto.store.execute(
-        query: """
-        UPDATE COLLECTION cars (my_attachment ATTACHMENT)
-        SET my_attachment = :newAttachment
-        WHERE _id = "123"
-        """,
-        arguments: ["newAttachment": newAttachment]
-    )
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```kotlin
-    // Updating a Ditto Document with an attachment
-    // Fetch the document "123" with a new attachment
-    val query = "SELECT * FROM COLLECTION cars WHERE _id = :id"
-    val arguments = mapOf("id" to "123") // Assuming the document ID is "123"
-    val selectQueryResult = runBlocking { ditto.store.execute(query, arguments) }
+<CodeGroup>
+```swift Swift
+// Updating a Ditto Document with an attachment
+try await ditto.store.execute(
+    query: """
+    UPDATE COLLECTION cars (my_attachment ATTACHMENT)
+    SET my_attachment = :newAttachment
+    WHERE _id = "123"
+    """,
+    arguments: ["newAttachment": newAttachment]
+)
+```
 
-    // Get the existing document
-    val existingDocument = selectQueryResult.items.firstOrNull()
-    if (existingDocument != null) {
-        // Modify the document, including updating the attachment reference
-        val updatedDocument = existingDocument.value.toMutableMap()
-        updatedDocument["my_attachment"] = newAttachment // Assuming `newAttachment` is the updated attachment
+```kotlin Kotlin
+// Updating a Ditto Document with an attachment
+val query = "SELECT * FROM COLLECTION cars WHERE _id = :id"
+val arguments = mapOf("id" to "123") 
+val selectQueryResult = runBlocking { ditto.store.execute(query, arguments) }
+// ... remaining implementation
+```
 
-        // Save the updated document back to the collection
-        val updateQuery = "UPDATE COLLECTION cars DOCUMENTS (:document) WHERE _id = :id"
-        val updateArguments = mapOf("document" to updatedDocument, "id" to "123") // Assuming the document ID is "123"
-        runBlocking { ditto.store.execute(updateQuery, updateArguments) }
-    } else {
-        println("Document not found.")
-    }
-    ```
-    </Tab>
-    <Tab title="JS">
-    ```javascript
-    // Updating a Ditto Document with an attachment
-    // Update the document "123" with a new attachment
-    await ditto.store.execute(`
-      UPDATE COLLECTION cars (my_attachment ATTACHMENT)
-        SET my_attachment = :newAttachment
-        WHERE _id = "123"`,
-      { newAttachment }
-    );
-    ```
-    </Tab>
-    <Tab title="Java">
-    ```java
-    // Updating a Ditto Document with an attachment
-    // Fetch the document "123" with a new attachment
-    val query = "SELECT * FROM COLLECTION cars WHERE _id = :id"
-    val arguments = mapOf("id" to "123") // Assuming the document ID is "123"
-    val selectQueryResult = runBlocking { ditto.store.execute(query, arguments) }
+```javascript JS
+// Updating a Ditto Document with an attachment
+// Update the document "123" with a new attachment
+await ditto.store.execute(`
+  UPDATE COLLECTION cars (my_attachment ATTACHMENT)
+    SET my_attachment = :newAttachment
+    WHERE _id = "123"`,
+  { newAttachment }
+);
+```
 
-    // Get the existing document
-    val existingDocument = selectQueryResult.items.firstOrNull()
-    if (existingDocument != null) {
-        // Modify the document, including updating the attachment reference
-        val updatedDocument = existingDocument.value.toMutableMap()
-        updatedDocument["my_attachment"] = newAttachment // Assuming `newAttachment` is the updated attachment
+```java Java
+// Updating a Ditto Document with an attachment
+// Fetch the document "123" with a new attachment
+val query = "SELECT * FROM COLLECTION cars WHERE _id = :id"
+val arguments = mapOf("id" to "123") // Assuming the document ID is "123"
+val selectQueryResult = runBlocking { ditto.store.execute(query, arguments) }
 
-        // Save the updated document back to the collection
-        val updateQuery = "UPDATE COLLECTION cars DOCUMENTS (:document) WHERE _id = :id"
-        val updateArguments = mapOf("document" to updatedDocument, "id" to "123") // Assuming the document ID is "123"
-        runBlocking { ditto.store.execute(updateQuery, updateArguments) }
-    } else {
-        println("Document not found.")
-    }
-    ```
-    </Tab>
-    <Tab title="C#">
-    ```csharp
-    // Updating a Ditto Document with an attachment
-    // Update the document "123" with a new attachment
-    await ditto.Store.ExecuteAsync(
-        query: @"
-             UPDATE COLLECTION cars (my_attachment ATTACHMENT)
-             SET my_attachment = :newAttachment
-             WHERE _id = '123'
-             ",
-        arguments: new Dictionary<string, object>() { { "newAttachment", newAttachment } }
-    );
-    ```
-    </Tab>
-    <Tab title="Rust">
-    ```rust
-    // Updating a ditto document with an attachment
-        // (update the document "123" with a new attachment)
-        peer_a
-            .store()
-            .execute(
-                r#"
-                UPDATE COLLECTION cars (my_attachment ATTACHMENT)
-                SET my_attachment = :new_attachment
-                WHERE _id = "123"
-            "#,
-                Some(
-                    json!({
-                        "new_attachment": new_attachment,
-                    })
-                    .into(),
-                ),
-            )
-            .await?;
+// Get the existing document
+val existingDocument = selectQueryResult.items.firstOrNull()
+if (existingDocument != null) {
+    // Modify the document, including updating the attachment reference
+    val updatedDocument = existingDocument.value.toMutableMap()
+    updatedDocument["my_attachment"] = newAttachment // Assuming `newAttachment` is the updated attachment
 
-        wait_for_id_to_be_present_in(peer_b, "123").await?;
-    ```
-    </Tab>
-    <Tab title="Dart">
-    ```dart
-    await ditto.store.execute('''
-      UPDATE COLLECTION cars (my_attachment ATTACHMENT)
-        SET my_attachment = :newAttachment
-        WHERE _id = "123"''',
-      arguments: { "newAttachment": newAttachment },
-    );
-    ```
-    </Tab>
-</Tabs>
+    // Save the updated document back to the collection
+    val updateQuery = "UPDATE COLLECTION cars DOCUMENTS (:document) WHERE _id = :id"
+    val updateArguments = mapOf("document" to updatedDocument, "id" to "123") // Assuming the document ID is "123"
+    runBlocking { ditto.store.execute(updateQuery, updateArguments) }
+} else {
+    println("Document not found.")
+}
+```
+
+```csharp C#
+// Updating a Ditto Document with an attachment
+// Update the document "123" with a new attachment
+await ditto.Store.ExecuteAsync(
+    query: @"
+         UPDATE COLLECTION cars (my_attachment ATTACHMENT)
+         SET my_attachment = :newAttachment
+         WHERE _id = '123'
+         ",
+    arguments: new Dictionary<string, object>() { { "newAttachment", newAttachment } }
+);
+```
+
+```rust Rust
+// Updating a ditto document with an attachment
+    // (update the document "123" with a new attachment)
+    peer_a
+        .store()
+        .execute(
+            r#"
+            UPDATE COLLECTION cars (my_attachment ATTACHMENT)
+            SET my_attachment = :new_attachment
+            WHERE _id = "123"
+        "#,
+            Some(
+                json!({
+                    "new_attachment": new_attachment,
+                })
+                .into(),
+            ),
+        )
+        .await?;
+
+    wait_for_id_to_be_present_in(peer_b, "123").await?;
+```
+
+```dart Dart
+await ditto.store.execute('''
+  UPDATE COLLECTION cars (my_attachment ATTACHMENT)
+    SET my_attachment = :newAttachment
+    WHERE _id = "123"''',
+  arguments: { "newAttachment": newAttachment },
+);
+```
+
+</CodeGroup>
 
 ## MAP Data Type
 
 To add a `MAP` to a document, use the operator syntax `-> (...)`, allowing you to edit multiple child fields within a single `MAP`:
 
-<Tabs>
-    <Tab title="DQL">
-    ```sql
-    UPDATE COLLECTION cars (properties MAP)
-    SET
-      properties -> (
-        color = 'red',
-        mileage = 3001
-      )
-    WHERE
-      _id = '123'
-    ```
-    </Tab>
-</Tabs>
+<CodeGroup>
+```sql
+UPDATE COLLECTION cars (properties MAP)
+SET
+  properties -> (
+    color = 'red',
+    mileage = 3001
+  )
+WHERE
+  _id = '123'
+```
+</CodeGroup>
 
 ## Multiple Documents
 
@@ -269,95 +236,87 @@ For example, here is a snippet demonstrating the `UPDATE` operation modifying al
 
 After the update, you can reference the documents modified by the `mutatedDocumentIDs` method on the `result` of the update.
 
-<Tabs>
-    <Tab title="Swift">
-    ```swift
-    let result = try await ditto.store.execute(
-      "UPDATE cars SET color = 'blue' WHERE _id = '123'");
+<CodeGroup>
+```swift Swift
+let result = try await ditto.store.execute(
+  "UPDATE cars SET color = 'blue' WHERE _id = '123'");
 
-    result.mutatedDocumentIDs.forEach() { print($0) }
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```kotlin
-    var result = ditto.store.execute("""
-      UPDATE cars
-      SET color = 'blue'
-      WHERE _id = '123'
-      """)
+result.mutatedDocumentIDs.forEach() { print($0) }
+```
 
-    result.mutatedDocumentIDs().forEach { id ->
-        println(id)
-    }
-    ```
-    </Tab>
-    <Tab title="JS">
-    ```javascript
-    const result = await ditto.store.execute(`
-      UPDATE cars
-      SET color = 'blue'
-      WHERE color = 'red'`
-    );
+```kotlin Kotlin
+var result = ditto.store.execute("""
+  UPDATE cars
+  SET color = 'blue'
+  WHERE _id = '123'
+  """)
 
-    console.log(result.mutatedDocumentIDs().value);
-    ```
-    </Tab>
-    <Tab title="Java">
-    ```java
-    DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
-        "UPDATE cars SET color = 'blue' WHERE color = 'red'",
-        new Continuation<>() {
-            @NonNull
-            @Override
-            public CoroutineContext getContext() {
-                return EmptyCoroutineContext.INSTANCE;
-            }
+result.mutatedDocumentIDs().forEach { id ->
+    println(id)
+}
+```
 
-            @Override
-            public void resumeWith(@NonNull Object o) {
-                if (o instanceof Result.Failure) {
-                    // Handle failure
-                }
+```javascript JS
+const result = await ditto.store.execute(`
+  UPDATE cars
+  SET color = 'blue'
+  WHERE color = 'red'`
+);
+
+console.log(result.mutatedDocumentIDs().value);
+```
+
+```java Java
+DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
+    "UPDATE cars SET color = 'blue' WHERE color = 'red'",
+    new Continuation<>() {
+        @NonNull
+        @Override
+        public CoroutineContext getContext() {
+            return EmptyCoroutineContext.INSTANCE;
+        }
+
+        @Override
+        public void resumeWith(@NonNull Object o) {
+            if (o instanceof Result.Failure) {
+                // Handle failure
             }
         }
-    );
-
-    for (String id : result.mutatedDocumentIDs()) {
-        System.out.println(id);
     }
-    ```
-    </Tab>
-    <Tab title="C#">
-    ```csharp
-    const result = await ditto.Store.ExecuteAsync(
-      "UPDATE cars SET color = 'blue' WHERE color = 'red'");
+);
 
-    result.MutatedDocumentIDs.ForEach(id => Console.WriteLine(id));
-    ```
-    </Tab>
-    <Tab title="C++">
-    ```cpp
-    ditto.get_store().execute(
-      "UPDATE cars SET color = 'blue' WHERE color = 'red'");
-    ```
-    </Tab>
-    <Tab title="Rust">
-    ```rust
-    ditto.store().execute(
-      "UPDATE cars SET color = 'blue' WHERE color = 'red'",
-      None);
-    ```
-    </Tab>
-    <Tab title="Dart">
-    ```dart
-    await ditto.store.execute("""
-      UPDATE cars
-      SET color = 'blue'
-      WHERE color = 'red'
-    """);
-    ```
-    </Tab>
-</Tabs>
+for (String id : result.mutatedDocumentIDs()) {
+    System.out.println(id);
+}
+```
+
+```csharp C#
+const result = await ditto.Store.ExecuteAsync(
+  "UPDATE cars SET color = 'blue' WHERE color = 'red'");
+
+result.MutatedDocumentIDs.ForEach(id => Console.WriteLine(id));
+```
+
+```cpp C++
+ditto.get_store().execute(
+  "UPDATE cars SET color = 'blue' WHERE color = 'red'");
+```
+
+```rust Rust
+ditto.store().execute(
+  "UPDATE cars SET color = 'blue' WHERE color = 'red'",
+  None);
+```
+
+```dart Dart
+await ditto.store.execute("""
+  UPDATE cars
+  SET color = 'blue'
+  WHERE color = 'red'
+""");
+```
+
+</CodeGroup>
 
 # Inserting with Update
 
@@ -373,261 +332,247 @@ By using the `ON ID CONFLICT DO UPDATE` policy, inserted documents automatically
 To optimize performance and reduce unnecessary overhead, apply most data modifications in your app through the `UPDATE` method.
 </Warning>
 
-<Tabs>
-    <Tab title="Swift">
-    ```swift
-    var document = [
-      "_id": "123",
-      "color": "red",
-    ];
+<CodeGroup>
+```swift Swift
+var document = [
+  "_id": "123",
+  "color": "red",
+];
 
-    try await ditto.store.execute(
-      query:"""
-      INSERT INTO cars
-      DOCUMENTS (:document)
-      ON ID CONFLICT DO UPDATE
-      """,
-      arguments: [ "document": document ]);
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```kotlin
-    ditto.store.execute(
-      "INSERT INTO cars DOCUMENTS (:car)",
-      mapOf("car" to mapOf(
-        "_id" to "123",
-        "color" to "red"
-      )))
-    ```
-    </Tab>
-    <Tab title="JS">
-    ```javascript
-    const document = {
-      _id: "123",
-      color: "red",
-    };
+try await ditto.store.execute(
+  query:"""
+  INSERT INTO cars
+  DOCUMENTS (:document)
+  ON ID CONFLICT DO UPDATE
+  """,
+  arguments: [ "document": document ]);
+```
 
-    await ditto.store.execute(`
-      INSERT INTO cars
-      DOCUMENTS (:document)
-      ON ID CONFLICT DO UPDATE`,
-      { document }
-    );
-    ```
-    </Tab>
-    <Tab title="Java">
-    ```java
-    Map<String, String> document = new HashMap<>();
-    newCar.put("_id", "123");
-    newCar.put("color", "red");
+```kotlin Kotlin
+ditto.store.execute(
+  "INSERT INTO cars DOCUMENTS (:car)",
+  mapOf("car" to mapOf(
+    "_id" to "123",
+    "color" to "red"
+  )))
+```
 
-    DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
-        "INSERT INTO cars DOCUMENTS (:document) ON ID CONFLICT DO UPDATE",
-        Collections.singletonMap("document", document),
-        new Continuation<>() {
-            @NonNull
-            @Override
-            public CoroutineContext getContext() {
-                return EmptyCoroutineContext.INSTANCE;
-            }
+```javascript JS
+const document = {
+  _id: "123",
+  color: "red",
+};
 
-            @Override
-            public void resumeWith(@NonNull Object o) {
-                if (o instanceof Result.Failure) {
-                    // Handle failure
-                }
+await ditto.store.execute(`
+  INSERT INTO cars
+  DOCUMENTS (:document)
+  ON ID CONFLICT DO UPDATE`,
+  { document }
+);
+```
+
+```java Java
+Map<String, String> document = new HashMap<>();
+newCar.put("_id", "123");
+newCar.put("color", "red");
+
+DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
+    "INSERT INTO cars DOCUMENTS (:document) ON ID CONFLICT DO UPDATE",
+    Collections.singletonMap("document", document),
+    new Continuation<>() {
+        @NonNull
+        @Override
+        public CoroutineContext getContext() {
+            return EmptyCoroutineContext.INSTANCE;
+        }
+
+        @Override
+        public void resumeWith(@NonNull Object o) {
+            if (o instanceof Result.Failure) {
+                // Handle failure
             }
         }
-    );
-    ```
-    </Tab>
-    <Tab title="C#">
-    ```csharp
-    var args = new Dictionary<string, object> {
-      "document", new { _id = "123" , color = "red" }
-    };
-
-    await ditto.Store.ExecuteAsync(
-      "INSERT INTO cars"
-    + " DOCUMENTS (:document) ON ID CONFLICT DO UPDATE",
-      args);
-    ```
-    </Tab>
-    <Tab title="C++">
-    ```cpp
-    std::map<std::string, std::map<std::string, std::string>> args;
-    args["document"] = {{"_id", "123"},{"color", "red"}};
-
-    ditto.get_store().execute(
-      "INSERT INTO cars DOCUMENTS (:document) ON ID CONFLICT DO UPDATE",
-      args);
-    ```
-    </Tab>
-    <Tab title="Rust">
-    ```rust
-    struct Args {
-      document: Car,
     }
-    struct Car {
-      _id: String,
-      color: String
-    }
+);
+```
 
-    // ...
+```csharp C#
+var args = new Dictionary<string, object> {
+  "document", new { _id = "123" , color = "red" }
+};
 
-    let args = Args {
-      document: Car {
-        _id: "123".to_string(),
-        color: "red".to_string()
-      },
-    };
+await ditto.Store.ExecuteAsync(
+  "INSERT INTO cars"
++ " DOCUMENTS (:document) ON ID CONFLICT DO UPDATE",
+  args);
+```
 
-    ditto.store().execute(
-      "INSERT INTO cars DOCUMENTS (:document)",
-      args);
-    ```
-    </Tab>
-    <Tab title="Dart">
-    ```dart
-    final document = {
-      "_id": "123",
-      "color": "red",
-    };
+```cpp C++
+std::map<std::string, std::map<std::string, std::string>> args;
+args["document"] = {{"_id", "123"},{"color", "red"}};
 
-    await ditto.store.execute("""
-      INSERT INTO cars
-      DOCUMENTS (:document)
-      ON ID CONFLICT DO UPDATE""",
-      arguments: {"document": document},
-    );
-    ```
-    </Tab>
-</Tabs>
+ditto.get_store().execute(
+  "INSERT INTO cars DOCUMENTS (:document) ON ID CONFLICT DO UPDATE",
+  args);
+```
+
+```rust Rust
+struct Args {
+  document: Car,
+}
+struct Car {
+  _id: String,
+  color: String
+}
+
+// ...
+
+let args = Args {
+  document: Car {
+    _id: "123".to_string(),
+    color: "red".to_string()
+  },
+};
+
+ditto.store().execute(
+  "INSERT INTO cars DOCUMENTS (:document)",
+  args);
+```
+
+```dart Dart
+final document = {
+  "_id": "123",
+  "color": "red",
+};
+
+await ditto.store.execute("""
+  INSERT INTO cars
+  DOCUMENTS (:document)
+  ON ID CONFLICT DO UPDATE""",
+  arguments: {"document": document},
+);
+```
+
+</CodeGroup>
 
 ## MAP in a MAP
 
 If you need to represent and organize highly complex data in a hierarchical structure, consider embedding a `MAP` within another `MAP` to establish a parent-child relationship within a document as follows:
 
-<Tabs>
-    <Tab title="Swift">
-    ```swift
-    let arguments: [String: Any] = [
-      "newDocument": [
-        "_id": "123",
-        "top_map": [
-          "nested_map": [
-            "color": "blue"
-          ]
-        ]
+<CodeGroup>
+```swift Swift
+let arguments: [String: Any] = [
+  "newDocument": [
+    "_id": "123",
+    "top_map": [
+      "nested_map": [
+        "color": "blue"
       ]
-    ];
+    ]
+  ]
+];
 
-    await ditto.store.execute(
-      query: """
-      INSERT INTO COLLECTION your_collection_name (top_map MAP(nested_map MAP))
-      DOCUMENTS (:newDocument)
-      """,
-      arguments: arguments);
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```kotlin
-    val arguments = mapOf(
-      "newDocument" to mapOf(
-        "_id" to "123",
-        "top_map" to mapOf(
-          "nested_map" to mapOf(
-            "color" to "blue"
-          )
-        )
+await ditto.store.execute(
+  query: """
+  INSERT INTO COLLECTION your_collection_name (top_map MAP(nested_map MAP))
+  DOCUMENTS (:newDocument)
+  """,
+  arguments: arguments);
+```
+
+```kotlin Kotlin
+val arguments = mapOf(
+  "newDocument" to mapOf(
+    "_id" to "123",
+    "top_map" to mapOf(
+      "nested_map" to mapOf(
+        "color" to "blue"
       )
     )
+  )
+)
 
-    ditto.store.execute("""
-      INSERT INTO COLLECTION your_collection_name (top_map MAP(nested_map MAP))
-      DOCUMENTS (:newDocument)
-      """,
-      arguments)
-    ```
-    </Tab>
-    <Tab title="JS">
-    ```javascript
-    const newDocument = {
-      _id: "123",
-      top_map: {
-        nested_map: {
-          color: "blue"
+ditto.store.execute("""
+  INSERT INTO COLLECTION your_collection_name (top_map MAP(nested_map MAP))
+  DOCUMENTS (:newDocument)
+  """,
+  arguments)
+```
+
+```javascript JS
+const newDocument = {
+  _id: "123",
+  top_map: {
+    nested_map: {
+      color: "blue"
+    }
+  }
+};
+
+await ditto.store.execute(`
+  INSERT INTO COLLECTION your_collection_name (top_map MAP(nested_map MAP))
+  DOCUMENTS (:newDocument)`,
+  { newDocument }
+);
+```
+
+```java Java
+Map<String, Object> nestedMap = new HashMap<>();
+nestedMap.put("color", "blue");
+
+Map<String, Object> topMap = new HashMap<>();
+topMap.put("nestedMap", nestedMap);
+
+Map<String, Object> newDocument = new HashMap<>();
+newDocument.put("_id", "123");
+newDocument.put("topMap", topMap);
+
+DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
+    "INSERT INTO COLLECTION your_collection_name (top_map MAP(nested_mapMAP)) DOCUMENTS (:newDocument)",
+    Collections.singletonMap("newDocument", newDocument),
+    new Continuation<>() {
+        @NonNull
+        @Override
+        public CoroutineContext getContext() {
+            return EmptyCoroutineContext.INSTANCE;
         }
-      }
-    };
 
-    await ditto.store.execute(`
-      INSERT INTO COLLECTION your_collection_name (top_map MAP(nested_map MAP))
-      DOCUMENTS (:newDocument)`,
-      { newDocument }
-    );
-    ```
-    </Tab>
-    <Tab title="Java">
-    ```java
-    Map<String, Object> nestedMap = new HashMap<>();
-    nestedMap.put("color", "blue");
-
-    Map<String, Object> topMap = new HashMap<>();
-    topMap.put("nestedMap", nestedMap);
-
-    Map<String, Object> newDocument = new HashMap<>();
-    newDocument.put("_id", "123");
-    newDocument.put("topMap", topMap);
-
-    DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
-        "INSERT INTO COLLECTION your_collection_name (top_map MAP(nested_mapMAP)) DOCUMENTS (:newDocument)",
-        Collections.singletonMap("newDocument", newDocument),
-        new Continuation<>() {
-            @NonNull
-            @Override
-            public CoroutineContext getContext() {
-                return EmptyCoroutineContext.INSTANCE;
-            }
-
-            @Override
-            public void resumeWith(@NonNull Object o) {
-                if (o instanceof Result.Failure) {
-                    // Handle failure
-                }
+        @Override
+        public void resumeWith(@NonNull Object o) {
+            if (o instanceof Result.Failure) {
+                // Handle failure
             }
         }
-    );
-    ```
-    </Tab>
-    <Tab title="C#">
-    ```csharp
-    var nestedMap = new {
-  color = "blue"
+    }
+);
+```
+
+```csharp C#
+var nestedMap = new {
+color = "blue"
 };
 var topMap = new {
-  nestedMap = nestedMap
+nestedMap = nestedMap
 };
 var args = new Dictionary<string, object>();
 args.Add("newDocument", new { _id = newId, topMap = topMap })
 
 var result = await ditto.Store.ExecuteAsync(
-  "INSERT INTO COLLECTION your_collection_name (top_map MAP(nested_map MAP))"
+"INSERT INTO COLLECTION your_collection_name (top_map MAP(nested_map MAP))"
 + " DOCUMENTS (:newDocument)",
-  args);
-  ```
-  </Tab>
-  <Tab title="C++">
-  ```cpp
+args);
+```
+
+```cpp C++
 struct NestedMap {
-  std::string color;
+std::string color;
 };
 struct TopMap {
-  NestedMap nestedMap;
+NestedMap nestedMap;
 };
 struct Document {
-  std::string _id;
-  TopMap topMap;
+std::string _id;
+TopMap topMap;
 };
 
 // ...
@@ -636,63 +581,60 @@ std::map<std::string, Document> args;
 args["newDocument"] = {"123", TopMap{NestedMap{"blue"}}};
 
 ditto.get_store().execute(
-  "INSERT INTO COLLECTION your_collection_name (properties MAP)"
+"INSERT INTO COLLECTION your_collection_name (properties MAP)"
 + " DOCUMENTS (:newDocument)",
-  args);
-  ```
-  </Tab>
+args);
+```
 
-  <Tab title="Rust">
-  ```rust
+```rust Rust
 struct Args {
-  newDocument: Document,
+newDocument: Document,
 }
 struct NestedMap {
-  color: String
+color: String
 }
 struct TopMap {
-  nestedMap: NestedMap
+nestedMap: NestedMap
 }
 struct Document {
-  _id: String,
-  topMap: TopMap
+_id: String,
+topMap: TopMap
 }
 
 // ...
 
 let args = Args {
-  newDocument: Document {
-    _id: "123".to_string(),
-    topMap: TopMap {
-      nestedMap: NestedMap {
-        sobField: "blue".to_string()
-      }
+newDocument: Document {
+  _id: "123".to_string(),
+  topMap: TopMap {
+    nestedMap: NestedMap {
+      sobField: "blue".to_string()
     }
-  },
+  }
+},
 };
 
 await ditto.store().execute("
-  "INSERT INTO COLLECTION your_collection_name (properties MAP)"
+"INSERT INTO COLLECTION your_collection_name (properties MAP)"
 + " DOCUMENTS (:newDocument)",
-  args);
-  ```
-  </Tab>
-  <Tab title="Dart">
-  ```dart
-  final newDocument = {
-  "_id": "123",
-  "top_map": {
-    "nested_map": {
-      "color": "blue",
-    },
+args);
+```
+
+```dart Dart
+final newDocument = {
+"_id": "123",
+"top_map": {
+  "nested_map": {
+    "color": "blue",
   },
+},
 };
 
 await ditto.store.execute("""
-  INSERT INTO COLLECTION your_collection_name (top_map MAP(nested_map MAP))
-  DOCUMENTS (:newDocument)""",
-  arguments: {"newDocument": newDocument},
+INSERT INTO COLLECTION your_collection_name (top_map MAP(nested_map MAP))
+DOCUMENTS (:newDocument)""",
+arguments: {"newDocument": newDocument},
 );
 ```
-</Tab>
-</Tabs>
+
+</CodeGroup>

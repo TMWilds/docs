@@ -13,48 +13,42 @@ To get realtime updates about changes to presence data, use the Presence API. Th
 
 To access API methods for mesh presence functionality, call the the `presence` namespace on the root `Ditto` object:
 
-<Tabs>
-    <Tab title="Swift">
-    ```swift
-    ditto.presence
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```kotlin
-    ditto.presence
-    ```
-    </Tab>
-    <Tab title="JS">
-    ```javascript
-    ditto.presence
-    ```
-    </Tab>
-    <Tab title="Java">
-    ```java
-    ditto.getPresence();
-    ```
-    </Tab>
-    <Tab title="C#">
-    ```csharp
-    Ditto.Presence
-    ```
-    </Tab>
-    <Tab title="C++">
-    ```cpp
-    ditto.get_presence()
-    ```
-    </Tab>
-    <Tab title="Rust">
-    ```rust
-    ditto.presence()
-    ```
-    </Tab>
-    <Tab title="Dart">
-    ```dart
-    ditto.presence
-    ```
-    </Tab>
-</Tabs>
+<CodeGroup>
+
+```swift Swift
+
+ditto.presence
+```
+
+```kotlin Kotlin
+ditto.presence
+```
+
+```javascript JS
+ditto.presence
+```
+
+```java Java
+ditto.getPresence();
+```
+
+```csharp C#
+Ditto.Presence
+```
+
+```cpp C++
+ditto.get_presence()
+```
+
+```rust Rust
+ditto.presence()
+```
+
+```dart Dart
+ditto.presence
+```
+
+</CodeGroup>
 
 # Presence Graph
 
@@ -68,61 +62,51 @@ You can integrate the presence graph into your app to enable end-user functional
 
 To view your current presence graph:
 
-<Tabs>
-    <Tab title="Swift">
-    ```swift
-    let presenceGraph = ditto.presence.graph
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```kotlin
-    val presenceGraph = ditto.presence.graph
-    ```
-    </Tab>
-    <Tab title="JS">
-    ```javascript
-    const presenceGraph = ditto.presence.graph
-    ```
-    </Tab>
-    <Tab title="Java">
-    ```java
-    DittoPresenceGraph graph = ditto.getPresence().getGraph();
-    ```
-    </Tab>
-    <Tab title="C#">
-    ```csharp
-    var PresenceGraph = Ditto.Presence.Graph
-    ```
-    </Tab>
-    <Tab title="C++">
-    ```cpp
-    auto presenceGraph = ditto.get_presence().graph()
-    ```
-    </Tab>
-    <Tab title="Rust">
-    ```rust
-    let presenceGraph = ditto.presence().graph()
-    ```
-    </Tab>
-    <Tab title="Dart">
-    ```dart
-    final presenceGraph = await ditto.presence.graph;
-    ```
-    </Tab>
-</Tabs>
+<CodeGroup>
+```swift Swift
+
+let presenceGraph = ditto.presence.graph
+```
+
+```kotlin Kotlin
+val presenceGraph = ditto.presence.graph
+```
+
+```javascript JS
+const presenceGraph = ditto.presence.graph
+```
+
+```java Java
+DittoPresenceGraph graph = ditto.getPresence().getGraph();
+```
+
+```csharp C#
+var PresenceGraph = Ditto.Presence.Graph
+```
+
+```cpp C++
+auto presenceGraph = ditto.get_presence().graph()
+```
+
+```rust Rust
+let presenceGraph = ditto.presence().graph()
+```
+
+```dart Dart
+final presenceGraph = await ditto.presence.graph;
+```
+</CodeGroup>
 
 Once invoked, Ditto returns the following object, allowing you to perform actions like displaying the status of connected peers and managing network resources:
 
-<Tabs>
-    <Tab title="Presence Graph Response">
-    ```json
-    {
-      localPeer: Peer;
-      remotePeers: Peer[];
-    }
-    ```
-    </Tab>
-</Tabs>
+<CodeGroup>
+```json
+{
+  localPeer: Peer;
+  remotePeers: Peer[];
+}
+```
+</CodeGroup>
 
 The `localPeer` is the metadata set by the end user within your app. The `remotePeers` property provides an `array` of the other client devices connected to the mesh. (See [End-User Defined Metadata]())
 
@@ -134,65 +118,57 @@ To monitor and handle changes observed to the presence graph, call the change ha
 Make sure the observer response object remains in memory during runtime; otherwise, Ditto removes it during the periodic garbage collection process running in the background, resulting in the change handler no longer being triggered.
 </Warning>
 
-<Tabs>
-    <Tab title="Swift">
-    ```swift
-    let presenceObserver = ditto.presence.observe { presenceGraph in
-        // observe changes to the presence graph
-    }
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```kotlin
-    val presenceObserver = ditto.presence.observe { graph ->
-        // observe changes to the presence graph
-    }
-    ```
-    </Tab>
-    <Tab title="JS">
-    ```javascript
-    const presenceObserver = ditto.presence.observe((presenceGraph) => {
-        // observe changes to the presence graph
-    })
-    ```
-    </Tab>
-    <Tab title="Java">
-    ```java
-    DittoPresenceObserver presenceObserver = ditto.getPresence().observe(graph -> {
-        // observe changes to the presence graph
-    });
-    ```
-    </Tab>
-    <Tab title="C#">
-    ```csharp
-    var presenceObserver = Ditto.Presence.Observe((DittoPresenceGraph graph) =>
-    {
-        // Observe changes to the presence graph
-    });
-    ```
-    </Tab>
-    <Tab title="C++">
-    ```cpp
-    auto presenceObserver = ditto.get_presence().observe([&](PresenceGraph graph) {
-        // observe changes to the presence graph
-    });
-    ```
-    </Tab>
-    <Tab title="Rust">
-    ```rust
-    let presenceObserver = ditto.presence().observe(move |_graph| {
-        // observe changes to the presence graph
-    });
-    ```
-    </Tab>
-    <Tab title="Dart">
-    ```dart
-    final presenceObserver = await ditto.presence.observe((graph) {
-      // observe changes to the presence graph
-    });
-    ```
-    </Tab>
-</Tabs>
+<CodeGroup>
+```swift Swift
+
+let presenceObserver = ditto.presence.observe { presenceGraph in
+    // observe changes to the presence graph
+}
+```
+
+```kotlin Kotlin
+val presenceObserver = ditto.presence.observe { graph ->
+    // observe changes to the presence graph
+}
+```
+
+```javascript JS
+const presenceObserver = ditto.presence.observe((presenceGraph) => {
+    // observe changes to the presence graph
+})
+```
+
+```java Java
+DittoPresenceObserver presenceObserver = ditto.getPresence().observe(graph -> {
+    // observe changes to the presence graph
+});
+```
+
+```csharp C#
+var presenceObserver = Ditto.Presence.Observe((DittoPresenceGraph graph) =>
+{
+    // Observe changes to the presence graph
+});
+```
+
+```cpp C++
+auto presenceObserver = ditto.get_presence().observe([&](PresenceGraph graph) {
+    // observe changes to the presence graph
+});
+```
+
+```rust Rust
+let presenceObserver = ditto.presence().observe(move |_graph| {
+    // observe changes to the presence graph
+});
+```
+
+```dart Dart
+final presenceObserver = await ditto.presence.observe((graph) {
+  // observe changes to the presence graph
+});
+```
+</CodeGroup>
 
 # Peer Key Identifier
 
@@ -204,117 +180,101 @@ View your local device's peer key or the peer key identifying a specific remote 
 
 - To retrieve the peer key for the current peer:
 
-<Tabs>
-    <Tab title="Swift">
-    ```swift
-    ditto.presence.graph.localPeer.peerKeyString
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```kotlin
-    ditto.presence.graph.localPeer.peerKeyString
-    ```
-    </Tab>
-    <Tab title="JS">
-    ```javascript
-    ditto.presence.graph.localPeer.peerKeyString
-    ```
-    </Tab>
-    <Tab title="Java">
-    ```java
-    ditto.getPresence().getGraph().localPeer.peerKeyString
-    ```
-    </Tab>
-    <Tab title="C#">
-    ```csharp
-    Ditto.Presence.Graph.LocalPeer.PeerKeyString
-    ```
-    </Tab>
-    <Tab title="C++">
-    ```cpp
-    ditto.get_presence().graph().local_peer.peer_key_string
-    ```
-    </Tab>
-    <Tab title="Rust">
-    ```rust
-    ditto.presence().graph().local_peer.peer_key_string
-    ```
-    </Tab>
-    <Tab title="Dart">
-    ```dart
-    final graph = await ditto.presence.graph;
-    graph.localPeer.peerKeyString
-    ```
-    </Tab>
-</Tabs>
+<CodeGroup>
+```swift Swift
+
+ditto.presence.graph.localPeer.peerKeyString
+```
+
+```kotlin Kotlin
+ditto.presence.graph.localPeer.peerKeyString
+```
+
+```javascript JS
+ditto.presence.graph.localPeer.peerKeyString
+```
+
+```java Java
+ditto.getPresence().getGraph().localPeer.peerKeyString
+```
+
+```csharp C#
+Ditto.Presence.Graph.LocalPeer.PeerKeyString
+```
+
+```cpp C++
+ditto.get_presence().graph().local_peer.peer_key_string
+```
+
+```rust Rust
+ditto.presence().graph().local_peer.peer_key_string
+```
+
+```dart Dart
+final graph = await ditto.presence.graph;
+graph.localPeer.peerKeyString
+```
+</CodeGroup>
 
 - To retrieve the peer key for a remote peer:
 
-<Tabs>
-    <Tab title="Swift">
-    ```swift
-    let remotePeers = presenceGraph.remotePeers
-    let firstPeer = remotePeers.first!
+<CodeGroup>
+```swift Swift
 
-    let peerkeyString = firstPeer.peerKeyString
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```kotlin
-    val remotePeers = ditto.presence.graph.remotePeers
-    val firstPeer = remotePeers.first()
+let remotePeers = presenceGraph.remotePeers
+let firstPeer = remotePeers.first!
 
-    val peerKeyString = firstPeer.peerKeyString
-    ```
-    </Tab>
-    <Tab title="JS">
-    ```javascript
-    const remotePeers = ditto.presence.graph.remotePeers
-    const firstPeer = remotePeers[0]
+let peerkeyString = firstPeer.peerKeyString
+```
 
-    const peerkeyString = firstPeer.peerKeyString
-    ```
-    </Tab>
-    <Tab title="Java">
-    ```java
-    List<DittoPeer> remotePeers = ditto.getPresence().getGraph().remotePeers
-    DittoPeer firstPeer = remotePeers.get(0)
+```kotlin Kotlin
+val remotePeers = ditto.presence.graph.remotePeers
+val firstPeer = remotePeers.first()
 
-    String peerKeyString = firstPeer.peerKeyString
-    ```
-    </Tab>
-    <Tab title="C#">
-    ```csharp
-    DittoPeer remotePeers = ditto.presence.graph.remotePeers
-    const firstPeer = remotePeers[0]
+val peerKeyString = firstPeer.peerKeyString
+```
 
-    const peerkeyString = firstPeer.peerKeyString
-    ```
-    </Tab>
-    <Tab title="C++">
-    ```cpp
-    auto remotePeers = ditto.get_presence().graph().remote_peers;
-    auto firstPeer = remotePeers[0];
+```javascript JS
+const remotePeers = ditto.presence.graph.remotePeers
+const firstPeer = remotePeers[0]
 
-    auto peerkeyString = firstPeer.peer_key_string;
-    ```
-    </Tab>
-    <Tab title="Rust">
-    ```rust
-    let remote_peers = ditto.presence().graph().remote_peers;
-    let first_peer = &remote_peers[0];
+const peerkeyString = firstPeer.peerKeyString
+```
 
-    let peer_key_string = &first_peer.peer_key_string;
-    ```
-    </Tab>
-    <Tab title="Dart">
-    ```dart
-    final graph = await ditto.presence.graph;
-    final firstPeer = graph.remotePeers[0];
-    final peerKeyString = firstPeer.peerKeyString;
-    ```
-    </Tab>
-</Tabs>
+```java Java
+List<DittoPeer> remotePeers = ditto.getPresence().getGraph().remotePeers
+DittoPeer firstPeer = remotePeers.get(0)
+
+String peerKeyString = firstPeer.peerKeyString
+```
+
+```csharp C#
+DittoPeer remotePeers = ditto.presence.graph.remotePeers
+const firstPeer = remotePeers[0]
+
+const peerkeyString = firstPeer.peerKeyString
+```
+
+```cpp C++
+auto remotePeers = ditto.get_presence().graph().remote_peers;
+auto firstPeer = remotePeers[0];
+
+auto peerkeyString = firstPeer.peer_key_string;
+```
+
+```rust Rust
+let remote_peers = ditto.presence().graph().remote_peers;
+let first_peer = &remote_peers[0];
+
+let peer_key_string = &first_peer.peer_key_string;
+```
+
+```dart Dart
+final graph = await ditto.presence.graph;
+final firstPeer = graph.remotePeers[0];
+final peerKeyString = firstPeer.peerKeyString;
+```
+</CodeGroup>
 
 # End-User Defined Peer Metadata
 
@@ -335,230 +295,206 @@ The following table provides an overview of key considerations to know before se
 
 To implement functionality providing end users the ability to define metadata, call the `setPeerMetadata` API method as follows:
 
-<Tabs>
-    <Tab title="Swift">
-    ```swift
-    // Setting via Object
-    try ditto.presence.setPeerMetadata(["location": "inside"])
+<CodeGroup>
+```swift Swift
 
-    // Setting via JSON String
-    let jsonData = "{location:\"inside\"}".data(using: .utf8)!
-    try ditto.presence.setPeerMetadataJSONData(jsonData)
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```kotlin
-    // Setting via Object
-    ditto.presence.peerMetadata = mapOf("number" to 1)
+// Setting via Object
+try ditto.presence.setPeerMetadata(["location": "inside"])
 
-    // Setting via JSON String
-    ditto.presence.peerMetadataJsonString =
-        """
-        {"location":"inside"}
-        """.trimIndent()
-    ```
-    </Tab>
-    <Tab title="JS">
-    ```javascript
-    // Setting via Object
-    await ditto.presence.setPeerMetadata({ location: "inside" })
+// Setting via JSON String
+let jsonData = "{location:\"inside\"}".data(using: .utf8)!
+try ditto.presence.setPeerMetadataJSONData(jsonData)
+```
 
-    // Setting via JSON String
-    await ditto.presence.setPeerMetadataJSONString("{location:\"inside\"}")
-    ```
-    </Tab>
-    <Tab title="Java">
-    ```java
-    // Setting via Object
-    ditto.getPresence().setPeerMetadata(
-        Collections.singletonMap("number", 1)
-    );
+```kotlin Kotlin
+// Setting via Object
+ditto.presence.peerMetadata = mapOf("number" to 1)
 
-    // Setting via JSON String
-    ditto.getPresence().setPeerMetadataJsonString("{\"location\":\"inside\"}");
-    ```
-    </Tab>
-    <Tab title="C#">
-    ```csharp
-    Ditto.Presence.SetPeerMetadata(new Dictionary<string, object>()  { { "location", "inside" } });
-    ```
-    </Tab>
-    <Tab title="C++">
-    ```cpp
-    nlohmann::json metadata = {
-        {"location", "inside"}
-    };
+// Setting via JSON String
+ditto.presence.peerMetadataJsonString =
+    """
+    {"location":"inside"}
+    """.trimIndent()
+```
 
-    ditto.get_presence().set_peer_metadata(metadata);
-    ```
-    </Tab>
-    <Tab title="Rust">
-    ```rust
-    let metadata = json!({
-        "location": "inside",
-    });
-    ditto.presence().set_peer_metadata(&metadata)?;
-    ```
-    </Tab>
-    <Tab title="Dart">
-    ```dart
-    // Setting via Object
-    await ditto.presence.setPeerMetadata({ "location": "inside" })
+```javascript JS
+// Setting via Object
+await ditto.presence.setPeerMetadata({ location: "inside" })
 
-    // Setting via JSON String
-    await ditto.presence.setPeerMetadataJsonString('{"location": "inside"}')
-    ```
-    </Tab>
-</Tabs>
+// Setting via JSON String
+await ditto.presence.setPeerMetadataJSONString("{location:\"inside\"}")
+```
+
+```java Java
+// Setting via Object
+ditto.getPresence().setPeerMetadata(
+    Collections.singletonMap("number", 1)
+);
+
+// Setting via JSON String
+ditto.getPresence().setPeerMetadataJsonString("{\"location\":\"inside\"}");
+```
+
+```csharp C#
+Ditto.Presence.SetPeerMetadata(new Dictionary<string, object>()  { { "location", "inside" } });
+```
+
+```cpp C++
+nlohmann::json metadata = {
+    {"location", "inside"}
+};
+
+ditto.get_presence().set_peer_metadata(metadata);
+```
+
+```rust Rust
+let metadata = json!({
+    "location": "inside",
+});
+ditto.presence().set_peer_metadata(&metadata)?;
+```
+
+```dart Dart
+// Setting via Object
+await ditto.presence.setPeerMetadata({ "location": "inside" })
+
+// Setting via JSON String
+await ditto.presence.setPeerMetadataJsonString('{"location": "inside"}')
+```
+</CodeGroup>
 
 ## Reading Local Peer Metadata
 
 Once set, inspect the metadata:
 
-<Tabs>
-    <Tab title="Swift">
-    ```swift
-    // Reading from the presence namespace
-    ditto.presence.peerMetadata
+<CodeGroup>
+```swift Swift
 
-    // Reading from the presence graph
-    ditto.presence.graph.localPeer.peerMetadata
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```kotlin
-    // Reading from the presence namespace
-    ditto.presence.peerMetadata
+// Reading from the presence namespace
+ditto.presence.peerMetadata
 
-    // Reading from the presence graph
-    ditto.presence.graph.localPeer.peerMetadata
-    ```
-    </Tab>
-    <Tab title="JS">
-    ```javascript
-    // Reading from the presence namespace
-    ditto.presence.peerMetadata
+// Reading from the presence graph
+ditto.presence.graph.localPeer.peerMetadata
+```
 
-    // Reading from the presence graph
-    ditto.presence.graph.localPeer.peerMetadata
-    ```
-    </Tab>
-    <Tab title="Java">
-    ```java
-    // Reading from the presence namespace
-    Map<String, Object> metadata = ditto.getPresence().getPeerMetadata();
+```kotlin Kotlin
+// Reading from the presence namespace
+ditto.presence.peerMetadata
 
-    // Reading from the presence graph
-    Map<String, Object> metadata2 = ditto.getPresence().getGraph().localPeer.peerMetadata;
-    ```
-    </Tab>
-    <Tab title="C#">
-    ```csharp
-    // Reading from the presence namespace
-    Ditto.Presence.PeerMetadata;
+// Reading from the presence graph
+ditto.presence.graph.localPeer.peerMetadata
+```
 
-    // Reading from the presence graph
-    Ditto.Presence.Graph.LocalPeer.PeerMetadata;
-    ```
-    </Tab>
-    <Tab title="C++">
-    ```cpp
-    // Reading from the presence namespace
-    ditto.get_presence().peer_metadata()
+```javascript JS
+// Reading from the presence namespace
+ditto.presence.peerMetadata
 
-    // Reading from the presence graph
-    ditto.get_presence().graph().local_peer.peer_metadata
-    ```
-    </Tab>
-    <Tab title="Rust">
-    ```rust
-    // Reading from the presence namespace
-    ditto.presence().peer_metadata()
+// Reading from the presence graph
+ditto.presence.graph.localPeer.peerMetadata
+```
 
-    // Reading from the presence graph
-    ditto.presence().graph().local_peer.peer_metadata
-    ```
-    </Tab>
-    <Tab title="Dart">
-    ```dart
-    // Reading from the presence namespace
-    ditto.presence.peerMetadata
+```java Java
+// Reading from the presence namespace
+Map<String, Object> metadata = ditto.getPresence().getPeerMetadata();
 
-    // Reading from the presence graph
-    (await ditto.presence.graph).localPeer.peerMetadata
-    ```
-    </Tab>
-</Tabs>
+// Reading from the presence graph
+Map<String, Object> metadata2 = ditto.getPresence().getGraph().localPeer.peerMetadata;
+```
+
+```csharp C#
+// Reading from the presence namespace
+Ditto.Presence.PeerMetadata;
+
+// Reading from the presence graph
+Ditto.Presence.Graph.LocalPeer.PeerMetadata;
+```
+
+```cpp C++
+// Reading from the presence namespace
+ditto.get_presence().peer_metadata()
+
+// Reading from the presence graph
+ditto.get_presence().graph().local_peer.peer_metadata
+```
+
+```rust Rust
+// Reading from the presence namespace
+ditto.presence().peer_metadata()
+
+// Reading from the presence graph
+ditto.presence().graph().local_peer.peer_metadata
+```
+
+```dart Dart
+// Reading from the presence namespace
+ditto.presence.peerMetadata
+
+// Reading from the presence graph
+(await ditto.presence.graph).localPeer.peerMetadata
+```
+</CodeGroup>
 
 ## Reading Remote Peer Metadata
 
 To inspect the metadata set by all other peers in the mesh:
 
-<Tabs>
-    <Tab title="Swift">
-    ```swift
-    let remotePeers = ditto.presence.graph.remotePeers
-    let firstPeer = remotePeers.first!
+<CodeGroup>
+```swift Swift
 
-    let peerMetadata = firstPeer.peerMetadata
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```kotlin
-    val remotePeers = ditto.presence.graph.remotePeers
-    val firstPeer = remotePeers.first()
+let remotePeers = ditto.presence.graph.remotePeers
+let firstPeer = remotePeers.first!
 
-    val peerMetadata = firstPeer.peerMetadata
-    ```
-    </Tab>
-    <Tab title="JS">
-    ```javascript
-    const remotePeers = ditto.presence.graph.remotePeers
-    const firstPeer = remotePeers[0]
+let peerMetadata = firstPeer.peerMetadata
+```
 
-    const peerMetadata = firstPeer.peerMetadata
-    ```
-    </Tab>
-    <Tab title="Java">
-    ```java
-    List<DittoPeer> remotePeers = ditto.getPresence().getGraph().remotePeers;
-    DittoPeer firstPeer = remotePeers.get(0);
+```kotlin Kotlin
+val remotePeers = ditto.presence.graph.remotePeers
+val firstPeer = remotePeers.first()
 
-    Map<String, Object> metadata = firstPeer.peerMetadata;
-    ```
-    </Tab>
-    <Tab title="C#">
-    ```csharp
-    var RemotePeers = Ditto.Presence.Graph.RemotePeers.PeerMetadata;
-    var FirstPeer = RemotePeers[0];
+val peerMetadata = firstPeer.peerMetadata
+```
 
-    var PeerMetadata = FirstPeer.PeerMetadata;
-    ```
-    </Tab>
-    <Tab title="C++">
-    ```cpp
-    auto remotePeers = ditto.get_presence().graph().remote_peers;
-    auto firstPeer = remotePeers[0];
+```javascript JS
+const remotePeers = ditto.presence.graph.remotePeers
+const firstPeer = remotePeers[0]
 
-    auto peerMetadata = firstPeer.peer_metadata();
-    ```
-    </Tab>
-    <Tab title="Rust">
-    ```rust
-    let remote_peers = ditto.presence().graph().remote_peers;
-    let first_peer = &remote_peers[0];
+const peerMetadata = firstPeer.peerMetadata
+```
 
-    let peer_metadata = &first_peer.peer_metadata;
-    ```
-    </Tab>
-    <Tab title="Dart">
-    ```dart
-    final graph = await ditto.presence.graph;
-    final firstPeer = graph.remotePeers[0];
-    final metadata = firstPeer.peerMetadata;
-    ```
-    </Tab>
-</Tabs>
+```java Java
+List<DittoPeer> remotePeers = ditto.getPresence().getGraph().remotePeers;
+DittoPeer firstPeer = remotePeers.get(0);
+
+Map<String, Object> metadata = firstPeer.peerMetadata;
+```
+
+```csharp C#
+var RemotePeers = Ditto.Presence.Graph.RemotePeers.PeerMetadata;
+var FirstPeer = RemotePeers[0];
+
+var PeerMetadata = FirstPeer.PeerMetadata;
+```
+
+```cpp C++
+auto remotePeers = ditto.get_presence().graph().remote_peers;
+auto firstPeer = remotePeers[0];
+
+auto peerMetadata = firstPeer.peer_metadata();
+```
+
+```rust Rust
+let remote_peers = ditto.presence().graph().remote_peers;
+let first_peer = &remote_peers[0];
+
+let peer_metadata = &first_peer.peer_metadata;
+```
+
+```dart Dart
+final graph = await ditto.presence.graph;
+final firstPeer = graph.remotePeers[0];
+final metadata = firstPeer.peerMetadata;
+```
+</CodeGroup>
 
 # Identity Server Metadata
 
@@ -574,144 +510,128 @@ The identity server metadata is set during the See [End-User Access>Setting Iden
 
 To inspect the identity server metadata of the local peer doing the following:
 
-<Tabs>
-    <Tab title="Swift">
-    ```swift
-    // Reading from the presence namespace
-    ditto.presence.identityServiceMetadata
+<CodeGroup>
+```swift Swift
 
-    // Reading from the presence graph
-    ditto.presence.graph.localPeer.identityServiceMetadata
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```kotlin
-    // Reading from the presence namespace
-    ditto.presence.identityServiceMetadata
+// Reading from the presence namespace
+ditto.presence.identityServiceMetadata
 
-    // Reading from the presence graph
-    ditto.presence.graph.localPeer.identityServiceMetadata
-    ```
-    </Tab>
-    <Tab title="JS">
-    ```javascript
-    // Reading from the presence namespace
-    ditto.presence.identityServiceMetadata
+// Reading from the presence graph
+ditto.presence.graph.localPeer.identityServiceMetadata
+```
 
-    // Reading from the presence graph
-    ditto.presence.graph.localPeer.identityServiceMetadata
-    ```
-    </Tab>
-    <Tab title="Java">
-    ```java
-    // Reading from the presence namespace
-    Map<String, Object> metadata = ditto.getPresence().getIdentityServiceMetadata();
+```kotlin Kotlin
+// Reading from the presence namespace
+ditto.presence.identityServiceMetadata
 
-    // Reading from the presence graph
-    Map<String, Object> metadata2 = ditto.getPresence().getGraph().localPeer.identityServiceMetadata;
-    ```
-    </Tab>
-    <Tab title="C#">
-    ```csharp
-    // Reading from the presence namespace
-    Ditto.Presence.IdentityServiceMetadata;
+// Reading from the presence graph
+ditto.presence.graph.localPeer.identityServiceMetadata
+```
 
-    // Reading from the presence graph
-    Ditto.Presence.Graph.LocalPeer.IdentityServiceMetadata;
-    ```
-    </Tab>
-    <Tab title="C++">
-    ```cpp
-    // Reading from the presence namespace
-    ditto.get_presence().identity_service_metadata()
+```javascript JS
+// Reading from the presence namespace
+ditto.presence.identityServiceMetadata
 
-    // Reading from the presence graph
-    ditto.get_presence().graph().local_peer.identity_service_metadata
-    ```
-    </Tab>
-    <Tab title="Rust">
-    ```rust
-    // Reading from the presence namespace
-    ditto.presence().identity_service_metadata()
+// Reading from the presence graph
+ditto.presence.graph.localPeer.identityServiceMetadata
+```
 
-    // Reading from the presence graph
-    ditto.presence().graph().local_peer.identity_service_metadata
-    ```
-    </Tab>
-    <Tab title="Dart">
-    ```dart
-    // Coming Soon
-    ```
-    </Tab>
-</Tabs>
+```java Java
+// Reading from the presence namespace
+Map<String, Object> metadata = ditto.getPresence().getIdentityServiceMetadata();
+
+// Reading from the presence graph
+Map<String, Object> metadata2 = ditto.getPresence().getGraph().localPeer.identityServiceMetadata;
+```
+
+```csharp C#
+// Reading from the presence namespace
+Ditto.Presence.IdentityServiceMetadata;
+
+// Reading from the presence graph
+Ditto.Presence.Graph.LocalPeer.IdentityServiceMetadata;
+```
+
+```cpp C++
+// Reading from the presence namespace
+ditto.get_presence().identity_service_metadata()
+
+// Reading from the presence graph
+ditto.get_presence().graph().local_peer.identity_service_metadata
+```
+
+```rust Rust
+// Reading from the presence namespace
+ditto.presence().identity_service_metadata()
+
+// Reading from the presence graph
+ditto.presence().graph().local_peer.identity_service_metadata
+```
+
+```dart Dart
+// Coming Soon
+```
+</CodeGroup>
 
 ## Reading Remote Peer Identity Server Metadata
 
 To inspect the identity server metadata set by other peers connected within the mesh:
 
-<Tabs>
-    <Tab title="Swift">
-    ```swift
-    let remotePeers = ditto.presence.graph.remotePeers
-    let firstPeer = remotePeers.first!
+<CodeGroup>
+```swift Swift
 
-    let peerMetadata = firstPeer.identityServiceMetadata
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```kotlin
-    val remotePeers = ditto.presence.graph.remotePeers
-    val firstPeer = remotePeers.first()
+let remotePeers = ditto.presence.graph.remotePeers
+let firstPeer = remotePeers.first!
 
-    val peerMetadata = firstPeer.identityServiceMetadata
-    ```
-    </Tab>
-    <Tab title="JS">
-    ```javascript
-    const remotePeers = ditto.presence.graph.remotePeers
-    const firstPeer = remotePeers[0]
+let peerMetadata = firstPeer.identityServiceMetadata
+```
 
-    const peerMetadata = firstPeer.identityServiceMetadata
-    ```
-    </Tab>
-    <Tab title="Java">
-    ```java
-    List<DittoPeer> remotePeers = ditto.getPresence().getGraph().remotePeers;
-    DittoPeer firstPeer = remotePeers.get(0);
+```kotlin Kotlin
+val remotePeers = ditto.presence.graph.remotePeers
+val firstPeer = remotePeers.first()
 
-    Map<String, Object> metadata = firstPeer.identityServiceMetadata;
-    ```
-    </Tab>
-    <Tab title="C#">
-    ```csharp
-    var RemotePeers = Ditto.Presence.Graph.RemotePeers.PeerMetadata;
-    var FirstPeer = RemotePeers[0];
+val peerMetadata = firstPeer.identityServiceMetadata
+```
 
-    var PeerMetadata = FirstPeer.IdentityServiceMetadata;
-    ```
-    </Tab>
-    <Tab title="C++">
-    ```cpp
-    auto remotePeers = ditto.get_presence().graph().remote_peers;
-    auto firstPeer = remotePeers[0];
+```javascript JS
+const remotePeers = ditto.presence.graph.remotePeers
+const firstPeer = remotePeers[0]
 
-    auto peerMetadata = firstPeer.identity_service_metadata();
-    ```
-    </Tab>
-    <Tab title="Rust">
-    ```rust
-    let remote_peers = ditto.presence().graph().remote_peers;
-    let first_peer = &remote_peers[0];
+const peerMetadata = firstPeer.identityServiceMetadata
+```
 
-    let peer_metadata = &first_peer.identity_service_metadata;
-    ```
-    </Tab>
-    <Tab title="Dart">
-    ```dart
-    // Coming Soon
-    ```
-    </Tab>
-</Tabs>
+```java Java
+List<DittoPeer> remotePeers = ditto.getPresence().getGraph().remotePeers;
+DittoPeer firstPeer = remotePeers.get(0);
+
+Map<String, Object> metadata = firstPeer.identityServiceMetadata;
+```
+
+```csharp C#
+var RemotePeers = Ditto.Presence.Graph.RemotePeers.PeerMetadata;
+var FirstPeer = RemotePeers[0];
+
+var PeerMetadata = FirstPeer.IdentityServiceMetadata;
+```
+
+```cpp C++
+auto remotePeers = ditto.get_presence().graph().remote_peers;
+auto firstPeer = remotePeers[0];
+
+auto peerMetadata = firstPeer.identity_service_metadata();
+```
+
+```rust Rust
+let remote_peers = ditto.presence().graph().remote_peers;
+let first_peer = &remote_peers[0];
+
+let peer_metadata = &first_peer.identity_service_metadata;
+```
+
+```dart Dart
+// Coming Soon
+```
+</CodeGroup>
 
 ***
 

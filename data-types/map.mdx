@@ -112,9 +112,8 @@ For example, consider a document with a `properties` field of the `REGISTER` dat
 You want to change only the `color` field for a car identified by document ID `123` to `blue`.
 
 Since a `REGISTER` acts as a single object, to update just the `color`, you'd need to update the entire object by providing the entire set of nested key-value pairs, including the modified `color` , as follows:
-<Tabs>
-  <Tab title="Swift">
-```swift
+<CodeGroup>
+```swift Swift
 let newProperties = [
   "color": "blue",
   "sunroof": true,
@@ -125,17 +124,15 @@ await ditto.store.execute(
   "UPDATE cars SET properties = :newProperties WHERE _id = '123'",
   ["newProperties": newProperties]);
 ```
-  </Tab>
-  <Tab title="Kotlin">
-```Kotlin
+
+```kotlin Kotlin
 var result = ditto.store.execute(
   "INSERT INTO cars DOCUMENTS (:newCar)",
   mapOf("newProperties"
     to mapOf("color" to "blue", "sunroof" to true, "door_count" to 4)))
 ```
-  </Tab>
-  <Tab title="JS">
-```JS
+
+```javascript JS
 const newProperties = {
   color: 'blue',
   sunroof: true,
@@ -146,9 +143,8 @@ await ditto.store.execute(
   "UPDATE cars SET properties = :newProperties WHERE _id = '123'",
   {newProperties});
 ```
-  </Tab>
-  <Tab title="Java">
-```Java
+
+```java Java
 Map<String, String> newProperties = new HashMap<>();
 newCar.put("color", "blue");
 newCar.put("sunroof", true);
@@ -173,9 +169,8 @@ DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
   }
 );
 ```
-  </Tab>
-  <Tab title="C#">
-```C#
+
+```csharp C#
 var args = new Dictionary<string, object>();
 args.Add("newProperties", new { color="blue", sunroof=true, doorCount=4});
 
@@ -183,9 +178,8 @@ await ditto.Store.ExecuteAsync(
   "UPDATE cars SET properties = :newProperties WHERE _id = '123'",
   args);
 ```
-  </Tab>
-  <Tab title="C++">
-```cpp
+
+```cpp C++
 struct Properties {
   std::string color;
   bool sunroof;
@@ -198,51 +192,8 @@ std::map<std::string, Properties> args;
 args["newProperties"] = {"blue", true, 4};
 
 ditto.get_store().execute(
-  "UPDATE cars SET properties = :newProperties WHERE _id = '123'",
-  args);
 ```
-
-```rust
-struct Properties {
-  color: String,
-  sunroof: bool,
-  door_count: i32
-}
-
-struct Args {
-  newProperties: Properties,
-}
-
-// ...
-
-let args = Args {
-  newProperties: Properties {
-    color: "blue".to_string(),
-    sunroof: true,
-    door_count: 4
-  }
-};
-
-await ditto.store().execute(
-  "UPDATE cars SET properties = :newProperties WHERE _id = '123'",
-  args);
-```
-  </Tab>
-  <Tab title="Dart">
-```Dart
-final newProperties = {
-  "color": "blue",
-  "sunroof": true,
-  "door_count": 4,
-};
-
-await ditto.store.execute(
-  "UPDATE cars SET properties = :newProperties WHERE _id = '123'",
-  arguments: {"newProperties": newProperties},
-);
-```
-  </Tab>
-</Tabs>
+</CodeGroup>
 
 
 

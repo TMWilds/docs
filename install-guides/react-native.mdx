@@ -5,13 +5,12 @@ icon: react
 iconType: solid
 ---
 
-- [Bare React Native Support](/install-guides/react-native#nr1ck)
-- [Prerequisites](/install-guides/react-native#E-g_s)
-- [Integrating Ditto](/install-guides/react-native#x2X1O)
-- [Configuring Sync](/install-guides/react-native#EyobX)
-- [Enabling smallPeerInfo Feature](/install-guides/react-native#EO3_X)
-- [Setting Up Presence](/install-guides/react-native#KvSsg)
-- [Setting Logs to Debug Level](/install-guides/react-native#QZQBu)
+- [Bare React Native Support](#bare-react-native-support)
+- [Prerequisites](#prerequisites)
+- [Integrating Ditto](#integrating-ditto)
+- [Configuring Sync](#configuring-sync)
+- [Setting Up Presence](#setting-up-presence)
+- [Setting Logs to Debug Level](#setting-logs-to-debug-level)
 
 # React Native CLI Support
 
@@ -65,10 +64,6 @@ Initiate sync at global scope. ([Starting the Sync Process](#starting-the-sync-p
 </Step>
 
 <Step>
-If desired, enable the Small Peer Information feature. ([Enabling smallPeerInfo](#enabling-small-peer-info))
-</Step>
-
-<Step>
 If desired, monitor the activity of remote peers in the mesh by logging relevant information in logs or using Ditto’s Presence Viewer app. ([Setting Up Presence](#setting-up-presence))
 </Step>
 
@@ -77,7 +72,7 @@ If desired, set the log level to debug. ([Setting the Logs to Debug Level](#sett
 </Step>
 
 <Step>
-Create your subscription logic. ([Constructing Subscription Logic](/install-guides/react-native#XlY3i))
+Create your subscription logic. ([Constructing Subscription Logic](#constructing-subscription-logic))
 </Step>
 </Steps>
 
@@ -93,45 +88,29 @@ To verify that you’ve set up your environment correctly, install and run the R
 
 From a terminal, navigate to the folder containing your React Native project, and then, using your preferred package manager, run the Ditto package:
 
-<Tabs>
-<Tab title="Yarn">
-
-```
+<CodeGroup>
+```bash yarn
 yarn add @dittolive/ditto
 ```
 
-</Tab>
-
-<Tab title="npm">
-
-```bash
+```bash npm
 npm install @dittolive/ditto
 ```
-
-</Tab>
-</Tabs>
+</CodeGroup>
 
 ## Installing Dependencies
 
 From the root of your project, install project dependencies based on the `package.json` file:
 
-<Tabs>
-<Tab title="Yarn">
-
-```
+<CodeGroup>
+```bash yarn
 yarn install
 ```
 
-</Tab>
-
-<Tab title="npm">
-
-```
+```bash npm
 npm install
 ```
-
-</Tab>
-</Tabs>
+</CodeGroup>
 
 ## Configuring Permissions
 
@@ -165,7 +144,8 @@ pod install
 <Step>
 From your project's `Info.plist` file, add the following key-value pairs:
 
-```xml XML
+<CodeGroup>
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -182,6 +162,7 @@ From your project's `Info.plist` file, add the following key-value pairs:
 </dict>
 </plist>
 ```
+</CodeGroup>
 
 <Info>
 Tip: To view `Info.plist` as source code, right-click the file from the left sidebar in Xcode > click **Open As** > and then select **Source Code** from the menu.
@@ -243,15 +224,11 @@ Add the Ditto SDK as a dependency:
 1. Open the module-level `build.gradle` located in the `android/app` directory.
 2. Add the following line into the `dependencies` block located at the bottom of the file:
 
-<Tabs>
-<Tab title="">
-
+<CodeGroup>
 ```
 implementation "live.ditto:ditto:4.8.1"
 ```
-
-</Tab>
-</Tabs>
+</CodeGroup>
 </Step>
 
 <Step>
@@ -261,9 +238,7 @@ Android permissions
 <Step>
 If using <a href="https://reactnative.dev/docs/the-new-architecture/landing-page" target="_blank">React Native's Legacy Architecture</a>, you must add the following code snippet to the module-level `build.gradle` located in the `android/app` directory:
 
-<Tabs>
-<Tab title="">
-
+<CodeGroup>
 ```
 android {
     packagingOptions {
@@ -275,9 +250,7 @@ android {
     // Rest of the file
 }
 ```
-
-</Tab>
-</Tabs>
+</CodeGroup>
 
 <Info>
 If you encounter other issues, see [Troubleshooting JSI Bindings Error]().
@@ -287,15 +260,11 @@ If you encounter other issues, see [Troubleshooting JSI Bindings Error]().
 
 <Step>
 Start the app in Metro:
-<Tabs>
-<Tab title="">
-
-```
+<CodeGroup>
+```bash
 yarn start
 ```
-
-</Tab>
-</Tabs>
+</CodeGroup>
 </Step>
 </Steps>
 
@@ -303,23 +272,17 @@ yarn start
 
 Within the top-most scope of your app, import the Ditto package with the necessary modules and components from the Ditto's SDK library:
 
-<Tabs>
-<Tab title="">
-
-```javascript
+<CodeGroup>
+```javascript JS
 import {Ditto} from '@dittolive/ditto';
 ```
-
-</Tab>
-</Tabs>
+</CodeGroup>
 
 ## Handling Permissions
 
 Within your default React component (`App`), use this helper function to request permissions if developing for the Android target:
 
-<Tabs>
-<Tab title="">
-
+<CodeGroup>
 ```typescript
 import {useEffect} from 'react';
 import {PermissionsAndroid} from 'react-native';
@@ -349,9 +312,7 @@ export default function App() {
 
 }
 ```
-
-</Tab>
-</Tabs>
+</CodeGroup>
 
 # Configuring Sync
 
@@ -384,16 +345,14 @@ There are two types of identities you can use to authenticate:
 - `onlinePlayground` — Explore platform features and functionality without setting up your authentication mechanism.
 - `onlineWithAuthentication` — If developing a production-level app, integrate your own identity provider, such as Auth0, identify users, give users read or write control, and integrate with your existing authentication systems.
 
-For more information, see [Cloud Authentication](<./../Authentication & Authorization/Cloud Authentication.md>) .
+For more information, see [Cloud Authentication](auth-and-authorization/cloud-authentication) .
 
 ### onlinePlayground
 
 Use an online playground identity for development. You can find authentication details for your app on the <a href="https://portal.ditto.live" target="_blank">Ditto Portal.</a> Use these to set up your identity:
 
-<Tabs>
-<Tab title="">
-
-```javascript
+<CodeGroup>
+```javascript JS
 import type {Identity} from '@dittolive/ditto';
 
 const identity = {
@@ -402,18 +361,14 @@ const identity = {
   token: '<your-online-playground-token>',
 };
 ```
-
-</Tab>
-</Tabs>
+</CodeGroup>
 
 ### onlineWithAuthentication
 
 Use the `onlineWithAuthentication` identity when developing a production app for deployment.
 
-<Tabs>
-<Tab title="">
-
-```javascript
+<CodeGroup>
+```javascript JS
 const identity = {
   type: 'onlineWithAuthentication',
   appID: '<your-app-id>',
@@ -434,18 +389,14 @@ const identity = {
   },
 };
 ```
-
-</Tab>
-</Tabs>
+</CodeGroup>
 
 ## Creating a New Instance of Ditto
 
 Within a `try` statement, instantiate a new `Ditto` object with the identity you’ve specified:
 
-<Tabs>
-<Tab title="">
-
-```javascript
+<CodeGroup>
+```javascript JS
 import {Ditto, DittoError} from '@dittolive/ditto';
 
 try {
@@ -457,9 +408,7 @@ try {
   throw error
 }
 ```
-
-</Tab>
-</Tabs>
+</CodeGroup>
 
 ## Setting Transport Configurations
 
@@ -473,10 +422,8 @@ Configure peer-to-peer transport settings so that all desired transport types av
 <Step>
 Specify how you want Ditto to handle which transports to sync data across the mesh.
 
-<Tabs>
-<Tab title="">
-
-```javascript
+<CodeGroup>
+```javascript JS
 import {TransportConfig} from '@dittolive/ditto';
 import {Platform} from 'react-native';
 
@@ -492,22 +439,18 @@ if (Platform.OS === 'ios') {
 
 ditto.setTransportConfig(transportsConfig);
 ```
-
-</Tab>
-</Tabs>
+</CodeGroup>
 </Step>
 </Steps>
 
 ## Constructing Sync Subscription Logic
 
-Create the logic that performs sync and data operations in your app, including registering subscriptions, executing store operations, and observing changes in the given collection. For more information, see [Data-Handling Essentials](<./../Data Store CRUD/Data-Handling Essentials.md>) and [Managing Sync Subscriptions]().
+Create the logic that performs sync and data operations in your app, including registering subscriptions, executing store operations, and observing changes in the given collection.
 
 For example, the following snippet defines a document object (`document`), creates a subscription for the `Cars` collection, executes database operations and logs the results, registers an observer for watching changes in the `Cars` collection:
 
-<Tabs>
-<Tab title="">
-
-```javascript
+<CodeGroup>
+```javascript JS
 ditto.sync.registerSubscription(`SELECT * FROM cars`);
 
 const document = {
@@ -522,12 +465,11 @@ const queryResult = await ditto.store.execute(
   "INSERT INTO cars DOCUMENTS (:document) ON ID CONFLICT DO UPDATE",
   { document }
   );
-  console.log(queryResult.items.map((item) => item.value));
-  console.log(
-    "mutated",
-    queryResult.mutatedDocumentIDs().map((docId) => docId.value)
-  );
-}
+console.log(queryResult.items.map((item) => item.value));
+console.log(
+  "mutated",
+  queryResult.mutatedDocumentIDs().map((docId) => docId.value)
+);
 
 ditto.store.registerObserver(`SELECT * FROM cars`, (response) => {
   const parsedDocuments = response.items.map((doc) => {
@@ -538,44 +480,17 @@ ditto.store.registerObserver(`SELECT * FROM cars`, (response) => {
 });
 
 ```
-
-</Tab>
-</Tabs>
+</CodeGroup>
 
 ## Starting the Sync Process
 
 To start syncing with other peers in the mesh:
 
-<Tabs>
-<Tab title="">
-
-```javascript
+<CodeGroup>
+```javascript JS
 ditto.startSync();
 ```
-
-</Tab>
-</Tabs>
-
-## Enabling Small Peer Info
-
-Enabling the smallPeerInfo feature allows you to gather and store peer-to-peer sync and network details automatically rather than continuously query Ditto for this data.
-
-Once enabled, collected details are available within the Ditto portal. For more information, see [Using the Device Dashboard]().
-
-You can configure `smallPeerInfo` directly on the Ditto instance.
-
-<Tabs>
-<Tab title="">
-
-```javascript
-ditto.smallPeerInfo.isEnabled = true;
-await ditto.smallPeerInfo.getSyncScope();
-await ditto.smallPeerInfo.setSyncScope('BigPeerOnly');
-ditto.smallPeerInfo.metadata = { test: 'metadata' };
-```
-
-</Tab>
-</Tabs>
+</CodeGroup>
 
 ## Setting Up Presence
 
@@ -583,19 +498,15 @@ Monitor remote peers in the logs or using Ditto’s Presence Viewer app. For mor
 
 To set up presence observations:
 
-<Tabs>
-<Tab title="">
-
-```javascript
+<CodeGroup>
+```javascript JS
 // This closure is called every time the mesh of
 // connected Ditto peers changes:
 ditto.presence.observe((graph) => {
   console.log('Peers: ', graph.remotePeers);
 });
 ```
-
-</Tab>
-</Tabs>
+</CodeGroup>
 
 ## Setting Logs to Debug Level
 
@@ -603,15 +514,11 @@ Capture database debug logs by setting the Ditto log level to Debug mode. That w
 
 To set the minimum log level to `Debug`:
 
-<Tabs>
-<Tab title="">
-
-```javascript
+<CodeGroup>
+```javascript JS
 Logger.minimumLogLevel = 'Debug';
 ```
-
-</Tab>
-</Tabs>
+</CodeGroup>
 
 ## Known issues
-1. [React Native's Fast Refresh](https://reactnative.dev/docs/fast-refresh "React Native's Fast Refresh") will throw an error with the current Ditto architecture, insisting you provide a different persistence directory name. Currently, no workaround is available; however, developers can disable Fast Refresh to avoid this issue. Our team is actively working on a fix, and we appreciate your patience as we address this challenge.
+1. [React Native's Fast Refresh](https://reactnative.dev/docs/fast-refresh) will throw an error with the current Ditto architecture, insisting you provide a different persistence directory name. Currently, no workaround is available; however, developers can disable Fast Refresh to avoid this issue. Our team is actively working on a fix, and we appreciate your patience as we address this challenge.

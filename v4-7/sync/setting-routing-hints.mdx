@@ -18,230 +18,71 @@ In a scenario where several restaurants operate on the same Big Peer cloud insta
 To set a routing hint in your app, from the top-most scope before starting the sync process:
 
 1. Instantiate a `TransportConfig` object:
-<Tabs>
-  <Tab title="Swift">
-    ```swift
-    var config = DittoTransportConfig()
-    config.global.routingHint = 1234
 
-    ditto.transportConfig = config
+<CodeGroup>
 
-    do {
-      try ditto.startSync()
-    } catch (let error) {
-      print(error.localizedDescription)
-    }
-    ```
-  </Tab>
-  <Tab title="Kotlin">
-    ```kotlin
-    val config = DittoTransportConfig()
-    config.global.routingHint = 1234U
+```swift Swift
 
-    ditto.transportConfig = config
+var config = DittoTransportConfig()
+config.global.routingHint = 1234
 
-    ditto.startSync()
-    ```
-  </Tab>
-  <Tab title="JS">
-    ```javascript
-    const config = new TransportConfig()
-    ```
-  </Tab>
-  <Tab title="Java">
-    ```java
-    // not supported in Java
-    ```
-  </Tab>
-  <Tab title="C#">
-    ```csharp
-    DittoTransportConfig transportConfig = new DittoTransportConfig();
-    transportConfig.Global.RoutingHint = 1234;
+ditto.transportConfig = config
 
-    ditto.TransportConfig = transportConfig;
+do {
+  try ditto.startSync()
+} catch (let error) {
+  print(error.localizedDescription)
+}
+```
 
-    ditto.StartSync();
-    ```
-  </Tab>
-  <Tab title="C++">
-    ```cpp
-    auto config = ditto::TransportConfig();
-    config.global.routing_hint = 1234;
+```kotlin Kotlin
+val config = DittoTransportConfig()
+config.global.routingHint = 1234U
 
-    ditto.set_transport_config(config);
+ditto.transportConfig = config
 
-    ditto.start_sync();
-    ```
-  </Tab>
-  <Tab title="Rust">
-    ```rust
-    let mut config = TransportConfig::new();
-    config.global.routing_hint = 1234;
+ditto.startSync()
+```
 
-    ditto.set_transport_config(config);
-    ditto.start_sync()?;
-    ```
-  </Tab>
-  <Tab title="Dart">
-    ```dart
-    // Coming Soon
-    ```
-  </Tab>
-</Tabs>
+```javascript JS
+const config = new TransportConfig()
+```
+
+```java Java
+// not supported in Java
+```
+
+```csharp C#
+DittoTransportConfig transportConfig = new DittoTransportConfig();
+transportConfig.Global.RoutingHint = 1234;
+
+ditto.TransportConfig = transportConfig;
+
+ditto.StartSync();
+```
+
+```cpp C++
+auto config = ditto::TransportConfig();
+config.global.routing_hint = 1234;
+
+ditto.set_transport_config(config);
+
+ditto.start_sync();
+```
+
+```rust Rust
+let mut config = TransportConfig::new();
+config.global.routing_hint = 1234;
+
+ditto.set_transport_config(config);
+ditto.start_sync()?;
+```
+
+```dart Dart
+// Coming Soon
+```
+
+</CodeGroup>
 
 
-2. Set the `routingHint` on the `config`object:
-<Tabs>
-  <Tab title="Swift">
-    ```swift
-    var config = DittoTransportConfig()
-    config.global.routingHint = 1234
-
-    ditto.transportConfig = config
-
-    do {
-      try ditto.startSync()
-    } catch (let error) {
-      print(error.localizedDescription)
-    }
-    ```
-  </Tab>
-  <Tab title="Kotlin">
-    ```kotlin
-    val config = DittoTransportConfig()
-    config.global.routingHint = 1234U
-
-    ditto.transportConfig = config
-
-    ditto.startSync()
-    ```
-  </Tab>
-  <Tab title="JS">
-    ```javascript
-    const config = new TransportConfig()
-    config.global.routingHint = 1234;
-    ```
-  </Tab>
-  <Tab title="Java">
-    ```java
-    // not supported in Java
-    ```
-  </Tab>
-  <Tab title="C#">
-    ```csharp
-    DittoTransportConfig transportConfig = new DittoTransportConfig();
-    transportConfig.Global.RoutingHint = 1234;
-
-    ditto.TransportConfig = transportConfig;
-
-    ditto.StartSync();
-    ```
-  </Tab>
-  <Tab title="C++">
-    ```cpp
-    auto config = ditto::TransportConfig();
-    config.global.routing_hint = 1234;
-
-    ditto.set_transport_config(config);
-
-    ditto.start_sync();
-    ```
-  </Tab>
-  <Tab title="Rust">
-    ```rust
-    let mut config = TransportConfig::new();
-    config.global.routing_hint = 1234;
-
-    ditto.set_transport_config(config);
-    ditto.start_sync()?;
-    ```
-  </Tab>
-  <Tab title="Dart">
-    ```dart
-    // Coming Soon
-    ```
-  </Tab>
-</Tabs>
-
-
-3. Using the `TransportConfig` object, specify the configuration settings for your Ditto instance:
-
-
-<Tabs>
-  <Tab title="Swift">
-    ```swift
-    var config = DittoTransportConfig()
-    config.global.routingHint = 1234
-
-    ditto.transportConfig = config
-
-    do {
-      try ditto.startSync()
-    } catch (let error) {
-      print(error.localizedDescription)
-    }
-    ```
-  </Tab>
-  <Tab title="Kotlin">
-    ```kotlin
-    val config = DittoTransportConfig()
-    config.global.routingHint = 1234U
-
-    ditto.transportConfig = config
-
-    ditto.startSync()
-    ```
-  </Tab>
-  <Tab title="JS">
-    ```javascript
-    const config = new TransportConfig()
-    config.global.routingHint = 1234;
-
-    ditto.setTransportConfig(config)
-    ditto.startSync()
-    ```
-  </Tab>
-  <Tab title="Java">
-    ```java
-    // not supported in Java
-    ```
-  </Tab>
-  <Tab title="C#">
-    ```csharp
-    DittoTransportConfig transportConfig = new DittoTransportConfig();
-    transportConfig.Global.RoutingHint = 1234;
-
-    ditto.TransportConfig = transportConfig;
-
-    ditto.StartSync();
-    ```
-  </Tab>
-  <Tab title="C++">
-    ```cpp
-    auto config = ditto::TransportConfig();
-    config.global.routing_hint = 1234;
-
-    ditto.set_transport_config(config);
-
-    ditto.start_sync();
-    ```
-  </Tab>
-  <Tab title="Rust">
-    ```rust
-    let mut config = TransportConfig::new();
-    config.global.routing_hint = 1234;
-
-    ditto.set_transport_config(config);
-    ditto.start_sync()?;
-    ```
-  </Tab>
-  <Tab title="Dart">
-    ```dart
-    // Coming Soon
-    ```
-  </Tab>
-</Tabs>
-
-
-
-
+2. Set the `routingHint` on the `

@@ -36,10 +36,8 @@ flutter pub add ditto_live
 <Step>
 For iOS development, add the following permissions to `ios/Runner/Info.plist`:
 
-<Tabs>
-<Tab title="Info.plist">
-
-```xml
+<CodeGroup>
+```xml Info.plist
 <key>NSBluetoothAlwaysUsageDescription</key>
 <string>Uses Bluetooth to connect and sync with nearby devices</string>
 <key>NSBluetoothPeripheralUsageDescription</key>
@@ -51,8 +49,7 @@ For iOS development, add the following permissions to `ios/Runner/Info.plist`:
   <string>_http-alt._tcp.</string>
 </array>
 ```
-</Tab>
-</Tabs>
+</CodeGroup>
 </Step>
 
 <Step>
@@ -109,7 +106,7 @@ Locate the `appID` and `playground token` for your application. These are requir
 <Step>
 Import the SDK in your Dart file where you plan to use it.
 
-```dart
+```dart Dart
 import 'package:ditto_live/ditto_live.dart';
 ```
 </Step>
@@ -117,7 +114,7 @@ import 'package:ditto_live/ditto_live.dart';
 <Step>
 Initialize the SDK to obtain an instance of `Ditto`. This is the main entry point into all Ditto-related functionality.
 
-```dart
+```dart Dart
 Future<void> main() async {
 	WidgetsFlutterBinding.ensureInitialized();
 
@@ -162,7 +159,7 @@ class MyApp extends StatelessWidget {
 
 To insert data into the Ditto store, use the following example. This demonstrates inserting a document into a collection named `items`:
 
-```dart
+```dart Dart
 Future<void> insertData() async {
   final item = {'name': 'Sample Item', 'value': 100};
   await ditto.store.execute(
@@ -174,7 +171,7 @@ Future<void> insertData() async {
 
 Call the `insertData` function wherever appropriate in your application, such as in a button press handler.
 
-```dart
+```dart Dart
 FloatingActionButton(
   onPressed: insertData,
   child: Icon(Icons.add),
@@ -185,7 +182,7 @@ FloatingActionButton(
 
 To observe changes in the data store, register an observer. This example sets up an observer to listen for changes in the `items` collection:
 
-```dart
+```dart Dart
 Future<void> observeData() async {
   final observer = await ditto.store.registerObserver(
     "SELECT * FROM items",
@@ -199,7 +196,7 @@ Future<void> observeData() async {
 
 Call the `observeData` function, typically in the `initState` method of a stateful widget to start observing when the widget is initialized.
 
-```dart
+```dart Dart
 @override
 void initState() {
   super.initState();
@@ -209,7 +206,7 @@ void initState() {
 
 Remember to cancel your observer in your widget’s `dispose()` method to prevent resource leaks
 
-```dart
+```dart Dart
 @override
 void dispose() {
   _observer.cancel();
@@ -225,7 +222,7 @@ To keep your data in sync across devices and with the Ditto Cloud (Big Peer), yo
 
 To start sync on the device you need to call `startSync`. This enables this device to sync data with other peers including the Ditto Cloud.
 
-```dart
+```dart Dart
 await ditto.startSync();
 ```
 
@@ -233,7 +230,7 @@ await ditto.startSync();
 
 Register a subscription to a collection to keep the data in sync. Below is an example of how to register a subscription to the `items` collection:
 
-```dart
+```dart Dart
 Future<void> syncData() async {
   await ditto.sync.registerSubscription("SELECT * FROM items");
 }

@@ -9,16 +9,16 @@ To install the JavaScript SDK:
 
 <Steps>
   <Step>
-    [Prerequisites](/install-guides/js#sb-Fz): Confirm that you meet the minimum requirements.
+    [Prerequisites](#prerequisites): Confirm that you meet the minimum requirements.
   </Step>
   <Step>
- [Install Dependencies](/install-guides/js#i_i6q): Add the ditto package to your environment.
+ [Install Dependencies](#install-dependencies): Add the ditto package to your environment.
   </Step>
   <Step>
-[Integrate Ditto](/install-guides/js#Ajrfc): Import and initialize Ditto in your app.
+[Integrate Ditto](#integrate-ditto): Import and initialize Ditto in your app.
   </Step>
   <Step>
-[Run Ditto](/install-guides/js#s71_W): Authenticate with the Big Peer and start syncing offline.
+[Run Ditto](#run-ditto): Authenticate with the Big Peer and start syncing offline.
   </Step>
 
 </Steps>
@@ -27,7 +27,7 @@ To install the JavaScript SDK:
 
 Following are the minimum requirements that must be met before attempting to install Ditto.
 
-- [Node.js](https://nodejs.org/en/ "Node.js") active or maintenance long-term support (LTS) version
+- [Node.js](https://nodejs.org/en/) active or maintenance long-term support (LTS) version
 
 - Linux, macOS version 11+, or Windows version 10+
 
@@ -58,10 +58,10 @@ Import and initialize Ditto, and then provide your access credentials for one-ti
 </Note>
 
 <Info>
-  For instructions on how to obtain your access credentials, see [Getting Playground Token Credentials](/ab-redirect-url?docId=U214QhYYMCxbV9jnamRFH&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=) . For an introduction to authentication in Ditto, see _Security_ > [Cloud Authentication](/ab-redirect-url?docId=D0B4xrfN45yeM15qCYcOb&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=).
+  For instructions on how to obtain your access credentials, see [Getting Playground Token Credentials](/cloud/portal/getting-playground-token-credentials.mdx) . For an introduction to authentication in Ditto, see _Security_ > [Cloud Authentication](/authentication-and-authorization/cloud-authentication.mdx).
 </Info>
 
-```js js
+```js JS
 import { init, Ditto } from "@dittolive/ditto";
 
 let ditto;

@@ -178,28 +178,24 @@ Keeping the script active in your terminal, verify that events write to the cons
 
 The following snippets demonstrate upserting a new value to the Ditto store in various languages:
 
-<Tabs>
+<CodeGroup>
+```js JS
+const docID = await ditto.store.collection('people').upsert({
+  name: 'Susan',
+  age: 31,
+})
+console.log(docID) // "507f191e810c19729de860ea"
+```
 
-  <Tab title="JS">
-```JS
+```js Node.js
 const docID = await ditto.store.collection('people').upsert({
   name: 'Susan',
   age: 31,
 })
 console.log(docID) // "507f191e810c19729de860ea"
 ```
-  </Tab>
-  <Tab title="Node.js">
-```Js
-const docID = await ditto.store.collection('people').upsert({
-  name: 'Susan',
-  age: 31,
-})
-console.log(docID) // "507f191e810c19729de860ea"
-```
-  </Tab>
-  <Tab title="Swift">
-```swift
+
+```swift Swift
 do {
     // upsert JSON-compatible data into Ditto
     let docID = try ditto.store["people"].upsert([
@@ -211,9 +207,8 @@ do {
     print(error)
 }
 ```
-  </Tab>
-  <Tab title="Kotlin">
-```kotlin
+
+```kotlin Kotlin
 val docId2 = ditto.store["people"].upsert(
     mapOf(
         "name" to "Susan",
@@ -221,26 +216,23 @@ val docId2 = ditto.store["people"].upsert(
     )
 )
 ```
-  </Tab>
-  <Tab title="Java">
-```Java
+
+```java Java
 Map<String, Object> content = new HashMap<>();
 content.put("name", "Susan");
 content.put("age", 31);
 DittoDocumentId docId = ditto.store.collection("people").upsert(content);
 // docId => 507f191e810c19729de860ea
 ```
-  </Tab>
-</Tabs>
-<Tabs>
-  <Tab title="C++">
-```cpp
+</CodeGroup>
+
+<CodeGroup>
+```cpp C++
 json person = json({{"name", "Susan"}, {"age", 31}});
 DocumentId doc_id = ditto.get_store().collection("people").upsert(person);
 ```
-  </Tab>
-    <Tab title="C#">
-```C#
+
+```csharp C#
 var docId = ditto.Store.Collection("people").Upsert(
     new Dictionary<string, object> {
     { "name", "Susan" },
@@ -248,9 +240,8 @@ var docId = ditto.Store.Collection("people").Upsert(
     }
 );
 ```
-  </Tab>
-  <Tab title="Rust">
-```Rust
+
+```rust Rust
 let person = json!({
     "name": "Susan".to_string(),
     "age": 31,
@@ -258,9 +249,8 @@ let person = json!({
 let collection = ditto.store().collection("people").unwrap();
 let id = collection.upsert(person).unwrap();
 ```
-  </Tab>
-  <Tab title="cURL">
-```bash
+
+```bash cURL
 curl -X POST 'https://<CLOUD_ENDPOINT>/api/v4/store/write' \
   --header 'Content-Type: application/json' \
   --data-raw '{
@@ -274,8 +264,7 @@ curl -X POST 'https://<CLOUD_ENDPOINT>/api/v4/store/write' \
       }]
   }'
 ```
-  </Tab>
-</Tabs>
+</CodeGroup>
   </Step>
   <Step>
   If you want to react to a consumable event by writing changes to the Ditto store, use the HTTP API. For more information, see [Ditto Events](/cloud/cdc#events-message-streams), as follows, and the  [HTTP API Reference \[test\]](/cloud/cdc).

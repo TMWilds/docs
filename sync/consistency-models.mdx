@@ -36,18 +36,18 @@ Local Peer `A` document: `123abc` links to a version vector that indicates:
 
 - The Remote Peer `C` changes were incorporated and merged at vector version `4`.
 
-<Tabs>
-    <Tab title="">
-    ```
-    DocumentId: "123abc"
-    Version Vector: {
-      "A": 5,
-      "B": 1,
-      "C": 4
-    }
-    ```
-    </Tab>
-</Tabs>
+<CodeGroup>
+
+```text
+DocumentId: "123abc"
+Version Vector: {
+  "A": 5,
+  "B": 1,
+  "C": 4
+}
+```
+
+</CodeGroup>
 </Step>
 
 <Step>
@@ -59,18 +59,18 @@ Local Peer `A` receives document changes from remote Peer `B`. The incoming docu
 
 Since `4` is greater than `1`, the local Peer `A` determines that the changes are new and should be incorporated and merged in order to remain consistent.
 
-<Tabs>
-    <Tab title="">
-    ```
-    DocumentId: "123abc"
-    Version Vector: {
-      "A": 5,
-      "B": 1, //merge in {"B": 4} because 4 > 1
-      "C": 4
-    }
-    ```
-    </Tab>
-</Tabs>
+<CodeGroup>
+
+```text
+DocumentId: "123abc"
+Version Vector: {
+  "A": 5,
+  "B": 1, //merge in {"B": 4} because 4 > 1
+  "C": 4
+}
+```
+
+</CodeGroup>
 </Step>
 </Steps>
 
@@ -82,82 +82,82 @@ To give an intuition about causal consistency, imagine the following scenario:
 
 On a social network, Bob posts a message:
 
-<Tabs>
-    <Tab title="">
-    ```
-    Bob: "I lost my cat"
-    ```
-    </Tab>
-</Tabs>
+<CodeGroup>
+
+```text
+Bob: "I lost my cat"
+```
+
+</CodeGroup>
 
 Then after some time, he posts:
 
-<Tabs>
-    <Tab title="">
-    ```
-    Bob: "I found him! What a relief!"
-    ```
-    </Tab>
-</Tabs>
+<CodeGroup>
+
+```text
+Bob: "I found him! What a relief!"
+```
+
+</CodeGroup>
 
 To which Sue replies:
 
-<Tabs>
-    <Tab title="">
-    ```
-    Sue: "Great news!"
-    ```
-    </Tab>
-</Tabs>
+<CodeGroup>
 
-In contrast, an **eventually consistent** database shows messages in any order:
+```text
+Sue: "Great news!"
+```
 
-<Tabs>
-    <Tab title="">
-    ```
-    Bob: "I lost my cat"
-    Sue: "Great news!"
-    Bob: ...etc
-    ```
-    </Tab>
-</Tabs>
+</CodeGroup>
+
+In contrast, an **eventually consistent** database shows messages in any order:
+
+<CodeGroup>
+
+```text
+Bob: "I lost my cat"
+Sue: "Great news!"
+Bob: ...etc
+```
+
+</CodeGroup>
 
 Ditto's Causal Consistency ensures that if a new message is written after seeing some prior message, then the new message is not visible unless that prior message is also visible.
 
 To help differentiate Causal Consistency from stronger consistency models, imagine that Alice replies:
 
-<Tabs>
-    <Tab title="">
-    ```
-    Alice: "Wonderful!"
-    ```
-    </Tab>
-</Tabs>
+<CodeGroup>
+
+```text
+Alice: "Wonderful!"
+```
+
+</CodeGroup>
 
 Causal Consistency allows the two concurrent messages "Great news!" from Sue and "Wonderful!" from Alice to appear in any order. Both of the following results are valid with Causal Consistency:
 
-<Tabs>
-    <Tab title="">
-    ```
-    Bob: "I lost my cat"
-    Bob: "I found him! What a relief!"
-    Sue: "Great news!"
-    Alice: "Wonderful!"
-    ```
-    </Tab>
-</Tabs>
+<CodeGroup>
+
+```text
+Bob: "I lost my cat"
+Bob: "I found him! What a relief!"
+Sue: "Great news!"
+Alice: "Wonderful!"
+```
+
+</CodeGroup>
 
 And:
 
-<Tabs>
-    <Tab title="">
-    ```
-    Bob: "I lost my cat"
-    Bob: "I found him! What a relief!"
-    Alice: "Wonderful!"
-    Sue: "Great news!"
-    ```
-    </Tab>
-</Tabs>
+<CodeGroup>
+
+```text
+Bob: "I lost my cat"
+Bob: "I found him! What a relief!"
+Alice: "Wonderful!"
+Sue: "Great news!"
+```
+
+</CodeGroup>
 
 

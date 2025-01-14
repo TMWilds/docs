@@ -29,23 +29,23 @@ Fetch current setting values for either the entire mesh network or a specific se
 
 - To return system-wide configurations, use a `SHOW ALL` statement:
 
-<Tabs>
-    <Tab title="DQL">
-    ```mysql
-    SHOW ALL;
-    ```
-    </Tab>
-</Tabs>
+<CodeGroup>
+
+```mysql DQL
+SHOW ALL;
+```
+
+</CodeGroup>
 
 - To return only the value for a specific setting, pass the setting you want to retrieve a value for in a `SHOW` statement. For example:
 
-<Tabs>
-    <Tab title="DQL">
-    ```mysql
-    SHOW REPLICATION_GC_STARTUP_DELAY_SECONDS;
-    ```
-    </Tab>
-</Tabs>
+<CodeGroup>
+
+```mysql DQL
+SHOW REPLICATION_GC_STARTUP_DELAY_SECONDS;
+```
+
+</CodeGroup>
 
 ## Executing SHOW and SHOW ALL
 
@@ -53,7 +53,7 @@ To invoke your statement, call the Execute API method on the `ditto.store` names
 
 For example, in Swift:
 
-```swift
+```swift Swift
 let result = try await ditto.store.execute(query: "SHOW ALL")
 result.items[0].value["example_parameter"] as? Int
 ```
@@ -68,23 +68,23 @@ Similar to PostgresSQL, DQL supports both the `=` and `TO` syntax for setting sy
 Regardless of the syntax you use in your `ALTER SYSTEM SET` query, the documents Ditto returns contain the current value of the setting, identified by the setting name.
 </Info>
 
-<Tabs>
-    <Tab title="DQL">
-    ```mysql
-    ALTER SYSTEM SET <setting> = <value>
-    ```
-    </Tab>
-</Tabs>
+<CodeGroup>
+
+```mysql DQL
+ALTER SYSTEM SET <setting> = <value>
+```
+
+</CodeGroup>
 
 For example:
 
-<Tabs>
-    <Tab title="DQL">
-    ```mysql
-    ALTER SYSTEM SET REPLICATION_GC_STARTUP_DELAY_SECONDS = 10;
-    ```
-    </Tab>
-</Tabs>
+<CodeGroup>
+
+```mysql DQL
+ALTER SYSTEM SET REPLICATION_GC_STARTUP_DELAY_SECONDS = 10;
+```
+
+</CodeGroup>
 
 ## Executing SET
 
@@ -98,7 +98,7 @@ So, while you can execute your statement to modify a setting at any point during
 
 To invoke the `SET` statement, add a call to the Execute API method on the `ditto.store` namespace. For example, in Swift:
 
-```swift
+```swift Swift
 var result = try await ditto.store.execute(query: "ALTER SYSTEM SET example_parameter = 321")
 result.items[0].value["example_parameter"] as? Int // 321
 ```
@@ -111,23 +111,23 @@ To return peer-to-peer system configuration settings to default values, do eithe
 
   For example:
 
-<Tabs>
-    <Tab title="DQL">
-    ```mysql
-    ALTER SYSTEM RESET ALL;
-    ```
-    </Tab>
-</Tabs>
+<CodeGroup>
+
+```mysql DQL
+ALTER SYSTEM RESET ALL;
+```
+
+</CodeGroup>
 
 - To reset a specific configuration setting:
 
-<Tabs>
-    <Tab title="DQL">
-    ```mysql
-    ALTER SYSTEM RESET <setting>
-    ```
-    </Tab>
-</Tabs>
+<CodeGroup>
+
+```mysql DQL
+ALTER SYSTEM RESET <setting>
+```
+
+</CodeGroup>
 
 Once executed, Ditto returns a document containing current values, identified by their setting name.
 

@@ -51,9 +51,8 @@ To explore Ditto without the commitment, authenticate using the playground ident
     <Step>
     From the [portal](https://portal.ditto.live/ "portal"), create your app and get your access credentials required for peer-to-peer offline sync. (See [Getting Playground Token Credentials](https://docs.ditto.live/auth-and-authorization/#U214QhYYMCxbV9jnamRFH))
 
-    <Tabs>
-      <Tab title="Swift">
-    ```swift
+    <CodeGroup>
+    ```swift Swift
     DittoLogger.minimumLogLevel = .debug
     let ditto = Ditto(identity: .onlinePlayground(
         appID: "REPLACE_ME_WITH_YOUR_APP_ID",
@@ -65,9 +64,8 @@ To explore Ditto without the commitment, authenticate using the playground ident
       print(err.localizedDescription)
     }
     ```
-      </Tab>
-      <Tab title="Kotlin">
-    ```java
+
+    ```java Java   
     try {
         val androidDependencies = DefaultAndroidDittoDependencies(context)
         val identity = DittoIdentity.OnlinePlayground(
@@ -82,9 +80,8 @@ To explore Ditto without the commitment, authenticate using the playground ident
         Log.e("Ditto error", e.message!!)
     }
     ```
-      </Tab>
-      <Tab title="JS">
-    ```JS
+
+    ```js JS
     import { init, Ditto, Logger } from "@dittolive/ditto"
     Logger.minimumLogLevel = 'Debug'
     const identity: Identity = { type: 'onlinePlayground', appID: 'REPLACE_ME_WITH_YOUR_APP_ID', token: 'REPLACE_ME_WITH_YOUR_PLAYGROUND_TOKEN' }
@@ -92,95 +89,7 @@ To explore Ditto without the commitment, authenticate using the playground ident
     const ditto = new Ditto(identity, path)
     ditto.startSync()
     ```
-      </Tab>
-      <Tab title="Node.Js">
-    ```JS
-    import { init, Ditto, Logger } from "@dittolive/ditto"
-    Logger.minimumLogLevel = 'Debug'
-    const identity: Identity = { type: 'onlinePlayground', appID: 'REPLACE_ME_WITH_YOUR_APP_ID', token: 'REPLACE_ME_WITH_YOUR_PLAYGROUND_TOKEN' }
-    const path = './your-ditto-application-data-path'
-    const ditto = new Ditto(identity, path)
-    ditto.startSync()
-    ```
-      </Tab>
-      <Tab title="Java">
-    ```Java
-    DittoDependencies androidDependencies = new DefaultAndroidDittoDependencies(this.context);
-    DittoLogger.setMinimumLogLevel(DittoLogLevel.DEBUG);
-    DittoIdentity identity = new DittoIdentity.OnlinePlayground(androidDependencies, "REPLACE_ME_WITH_YOUR_APP_ID", "YOUR_PLAYGROUND_TOKEN_HERE");
-    Ditto ditto = new Ditto(androidDependencies, identity);
-
-    try {
-        ditto.startSync();
-    } catch(DittoError e) {
-        //handle error
-    }
-    ```
-      </Tab>
-      <Tab title="C#">
-    ```C#
-    try
-    {
-        DittoLogger.SetMinimumLogLevel(DittoLogLevel.Debug);
-        var ditto = new Ditto(DittoIdentity.OnlinePlayground("REPLACE_ME_WITH_YOUR_APP_ID", "REPLACE_ME_WITH_YOUR_PLAYGROUND_TOKEN", true), path);
-        ditto.StartSync();
-    }
-    catch (DittoException ex)
-    {
-        Console.WriteLine($"Ditto Error {ex.Message}");
-    }
-    ```
-      </Tab>
-      <Tab title="C++">
-    ```cpp
-    auto identity =
-        Identity::OnlinePlayground("REPLACE_ME_WITH_YOUR_APP_ID",
-                                  "REPLACE_ME_WITH_YOUR_PLAYGROUND_TOKEN", true);
-    try {
-      Ditto ditto = Ditto(identity, dir);
-      ditto.set_minimum_log_level(LogLevel::debug);
-      ditto.start_sync();
-    } catch (const DittoError &err) {
-    }
-    ```
-      </Tab>
-      <Tab title="Rust">
-    ```Rust
-    let ditto = Ditto::builder()
-        // creates a `ditto_data` folder in the directory containing the executing process
-        .with_root(Arc::new(PersistentRoot::from_current_exe()?))
-        .with_identity(|ditto_root| {
-            // Provided as an env var, may also be provided as hardcoded string
-            let app_id = AppId::from_env("REPLACE_ME_WITH_YOUR_APP_ID")?;
-            let shared_token = std::env::var("REPLACE_ME_WITH_A_SHARED_TOKEN").unwrap();
-            let enable_cloud_sync = true;
-            let custom_auth_url = None;
-            OnlinePlayground::new(
-                ditto_root,
-                app_id,
-                shared_token,
-                enable_cloud_sync,
-                custom_auth_url,
-            )
-        })?
-        .with_minimum_log_level(LogLevel::Debug)
-        .build()?;
-
-    ditto.start_sync()?;
-    ```
-      </Tab>
-      <Tab title="Dart">
-    ```Dart
-    final identity = await OnlinePlaygroundIdentity.create(
-      appID: "REPLACE_ME_WITH_YOUR_APP_ID",
-      token: "REPLACE_ME_WITH_A_SHARED_TOKEN",
-    );
-
-    final ditto = await Ditto.open(identity);
-    await ditto.startSync();
-    ```
-      </Tab>
-    </Tabs>
+    </CodeGroup>
   </Step>
 </Steps>
 
@@ -209,107 +118,102 @@ Create a Ditto client that authenticates using the "Online With Authentication" 
 <Warning>
 You must refresh the auth token when it expires. You can do that by implementing `authenticationExpiringSoon.` If you do not implement this, then sync will stop when the token expires.
 </Warning>
-<Tabs>
-  <Tab title="Swift">
-  ```swift
-  struct AuthDelegate: DittoAuthenticationDelegate {
-      func authenticationRequired(authenticator: DittoAuthenticator) {
-          print("Login request.")
-      }
-
-      func authenticationExpiringSoon(authenticator: DittoAuthenticator, secondsRemaining: Int64) {
-          print("Auth token expiring in \(secondsRemaining)")
-      }
-  }
-
-  let identity = DittoIdentity.onlineWithAuthentication(
-      appID: "REPLACE_ME_WITH_YOUR_APP_ID",
-      authenticationDelegate: AuthDelegate()
-  )
-
-  let ditto = Ditto(identity: identity)
-  try! ditto.startSync()
-  ```
-  </Tab>
-  <Tab title="Kotlin">
-    ```js
-    class AuthCallback: DittoAuthenticationCallback {
-        override fun authenticationRequired(authenticator: DittoAuthenticator) {
-            println("Login request.")
-        }
-
-        override fun authenticationExpiringSoon(
-            authenticator: DittoAuthenticator,
-            secondsRemaining: Long
-        ) {
-            println("Auth token expiring in $secondsRemaining seconds")
-        }
+<CodeGroup>
+```swift Swift
+struct AuthDelegate: DittoAuthenticationDelegate {
+    func authenticationRequired(authenticator: DittoAuthenticator) {
+        print("Login request.")
     }
 
-    val androidDependencies = AndroidDittoDependencies(context)
-    val identity = DittoIdentity.OnlineWithAuthentication(
-        androidDependencies,
-        AuthCallback()
-    )
-    val ditto = Ditto(androidDependencies, identity)
-    try {
-      ditto.startSync()
-    } catch(e: DittoError) {
-      Log.e("Ditto error", e.message!!)
+    func authenticationExpiringSoon(authenticator: DittoAuthenticator, secondsRemaining: Int64) {
+        print("Auth token expiring in \(secondsRemaining)")
     }
-    ```
-      </Tab>
-      <Tab title="C#">
-    ```C#
-    class AuthDelegate : IDittoAuthenticationDelegate
+}
+
+let identity = DittoIdentity.onlineWithAuthentication(
+    appID: "REPLACE_ME_WITH_YOUR_APP_ID", 
+    authenticationDelegate: AuthDelegate()
+)
+
+let ditto = Ditto(identity: identity)
+try! ditto.startSync()
+```
+
+```kotlin Kotlin
+class AuthCallback: DittoAuthenticationCallback {
+    override fun authenticationRequired(authenticator: DittoAuthenticator) {
+        println("Login request.")
+    }
+
+    override fun authenticationExpiringSoon(
+        authenticator: DittoAuthenticator,
+        secondsRemaining: Long
+    ) {
+        println("Auth token expiring in $secondsRemaining seconds")
+    }
+}
+
+val androidDependencies = AndroidDittoDependencies(context)
+val identity = DittoIdentity.OnlineWithAuthentication(
+    androidDependencies,
+    AuthCallback()
+)
+val ditto = Ditto(androidDependencies, identity)
+try {
+  ditto.startSync()
+} catch(e: DittoError) {
+  Log.e("Ditto error", e.message!!)
+}
+```
+
+```csharp C#
+class AuthDelegate : IDittoAuthenticationDelegate
+{
+    public async void AuthenticationRequired(DittoAuthenticator authenticator)
     {
-        public async void AuthenticationRequired(DittoAuthenticator authenticator)
-        {
-            System.Console.WriteLine($"Login request");
-        }
-
-        public async void AuthenticationExpiringSoon(DittoAuthenticator authenticator, long secondsRemaining)
-        {
-            System.Console.WriteLine($"Auth token expiring in {secondsRemaining} seconds");
-        }
+        System.Console.WriteLine($"Login request");
     }
 
-    var identity = DittoIdentity.OnlineWithAuthentication(
-        "REPLACE_ME_WITH_YOUR_APP_ID",
-        new AuthDelegate());
-
-    try
+    public async void AuthenticationExpiringSoon(DittoAuthenticator authenticator, long secondsRemaining)
     {
-        var ditto = new Ditto(identity);
-        ditto.StartSync();
+        System.Console.WriteLine($"Auth token expiring in {secondsRemaining} seconds");
     }
-    catch (DittoException ex)
-    {
-        System.Console.WriteLine($"Ditto Error {ex.Message}");
-    }
-    ```
-  </Tab>
+}
 
-  <Tab title="Dart">
-  ```Dart
-  final handler = AuthenticationHandler(
-    authenticationRequired: (authenticator) {
-      print("authentication required");
-    },
-    authenticationExpiringSoon: (authenticator, secondsRemaining) {
-      print("Auth token expiring in $secondsRemaining seconds")
-    },
-  );
+var identity = DittoIdentity.OnlineWithAuthentication(
+    "REPLACE_ME_WITH_YOUR_APP_ID",
+    new AuthDelegate());
 
-  final identity = await OnlineWithAuthenticationIdentity.create(
-    appID: "REPLACE_WITH_YOUR_APP_ID",
-    authenticationHandler: handler,
-  );
+try
+{
+    var ditto = new Ditto(identity);
+    ditto.StartSync();
+}
+catch (DittoException ex)
+{
+    System.Console.WriteLine($"Ditto Error {ex.Message}");
+}
+```
 
-  final ditto = await Ditto.open(identity);
-  ```
-  </Tab>
-</Tabs>
+```dart Dart
+final handler = AuthenticationHandler(
+  authenticationRequired: (authenticator) {
+    print("authentication required");
+  },
+  authenticationExpiringSoon: (authenticator, secondsRemaining) {
+    print("Auth token expiring in $secondsRemaining seconds")
+  },
+);
+
+final identity = await OnlineWithAuthenticationIdentity.create(
+  appID: "REPLACE_WITH_YOUR_APP_ID",
+  authenticationHandler: handler,
+);
+
+final ditto = await Ditto.open(identity);
+```
+</CodeGroup>
+
 ## Login
 
 Login takes two parameters: the first is **token**. The token can be any string value. Most auth services use a [JWT (JSON Web Token)](https://jwt.io/ "JWT (JSON Web Token)"), but you can send any token you want from the client. For example, during testing you may want to create a secret code for development use. This string will be sent in a POST request to the HTTP route. The second parameter is **provider**, this provider must be a string value matching the name of one of your configured authentication webhooks. If you have multiple authentication webhooks, you can select which webhook your application should use by changing the provider.
@@ -318,30 +222,25 @@ Login takes two parameters: the first is **token**. The token can be any string
   <img src="/images/v4.9/authentication-1.webp"/>
 </Frame>
 <br/>
-<Tabs>
-    <Tab title="Swift">
-  ```swift
-  ditto.auth.login(accessToken, provider: "my-auth") { clientInfo, err in
-      print("Login request completed. Error? \(err)")
-  }
-  ```
-    </Tab>
-  <Tab title="Kotlin">
-```Kotlin
+<CodeGroup>
+```swift Swift
+ditto.auth.login(accessToken, provider: "my-auth") { clientInfo, err in
+    print("Login request completed. Error? \(err)")
+}
+```
+
+```kotlin Kotlin
 ditto.auth.login(accessToken, "my-auth", err -> {
     System.out.println("Login request completed. Error? " + err.toString());
 });
 ```
-  </Tab>
-  <Tab title="C#">
-```C#
+
+```csharp C#
 var res = await authenticator.Login(accessToken, "my-auth");
 System.Console.WriteLine($"Login request completed. Error? {res}");
 ```
-  </Tab>
 
-  <Tab title="Dart">
-```Dart
+```dart Dart
 final response = await ditto.auth.login(
   token: accessToken,
   provider: "my-auth",
@@ -351,8 +250,7 @@ if (response.exception != null) {
   // handle error
 }
 ```
-  </Tab>
-</Tabs>
+</CodeGroup>
 ### When should you call **ditto.auth.login**?
 
 If you have already implemented the callbacks mentioned earlier, you don't need to take further action. Ditto will automatically attempt to refresh whenever possible. However, if you know specific times when the app will be online, you may choose to call this function manually.
@@ -364,23 +262,20 @@ For an example implementation of authentication for Android, see the Ditto open-
 Logout will stop sync, shut down all replication sessions, and remove any cached authentication credentials. Note that this does not remove any data from the store. If you wish to delete data from the store then use the optional **cleanupFn** parameter to perform any required cleanup.
 
 The **cleanupFn** is an optional function that will be called with the relevant Ditto instance as the sole argument that allows you to perform any required cleanup of the store as part of the logout process.
-<Tabs>
-  <Tab title="Swift">
-```swift
+<CodeGroup>
+```swift Swift
 ditto.auth.logout(cleanup: { ditto in
     ditto.store.collection("cars").findAll().evict()
 })
 ```
-  </Tab>
-  <Tab title="C#">
-```C#
+
+```csharp C#
 ditto.Auth.Logout((Ditto ditto) =>
 {
   ditto.Store.Collection("cars").FindAll().evict();
 });
 ```
-  </Tab>
-</Tabs>
+</CodeGroup>
 
 ## Tutorial
 

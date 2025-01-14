@@ -110,9 +110,9 @@ For example, consider a document with a `properties` field of the `REGISTER` dat
 You want to change only the `color` field for a car identified by document ID `123` to `blue`.
 
 Since a `REGISTER` acts as a single object, to update just the `color`, you'd need to update the entire object by providing the entire set of nested key-value pairs, including the modified `color` , as follows:
-<Tabs>
-  <Tab title="Swift">
-```swift
+
+<CodeGroup>
+```swift Swift
 let newProperties = [
   "color": "blue",
   "sunroof": true,
@@ -123,17 +123,15 @@ await ditto.store.execute(
   "UPDATE cars SET properties = :newProperties WHERE _id = '123'",
   ["newProperties": newProperties]);
 ```
-  </Tab>
-  <Tab title="Kotlin">
-```Kotlin
+
+```kotlin Kotlin
 var result = ditto.store.execute(
   "INSERT INTO cars DOCUMENTS (:newCar)",
   mapOf("newProperties"
     to mapOf("color" to "blue", "sunroof" to true, "door_count" to 4)))
 ```
-  </Tab>
-  <Tab title="JS">
-```JS
+
+```javascript JS
 const newProperties = {
   color: 'blue',
   sunroof: true,
@@ -144,9 +142,8 @@ await ditto.store.execute(
   "UPDATE cars SET properties = :newProperties WHERE _id = '123'",
   {newProperties});
 ```
-  </Tab>
-  <Tab title="Java">
-```Java
+
+```java Java
 Map<String, String> newProperties = new HashMap<>();
 newCar.put("color", "blue");
 newCar.put("sunroof", true);
@@ -171,9 +168,8 @@ DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
   }
 );
 ```
-  </Tab>
-  <Tab title="C#">
-```C#
+
+```csharp C#
 var args = new Dictionary<string, object>();
 args.Add("newProperties", new { color="blue", sunroof=true, doorCount=4});
 
@@ -181,9 +177,8 @@ await ditto.Store.ExecuteAsync(
   "UPDATE cars SET properties = :newProperties WHERE _id = '123'",
   args);
 ```
-  </Tab>
-  <Tab title="C++">
-```cpp
+
+```cpp C++
 struct Properties {
   std::string color;
   bool sunroof;
@@ -199,95 +194,6 @@ ditto.get_store().execute(
   "UPDATE cars SET properties = :newProperties WHERE _id = '123'",
   args);
 ```
+</CodeGroup>
 
-```rust
-struct Properties {
-  color: String,
-  sunroof: bool,
-  door_count: i32
-}
-
-struct Args {
-  newProperties: Properties,
-}
-
-// ...
-
-let args = Args {
-  newProperties: Properties {
-    color: "blue".to_string(),
-    sunroof: true,
-    door_count: 4
-  }
-};
-
-await ditto.store().execute(
-  "UPDATE cars SET properties = :newProperties WHERE _id = '123'",
-  args);
-```
-  </Tab>
-  <Tab title="Dart">
-```Dart
-final newProperties = {
-  "color": "blue",
-  "sunroof": true,
-  "door_count": 4,
-};
-
-await ditto.store.execute(
-  "UPDATE cars SET properties = :newProperties WHERE _id = '123'",
-  arguments: {"newProperties": newProperties},
-);
-```
-  </Tab>
-</Tabs>
-
-However, if the `properties` field is of the `MAP` data type instead, to update the color without altering the other nested key-value pairs in the set, assign the `properties.color` field to `blue` as follows:
-
-```sql DQL
-UPDATE COLLECTION cars (properties MAP)
-SET properties -> (color = blue)
-WHERE _id = '123'
-```
-
-### Conflicts with Tombstone and Modify
-
-If a tombstone (deletion flag) and a modification (`INSERT`) operation occur across two peers simultaneously, the resulting state depends on the *causal order* of these changes.
-
-Causal order refers to the logical sequence in which events occur, considering the cause-and-effect relationship between them.
-
-
-<Warning>
-Modifications to the value of fields within a `MAP` do not count as modifications to the `MAP` itself.
-</Warning>
-
-Following is a truth table showing "if a `MAP` is deleted" based on "if the peers are connected" and "when the tombstone operation occurs relative to the modification."
-
-| **PEER Status** | **Tombstone First** | **Tombstone Last** |
-| --------------- | ------------------- | ------------------ |
-| Connected       | FALSE               | TRUE               |
-| Disconnected    | FALSE               | FALSE              |
-
-### Warnings and Cautions
-
-
-<Warning>
-Syncing large documents can significantly impact sync performance.
-
-Consider using an `ATTACHMENT` instead of a regular document when handling a deeply embedded or large document object.
-
-</Warning>
-
-<Warning>
-When internet connection is limited or using only Bluetooth Low Energy (LE) to sync across connected peers, syncing documents containing large amounts of data is slow.
-
-For instance, when using only Bluetooth LE to sync a document of a typical size, the rate of replication is 20 KB per second maximum. Given this, a document of 250 KB or larger may require 10 seconds or more to sync for the first time between Small Peer devices.
-
-A slow replication rate results in a loading spinner displayed to your end users until the sync process fully completes. This is due to the callback being unable to render the returned data; the end-to-end sync process requires that documents be broken down into smaller parts before being synced across the mesh, and then, until the client receives all of the smaller parts and reconstructs them, the document is not returned.
-
-Instead of using a single document to encode large datasets, use a series of smaller documents.
-
-- If a document exceeds 250 KB, a `stdout` warning prints.
-- Any documents exceeding 5 MB do not sync to other peers.
-
-</Warning>
+However, if the `properties` field is of the `

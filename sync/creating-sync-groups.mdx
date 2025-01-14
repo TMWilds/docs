@@ -20,7 +20,7 @@ Now, the two groups maintain isolated mesh networks:
 
 Sync groups are an optimization, not a security control — if a connection is created manually, such as by specifying a specific peer to connect to, then devices from different sync groups will still connect and sync as normal.
 
-To enforce access controls by group, for instance, two groups of devices, each accessing different datasets, use Ditto's permissions system. (See [Data Authorization](<./../../Authentication & Authorization/Data Authorization.md>))
+To enforce access controls by group, for instance, two groups of devices, each accessing different datasets, use Ditto's permissions system. (See [Data Authorization](../auth-and-authorization/data-authorization))
 
 A device can only be in one sync group, which by default is group 0. Up to 2^32 distinct group numbers can be used in an app.
 
@@ -28,79 +28,70 @@ A device can only be in one sync group, which by default is group 0. Up to 2^32 
 
 To create a sync group:
 
-<Tabs>
-    <Tab title="Swift">
-    ```swift
-    ditto.transportConfig.global.syncGroup = 1234
+<CodeGroup>
+```swift Swift
+ditto.transportConfig.global.syncGroup = 1234
 
-    do {
-      try ditto.startSync()
-    } catch (let error) {
-      print(error.localizedDescription)
-    }
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```kotlin
-    ditto.transportConfig.global.syncGroup = 1234U
+do {
+  try ditto.startSync()
+} catch (let error) {
+  print(error.localizedDescription)
+}
+```
 
-    ditto.startSync()
-    ```
-    </Tab>
-    <Tab title="JS">
-    ```javascript
-    const config = new TransportConfig()
-    config.global.syncGroup = 1234
+```kotlin Kotlin
+ditto.transportConfig.global.syncGroup = 1234U
 
-    ditto.setTransportConfig(config)
+ditto.startSync()
+```
 
-    ditto.startSync()
-    ```
-    </Tab>
-    <Tab title="Java">
-    ```java
-    // Not supported
-    ```
-    </Tab>
-    <Tab title="C#">
-    ```csharp
-    DittoTransportConfig transportConfig = new DittoTransportConfig();
-    transportConfig.Global.SyncGroup = 1234;
+```javascript JS
+const config = new TransportConfig()
+config.global.syncGroup = 1234
 
-    ditto.TransportConfig.Global.SyncGroup = 1234;
+ditto.setTransportConfig(config)
 
-    ditto.StartSync();
-    ```
-    </Tab>
-    <Tab title="C++">
-    ```cpp
-    auto config = ditto::TransportConfig();
-    config.global.sync_group = 1234;
+ditto.startSync()
+```
 
-    ditto.set_transport_config(config);
+```java Java
+// Not supported
+```
 
-    ditto.start_sync();
-    ```
-    </Tab>
-    <Tab title="Rust">
-    ```rust
-    let mut config = TransportConfig::new();
-    config.global.sync_group = 1234;
+```csharp C#
+DittoTransportConfig transportConfig = new DittoTransportConfig();
+transportConfig.Global.SyncGroup = 1234;
 
-    ditto.set_transport_config(config);
-    ditto.start_sync()?;
-    ```
-    </Tab>
-    <Tab title="Dart">
-    ```dart
-    final config = TransportConfig()
-      ..global.syncGroup = 1234;
+ditto.TransportConfig.Global.SyncGroup = 1234;
 
-    await ditto.setTransportConfig(config);
-    await ditto.startSync();
-    ```
-    </Tab>
-</Tabs>
+ditto.StartSync();
+```
+
+```cpp C++
+auto config = ditto::TransportConfig();
+config.global.sync_group = 1234;
+
+ditto.set_transport_config(config);
+
+ditto.start_sync();
+```
+
+```rust Rust
+let mut config = TransportConfig::new();
+config.global.sync_group = 1234;
+
+ditto.set_transport_config(config);
+ditto.start_sync()?;
+```
+
+```dart Dart
+final config = TransportConfig()
+  ..global.syncGroup = 1234;
+
+await ditto.setTransportConfig(config);
+await ditto.startSync();
+```
+</CodeGroup>
 
 
 

@@ -31,24 +31,20 @@ The config can be set using DQL ALTER SYSTEM and the tcp\_server\_bind\_mdns\_se
 ```sql DQL
 ALTER SYSTEM SET tcp_server_bind_mdns_server_port TO 1234
 ```
-<Tabs>
-  <Tab title="Swift">
-```swift
+<CodeGroup>
+```swift Swift
 let result = await ditto.store.execute(query: "ALTER SYSTEM SET tcp_server_bind_mdns_server_port TO 1234")
 ```
-  </Tab>
-  <Tab title="Kotlin">
-```Kotlin
+
+```kotlin Kotlin
 val result = ditto.store.execute("ALTER SYSTEM SET tcp_server_bind_mdns_server_port TO 1234")
 ```
-  </Tab>
-  <Tab title="JS">
-```JS
+
+```js JS
 const result = await ditto.store.execute("ALTER SYSTEM SET tcp_server_bind_mdns_server_port TO 1234");
 ```
-  </Tab>
-  <Tab title="Java">
-```Java
+
+```java Java
 DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
     "ALTER SYSTEM SET tcp_server_bind_mdns_server_port TO 1234",
     new Continuation<>() {
@@ -67,28 +63,23 @@ DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
     }
 );
 ```
-  </Tab>
-  <Tab title="C#">
-```C#
+
+```csharp C#
 var result = await ditto.Store.ExecuteAsync("ALTER SYSTEM SET tcp_server_bind_mdns_server_port TO 1234");
 ```
-  </Tab>
-  <Tab title="C++">
-```cpp
+
+```cpp C++
 auto result = ditto.get_store().execute("ALTER SYSTEM SET tcp_server_bind_mdns_server_port TO 1234").get();
 ```
-  </Tab>
-  <Tab title="Rust">
-```Rust
+
+```rust Rust
 let result = ditto.store().execute("ALTER SYSTEM SET tcp_server_bind_mdns_server_port TO 1234", None);
 ```
-  </Tab>
-  <Tab title="Dart">
-```Dart
+
+```dart Dart
 final result = await ditto.store.execute("ALTER SYSTEM SET tcp_server_bind_mdns_server_port TO 1234");
 ```
-  </Tab>
-</Tabs>
+</CodeGroup>
 
 This command should be run using the ditto.store.execute(...) command within your application.
 

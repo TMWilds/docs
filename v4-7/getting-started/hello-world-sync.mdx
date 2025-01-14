@@ -17,9 +17,8 @@ Before you can begin syncing data offline, set up authentication and then start 
 
 <Steps>
   <Step>
-<Tabs>
-  <Tab title="Swift">
-```swift
+<CodeGroup>
+```swift Swift
 DittoLogger.minimumLogLevel = .debug
 let ditto = Ditto(identity: .onlinePlayground(
     appID: "YOUR_APP_ID",
@@ -31,9 +30,8 @@ do {
   print(err.localizedDescription)
 }
 ```
-  </Tab>
-  <Tab title="Kotlin">
-```Kotlin
+
+```kotlin Kotlin
 try {
     val androidDependencies = DefaultAndroidDittoDependencies(context)
     val identity = DittoIdentity.OnlinePlayground(
@@ -48,9 +46,8 @@ try {
     Log.e("Ditto error", e.message!!)
 }
 ```
-  </Tab>
-  <Tab title="JS">
-```JS
+
+```js JS
 import { Ditto } from "@dittolive/ditto"
 
 const identity = {
@@ -62,9 +59,8 @@ const identity = {
 const ditto = new Ditto(identity)
 await ditto.startSync()
 ```
-  </Tab>
-  <Tab title="Java">
-```Java
+
+```java Java
 DittoDependencies androidDependencies = new DefaultAndroidDittoDependencies(this.context);
 DittoLogger.setMinimumLogLevel(DittoLogLevel.DEBUG);
 DittoIdentity identity = new DittoIdentity.OnlinePlayground(androidDependencies, "YOUR_APP_ID", "YOUR_PLAYGROUND_TOKEN");
@@ -76,9 +72,8 @@ try {
     //handle error
 }
 ```
-  </Tab>
-  <Tab title="C#">
-```C#
+
+```csharp C#
 try
 {
     DittoLogger.SetMinimumLogLevel(DittoLogLevel.Debug);
@@ -90,9 +85,8 @@ catch (DittoException ex)
     Console.WriteLine($"Ditto Error {ex.Message}");
 }
 ```
-  </Tab>
-  <Tab title="C++">
-```cpp
+
+```cpp C++
 auto identity =
     Identity::OnlinePlayground("YOUR_APP_ID",
                                "YOUR_PLAYGROUND_TOKEN", true);
@@ -103,9 +97,8 @@ try {
 } catch (const DittoError &err) {
 }
 ```
-  </Tab>
-  <Tab title="Rust">
-```Rust
+
+```rust Rust
 // App ID and Playground Token are read from ENV variables
 let your_app_id = AppId::from_env("DITTO_APP_ID")?;
 let your_playground_token = std::env::var("DITTO_PLAYGROUND_TOKEN")?;
@@ -128,9 +121,8 @@ let ditto = Ditto::builder()
 
 ditto.start_sync()?;
 ```
-  </Tab>
-  <Tab title="Dart">
-```Dart
+
+```dart Dart
 import 'package:ditto_live/ditto_live.dart';
 
 final dataDir = await getApplicationDocumentsDirectory();
@@ -144,8 +136,7 @@ final ditto = await Ditto.open(
 
 await ditto.startSync();
 ```
-  </Tab>
-</Tabs>
+</CodeGroup>
   </Step>
   <Step>
 Replace `YOUR_APP_ID` and `YOUR_PLAYGROUND_TOKEN` with your access credentials available from the <a href="https://portal.ditto.live/?_gl=1*gbyc26*_ga*MjAxODM3ODUyMi4xNzE4NjUzNzYz*_ga_D8PMW3CCL2*MTcxODcyNjU1MS41LjEuMTcxODcyNjkzMi42MC4wLjA." target="_blank">portal</a>. (See [Sync Credentials](<./Sync Credentials.md>))
@@ -160,39 +151,34 @@ Insert a document in your local Ditto store by calling the Execute API method on
 
 For example, inserting a new document with a single field `"color"` set to `"blue"`:
 
-<Tabs>
-  <Tab title="Swift">
-```swift
+<CodeGroup>
+```swift Swift
 await ditto.store.execute(
   query: "INSERT INTO cars DOCUMENTS (:newCar)",
   arguments: ["newCar": ["color": "blue"]]);
 ```
-  </Tab>
-  <Tab title="Kotlin">
-```Kotlin
+
+```kotlin Kotlin
 ditto.store.execute(
   "INSERT INTO cars DOCUMENTS (:newCar)",
   mapOf("newCar" to mapOf("color" to "blue")))
 ```
-  </Tab>
-  <Tab title="JS">
-```JS
+
+```js JS
 await ditto.store.execute(
   "INSERT INTO cars DOCUMENTS (:newCar)",
   { newCar: { color: "blue" } }
 );
 ```
-  </Tab>
-  <Tab title="Java">
-```Java
+
+```java Java
 DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
     "INSERT INTO cars DOCUMENTS (:newCar)",
     Collections.singletonMap("newCar", Collections.singletonMap("color", "blue")),
 );
 ```
-  </Tab>
-  <Tab title="C#">
-```C#
+
+```csharp C#
 var args = new Dictionary<string, object>();
 args.Add("newCar", new { color = "blue" });
 
@@ -200,9 +186,8 @@ await ditto.Store.ExecuteAsync(
   "INSERT INTO cars DOCUMENTS (:newCar)",
   args);
 ```
-  </Tab>
-  <Tab title="C++">
-```cpp
+
+```cpp C++
 std::map<std::string, std::map<std::string, std::string>> args;
 args["newCar"] = {{"color", "blue"}};
 
@@ -210,9 +195,8 @@ ditto.get_store().execute(
   "INSERT INTO cars DOCUMENTS (:newCar)",
   args);
 ```
-  </Tab>
-  <Tab title="Rust">
-```Rust
+
+```rust Rust
 let query_result = ditto
     .store()
     .execute(
@@ -224,16 +208,14 @@ let query_result = ditto
         }).into()),
     ).await?;
 ```
-  </Tab>
-  <Tab title="Dart">
-```Dart
+
+```dart Dart
 await ditto.store.execute(
   "INSERT INTO cars DOCUMENTS (:newCar)",
   arguments: {"newCar": {"color": "blue"}},
 );
 ```
-  </Tab>
-</Tabs>
+</CodeGroup>
 
 ## Setting Up Store Observers
 
@@ -245,30 +227,26 @@ To set up a store observer:
 
 1. Call the Register Observer API method on the `store` namespace.
 
-<Tabs>
-  <Tab title="Swift">
-```swift
+<CodeGroup>
+```swift Swift
 observer = ditto.store.registerObserver(
   query: "SELECT * FROM cars"){ result in /* handle change */ };
 ```
-  </Tab>
-  <Tab title="Kotlin">
-```Kotlin
+
+```kotlin Kotlin
 observer = ditto.store.registerObserver("SELECT * FROM cars") { result ->
   /* handle change */ };
 ```
-  </Tab>
-  <Tab title="JS">
-```JS
+
+```js JS
 ditto.store.registerObserver(
   "SELECT * FROM cars",
   (result) => {
     // handle change
 });
 ```
-  </Tab>
-  <Tab title="Java">
-```Java
+
+```java Java
 observer = ditto.store.registerObserver(
     "SELECT * FROM cars",
     result -> {
@@ -276,9 +254,8 @@ observer = ditto.store.registerObserver(
     }
 );
 ```
-  </Tab>
-  <Tab title="C#">
-```C#
+
+```csharp C#
 // Without Arguments
 result = await ditto.Store.RegisterObserver(
   "SELECT * FROM cars",
@@ -293,16 +270,14 @@ result = ditto.Store.RegisterObserver(
     // handle change
   });
 ```
-  </Tab>
-  <Tab title="C++">
-```cpp
+
+```cpp C++
 observer = ditto.get_store().register_observer(
   "SELECT * FROM cars",
   [&](QueryResult result) { /* handle change */ });
 ```
-  </Tab>
-  <Tab title="Rust">
-```Rust
+
+```rust Rust
 observer = ditto
     .store()
     .register_observer(
@@ -312,17 +287,15 @@ observer = ditto
             // handle change
         })?;
 ```
-  </Tab>
-  <Tab title="Dart">
-```Dart
+
+```dart Dart
 final observer = await ditto.store.registerObserver("SELECT * FROM cars");
 
 observer.changes.listen((result) {
   // handle change
 });
 ```
-  </Tab>
-</Tabs>
+</CodeGroup>
 
 2. Include a local `SELECT` query specifying the document collection you want to watch and define a callback function to handle changes.
 
@@ -338,41 +311,34 @@ Register a remote listener, known as a *sync subscription*, by calling the Regis
 
 For example, creating a subscription to sync updates made to documents in the `cars` collection with `color` set to `blue`:
 
-<Tabs>
-  <Tab title="Swift">
-```swift
+<CodeGroup>
+```swift Swift
 observer = ditto.store.registerObserver(
   query: "SELECT * FROM cars"){ result in /* handle change */ };
 ```
-  </Tab>
-  <Tab title="Kotlin">
-```Kotlin
+
+```kotlin Kotlin
 ditto.sync.registerSubscription("SELECT * FROM cars WHERE color = 'blue'")
 ```
-  </Tab>
-  <Tab title="JS">
-```JS
+
+```js JS
 ditto.sync.registerSubscription("SELECT * FROM cars WHERE color = 'blue'")
 ```
-  </Tab>
-  <Tab title="Java">
-```Java
+
+```java Java
 ditto.sync.registerSubscription("SELECT * FROM cars WHERE color = 'blue'")
 ```
-  </Tab>
-  <Tab title="C#">
-```C#
+
+```csharp C#
 ditto.Sync.RegisterSubscription("SELECT * FROM cars WHERE color = 'blue'");
 ```
-  </Tab>
-  <Tab title="C++">
-```cpp
+
+```cpp C++
 auto subscription =
   ditto.sync().register_subscription("SELECT * FROM cars WHERE color = 'blue'");
 ```
-  </Tab>
-  <Tab title="Rust">
-```Rust
+
+```rust Rust
 let subscription = ditto
     .sync()
     .register_subscription(
@@ -380,13 +346,11 @@ let subscription = ditto
         None,
     )?;
 ```
-  </Tab>
-  <Tab title="Dart">
-```Dart
+
+```dart Dart
 ditto.sync.registerSubscription("SELECT * FROM cars WHERE color = 'blue'");
 ```
-  </Tab>
-</Tabs>
+</CodeGroup>
 
 ## Takeaway
 

@@ -24,188 +24,176 @@ To accept or reject an incoming connection request:
 Once you've set the request handler, end users must always make a choice to accept or reject incoming connection requests; otherwise, potential issues like request deadlocks and connection timeouts may result.
 </Info>
 
-<Tabs>
-    <Tab title="Swift">
-    ```swift
-    ditto.presence.connectionRequestHandler = { connectionRequest in
-        if (true) {
-            return .allow
-        } else {
-            return .deny
-        }
+<CodeGroup>
+
+```swift Swift
+
+ditto.presence.connectionRequestHandler = { connectionRequest in
+    if (true) {
+        return .allow
+    } else {
+        return .deny
     }
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```kotlin
-    ditto.presence.connectionRequestHandler = { connectionRequest ->
-        if (true) {
-            DittoConnectionRequestAuthorization.Allow
-        } else {
-            DittoConnectionRequestAuthorization.Deny
-        }
+}
+```
+
+```kotlin Kotlin
+ditto.presence.connectionRequestHandler = { connectionRequest ->
+    if (true) {
+        DittoConnectionRequestAuthorization.Allow
+    } else {
+        DittoConnectionRequestAuthorization.Deny
     }
-    ```
-    </Tab>
-    <Tab title="JS">
-    ```javascript
-    ditto.presence.connectionRequestHandler = async (connectionRequest) => {
-        if (true) {
-            return "allow";
-        } else {
-            return "deny";
-        }
+}
+```
+
+```javascript JavaScript
+ditto.presence.connectionRequestHandler = async (connectionRequest) => {
+    if (true) {
+        return "allow";
+    } else {
+        return "deny";
     }
-    ```
-    </Tab>
-    <Tab title="Java">
-    ```java
-    // Not Supported
-    ```
-    </Tab>
-    <Tab title="C#">
-    ```csharp
-    Ditto.Presence.ConnectionRequestHandler = (connectionRequest) =>
-    {
-        if (true) {
-            return Task.FromResult(DittoConnectionRequestAuthorization.Allow);
-        } else {
-            return Task.FromResult(DittoConnectionRequestAuthorization.Deny);
-        }
-    };
-    ```
-    </Tab>
-    <Tab title="C++">
-    ```cpp
-    ditto.get_presence().set_connection_request_handler(
-        [&](ConnectionRequest connection_request) {
-          if (true){
-              return ConnectionRequestAuthorization::allow;
-          } else {
-              return ConnectionRequestAuthorization::deny;
-          }
-        }
-      );
-    ```
-    </Tab>
-    <Tab title="Rust">
-    ```rust
-    ditto.presence().set_connection_request_handler(|connection_request: ConnectionRequest| {
-        if (true) {
-            return ConnectionRequestAuthorization::Allow
-        } else {
-            return ConnectionRequestAuthorization::Deny
-        }
-    });
-    ```
-    </Tab>
-    <Tab title="Dart">
-    ```dart
-    ditto.presence.connectionRequestHandler = (request) async {
-      if (true) {
-        return ConnectionRequestAuthorization.allow;
+}
+```
+
+```java Java
+// Not Supported
+```
+
+```csharp C#
+Ditto.Presence.ConnectionRequestHandler = (connectionRequest) =>
+{
+    if (true) {
+        return Task.FromResult(DittoConnectionRequestAuthorization.Allow);
+    } else {
+        return Task.FromResult(DittoConnectionRequestAuthorization.Deny);
+    }
+};
+```
+
+```cpp C++
+ditto.get_presence().set_connection_request_handler(
+    [&](ConnectionRequest connection_request) {
+      if (true){
+          return ConnectionRequestAuthorization::allow;
       } else {
-        return ConnectionRequestAuthorization.deny;
+          return ConnectionRequestAuthorization::deny;
       }
-    };
-    ```
-    </Tab>
-</Tabs>
+    }
+  );
+```
+
+```rust Rust
+ditto.presence().set_connection_request_handler(|connection_request: ConnectionRequest| {
+    if (true) {
+        return ConnectionRequestAuthorization::Allow
+    } else {
+        return ConnectionRequestAuthorization::Deny
+    }
+});
+```
+
+```dart Dart
+ditto.presence.connectionRequestHandler = (request) async {
+  if (true) {
+    return ConnectionRequestAuthorization.allow;
+  } else {
+    return ConnectionRequestAuthorization.deny;
+  }
+};
+```
+
+</CodeGroup>
 
 # Reading Connection Parameter
 
 To see specific information associated with a requesting peer connection
 
-<Tabs>
-    <Tab title="Swift">
-    ```swift
-    ditto.presence.connectionRequestHandler = { connectionRequest in
+<CodeGroup>
 
-        print(connectionRequest.peerKeyString)
-        print(connectionRequest.connectionType)
-        print(connectionRequest.peerMetadata)
+```swift Swift
 
-        return .allow
+ditto.presence.connectionRequestHandler = { connectionRequest in
+
+    print(connectionRequest.peerKeyString)
+    print(connectionRequest.connectionType)
+    print(connectionRequest.peerMetadata)
+
+    return .allow
+}
+```
+
+```kotlin Kotlin
+ditto.presence.connectionRequestHandler = { connectionRequest ->
+
+    println(connectionRequest.peerKeyString)
+    println(connectionRequest.connectionType)
+    println(connectionRequest.peerMetadata)
+
+    DittoConnectionRequestAuthorization.Allow
+}
+```
+
+```javascript JavaScript
+ditto.presence.connectionRequestHandler = async (connectionRequest) => {
+
+    console.log(connectionRequest.peerKeyString)
+    console.log(connectionRequest.connectionType)
+    console.log(connectionRequest.peerMetadata)
+
+    return "allow";
+}
+```
+
+```java Java
+// Not Supported
+```
+
+```csharp C#
+Ditto.Presence.ConnectionRequestHandler = (connectionRequest) =>
+{
+    Console.WriteLine(connectionRequest.PeerKeyString);
+    Console.WriteLine(connectionRequest.ConnectionType);
+    Console.WriteLine(connectionRequest.PeerMetadata);
+
+    return Task.FromResult(DittoConnectionRequestAuthorization.Allow);
+};
+```
+
+```cpp C++
+ditto.get_presence().set_connection_request_handler(
+    [&](ConnectionRequest connection_request) {
+
+        std::cout << connection_request.peer_key_string << std::endl;
+        std::cout << connection_request.connection_type << std::endl;
+        std::cout << connection_request.peer_metadata << std::endl;
+
+        return ConnectionRequestAuthorization::allow;
     }
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```kotlin
-    ditto.presence.connectionRequestHandler = { connectionRequest ->
+  );
+```
 
-        println(connectionRequest.peerKeyString)
-        println(connectionRequest.connectionType)
-        println(connectionRequest.peerMetadata)
+```rust Rust
+ditto.presence().set_connection_request_handler(|connection_request: ConnectionRequest| {
 
-        DittoConnectionRequestAuthorization.Allow
-    }
-    ```
-    </Tab>
-    <Tab title="JS">
-    ```javascript
-    ditto.presence.connectionRequestHandler = async (connectionRequest) => {
+    println!("{}", connection_request.peer_key_string);
+    println!("{}", connection_request.connection_type);
+    println!("{}", connection_request.peer_metadata);
 
-        console.log(connectionRequest.peerKeyString)
-        console.log(connectionRequest.connectionType)
-        console.log(connectionRequest.peerMetadata)
+    ConnectionRequestAuthorization::Allow
+});
+```
 
-        return "allow";
-    }
-    ```
-    </Tab>
-    <Tab title="Java">
-    ```java
-    // Not Supported
-    ```
-    </Tab>
-    <Tab title="C#">
-    ```csharp
-    Ditto.Presence.ConnectionRequestHandler = (connectionRequest) =>
-    {
-        Console.WriteLine(connectionRequest.PeerKeyString);
-        Console.WriteLine(connectionRequest.ConnectionType);
-        Console.WriteLine(connectionRequest.PeerMetadata);
+```dart Dart
+ditto.presence.connectionRequestHandler = (request) async {
 
-        return Task.FromResult(DittoConnectionRequestAuthorization.Allow);
-    };
-    ```
-    </Tab>
-    <Tab title="C++">
-    ```cpp
-    ditto.get_presence().set_connection_request_handler(
-        [&](ConnectionRequest connection_request) {
+  print(connectionRequest.peerKeyString)
+  print(connectionRequest.connectionType)
+  print(connectionRequest.peerMetadata)
+};
+```
 
-            std::cout << connection_request.peer_key_string << std::endl;
-            std::cout << connection_request.connection_type << std::endl;
-            std::cout << connection_request.peer_metadata << std::endl;
-
-            return ConnectionRequestAuthorization::allow;
-        }
-      );
-    ```
-    </Tab>
-    <Tab title="Rust">
-    ```rust
-    ditto.presence().set_connection_request_handler(|connection_request: ConnectionRequest| {
-
-        println!("{}", connection_request.peer_key_string);
-        println!("{}", connection_request.connection_type);
-        println!("{}", connection_request.peer_metadata);
-
-        ConnectionRequestAuthorization::Allow
-    });
-    ```
-    </Tab>
-    <Tab title="Dart">
-    ```dart
-    ditto.presence.connectionRequestHandler = (request) async {
-
-      print(connectionRequest.peerKeyString)
-      print(connectionRequest.connectionType)
-      print(connectionRequest.peerMetadata)
-    };
-    ```
-    </Tab>
-</Tabs>
+</CodeGroup>
 
 

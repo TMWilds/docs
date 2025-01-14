@@ -78,14 +78,14 @@ The Big Peer operates within the peer-to-peer topology like any other peer parti
 
 Here are some primary functions of the Big Peer:
 
-*   Facilitating sync between Small Peers in environments where direct communication is unreliable due to network limitations, security concerns, and other factors. (See _Mesh Networking 101_ > [Flood-Fill Process](/v4-8/sync/concepts/mesh-networking-101#flood-fill-process))
+*   Facilitating sync between Small Peers in environments where direct communication is unreliable due to network limitations, security concerns, and other factors. (See _Mesh Networking 101_ > [Flood-Fill Process](/sync/concepts/mesh-networking-101#flood-fill-process))
 
 *   Ingesting data from external systems into the Ditto ecosystem. (See _Big Peer_ > [HTTP API - Getting Started](/cloud/http-api/getting-started))
 
 *   Extracting data from the transactional edge and streaming it to external systems, such as Apache Kafka, for comprehensive Big Data analytics. (See _Big Peer_ \> [Change Data Capture](/cloud/cdc))
 
 
-## Authentication Service[](#Oh_PL)
+## Authentication Service
 
 Ditto's security relies on digital identities for peer-to-peer authentication and access control permissions and privileges.
 
@@ -97,7 +97,7 @@ There are two available identity types to choose from:
 
 <Steps>
   <Step >
-    You're ready to explore and test realtime sync capabilities without the commitment using either a demo app or your own development app. (See ['Hello, World!' Sync Overview](/ab-redirect-url?docId=h7hpkC46Zk_xijTASLiMc&isHosted=true&queryTemplate=&shareableToken=&hostName=docs.ditto.live&docAnchorId=) and [Authentication](/auth-and-authorization/cloud-authentication))
+    You're ready to explore and test realtime sync capabilities without the commitment using either a demo app or your own development app. (See [Install Guides](/install-guides.mdx))
   </Step>
   <Step >
 You've integrated Ditto, integrated a third‑party identity service provider, and are now ready to go into production. (See [Authentication](/auth-and-authorization/cloud-authentication))
@@ -114,7 +114,7 @@ The HTTP data API is structured on the remote procedure call (RPC) framework, so
 ## Change Data Capture
 The Big Peer is your gateway to the broader Ditto ecosystem for streaming and processing data in realtime with _Apache Kafka._
 
-Apache Kafka is a distributed streaming platform. For more information, see the official [Kafka documentation](https://kafka.apache.org/documentation/ "Kafka documentation").
+Apache Kafka is a distributed streaming platform. For more information, see the official [Kafka documentation](https://kafka.apache.org/documentation/).
 
 CDC is a premium implementation for watching mesh data and, as relevant changes occur, asynchronously syncing with external databases and business intelligence tools.
 

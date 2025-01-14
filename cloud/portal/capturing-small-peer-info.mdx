@@ -28,48 +28,39 @@ The Device Dashboard will automatically be populated with  `smallPeerInfo` in th
 
 To opt out of having device data written and transmitted to the Portal, you must disable `smallPeerInfo`
 
-<Tabs>
-  <Tab title="Swift">
-```swift
+<CodeGroup>
+```swift Swift
 ditto.smallPeerInfo.isEnabled = false
 ```
-  </Tab>
-  <Tab title="Kotlin">
-```Kotlin
+
+```kotlin Kotlin
 ditto.smallPeerInfo.isEnabled = false
 ```
-  </Tab>
-  <Tab title="JS">
-```JS
+
+```javascript JS
 ditto.smallPeerInfo.isEnabled = false
 ```
-  </Tab>
-  <Tab title="Java">
-```Java
+
+```java Java
 ditto.smallPeerInfo.isEnabled = false
 ```
-  </Tab>
-  <Tab title="C#">
-```C#
+
+```csharp C#
 ditto.SmallPeerInfo.IsEnabled = false;
 ```
-  </Tab>
-  <Tab title="C++">
-```cpp
+
+```cpp C++
 ditto.get_small_peer_info().set_enabled(false)
 ```
-  </Tab>
-  <Tab title="Rust">
-```Rust
+
+```rust Rust
 ditto.small_peer_info().set_enabled(false)
 ```
-  </Tab>
-  <Tab title="Dart(beta)">
-```Dart
+
+```dart Dart
 // Coming Soon
 ```
-  </Tab>
-</Tabs>
+</CodeGroup>
 
 
 ## Viewing devices with Ditto SDK 4.4.0 - 4.7.x
@@ -79,94 +70,77 @@ In earlier versions of the Ditto SDK, the `smallPeerInfo` feature needs to be ma
 <Steps>
     <Step>
 Set `smallPeerInfo.isEnabled` set to `true` :
-<Tabs>
-  <Tab title="Swift">
-```swift
+
+<CodeGroup>
+```swift Swift
 ditto.smallPeerInfo.isEnabled = true
 ```
-  </Tab>
-  <Tab title="Kotlin">
-```Kotlin
+
+```kotlin Kotlin
 ditto.smallPeerInfo.isEnabled = true
 ```
-  </Tab>
-  <Tab title="JS">
-```JS
+
+```javascript JS
 ditto.smallPeerInfo.isEnabled = true
 ```
-  </Tab>
-  <Tab title="Java">
-```Java
+
+```java Java
 ditto.smallPeerInfo.isEnabled = true
 ```
-  </Tab>
-  <Tab title="C#">
-```C#
+
+```csharp C#
 ditto.SmallPeerInfo.IsEnabled = true;
 ```
-  </Tab>
-  <Tab title="C++">
-```cpp
+
+```cpp C++
 ditto.get_small_peer_info().set_enabled(true)
 ```
-  </Tab>
-  <Tab title="Rust">
-```Rust
+
+```rust Rust
 ditto.small_peer_info().set_enabled(true)
 ```
-  </Tab>
-  <Tab title="Dart(beta)">
-```Dart
+
+```dart Dart
 // Coming Soon
 ```
-  </Tab>
-</Tabs>
+</CodeGroup>
     </Step>
     <Step>
 Set the sync scope to BigPeer Only which indicates that the data should be synced to the Cloud (BigPeer). Default is that the data is only captured locally.
 
-<Tabs>
-  <Tab title="Swift">
-```swift
+<CodeGroup>
+```swift Swift
 ditto.smallPeerInfo.syncScope = .bigPeerOnly
 ```
-  </Tab>
-  <Tab title="Kotlin">
-```Kotlin
+
+```kotlin Kotlin
 ditto.smallPeerInfo.syncScope = DittoSmallPeerInfoSyncScope.BigPeerOnly
 ```
-  </Tab>
-  <Tab title="JS">
-```JS
+
+```javascript JS
 await ditto.smallPeerInfo.setSyncScope("BigPeerOnly")
 ```
-  </Tab>
-  <Tab title="Java">
-```Java
+
+```java Java
 ditto.smallPeerInfo.syncScope = DittoSmallPeerInfoSyncScope.BigPeerOnly
 ```
-  </Tab>
-  <Tab title="C#">
-```C#
+
+```csharp C#
 ditto.SmallPeerInfo.SyncScope  = DittoSmallPeerInfoSyncScope.BigPeerOnly
 ```
-  </Tab>
-  <Tab title="C++">
-```cpp
+
+```cpp C++
 ditto.get_small_peer_info().sync_scope(), SyncScope::BigPeerOnly
 ```
-  </Tab>
-  <Tab title="Rust">
-```Rust
+
+```rust Rust
 ditto.small_peer_info()..set_sync_scope(DittoSmallPeerInfoSyncScope::BigPeerOnly);
 ```
-  </Tab>
-  <Tab title="Dart(beta)">
-```Dart
+
+```dart Dart
 // Coming Soon
 ```
-  </Tab>
-</Tabs>
+</CodeGroup>
     </Step>
 </Steps>
 
@@ -186,56 +160,46 @@ This must be set before calling `startSync()` to take effect.
 </Info>
 
 
-<Tabs>
-  <Tab title="Swift">
-```swift
+<CodeGroup>
+```swift Swift
 ditto.deviceName = "your device name"
 ```
-  </Tab>
-  <Tab title="Kotlin">
-```Kotlin
+
+```kotlin Kotlin
 ditto.deviceName = "your device name"
 ```
-  </Tab>
-  <Tab title="JS">
-```JS
+
+```javascript JS
 ditto.deviceName = "your device name"
 ```
-  </Tab>
-  <Tab title="Java">
-```Java
+
+```java Java
 ditto.deviceName = "your device name"
 ```
-  </Tab>
-  <Tab title="C#">
-```C#
+
+```csharp C#
 ditto.DeviceName = "your device name";
 ```
-  </Tab>
-  <Tab title="C++">
-```cpp
+
+```cpp C++
 ditto.device_name = "your device name";
 ```
-  </Tab>
-  <Tab title="Rust">
-```Rust
+
+```rust Rust
 ditto.set_device_name("your device name");
 ```
-  </Tab>
-  <Tab title="Dart">
-```Dart
+
+```dart Dart
 // Coming Soon
 ```
-  </Tab>
-</Tabs>
+</CodeGroup>
 
 ## Custom User Metadata
 
 You can add custom device information into the device dashboard by setting the Small Peer Info `metadata` property on a device.
 
-<Tabs>
-  <Tab title="Swift">
-```swift
+<CodeGroup>
+```swift Swift
 var metadata: [String: String] = [
     "app_version": "1.0.0",
     "device_id": "abc123"
@@ -254,9 +218,8 @@ if let jsonData = try? JSONSerialization.data(withJSONObject: metadata, options:
     ditto.smallPeerInfo.setMetadataJSONString(jsonString)
 }
 ```
-  </Tab>
-  <Tab title="Kotlin">
-```Kotlin
+
+```kotlin Kotlin
 val metadata = mutableMapOf<String, String>(
     "app_version" to "1.0.0",
     "device_id" to "abc123"
@@ -273,9 +236,8 @@ val jsonString = jsonMetadata.toString()
 // Set with a JSON serialized payload
 ditto.smallPeerInfo.metadataJsonString = jsonString
 ```
-  </Tab>
-  <Tab title="JS">
-```JS
+
+```javascript JS
 const metadata = {
   app_version: "1.0.0",
   device_id: "abc123"
@@ -291,9 +253,8 @@ const jsonString = JSON.stringify(metadata)
 // Set with a JSON serialized payload
 ditto.smallPeerInfo.metadataJSONString = jsonString
 ```
-  </Tab>
-  <Tab title="Java">
-```Java
+
+```java Java
 Map<String, String> metadata = new HashMap<>();
 metadata.put("app_version", "1.0.0");
 metadata.put("device_id", "abc123");
@@ -309,9 +270,8 @@ String jsonString = jsonMetadata.toString();
 // Set with a JSON serialized payload
 ditto.smallPeerInfo.setMetadataJsonString(jsonString);
 ```
-  </Tab>
-  <Tab title="C#">
-```C#
+
+```csharp C#
 Dictionary<string, string> metadata = new Dictionary<string, string>
 {
     { "app_version", "1.0.0" },
@@ -328,9 +288,8 @@ string jsonString = JsonConvert.SerializeObject(metadata);
 // Set with a JSON serialized payload
 ditto.SmallPeerInfo.MetadataJsonString = jsonString;
 ```
-  </Tab>
-  <Tab title="C++">
-```cpp
+
+```cpp C++
 std::map<std::string, std::string> metadata;
 metadata["app_version"] = "1.0.0";
 metadata["device_id"] = "abc123";
@@ -346,9 +305,8 @@ std::string json_string = json_metadata.dump();
 // Set with a json serilalized payload
 ditto.get_small_peer_info().set_metadata_json_string(json_string)
 ```
-  </Tab>
-  <Tab title="Rust">
-```Rust
+
+```rust Rust
 use std::collections::HashMap;
 use serde_json::json;
 
@@ -367,13 +325,11 @@ let json_string = json_metadata.to_string();
 // Set with a JSON serialized payload
 ditto.get_small_peer_info().set_metadata_json_string(json_string);
 ```
-  </Tab>
-  <Tab title="Dart">
-```Dart
+
+```dart Dart
 // Coming Soon
 ```
-  </Tab>
-</Tabs>
+</CodeGroup>
 
 
 

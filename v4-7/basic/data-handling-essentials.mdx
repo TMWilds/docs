@@ -300,25 +300,17 @@ Once invoked, you must wait for the operation to complete before continuing to t
 </Frame>
 For example, the following single execution query, once called, uses the `execute` API method and a local `SELECT` query to search within the local Small Peer store for data in a dataset named `cars`:&
 
-<Tabs>
-  <Tab title="Swift">
-```swift
+<CodeGroup>
+```swift Swift
 let result = await ditto.store.execute(query: "SELECT * FROM cars")
 ```
-  </Tab>
-  <Tab title="Kotlin">
-```kotlin
+```kotlin Kotlin
 val result = ditto.store.execute("SELECT * FROM cars")
 ```
-  </Tab>
-  <Tab title="JS">
-
-```javascript
+```javascript JS
 const result = await ditto.store.execute("SELECT * FROM cars");
 ```
-  </Tab>
-  <Tab title="Java">
-```java
+```java Java
 DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
     "SELECT * FROM cars",
     new Continuation<>() {
@@ -337,172 +329,125 @@ DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
     }
 );
 ```
-  </Tab>
-  <Tab title="C#">
-```csharp
+```csharp C#
 var result = await ditto.Store.ExecuteAsync("SELECT * FROM cars");
 ```
-  </Tab>
-  <Tab title="C++">
-
-```cpp
+```cpp C++
 auto result = ditto.get_store().execute("SELECT * FROM cars").get();
 ```
-
-  </Tab>
-  <Tab title="Rust">
-```rust
+```rust Rust
 let result = ditto.store().execute("SELECT * FROM cars", None);
 ```
-  </Tab>
-</Tabs>
+</CodeGroup>
 
 
 #### Creating
 
 To create a new document in your local Ditto store, call `INSERT`. Following is an example of how to perform an `INSERT` operation using Ditto's SDK.
-<Tabs>
-  <Tab title="Swift">
-    ```swift
-    await ditto.store.execute(
-      query: "INSERT INTO cars DOCUMENTS (:newCar)",
-      arguments: ["newCar": ["color": "blue"]]);
-    ```
-  </Tab>
-  <Tab title="Kotlin">
-    ```kotlin
-    ditto.store.execute(
-      "INSERT INTO cars DOCUMENTS (:newCar)",
-      mapOf("newCar" to mapOf("color" to "blue")))
-    ```
-  </Tab>
-  <Tab title="JS">
-    ```javascript
-    await ditto.store.execute(
-      "INSERT INTO cars DOCUMENTS (:newCar)",
-      { newCar: { color: "blue" } });
-    ```
-  </Tab>
-  <Tab title="Java">
-    ```java
-    DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
-        "INSERT INTO cars DOCUMENTS (:newCar)",
-        Collections.singletonMap("newCar", Collections.singletonMap("color", "blue")),
-    );
-    ```
-  </Tab>
-  <Tab title="C#">
-    ```csharp
-    var args = new Dictionary<string, object>();
-    args.Add("newCar", new { color = "blue" });
+<CodeGroup>
+```swift Swift
+await ditto.store.execute(
+  query: "INSERT INTO cars DOCUMENTS (:newCar)",
+  arguments: ["newCar": ["color": "blue"]]);
+```
+```kotlin Kotlin
+ditto.store.execute(
+  "INSERT INTO cars DOCUMENTS (:newCar)",
+  mapOf("newCar" to mapOf("color" to "blue")))
+```
+```javascript JS JS
+await ditto.store.execute(
+  "INSERT INTO cars DOCUMENTS (:newCar)",
+  { newCar: { color: "blue" } });
+```
+```java Java
+DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
+    "INSERT INTO cars DOCUMENTS (:newCar)",
+    Collections.singletonMap("newCar", Collections.singletonMap("color", "blue")),
+);
+```
+```csharp C#
+var args = new Dictionary<string, object>();
+args.Add("newCar", new { color = "blue" });
 
-    await ditto.Store.ExecuteAsync(
-      "INSERT INTO cars DOCUMENTS (:newCar)",
-      args);
-    ```
-  </Tab>
-  <Tab title="C++">
-    ```cpp
-    std::map<std::string, std::map<std::string, std::string>> args;
-    args["newCar"] = {{"color", "blue"}};
+await ditto.Store.ExecuteAsync(
+  "INSERT INTO cars DOCUMENTS (:newCar)",
+  args);
+```
+```cpp C++
+std::map<std::string, std::map<std::string, std::string>> args;
+args["newCar"] = {{"color", "blue"}};
 
-    auto result = ditto.get_store().execute(
-      "INSERT INTO cars DOCUMENTS (:newCar)",
-      args).get();
-    ```
-  </Tab>
-  <Tab title="Rust">
-    ```rust
-    struct Args {
-      newCar: Car,
-    }
-    struct Car {
-      color: String
-    }
+auto result = ditto.get_store().execute(
+  "INSERT INTO cars DOCUMENTS (:newCar)",
+  args).get();
+```
+```rust Rust
+struct Args {
+  newCar: Car,
+}
+struct Car {
+  color: String
+}
 
-    // ...
+// ...
 
-    let args = Args {
-      newCar: Car {
-        color: "blue".to_string()
-      },
-    };
+let args = Args {
+  newCar: Car {
+    color: "blue".to_string()
+  },
+};
 
-    ditto.store().execute(
-      "INSERT INTO cars DOCUMENTS (:newCar)",
-      args);
-    ```
-  </Tab>
-  <Tab title="Dart">
-    ```dart
-    // Dart (beta)
-    ```
-  </Tab>
-</Tabs>
+ditto.store().execute(
+  "INSERT INTO cars DOCUMENTS (:newCar)",
+  args);
+```
+</CodeGroup>
 
 
 #### Reading
 
 Search for documents within your local Ditto store by calling the `execute` API method on a `SELECT` query as follows:
 
-<Tabs>
-  <Tab title="Swift">
-    ```swift
-    let result = await ditto.store.execute(query: "SELECT * FROM cars")
-    ```
-  </Tab>
-  <Tab title="Kotlin">
-    ```kotlin
-    val result = ditto.store.execute("SELECT * FROM cars")
-    ```
-  </Tab>
-  <Tab title="JS">
-    ```javascript
-    const result = await ditto.store.execute("SELECT * FROM cars");
-    ```
-  </Tab>
-  <Tab title="Java">
-    ```java
-    DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
-        "SELECT * FROM cars",
-        new Continuation<>() {
-            @NonNull
-            @Override
-            public CoroutineContext getContext() {
-                return EmptyCoroutineContext.INSTANCE;
-            }
+<CodeGroup>
+```swift Swift
+let result = await ditto.store.execute(query: "SELECT * FROM cars")
+```
+```kotlin Kotlin
+val result = ditto.store.execute("SELECT * FROM cars")
+```
+```javascript JS JS
+const result = await ditto.store.execute("SELECT * FROM cars");
+```
+```java Java
+DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
+    "SELECT * FROM cars",
+    new Continuation<>() {
+        @NonNull
+        @Override
+        public CoroutineContext getContext() {
+            return EmptyCoroutineContext.INSTANCE;
+        }
 
-            @Override
-            public void resumeWith(@NonNull Object o) {
-                if (o instanceof Result.Failure) {
-                    // Handle failure
-                }
+        @Override
+        public void resumeWith(@NonNull Object o) {
+            if (o instanceof Result.Failure) {
+                // Handle failure
             }
         }
-    );
-    ```
-  </Tab>
-  <Tab title="C#">
-    ```csharp
-    var result = await ditto.Store.ExecuteAsync("SELECT * FROM cars");
-    ```
-  </Tab>
-  <Tab title="C++">
-    ```cpp
-    auto result = ditto.get_store().execute("SELECT * FROM cars").get();
-    ```
-  </Tab>
-  <Tab title="Rust">
-    ```rust
-    let result = ditto.store().execute("SELECT * FROM cars", None);
-    ```
-  </Tab>
-  <Tab title="Dart">
-    ```dart
-    // Dart (beta)
-    ```
-  </Tab>
-</Tabs>
+    }
+);
+```
+```csharp C#
+var result = await ditto.Store.ExecuteAsync("SELECT * FROM cars");
+```
+```cpp C++
+auto result = ditto.get_store().execute("SELECT * FROM cars").get();
+```
+```rust Rust
+let result = ditto.store().execute("SELECT * FROM cars", None);
+```
+</CodeGroup>
 
 
 Establish a listener, known as a *store observer*, to watch local changes so you can respond immediately; for example, to observe updates to end-user profiles.
@@ -510,79 +455,60 @@ Establish a listener, known as a *store observer*, to watch local changes so you
 Here is how you set up a store observer in Ditto:
 
 
-  <Tabs>
-    <Tab title="Swift">
-      ```swift
-      let observer = ditto.store.registerObserver(
-        query: "SELECT * FROM cars"){ result in /* handle change */ };
-      ```
-    </Tab>
-    <Tab title="Kotlin">
-      ```kotlin
-      val observer = ditto.store.registerObserver("SELECT * FROM cars") { result ->
-        /* handle change */ };
-      ```
-    </Tab>
-    <Tab title="JS">
-      ```javascript
-      const changeHandler = (result) => {
+  <CodeGroup>
+```swift Swift
+let observer = ditto.store.registerObserver(
+  query: "SELECT * FROM cars"){ result in /* handle change */ };
+```
+```kotlin Kotlin
+val observer = ditto.store.registerObserver("SELECT * FROM cars") { result ->
+  /* handle change */ };
+```
+```javascript JS JS
+const changeHandler = (result) => {
+  // handle change
+}
+const observer = ditto.store.registerObserver(
+  "SELECT * FROM cars",
+  changeHandler);
+```
+```java Java
+DittoStoreObserver observer = ditto.store.registerObserver(
+    "SELECT * FROM cars",
+    result -> {
         // handle change
-      }
-      const observer = ditto.store.registerObserver(
-        "SELECT * FROM cars",
-        changeHandler);
-      ```
-    </Tab>
-    <Tab title="Java">
-      ```java
-      DittoStoreObserver observer = ditto.store.registerObserver(
-          "SELECT * FROM cars",
-          result -> {
-              // handle change
-          }
-      );
-      ```
-    </Tab>
-    <Tab title="C#">
-      ```csharp
-      // Without Arguments
-      var result = await ditto.Store.RegisterObserver(
-        "SELECT * FROM cars",
-        (result) => {
-          // handle change
-        });
+    }
+);
+```
+```csharp C#
+// Without Arguments
+var result = await ditto.Store.RegisterObserver(
+  "SELECT * FROM cars",
+  (result) => {
+    // handle change
+  });
 
-      // With Arguments
-      var result = ditto.Store.RegisterObserver(
-        "SELECT * FROM cars",
-        (result) => {
-          // handle change
-        });
-      ```
-    </Tab>
-    <Tab title="C++">
-      ```cpp
-      auto observer = ditto.get_store().register_observer(
-        "SELECT * FROM cars",
-        [&](QueryResult result) { /* handle change */ });
-      ```
-    </Tab>
-    <Tab title="Rust">
-      ```rust
-      let observer = ditto.store().register_observer(
-        "SELECT * from cars",
-        None,
-        move |result: QueryResult| {
-          // handle change
-        })
-      ```
-    </Tab>
-    <Tab title="Dart">
-      ```dart
-      // Dart (beta)
-      ```
-    </Tab>
-  </Tabs>
+// With Arguments
+var result = ditto.Store.RegisterObserver(
+  "SELECT * FROM cars",
+  (result) => {
+    // handle change
+  });
+```
+```cpp C++
+auto observer = ditto.get_store().register_observer(
+  "SELECT * FROM cars",
+  [&](QueryResult result) { /* handle change */ });
+```
+```rust Rust
+let observer = ditto.store().register_observer(
+  "SELECT * from cars",
+  None,
+  move |result: QueryResult| {
+    // handle change
+  })
+```
+  </CodeGroup>
 
 
 
@@ -594,79 +520,60 @@ For example, executing an `UPDATE` operation within the `cars` collection, chang
 
 
 <Card>
-  <Tabs>
-    <Tab title="Swift">
-      ```swift
-      try await ditto.store.execute("""
-        UPDATE cars
-        SET color = 'blue'
-        WHERE _id = '123'
-      """);
-      ```
-    </Tab>
-    <Tab title="Kotlin">
-      ```kotlin
-      ditto.store.execute("""
-        UPDATE cars
-        SET color = 'blue'
-        WHERE _id = '123'
-      """)
-      ```
-    </Tab>
-    <Tab title="JS">
-      ```javascript
-      await ditto.store.execute(`
-        UPDATE cars
-        SET color = 'blue'
-        WHERE _id = '123'`)
-      ```
-    </Tab>
-    <Tab title="Java">
-      ```java
-      DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
-        "UPDATE cars SET color = 'blue' WHERE _id = '123'",
-        new Continuation<>() {
-          @NonNull
-          @Override
-          public CoroutineContext getContext() {
-            return EmptyCoroutineContext.INSTANCE;
-          }
+  <CodeGroup>
+```swift Swift
+try await ditto.store.execute("""
+  UPDATE cars
+  SET color = 'blue'
+  WHERE _id = '123'
+""");
+```
+```kotlin Kotlin
+ditto.store.execute("""
+  UPDATE cars
+  SET color = 'blue'
+  WHERE _id = '123'
+""")
+```
+```javascript JS JS
+await ditto.store.execute(`
+  UPDATE cars
+  SET color = 'blue'
+  WHERE _id = '123'`)
+```
+```java Java
+DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
+  "UPDATE cars SET color = 'blue' WHERE _id = '123'",
+  new Continuation<>() {
+    @NonNull
+    @Override
+    public CoroutineContext getContext() {
+      return EmptyCoroutineContext.INSTANCE;
+    }
 
-          @Override
-          public void resumeWith(@NonNull Object o) {
-            if (o instanceof Result.Failure) {
-              // Handle failure
-            }
-          }
-        }
-      );
-      ```
-    </Tab>
-    <Tab title="C#">
-      ```csharp
-      await ditto.Store.ExecuteAsync(
-        "UPDATE cars SET color = 'blue' WHERE _id = '123'");
-      ```
-    </Tab>
-    <Tab title="C++">
-      ```cpp
-      ditto.get_store().execute(
-        "UPDATE cars SET color = 'blue' WHERE _id = '123'").get();
-      ```
-    </Tab>
-    <Tab title="Rust">
-      ```rust
-      ditto.store().execute(
-        "UPDATE cars SET color = 'blue' WHERE _id = '123'",
-        None);
-      ```
-    </Tab>
-    <Tab title="Dart">
-      ```dart
-      // Dart (beta)
-      ```
-    </Tab>
-  </Tabs>
+    @Override
+    public void resumeWith(@NonNull Object o) {
+      if (o instanceof Result.Failure) {
+        // Handle failure
+      }
+    }
+  }
+);
+```
+```csharp C#
+await ditto.Store.ExecuteAsync(
+  "UPDATE cars SET color = 'blue' WHERE _id = '123'");
+```
+```cpp C++
+ditto.get_store().execute(
+  "UPDATE cars SET color = 'blue' WHERE _id = '123'").get();
+```
+```rust Rust
+ditto.store().execute(
+  "UPDATE cars SET color = 'blue' WHERE _id = '123'",
+  None);
+```
+  </CodeGroup>
 </Card>
 
 
@@ -677,79 +584,60 @@ Call the `Evict` method to clear one or more documents from the local Ditto stor
 The following snippet shows how to write a basic `EVICT` operation to purge the document with an `_id` field of `'123'` from the local Ditto store:&
 
 
-  <Tabs>
-    <Tab title="Swift">
-      ```swift
-      try await ditto.store.execute("""
-        UPDATE cars
-        SET color = 'blue'
-        WHERE _id = '123'
-      """);
-      ```
-    </Tab>
-    <Tab title="Kotlin">
-      ```kotlin
-      ditto.store.execute("""
-        UPDATE cars
-        SET color = 'blue'
-        WHERE _id = '123'
-      """)
-      ```
-    </Tab>
-    <Tab title="JS">
-      ```javascript
-      await ditto.store.execute(`
-        UPDATE cars
-        SET color = 'blue'
-        WHERE _id = '123'`)
-      ```
-    </Tab>
-    <Tab title="Java">
-      ```java
-      DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
-        "UPDATE cars SET color = 'blue' WHERE _id = '123'",
-        new Continuation<>() {
-          @NonNull
-          @Override
-          public CoroutineContext getContext() {
-            return EmptyCoroutineContext.INSTANCE;
-          }
+  <CodeGroup>
+```swift Swift
+try await ditto.store.execute("""
+  UPDATE cars
+  SET color = 'blue'
+  WHERE _id = '123'
+""");
+```
+```kotlin Kotlin
+ditto.store.execute("""
+  UPDATE cars
+  SET color = 'blue'
+  WHERE _id = '123'
+""")
+```
+```javascript JS JS
+await ditto.store.execute(`
+  UPDATE cars
+  SET color = 'blue'
+  WHERE _id = '123'`)
+```
+```java Java
+DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
+  "UPDATE cars SET color = 'blue' WHERE _id = '123'",
+  new Continuation<>() {
+    @NonNull
+    @Override
+    public CoroutineContext getContext() {
+      return EmptyCoroutineContext.INSTANCE;
+    }
 
-          @Override
-          public void resumeWith(@NonNull Object o) {
-            if (o instanceof Result.Failure) {
-              // Handle failure
-            }
-          }
-        }
-      );
-      ```
-    </Tab>
-    <Tab title="C#">
-      ```csharp
-      await ditto.Store.ExecuteAsync(
-        "UPDATE cars SET color = 'blue' WHERE _id = '123'");
-      ```
-    </Tab>
-    <Tab title="C++">
-      ```cpp
-      ditto.get_store().execute(
-        "UPDATE cars SET color = 'blue' WHERE _id = '123'").get();
-      ```
-    </Tab>
-    <Tab title="Rust">
-      ```rust
-      ditto.store().execute(
-        "UPDATE cars SET color = 'blue' WHERE _id = '123'",
-        None);
-      ```
-    </Tab>
-    <Tab title="Dart">
-      ```dart
-      // Dart (beta)
-      ```
-    </Tab>
-  </Tabs>
+    @Override
+    public void resumeWith(@NonNull Object o) {
+      if (o instanceof Result.Failure) {
+        // Handle failure
+      }
+    }
+  }
+);
+```
+```csharp C#
+await ditto.Store.ExecuteAsync(
+  "UPDATE cars SET color = 'blue' WHERE _id = '123'");
+```
+```cpp C++
+ditto.get_store().execute(
+  "UPDATE cars SET color = 'blue' WHERE _id = '123'").get();
+```
+```rust Rust
+ditto.store().execute(
+  "UPDATE cars SET color = 'blue' WHERE _id = '123'",
+  None);
+```
+  </CodeGroup>
 
 
 ### ditto.store.registerObserver
@@ -863,47 +751,40 @@ Imagine a scenario in which two Ditto stores, peer A and peer B, have the follow
 
 Peer A calls the Upsert method to change the field-value `color:red` to `color:blue`:
 
-<CardGroup>
-```kotlin
+<CodeGroup>
+```kotlin Kotlin
 val initialDocument = mapOf(
   "_id" to "abc123",
   "color" to "blue"
 )
 ```
-
-```javascript
+```javascript JS JS
 upsert({
   _id: "abc123",
   color: "blue"
 })
 ```
-</CardGroup>
+</CodeGroup>
 
 At the same time, peer B calls the Update method to change the value of the `mileage` field:&
 
-<CardGroup>
-
-
-```kotlin
+<CodeGroup>
+```kotlin Kotlin
 findById("abc123").update(doc => {
   doc.mileage.incrememt(200)
 })
 ditto.store.collection("cars").update(initialDocument)
 ```
-
-```javascript
+```javascript JS JS
 findById("abc123").update(doc => {
   doc.mileage.increment(200)
 })
 ```
-</CardGroup>
+</CodeGroup>
 
 When the changes replicate across the distributed peers, both changes merge resulting in both peer A and peer B Ditto stores having a mileage `increment` of `200` and the `color` change to `blue`:
 
-<CardGroup>
-
-
-
+<CodeGroup>
 ```json
 {
   "_id": "abc123",
@@ -913,7 +794,7 @@ When the changes replicate across the distributed peers, both changes merge resu
   "smogReports": "<very long json blob>"
 }
 ```
-</CardGroup>
+</CodeGroup>
 ### Antipatterns
 
 Following is a table summarizing the risk associated with improperly implemented patterns:

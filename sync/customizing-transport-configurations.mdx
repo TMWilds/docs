@@ -12,156 +12,150 @@ Rather, you manually enable peer-to-peer connections using `EnableAllPeerToPeer(
 
 ## Enabling and Disabling Transports
 
-<Tabs>
-    <Tab title="Swift">
-    ```swift
-    // Create a new DittoTransportConfig()
-    var config = DittoTransportConfig()
+<CodeGroup>
 
-    //Enable all peer to peer transports
-    config.enableAllPeerToPeer()
+```swift Swift
 
-    //Or enable/disable each transport separately
-    //BluetoothLe
-    config.peerToPeer.bluetoothLE.isEnabled = true
-    //Local Area Network
-    config.peerToPeer.lan.isEnabled = true
-    //Awdl
-    config.peerToPeer.awdl.isEnabled = true
+// Create a new DittoTransportConfig()
+var config = DittoTransportConfig()
 
-    ditto.transportConfig = config
+//Enable all peer to peer transports
+config.enableAllPeerToPeer()
 
-    do {
-      try ditto.startSync()
-    } catch (let err) {
-      print(err.localizedDescription)
-    }
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```kotlin
-    val config = DittoTransportConfig()
+//Or enable/disable each transport separately
+//BluetoothLe
+config.peerToPeer.bluetoothLE.isEnabled = true
+//Local Area Network
+config.peerToPeer.lan.isEnabled = true
+//Awdl
+config.peerToPeer.awdl.isEnabled = true
 
-    //Enable all peer to peer transports
-    config.enableAllPeerToPeer()
+ditto.transportConfig = config
 
-    //Or enable/disable each transport separately
-    //BluetoothLe
-    config.peerToPeer.bluetoothLe.enabled = true
-    //Local Area Network
-    config.peerToPeer.lan.enabled = true
-    //Wifi Aware
-    config.peerToPeer.wifiAware.enabled = true
+do {
+  try ditto.startSync()
+} catch (let err) {
+  print(err.localizedDescription)
+}
+```
 
-    ditto.transportConfig = config
+```kotlin Kotlin
+val config = DittoTransportConfig()
 
-    ditto.startSync()
-    ```
-    </Tab>
-    <Tab title="JS">
-    ```javascript
-    const config = new TransportConfig()
+//Enable all peer to peer transports
+config.enableAllPeerToPeer()
 
-    // Enable all peer to peer transports
-    config.setAllPeerToPeerEnabled(true)
+//Or enable/disable each transport separately
+//BluetoothLe
+config.peerToPeer.bluetoothLe.enabled = true
+//Local Area Network
+config.peerToPeer.lan.enabled = true
+//Wifi Aware
+config.peerToPeer.wifiAware.enabled = true
 
-    // or enable/disable each transport separately
-    // BluetoothLE
-    config.peerToPeer.bluetoothLE.isEnabled = true
+ditto.transportConfig = config
 
-    // Local Area Network
-    config.peerToPeer.lan.isEnabled = true
+ditto.startSync()
+```
 
-    // AWDL
-    config.peerToPeer.awdl.isEnabled = true
+```javascript JavaScript
+const config = new TransportConfig()
 
-    ditto.setTransportConfig(config)
-    ditto.startSync()
-    ```
-    </Tab>
-    <Tab title="Java">
-    ```java
-    DittoTransportConfig config = new DittoTransportConfig();
+// Enable all peer to peer transports
+config.setAllPeerToPeerEnabled(true)
 
-    //Enable all peer to peer transports
-    config.enableAllPeerToPeer();
+// or enable/disable each transport separately
+// BluetoothLE
+config.peerToPeer.bluetoothLE.isEnabled = true
 
-    //Or enable/disable each transport separately
-    //BluetoothLe
-    config.getPeerToPeer().getBluetoothLe().setEnabled(true);
-    //Local Area Network
-    config.getPeerToPeer().getLan().setEnabled(true);
-    //Awdl
-    config.getPeerToPeer().getWifiAware().setEnabled(true);
+// Local Area Network
+config.peerToPeer.lan.isEnabled = true
 
-    ditto.setTransportConfig(config);
+// AWDL
+config.peerToPeer.awdl.isEnabled = true
 
-    try {
-        ditto.startSync();
-    } catch(DittoError error) {
-        // handle error
-    }
-    ```
-    </Tab>
-    <Tab title="C#">
-    ```csharp
-    DittoTransportConfig config = new DittoTransportConfig();
+ditto.setTransportConfig(config)
+ditto.startSync()
+```
 
-    //Enable all peer to peer transports
-    config.EnableAllPeerToPeer();
+```java Java
+DittoTransportConfig config = new DittoTransportConfig();
 
-    //Or enable/disable each transport separately
-    //BluetoothLe
-    config.PeerToPeer.BluetoothLE.Enabled = true;
-    config.PeerToPeer.BluetoothLE.Enabled = true;
-    //Local Area Network
-    config.PeerToPeer.Lan.Enabled = true;
-    //Awdl
-    config.PeerToPeer.Awdl.Enabled = true;
+//Enable all peer to peer transports
+config.enableAllPeerToPeer();
 
-    Ditto.TransportConfig = config;
+//Or enable/disable each transport separately
+//BluetoothLe
+config.getPeerToPeer().getBluetoothLe().setEnabled(true);
+//Local Area Network
+config.getPeerToPeer().getLan().setEnabled(true);
+//Awdl
+config.getPeerToPeer().getWifiAware().setEnabled(true);
 
-    Ditto.StartSync();
-    ```
-    </Tab>
-    <Tab title="C++">
-    ```cpp
-    ditto::TransportConfig config;
+ditto.setTransportConfig(config);
 
-    // Enable all peer to peer transports
-    config.enable_all_peer_to_peer();
+try {
+    ditto.startSync();
+} catch(DittoError error) {
+    // handle error
+}
+```
 
-    // Or enable/disable each transport separately
-    // Bluetooth LE
-    config.peer_to_peer.bluetooth_le.enabled = true;
-    // Local Area Network
-    config.peer_to_peer.lan.enabled = true;
-    // Apple Wireless Direct Link
-    config.peer_to_peer.awdl.enabled = true;
+```csharp C#
+DittoTransportConfig config = new DittoTransportConfig();
 
-    ditto.set_transport_config(config);
+//Enable all peer to peer transports
+config.EnableAllPeerToPeer();
 
-    ditto.start_sync();
-    ```
-    </Tab>
-    <Tab title="Rust">
-    ```rust
-    // Not supported.
-    ```
-    </Tab>
-    <Tab title="Dart">
-    ```dart
-    final config = TransportConfig()
-      ..setAllPeerToPeerEnabled(true)
-      ..peerToPeer.bluetoothLE.isEnabled = true
-      ..peerToPeer.lan.isEnabled = true
-      ..peerToPeer.awdl.isEnabled = true;
+//Or enable/disable each transport separately
+//BluetoothLe
+config.PeerToPeer.BluetoothLE.Enabled = true;
+config.PeerToPeer.BluetoothLE.Enabled = true;
+//Local Area Network
+config.PeerToPeer.Lan.Enabled = true;
+//Awdl
+config.PeerToPeer.Awdl.Enabled = true;
 
-    await ditto.setTransportConfig(config);
-    await ditto.startSync();
-    ```
-    </Tab>
-</Tabs>
+Ditto.TransportConfig = config;
+
+Ditto.StartSync();
+```
+
+```cpp C++
+ditto::TransportConfig config;
+
+// Enable all peer to peer transports
+config.enable_all_peer_to_peer();
+
+// Or enable/disable each transport separately
+// Bluetooth LE
+config.peer_to_peer.bluetooth_le.enabled = true;
+// Local Area Network
+config.peer_to_peer.lan.enabled = true;
+// Apple Wireless Direct Link
+config.peer_to_peer.awdl.enabled = true;
+
+ditto.set_transport_config(config);
+
+ditto.start_sync();
+```
+
+```rust Rust
+// Not supported.
+```
+
+```dart Dart
+final config = TransportConfig()
+  ..setAllPeerToPeerEnabled(true)
+  ..peerToPeer.bluetoothLE.isEnabled = true
+  ..peerToPeer.lan.isEnabled = true
+  ..peerToPeer.awdl.isEnabled = true;
+
+await ditto.setTransportConfig(config);
+await ditto.startSync();
+```
+
+</CodeGroup>
 
 ## Configuring Additional Settings
 
@@ -183,745 +177,705 @@ Call the `startSync` method on your Ditto instance to initiate sync with the con
 
 ## Syncing with Big Peer
 
-<Tabs>
-    <Tab title="Swift">
-    ```swift
-    let ditto = Ditto(identity: .onlinePlayground(
-        appID: "REPLACE_ME_WITH_YOUR_APP_ID",
+<CodeGroup>
+
+```swift Swift
+
+let ditto = Ditto(identity: .onlinePlayground(
+    appID: "REPLACE_ME_WITH_YOUR_APP_ID",
+    token: "REPLACE_ME_WITH_YOUR_PLAYGROUND_TOKEN",
+    // Set to false to disable syncing with the cloud
+    enableDittoCloudSync: true
+))
+do {
+  try ditto.startSync()
+} catch (let err) {
+  print(err.localizedDescription)
+}
+```
+
+```kotlin Kotlin
+val config = DittoTransportConfig()
+
+//Enable all peer to peer transports
+config.enableAllPeerToPeer()
+
+//Or enable/disable each transport separately
+//BluetoothLe
+config.peerToPeer.bluetoothLe.enabled = true
+//Local Area Network
+config.peerToPeer.lan.enabled = true
+//Wifi Aware
+config.peerToPeer.wifiAware.enabled = true
+
+ditto.transportConfig = config
+
+ditto.startSync()
+```
+
+```javascript JavaScript
+const identity: Identity = {
+  type: 'onlinePlayground',
+  appID: 'REPLACE_ME_WITH_YOUR_APP_ID',
+  token: 'REPLACE_ME_WITH_YOUR_PLAYGROUND_TOKEN',
+  // Set to false to disable syncing with the cloud
+  enableDittoCloudSync: true,
+}
+const path = './your-ditto-application-data-path'
+const ditto = new Ditto(identity, path)
+ditto.startSync()
+```
+
+```java Java
+DittoIdentity identity = new DittoIdentity.OnlinePlayground(androidDependencies,
+        "REPLACE_ME_WITH_YOUR_APP_ID",
+        "YOUR_PLAYGROUND_TOKEN_HERE",
+        // Set to false to disable syncing with the cloud
+        true);
+
+Ditto ditto = new Ditto(androidDependencies, identity);
+
+try {
+    ditto.startSync();
+} catch(DittoError e) {
+    //handle error
+}
+```
+
+```csharp C#
+try
+{
+    var ditto = new Ditto(DittoIdentity.OnlinePlayground(
+        appId: "REPLACE_ME_WITH_YOUR_APP_ID",
         token: "REPLACE_ME_WITH_YOUR_PLAYGROUND_TOKEN",
         // Set to false to disable syncing with the cloud
-        enableDittoCloudSync: true
-    ))
-    do {
-      try ditto.startSync()
-    } catch (let err) {
-      print(err.localizedDescription)
-    }
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```kotlin
-    val config = DittoTransportConfig()
+        enableDittoCloudSync: true), path);
 
-    //Enable all peer to peer transports
-    config.enableAllPeerToPeer()
+    ditto.StartSync();
+}
+catch (DittoException ex)
+{
+    Console.WriteLine($"Ditto Error {ex.Message}");
+}
+```
 
-    //Or enable/disable each transport separately
-    //BluetoothLe
-    config.peerToPeer.bluetoothLe.enabled = true
-    //Local Area Network
-    config.peerToPeer.lan.enabled = true
-    //Wifi Aware
-    config.peerToPeer.wifiAware.enabled = true
+```cpp C++
+auto identity = ditto::Identity::OnlinePlayground(
+  "REPLACE_ME_WITH_YOUR_APP_ID",
+  "YOUR_PLAYGROUND_TOKEN_HERE",
+  // Set to false to disable syncing with the cloud
+  true);
 
-    ditto.transportConfig = config
+ditto::Ditto ditto(identity);
 
-    ditto.startSync()
-    ```
-    </Tab>
-    <Tab title="JS">
-    ```javascript
-    const identity: Identity = {
-      type: 'onlinePlayground',
-      appID: 'REPLACE_ME_WITH_YOUR_APP_ID',
-      token: 'REPLACE_ME_WITH_YOUR_PLAYGROUND_TOKEN',
-      // Set to false to disable syncing with the cloud
-      enableDittoCloudSync: true,
-    }
-    const path = './your-ditto-application-data-path'
-    const ditto = new Ditto(identity, path)
-    ditto.startSync()
-    ```
-    </Tab>
-    <Tab title="Java">
-    ```java
-    DittoIdentity identity = new DittoIdentity.OnlinePlayground(androidDependencies,
-            "REPLACE_ME_WITH_YOUR_APP_ID",
-            "YOUR_PLAYGROUND_TOKEN_HERE",
-            // Set to false to disable syncing with the cloud
-            true);
+ditto.start_sync();
+```
 
-    Ditto ditto = new Ditto(androidDependencies, identity);
+```rust Rust
+// Not supported.
+```
 
-    try {
-        ditto.startSync();
-    } catch(DittoError e) {
-        //handle error
-    }
-    ```
-    </Tab>
-    <Tab title="C#">
-    ```csharp
-    try
-    {
-        var ditto = new Ditto(DittoIdentity.OnlinePlayground(
-            appId: "REPLACE_ME_WITH_YOUR_APP_ID",
-            token: "REPLACE_ME_WITH_YOUR_PLAYGROUND_TOKEN",
-            // Set to false to disable syncing with the cloud
-            enableDittoCloudSync: true), path);
+```dart Dart
+final identity = await OnlinePlaygroundIdentity.create(
+  appID: 'REPLACE_ME_WITH_YOUR_APP_ID',
+  token: 'REPLACE_ME_WITH_YOUR_PLAYGROUND_TOKEN',
+  // Set to false to disable syncing with the cloud
+  enableDittoCloudSync: true,
+);
 
-        ditto.StartSync();
-    }
-    catch (DittoException ex)
-    {
-        Console.WriteLine($"Ditto Error {ex.Message}");
-    }
-    ```
-    </Tab>
-    <Tab title="C++">
-    ```cpp
-    auto identity = ditto::Identity::OnlinePlayground(
-      "REPLACE_ME_WITH_YOUR_APP_ID",
-      "YOUR_PLAYGROUND_TOKEN_HERE",
-      // Set to false to disable syncing with the cloud
-      true);
+final ditto = await Ditto.open(
+  identity: identity,
+  persistenceDirectory: persistenceDirectory,
+);
+await ditto.startSync();
+```
 
-    ditto::Ditto ditto(identity);
-
-    ditto.start_sync();
-    ```
-    </Tab>
-    <Tab title="Rust">
-    ```rust
-    // Not supported.
-    ```
-    </Tab>
-    <Tab title="Dart">
-    ```dart
-    final identity = await OnlinePlaygroundIdentity.create(
-      appID: 'REPLACE_ME_WITH_YOUR_APP_ID',
-      token: 'REPLACE_ME_WITH_YOUR_PLAYGROUND_TOKEN',
-      // Set to false to disable syncing with the cloud
-      enableDittoCloudSync: true,
-    );
-
-    final ditto = await Ditto.open(
-      identity: identity,
-      persistenceDirectory: persistenceDirectory,
-    );
-    await ditto.startSync();
-    ```
-    </Tab>
-</Tabs>
+</CodeGroup>
 
 ## Connecting to Remote Small Peers
 
-<Tabs>
-    <Tab title="Swift">
-    ```swift
-    var config = DittoTransportConfig()
-    // Connect explicitly to a remote devices
-    config.connect.tcpServers.insert("135.1.5.5:12345")
-    config.connect.tcpServers.insert("185.1.5.5:12345")
+<CodeGroup>
 
-    ditto.transportConfig = config
+```swift Swift
+var config = DittoTransportConfig()
+// Connect explicitly to a remote devices
+config.connect.tcpServers.insert("135.1.5.5:12345")
+config.connect.tcpServers.insert("185.1.5.5:12345")
 
-    do {
-      try ditto.startSync()
-    } catch (let err) {
-      print(err.localizedDescription)
-    }
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```kotlin
-    val transportConfig = DittoTransportConfig()
+ditto.transportConfig = config
 
-    transportConfig.connect.tcpServers.add("135.1.5.5:12345")
-    transportConfig.connect.tcpServers.add("185.1.5.5:12345")
+do {
+  try ditto.startSync()
+} catch (let err) {
+  print(err.localizedDescription)
+}
+```
 
-    ditto.transportConfig = transportConfig
-    ditto.startSync()
-    ```
-    </Tab>
-    <Tab title="JS">
-    ```javascript
-    import { TransportConfig } from '@dittolive/ditto'
+```kotlin Kotlin
+val transportConfig = DittoTransportConfig()
 
-    const config = new TransportConfig()
-    config.connect.websocketURLs.push('wss://135.1.5.5:12345')
-    config.connect.websocketURLs.push('wss://185.1.5.5:12345')
-    ditto.setTransportConfig(config)
-    ditto.startSync()
-    ```
-    </Tab>
-    <Tab title="Java">
-    ```java
-    DittoTransportConfig config = new DittoTransportConfig();
-    DittoConnect connect = new DittoConnect();
-    connect.setTcpServers(Sets.newHashSet("135.1.5.5:12345", "185.1.5.5:12345"));
-    config.setConnect(connect);
+transportConfig.connect.tcpServers.add("135.1.5.5:12345")
+transportConfig.connect.tcpServers.add("185.1.5.5:12345")
 
-    try {
-        ditto.startSync();
-    } catch(DittoError error) {
-        // handle error
-    }
-    ```
-    </Tab>
-    <Tab title="C#">
-    ```csharp
-    DittoTransportConfig transportConfig = new DittoTransportConfig();
-    // Connect explicitly to a remote device on
-    transportConfig.Connect.TcpServers.Add("135.1.5.5:12345");
-    // you can add as many TcpServers as you would like.
-    transportConfig.Connect.TcpServers.Add("185.1.5.5:4567");
-    // set the transport config
-    Ditto.TransportConfig = transportConfig;
-    // now you can start ditto's sync
-    Ditto.StartSync();
-    ```
-    </Tab>
-    <Tab title="C++">
-    ```cpp
-    auto config = ditto::TransportConfig();
-    // Connect explicitly to remote devices
-    config.connect.tcp_servers.insert("135.1.5.5:12345");
-    config.connect.tcp_servers.insert("185.1.5.5:12345");
+ditto.transportConfig = transportConfig
+ditto.startSync()
+```
 
-    // set the transport config
-    ditto.set_transport_config(config);
-    // now you can start ditto's sync
-    ditto.start_sync();
-    ```
-    </Tab>
-    <Tab title="Rust">
-    ```rust
-    let mut config = TransportConfig::new(); // empty
+```javascript JS
+import { TransportConfig } from '@dittolive/ditto'
 
-    config
-        .connect
-        .tcp_servers
-        .insert("135.1.5.5:12345".to_string()); // Custom TCP Listener
-    config
-        .connect
-        .tcp_servers
-        .insert("185.1.5.5:12345".to_string()); // Custom TCP Listener
-    config
-        .connect
-        .websocket_urls
-        .insert("wss://example.com".to_string()); // Custom WS endpoint
+const config = new TransportConfig()
+config.connect.websocketURLs.push('wss://135.1.5.5:12345')
+config.connect.websocketURLs.push('wss://185.1.5.5:12345')
+ditto.setTransportConfig(config)
+ditto.startSync()
+```
 
-    ditto.set_transport_config(config);
-    ditto.start_sync()?;
-    ```
-    </Tab>
-    <Tab title="Dart">
-    ```dart
-    final config = TransportConfig()
-      ..connect.websocketURLs.push('wss://135.1.5.5:12345')
-      ..connect.websocketURLs.push('wss://185.1.5.5:12345');
+```java Java
+DittoTransportConfig config = new DittoTransportConfig();
+DittoConnect connect = new DittoConnect();
+connect.setTcpServers(Sets.newHashSet("135.1.5.5:12345", "185.1.5.5:12345"));
+config.setConnect(connect);
 
-    await ditto.setTransportConfig(config);
-    await ditto.startSync();
-    ```
-    </Tab>
-</Tabs>
+try {
+    ditto.startSync();
+} catch(DittoError error) {
+    // handle error
+}
+```
+
+```csharp C#
+DittoTransportConfig transportConfig = new DittoTransportConfig();
+// Connect explicitly to a remote device on
+transportConfig.Connect.TcpServers.Add("135.1.5.5:12345");
+// you can add as many TcpServers as you would like.
+transportConfig.Connect.TcpServers.Add("185.1.5.5:4567");
+// set the transport config
+Ditto.TransportConfig = transportConfig;
+// now you can start ditto's sync
+Ditto.StartSync();
+```
+
+```cpp C++
+auto config = ditto::TransportConfig();
+// Connect explicitly to remote devices
+config.connect.tcp_servers.insert("135.1.5.5:12345");
+config.connect.tcp_servers.insert("185.1.5.5:12345");
+
+// set the transport config
+ditto.set_transport_config(config);
+// now you can start ditto's sync
+ditto.start_sync();
+```
+
+```rust Rust
+let mut config = TransportConfig::new(); // empty
+
+config
+    .connect
+    .tcp_servers
+    .insert("135.1.5.5:12345".to_string()); // Custom TCP Listener
+config
+    .connect
+    .tcp_servers
+    .insert("185.1.5.5:12345".to_string()); // Custom TCP Listener
+config
+    .connect
+    .websocket_urls
+    .insert("wss://example.com".to_string()); // Custom WS endpoint
+
+ditto.set_transport_config(config);
+ditto.start_sync()?;
+```
+
+```dart Dart
+final config = TransportConfig()
+  ..connect.websocketURLs.push('wss://135.1.5.5:12345')
+  ..connect.websocketURLs.push('wss://185.1.5.5:12345');
+
+await ditto.setTransportConfig(config);
+await ditto.startSync();
+```
+
+</CodeGroup>
 
 # Initializing WebSocket Connections
 
 Ensure WebSocket connections are discoverable across peers within your local network:
 
-<Tabs>
-    <Tab title="Swift">
-    ```swift
-    var config = DittoTransportConfig()
-    config.connect.webSocketURLs.insert("ws://127.0.0.1")
-    ditto.transportConfig = config
+<CodeGroup>
 
-    do {
-      try ditto.startSync()
-    } catch (let err) {
-      print(err.localizedDescription)
-    }
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```kotlin
-    val config = DittoTransportConfig()
+```swift Swift
+var config = DittoTransportConfig()
+config.connect.webSocketURLs.insert("ws://127.0.0.1")
+ditto.transportConfig = config
 
-    config.connect.websocketUrls.add("ws://127.0.0.1")
+do {
+  try ditto.startSync()
+} catch (let err) {
+  print(err.localizedDescription)
+}
+```
 
-    ditto.transportConfig = config
+```kotlin Kotlin
+val config = DittoTransportConfig()
 
-    ditto.startSync()
-    ```
-    </Tab>
-    <Tab title="JS">
-    ```javascript
-    import { TransportConfig } from '@dittolive/ditto'
+config.connect.websocketUrls.add("ws://127.0.0.1")
 
-    const config = new TransportConfig()
-    config.connect.websocketURLs.push('ws://127.0.0.1')
-    ditto.setTransportConfig(config)
-    ditto.startSync()
-    ```
-    </Tab>
-    <Tab title="Java">
-    ```java
-    var config = getTransportConfig();
-    config.getConnect().getWebsocketUrls().add("ws://127.0.0.1");
-    ditto.setTransportConfig(config);
+ditto.transportConfig = config
 
-    try {
-        ditto.startSync();
-    } catch(DittoError error) {
-        System.out.println(error.getLocalizedMessage());
-    }
-    ```
-    </Tab>
-    <Tab title="C#">
-    ```csharp
-    DittoTransportConfig config = new DittoTransportConfig();
+ditto.startSync()
+```
 
-    config.Connect.WebsocketUrls.Add("ws://127.0.0.1");
+```javascript JS
+import { TransportConfig } from '@dittolive/ditto'
 
-    Ditto.TransportConfig = config;
+const config = new TransportConfig()
+config.connect.websocketURLs.push('ws://127.0.0.1')
+ditto.setTransportConfig(config)
+ditto.startSync()
+```
 
-    Ditto.StartSync();
-    ```
-    </Tab>
-    <Tab title="C++">
-    ```cpp
-    auto config = ditto::TransportConfig();
-    config.connect.websocket_urls.insert("ws://127.0.0.1");
-    ditto.set_transport_config(config);
-    ditto.start_sync();
-    ```
-    </Tab>
-    <Tab title="Rust">
-    ```rust
-    let mut config = TransportConfig::new();
-    config
-        .connect
-        .websocket_urls
-        .insert(String::from("ws://127.0.0.1"));
-    ditto.set_transport_config(config);
-    ditto.start_sync()?;
-    ```
-    </Tab>
-    <Tab title="Dart">
-    ```dart
-    final config = TransportConfig()
-     ..connect.websocketURLs.push('ws://127.0.0.1');
-    await ditto.setTransportConfig(config);
-    await ditto.startSync();
-    ```
-    </Tab>
-</Tabs>
+```java Java
+var config = getTransportConfig();
+config.getConnect().getWebsocketUrls().add("ws://127.0.0.1");
+ditto.setTransportConfig(config);
+
+try {
+    ditto.startSync();
+} catch(DittoError error) {
+    System.out.println(error.getLocalizedMessage());
+}
+```
+
+```csharp C#
+DittoTransportConfig config = new DittoTransportConfig();
+
+config.Connect.WebsocketUrls.Add("ws://127.0.0.1");
+
+Ditto.TransportConfig = config;
+
+Ditto.StartSync();
+```
+
+```cpp C++
+auto config = ditto::TransportConfig();
+config.connect.websocket_urls.insert("ws://127.0.0.1");
+ditto.set_transport_config(config);
+ditto.start_sync();
+```
+
+```rust Rust
+let mut config = TransportConfig::new();
+config
+    .connect
+    .websocket_urls
+    .insert(String::from("ws://127.0.0.1"));
+ditto.set_transport_config(config);
+ditto.start_sync()?;
+```
+
+```dart Dart
+final config = TransportConfig()
+ ..connect.websocketURLs.push('ws://127.0.0.1');
+await ditto.setTransportConfig(config);
+await ditto.startSync();
+```
+
+</CodeGroup>
 
 # Listening for Connections
 
-<Tabs>
-    <Tab title="Swift">
-    ```swift
-    var config = DittoTransportConfig()
+<CodeGroup>
 
-    // Listen for incoming connections on port 4000
-    config.listen.tcp.isEnabled = true
-    config.listen.tcp.interfaceIP = "0.0.0.0"
-    config.listen.tcp.port = 4000
+```swift Swift
+var config = DittoTransportConfig()
 
-    ditto.transportConfig = config
+// Listen for incoming connections on port 4000
+config.listen.tcp.isEnabled = true
+config.listen.tcp.interfaceIP = "0.0.0.0"
+config.listen.tcp.port = 4000
 
-    do {
-      try ditto.startSync()
-    } catch (let err) {
-      print(err.localizedDescription)
-    }
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```kotlin
-    val transportConfig = DittoTransportConfig()
-    transportConfig.connect.tcpServers.add("135.1.5.5:12345")
-    transportConfig.connect.tcpServers.add("185.1.5.5:12345")
-    ditto.transportConfig = transportConfig
-    ditto.startSync()
-    ```
-    </Tab>
-    <Tab title="JS">
-    ```javascript
-    import { TransportConfig } from '@dittolive/ditto'
+ditto.transportConfig = config
 
-    const config = new TransportConfig()
-    config.listen.tcp.isEnabled = true
-    config.listen.tcp.interfaceIP = '0.0.0.0'
-    config.listen.tcp.port = 4000
-    ditto.setTransportConfig(config)
-    ditto.startSync()
-    ```
-    </Tab>
-    <Tab title="Java">
-    ```java
-    DittoTransportConfig config = new DittoTransportConfig();
-    config.enableAllPeerToPeer();
+do {
+  try ditto.startSync()
+} catch (let err) {
+  print(err.localizedDescription)
+}
+```
 
-    DittoListen listen = new DittoListen();
-    DittoTcpListenConfig tcpListenConfig = new DittoTcpListenConfig();
-    tcpListenConfig.setEnabled(true);
-    tcpListenConfig.setInterfaceIp("0.0.0.0");
-    tcpListenConfig.setPort(4000);
-    listen.setTcp(tcpListenConfig);
-    config.setListen(listen);
+```kotlin Kotlin
+val transportConfig = DittoTransportConfig()
+transportConfig.connect.tcpServers.add("135.1.5.5:12345")
+transportConfig.connect.tcpServers.add("185.1.5.5:12345")
+ditto.transportConfig = transportConfig
+ditto.startSync()
+```
 
-    try {
-        ditto.startSync();
-    } catch(DittoError error) {
-        // handle error
-    }
-    ```
-    </Tab>
-    <Tab title="C#">
-    ```csharp
-    DittoTransportConfig transportConfig = new DittoTransportConfig();
-    transportConfig.Listen.Tcp = new DittoTcpListenConfig();
-    // By default Listen.Tcp.Enabled is false, be sure to set it to true.
-    transportConfig.Listen.Tcp.Enabled = true;
-    // if you want to listen on localhost, most likely you will use 0.0.0.0
-    // do not use "localhost" as a string
-    transportConfig.Listen.Tcp.InterfaceIp = "0.0.0.0";
-    // specify your port.
-    transportConfig.Listen.Tcp.Port = 4000;
-    Ditto.TransportConfig = transportConfig;
+```javascript JS
+import { TransportConfig } from '@dittolive/ditto'
 
-    // now you can call `ditto.StartSync()`
-    Ditto.StartSync();
-    ```
-    </Tab>
-    <Tab title="C++">
-    ```cpp
-    auto config = ditto::TransportConfig();
+const config = new TransportConfig()
+config.listen.tcp.isEnabled = true
+config.listen.tcp.interfaceIP = '0.0.0.0'
+config.listen.tcp.port = 4000
+ditto.setTransportConfig(config)
+ditto.startSync()
+```
 
-    config.listen.tcp.enabled = true;
-    config.listen.http.enabled = false;
-    config.listen.tcp.interface_ip = "0.0.0.0";
-    config.listen.tcp.port = 4000;
+```java Java
+DittoTransportConfig config = new DittoTransportConfig();
+config.enableAllPeerToPeer();
 
-    ditto.set_transport_config(config);
-    ditto.start_sync();
-    ```
-    </Tab>
-    <Tab title="Rust">
-    ```rust
-    let mut config = TransportConfig::new(); // empty
+DittoListen listen = new DittoListen();
+DittoTcpListenConfig tcpListenConfig = new DittoTcpListenConfig();
+tcpListenConfig.setEnabled(true);
+tcpListenConfig.setInterfaceIp("0.0.0.0");
+tcpListenConfig.setPort(4000);
+listen.setTcp(tcpListenConfig);
+config.setListen(listen);
 
-    config.listen.tcp.enabled = true;
-    config.listen.tcp.interface_ip = "0.0.0.0".to_string();
-    config.listen.tcp.port = 4000;
-    config.listen.http.enabled = false;
+try {
+    ditto.startSync();
+} catch(DittoError error) {
+    // handle error
+}
+```
 
-    ditto.set_transport_config(config);
-    ditto.start_sync()?;
-    ```
-    </Tab>
-    <Tab title="Dart">
-    ```dart
-    final config = TransportConfig()
-      ..listen.tcp.isEnabled = true
-      ..listen.tcp.interfaceIP = '0.0.0.0'
-      ..listen.tcp.port = 4000;
+```csharp C#
+DittoTransportConfig transportConfig = new DittoTransportConfig();
+transportConfig.Listen.Tcp = new DittoTcpListenConfig();
+// By default Listen.Tcp.Enabled is false, be sure to set it to true.
+transportConfig.Listen.Tcp.Enabled = true;
+// if you want to listen on localhost, most likely you will use 0.0.0.0
+// do not use "localhost" as a string
+transportConfig.Listen.Tcp.InterfaceIp = "0.0.0.0";
+// specify your port.
+transportConfig.Listen.Tcp.Port = 4000;
+Ditto.TransportConfig = transportConfig;
 
-    await ditto.setTransportConfig(config);
-    await ditto.startSync();
-    ```
-    </Tab>
-</Tabs>
+// now you can call `ditto.StartSync()`
+Ditto.StartSync();
+```
+
+```cpp C++
+auto config = ditto::TransportConfig();
+
+config.listen.tcp.enabled = true;
+config.listen.http.enabled = false;
+config.listen.tcp.interface_ip = "0.0.0.0";
+config.listen.tcp.port = 4000;
+
+ditto.set_transport_config(config);
+ditto.start_sync();
+```
+
+```rust Rust
+let mut config = TransportConfig::new(); // empty
+
+config.listen.tcp.enabled = true;
+config.listen.tcp.interface_ip = "0.0.0.0".to_string();
+config.listen.tcp.port = 4000;
+config.listen.http.enabled = false;
+
+ditto.set_transport_config(config);
+ditto.start_sync()?;
+```
+
+```dart Dart
+final config = TransportConfig()
+  ..listen.tcp.isEnabled = true
+  ..listen.tcp.interfaceIP = '0.0.0.0'
+  ..listen.tcp.port = 4000;
+
+await ditto.setTransportConfig(config);
+await ditto.startSync();
+```
+
+</CodeGroup>
 
 ## Combining Multiple Transports
 
-<Tabs>
-    <Tab title="Swift">
-    ```swift
-    var config = DittoTransportConfig()
-    // 1. Enable All Peer to Peer Connections
-    config.enableAllPeerToPeer()
+<CodeGroup>
 
-    // 2. Listen for incoming connections on port 4000
-    config.listen.tcp.isEnabled = true
-    config.listen.tcp.interfaceIP = "0.0.0.0"
-    config.listen.tcp.port = 4000
+```swift Swift
+var config = DittoTransportConfig()
+// 1. Enable All Peer to Peer Connections
+config.enableAllPeerToPeer()
 
-    // 3. Connect explicitly to remote devices
-    config.connect.tcpServers.insert("135.1.5.5:12345")
-    config.connect.tcpServers.insert("185.1.5.5:12345")
+// 2. Listen for incoming connections on port 4000
+config.listen.tcp.isEnabled = true
+config.listen.tcp.interfaceIP = "0.0.0.0"
+config.listen.tcp.port = 4000
 
-    ditto.transportConfig = config
+// 3. Connect explicitly to remote devices
+config.connect.tcpServers.insert("135.1.5.5:12345")
+config.connect.tcpServers.insert("185.1.5.5:12345")
 
-    do {
-      try ditto.startSync()
-    } catch (let err) {
-      print(err.localizedDescription)
-    }
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```kotlin
-    val transportConfig = DittoTransportConfig()
-    // 1. Enable All Peer to Peer Connections
-    transportConfig.enableAllPeerToPeer()
-    // 2. Listen for incoming connections on port 4000
-    transportConfig.listen.tcp.enabled = true
-    transportConfig.listen.http.enabled = false
-    transportConfig.listen.tcp.interfaceIp = "0.0.0.0"
-    transportConfig.listen.tcp.port = 4000
-    // 3. Connect explicitly to remote devices
-    transportConfig.connect.tcpServers.add("135.1.5.5:12345")
-    transportConfig.connect.tcpServers.add("185.1.5.5:12345")
+ditto.transportConfig = config
 
-    ditto.transportConfig = transportConfig
-    ditto.startSync()
-    ```
-    </Tab>
-    <Tab title="JS">
-    ```javascript
-    import { TransportConfig } from '@dittolive/ditto'
+do {
+  try ditto.startSync()
+} catch (let err) {
+  print(err.localizedDescription)
+}
+```
 
-    const config = new TransportConfig()
-    if (isNode() && OS === 'darwin') {
-    // 1. Enable All Peer to Peer Connections (not in a browser environment)
-    config.setAllPeerToPeerEnabled(true)
-    // 2. Listen for incoming connections on port 4000
-    config.listen.tcp.isEnabled = true
-    config.listen.tcp.interfaceIP = '0.0.0.0'
-    config.listen.tcp.port = 4000
+```kotlin Kotlin
+val transportConfig = DittoTransportConfig()
+// 1. Enable All Peer to Peer Connections
+transportConfig.enableAllPeerToPeer()
+// 2. Listen for incoming connections on port 4000
+transportConfig.listen.tcp.enabled = true
+transportConfig.listen.http.enabled = false
+transportConfig.listen.tcp.interfaceIp = "0.0.0.0"
+transportConfig.listen.tcp.port = 4000
+// 3. Connect explicitly to remote devices
+transportConfig.connect.tcpServers.add("135.1.5.5:12345")
+transportConfig.connect.tcpServers.add("185.1.5.5:12345")
 
-    // 3. Connect explicitly to remote devices
-    ditto.setTransportConfig(config)
-    ditto.startSync()
-    ```
-    </Tab>
-    <Tab title="Java">
-    ```java
-    DittoTransportConfig config = new DittoTransportConfig();
+ditto.transportConfig = transportConfig
+ditto.startSync()
+```
 
-    // 1. Enable Peer to Peer Connections
-    config.enableAllPeerToPeer();
+```javascript JS
+import { TransportConfig } from '@dittolive/ditto'
 
-    // 2. Listen for incoming connections on port 4000
-    DittoListen listen = new DittoListen();
-    DittoTcpListenConfig tcpListenConfig = new DittoTcpListenConfig();
-    tcpListenConfig.setEnabled(true);
-    tcpListenConfig.setInterfaceIp("0.0.0.0");
-    tcpListenConfig.setPort(4000);
-    listen.setTcp(tcpListenConfig);
-    config.setListen(listen);
-    // 3. Connect explicitly to remote devices
-    DittoConnect connect = new DittoConnect();
-    connect.setTcpServers(Sets.newHashSet("135.1.5.5:12345", "185.1.5.5:12345"));
-    config.setConnect(connect);
+const config = new TransportConfig()
+if (isNode() && OS === 'darwin') {
+// 1. Enable All Peer to Peer Connections (not in a browser environment)
+config.setAllPeerToPeerEnabled(true)
+// 2. Listen for incoming connections on port 4000
+config.listen.tcp.isEnabled = true
+config.listen.tcp.interfaceIP = '0.0.0.0'
+config.listen.tcp.port = 4000
 
-    try {
-        ditto.startSync();
-    } catch(DittoError error) {
-        // handle error
-    }
-    ```
-    </Tab>
-    <Tab title="C#">
-    ```csharp
-    DittoTransportConfig transportConfig = new DittoTransportConfig();
+// 3. Connect explicitly to remote devices
+ditto.setTransportConfig(config)
+ditto.startSync()
+```
 
-    // 1. Enable Local Area Network Connections
-    transportConfig.EnableAllPeerToPeer();
+```java Java
+DittoTransportConfig config = new DittoTransportConfig();
 
-    // 2. Listen for incoming connections on port 4000
-    transportConfig.Listen.Tcp.Enabled = true;
-    transportConfig.Listen.Tcp.InterfaceIp = "0.0.0.0";
-    transportConfig.Listen.Tcp.Port = 4000;
+// 1. Enable Peer to Peer Connections
+config.enableAllPeerToPeer();
 
-    // 3. Connect explicitly to remote devices
-    transportConfig.Connect.TcpServers.Add("135.1.5.5:12345");
-    transportConfig.Connect.TcpServers.Add("185.1.5.5:12345");
+// 2. Listen for incoming connections on port 4000
+DittoListen listen = new DittoListen();
+DittoTcpListenConfig tcpListenConfig = new DittoTcpListenConfig();
+tcpListenConfig.setEnabled(true);
+tcpListenConfig.setInterfaceIp("0.0.0.0");
+tcpListenConfig.setPort(4000);
+listen.setTcp(tcpListenConfig);
+config.setListen(listen);
+// 3. Connect explicitly to remote devices
+DittoConnect connect = new DittoConnect();
+connect.setTcpServers(Sets.newHashSet("135.1.5.5:12345", "185.1.5.5:12345"));
+config.setConnect(connect);
 
-    ditto.TransportConfig = transportConfig;
+try {
+    ditto.startSync();
+} catch(DittoError error) {
+    // handle error
+}
+```
 
-    ditto.StartSync();
-    ```
-    </Tab>
-    <Tab title="C++">
-    ```cpp
-    auto config = ditto::TransportConfig();
-    // 1. Enable All Peer to Peer Connections
-    config.enable_all_peer_to_peer();
+```csharp C#
+DittoTransportConfig transportConfig = new DittoTransportConfig();
 
-    // 2. Listen for incoming connections on port 4000
-    config.listen.tcp.enabled = true;
-    config.listen.http.enabled = false;
-    config.listen.tcp.interface_ip = "0.0.0.0";
-    config.listen.tcp.port = 4000;
+// 1. Enable Local Area Network Connections
+transportConfig.EnableAllPeerToPeer();
 
-    // 3. Connect explicitly to remote devices
-    config.connect.tcp_servers.insert("135.1.5.5:12345");
-    config.connect.tcp_servers.insert("185.1.5.5:12345");
+// 2. Listen for incoming connections on port 4000
+transportConfig.Listen.Tcp.Enabled = true;
+transportConfig.Listen.Tcp.InterfaceIp = "0.0.0.0";
+transportConfig.Listen.Tcp.Port = 4000;
 
-    ditto.set_transport_config(config);
-    ditto.start_sync();
-    ```
-    </Tab>
-    <Tab title="Rust">
-    ```rust
-    let mut config = TransportConfig::new(); // empty
+// 3. Connect explicitly to remote devices
+transportConfig.Connect.TcpServers.Add("135.1.5.5:12345");
+transportConfig.Connect.TcpServers.Add("185.1.5.5:12345");
 
-    // 1. Enable auto-discovery of peer to peer connections
-    config.enable_all_peer_to_peer(); // Auto-connect via lan and bluetooth
+ditto.TransportConfig = transportConfig;
 
-    // 2. Configure TCP Listener
-    config.listen.tcp.enabled = true;
-    config.listen.tcp.interface_ip = "0.0.0.0".to_string();
-    config.listen.tcp.port = 4000;
-    config.listen.http.enabled = false;
+ditto.StartSync();
+```
 
-    // 3. Configure explicit, hard coded connections
-    config
-        .connect
-        .tcp_servers
-        .insert("135.1.5.5:12345".to_string()); // Custom TCP Listener
-    config
-        .connect
-        .websocket_urls
-        .insert("wss://example.com".to_string()); // Custom WS endpoint
+```cpp C++
+auto config = ditto::TransportConfig();
+// 1. Enable All Peer to Peer Connections
+config.enable_all_peer_to_peer();
 
-    ditto.set_transport_config(config);
-    ditto.start_sync()?;
-    ```
-    </Tab>
-    <Tab title="Dart">
-    ```dart
-    final config = TransportConfig()
-      ..setAllPeerToPeerEnabled(true)
-      ..listen.tcp.isEnabled = true
-      ..listen.tcp.interfaceIP = '0.0.0.0'
-      ..listen.tcp.port = 4000;
+// 2. Listen for incoming connections on port 4000
+config.listen.tcp.enabled = true;
+config.listen.http.enabled = false;
+config.listen.tcp.interface_ip = "0.0.0.0";
+config.listen.tcp.port = 4000;
 
-    // 3. Connect explicitly to remote devices
-    await ditto.setTransportConfig(config);
-    await ditto.startSync();
-    ```
-    </Tab>
-</Tabs>
+// 3. Connect explicitly to remote devices
+config.connect.tcp_servers.insert("135.1.5.5:12345");
+config.connect.tcp_servers.insert("185.1.5.5:12345");
+
+ditto.set_transport_config(config);
+ditto.start_sync();
+```
+
+```rust Rust
+let mut config = TransportConfig::new(); // empty
+
+// 1. Enable auto-discovery of peer to peer connections
+config.enable_all_peer_to_peer(); // Auto-connect via lan and bluetooth
+
+// 2. Configure TCP Listener
+config.listen.tcp.enabled = true;
+config.listen.tcp.interface_ip = "0.0.0.0".to_string();
+config.listen.tcp.port = 4000;
+config.listen.http.enabled = false;
+
+// 3. Configure explicit, hard coded connections
+config
+    .connect
+    .tcp_servers
+    .insert("135.1.5.5:12345".to_string()); // Custom TCP Listener
+config
+    .connect
+    .websocket_urls
+    .insert("wss://example.com".to_string()); // Custom WS endpoint
+
+ditto.set_transport_config(config);
+ditto.start_sync()?;
+```
+
+```dart Dart
+final config = TransportConfig()
+  ..setAllPeerToPeerEnabled(true)
+  ..listen.tcp.isEnabled = true
+  ..listen.tcp.interfaceIP = '0.0.0.0'
+  ..listen.tcp.port = 4000;
+
+// 3. Connect explicitly to remote devices
+await ditto.setTransportConfig(config);
+await ditto.startSync();
+```
+
+</CodeGroup>
 
 ## Monitoring Conditions
 
-<Tabs>
-    <Tab title="Swift">
-    ```swift
-    // Setting up inside a ViewController
-    let ditto = Ditto(identity: DittoIdentity.onlinePlayground(appID: "REPLACE_ME_WITH_YOUR_APP_ID", token: "REPLACE_ME_WITH_YOUR_PLAYGROUND_TOKEN"))
-    ditto.delegate = self
-    try! ditto.startSync()
+<CodeGroup>
 
-    // Now you can observe real time changes to the transport conditions:
-    extension ViewController: DittoDelegate {
-       func transportConditionDidChange(transportID: Int64, condition: TransportCondition) {
-           if condition == .BleDisabled {
-               print("BLE disabled")
-           } else if condition == .NoBleCentralPermission {
-               print("Permission missing for BLE")
-           } else if condition == .NoBlePeripheralPermission {
-               print("Permission missing for BLE")
-           }
+```swift Swift
+// Setting up inside a ViewController
+let ditto = Ditto(identity: DittoIdentity.onlinePlayground(appID: "REPLACE_ME_WITH_YOUR_APP_ID", token: "REPLACE_ME_WITH_YOUR_PLAYGROUND_TOKEN"))
+ditto.delegate = self
+try! ditto.startSync()
+
+// Now you can observe real time changes to the transport conditions:
+extension ViewController: DittoDelegate {
+   func transportConditionDidChange(transportID: Int64, condition: TransportCondition) {
+       if condition == .BleDisabled {
+           print("BLE disabled")
+       } else if condition == .NoBleCentralPermission {
+           print("Permission missing for BLE")
+       } else if condition == .NoBlePeripheralPermission {
+           print("Permission missing for BLE")
        }
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```kotlin
-    // ... Setting up inside an Activity
-    val androidDependencies = DefaultAndroidDittoDependencies(applicationContext)
-    val ditto = Ditto(androidDependencies, DittoIdentity.OnlinePlayground
-    (androidDependencies, appId = "REPLACE_WITH_APP_ID", token = "REPLACE_ME_WITH_YOUR_PLAYGROUND_TOKEN"))
-    ditto.callback = this
-    ditto.startSync()
+   }
+}
+```
 
-    // Now you can observe real time changes to the transport conditions:
+```kotlin Kotlin
+// ... Setting up inside an Activity
+val androidDependencies = DefaultAndroidDittoDependencies(applicationContext)
+val ditto = Ditto(androidDependencies, DittoIdentity.OnlinePlayground
+(androidDependencies, appId = "REPLACE_WITH_APP_ID", token = "REPLACE_ME_WITH_YOUR_PLAYGROUND_TOKEN"))
+ditto.callback = this
+ditto.startSync()
 
-    class MainActivity : AppCompatActivity(), DittoCallback {
+// Now you can observe real time changes to the transport conditions:
 
-        override fun transportConditionDidChange(transportId: Long, condition: TransportCondition) {
-            var toastText: String? = null
-            if (condition == TransportCondition.TRANSPORT_CONDITION_BLE_DISABLED) {
-                toastText = "BLE disabled"
-            } else if (condition == TransportCondition.TRANSPORT_CONDITION_NO_BLE_CENTRAL_PERMISSION) {
-                toastText = "Permission missing for BLE"
-            } else if (condition == TransportCondition.TRANSPORT_CONDITION_NO_BLE_PERIPHERAL_PERMISSION) {
-                toastText = "Permission missing for BLE"
+class MainActivity : AppCompatActivity(), DittoCallback {
+
+    override fun transportConditionDidChange(transportId: Long, condition: TransportCondition) {
+        var toastText: String? = null
+        if (condition == TransportCondition.TRANSPORT_CONDITION_BLE_DISABLED) {
+            toastText = "BLE disabled"
+        } else if (condition == TransportCondition.TRANSPORT_CONDITION_NO_BLE_CENTRAL_PERMISSION) {
+            toastText = "Permission missing for BLE"
+        } else if (condition == TransportCondition.TRANSPORT_CONDITION_NO_BLE_PERIPHERAL_PERMISSION) {
+            toastText = "Permission missing for BLE"
+        }
+        toastText?.let {
+            Handler(mainLooper).post {
+                Toast.makeText(this, it, Toast.LENGTH_LONG).show()
             }
-            toastText?.let {
-                Handler(mainLooper).post {
-                    Toast.makeText(this, it, Toast.LENGTH_LONG).show()
+        }
+    }
+}
+```
+
+```javascript JS
+const transportConditionsObserver = ditto.observeTransportConditions((condition, source) => {
+  if (condition === 'BLEDisabled') {
+    console.log('BLE disabled')
+  } else if (condition === 'NoBLECentralPermission') {
+    console.log('Permission missing for BLE')
+  } else if (condition === 'NoBLEPeripheralPermission') {
+    console.log('Permissions missing for BLE')
+  }
+})
+```
+
+```java Java
+// Setting up inside an Activity
+DefaultAndroidDittoDependencies androidDependencies = new DefaultAndroidDittoDependencies(getApplicationContext());
+Ditto ditto = new Ditto(androidDependencies, new DittoIdentity.OnlinePlayground(androidDependenciesOne, "REPLACE_WITH_APP_ID"));
+ditto.callback = this;
+ditto.startSync();
+
+// Now you can observe real time changes to the transport conditions:
+public class MainActivity extends AppCompatActivity implements DittoCallback {
+    @Override
+    public void transportConditionDidChange(@NotNull DittoTransportCondition condition, @NotNull DittoConditionSource transportId) {
+        String toastText = null;
+        if (condition == DittoTransportCondition.BleDisabled) {
+            toastText = "BLE disabled";
+        } else if (condition == DittoTransportCondition.NoBleCentralPermission) {
+            toastText = "Permission missing for BLE";
+        } else if (condition == DittoTransportCondition.NoBlePeripheralPermission) {
+            toastText = "Permission missing for BLE";
+        }
+
+        if (toastText != null) {
+            String finalToastText = toastText;
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(MainActivity.this, finalToastText, Toast.LENGTH_LONG).show();
                 }
-            }
+            });
         }
     }
-    ```
-    </Tab>
-    <Tab title="JS">
-    ```javascript
-    const transportConditionsObserver = ditto.observeTransportConditions((condition, source) => {
-      if (condition === 'BLEDisabled') {
-        console.log('BLE disabled')
-      } else if (condition === 'NoBLECentralPermission') {
-        console.log('Permission missing for BLE')
-      } else if (condition === 'NoBLEPeripheralPermission') {
-        console.log('Permissions missing for BLE')
-      }
-    })
-    ```
-    </Tab>
-    <Tab title="Java">
-    ```java
-    // Setting up inside an Activity
-    DefaultAndroidDittoDependencies androidDependencies = new DefaultAndroidDittoDependencies(getApplicationContext());
-    Ditto ditto = new Ditto(androidDependencies, new DittoIdentity.OnlinePlayground(androidDependenciesOne, "REPLACE_WITH_APP_ID"));
-    ditto.callback = this;
-    ditto.startSync();
+}
+```
 
-    // Now you can observe real time changes to the transport conditions:
-    public class MainActivity extends AppCompatActivity implements DittoCallback {
-        @Override
-        public void transportConditionDidChange(@NotNull DittoTransportCondition condition, @NotNull DittoConditionSource transportId) {
-            String toastText = null;
-            if (condition == DittoTransportCondition.BleDisabled) {
-                toastText = "BLE disabled";
-            } else if (condition == DittoTransportCondition.NoBleCentralPermission) {
-                toastText = "Permission missing for BLE";
-            } else if (condition == DittoTransportCondition.NoBlePeripheralPermission) {
-                toastText = "Permission missing for BLE";
-            }
+```csharp C#
+// not supported in C#
+```
 
-            if (toastText != null) {
-                String finalToastText = toastText;
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(MainActivity.this, finalToastText, Toast.LENGTH_LONG).show();
-                    }
-                });
-            }
-        }
-    }
-    ```
-    </Tab>
-    <Tab title="C#">
-    ```csharp
-    // not supported in C#
-    ```
-    </Tab>
-    <Tab title="C++">
-    ```cpp
-    // not supported in C++
-    ```
-    </Tab>
-    <Tab title="Rust">
-    ```rust
-    // not supported in Rust
-    ```
-    </Tab>
-    <Tab title="Dart">
-    ```dart
-    // Coming Soon
-    ```
-    </Tab>
-</Tabs>
+```cpp C++
+// not supported in C++
+```
+
+```rust Rust
+// not supported in Rust
+```
+
+```dart Dart
+// Coming Soon
+```
+
+</CodeGroup>
 
 

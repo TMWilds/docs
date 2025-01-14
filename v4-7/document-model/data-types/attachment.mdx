@@ -40,14 +40,12 @@ The following snippet demonstrates creating, associating, and fetching an `ATTAC
 3. `INSERT` a document with an `attachment` in the `collection`.
 4. Later, retrieve the document by `_id` and fetch the `attachment` using an `attachmentFetcher`.
 
-<Tabs>
-  <Tab title="Swift">
-```swift
+<CodeGroup>
+```swift Swift
 //see the Swift tutorial for implementing Attachments in a chat app.
 ```
-  </Tab>
-  <Tab title="Kotlin">
-```java
+
+```java Java
 val testContext = InstrumentationRegistry.getInstrumentation().context
 val attachmentStream = testContext.assets.open("attachment_test.png")
 
@@ -71,9 +69,8 @@ val fetcher = coll.fetchAttachment(attachmentToken!!) {
     }
 }
 ```
-  </Tab>
-  <Tab title="JS">
-```javascript
+
+```javascript JS
 // Define an image in Base64 format
 const myImageBase64 = 'iVBORw0KGgoAAAANSUhEUgAAAQAAAAEAAQMAAABmvDolAAAAA1BMVEW10NBjBBbqAAAAH0lEQVRoge3BAQ0AAADCoPdPbQ43oAAAAAAAAAAAvg0hAAABmmDh1QAAAABJRU5ErkJggg=='
 
@@ -98,141 +95,8 @@ await ditto.store.execute(`
 
 // Later, find the document by ID and then fetch the attachment
 const result = await ditto.store.execute(`
-  SELECT *
-  FROM your_collection_name
-  WHERE _id = :docId`,
-  { docId })
-
-const attachmentToken = result[0].items('my_attachment').attachmentToken
-
-// Fetch the attachment
-const attachmentFetcher = collection.fetchAttachment(attachmentToken, async (attachmentFetchEvent) => {
-  switch (attachmentFetchEvent.type) {
-    case 'Completed':
-      const fetchedAttachment = attachmentFetchEvent.attachment
-      // Do something with attachment
-      break
-
-    default:
-      console.log('Unable to fetch attachment')
-      break
-  }
-})
-
-// There is also a more convenient way of fetching the attachment
-// (AttachmentFetcher implements the `PromiseLike` protocol):
-const fetchedAttachment = await collection.fetchAttachment(attachmentToken)
-// Do something with attachment
 ```
-  </Tab>
-  <Tab title="Java">
-```java
-String attachmentPath = tempFile.getPath();
-Map<String, String> metadata = new HashMap<>();
-metadata.put("name", "my_image.png");
-DittoAttachment attachment = coll.newAttachment(attachmentPath, metadata);
-tempFile.delete();
-
-Map<String, Object> content = new HashMap<>();
-content.put("some", "string");
-content.put("my_attachment", attachment);
-DittoDocumentId docID = coll.upsert(content);
-
-DittoDocument doc = coll.findById(docID).exec();
-DittoAttachmentToken attachmentToken = doc.get("my_attachment").getAttachmentToken();
-
-DittoAttachmentFetcher fetcher = coll.fetchAttachment(attachmentToken, event -> {
-    if (event.getType() == DittoAttachmentFetchEventType.Completed) {
-        DittoAttachment att = event.asCompleted().getAttachment();
-        BufferedImage attachmentImage;
-        try {
-            attachmentImage = ImageIO.read(att.getInputStream());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    } else if (event.getType() == DittoAttachmentFetchEventType.Progress) {
-        // do nothing - wait for `Completed` or `Deleted`
-    } else {
-    }
-});
-```
-  </Tab>
-  <Tab title="C#">
-```csharp
-string attachmentImagePath = Path.Combine(Directory.GetCurrentDirectory(), "attachment_test.png");
-
-var originalBytes = File.ReadAllBytes(attachmentImagePath);
-
-var metadata = new Dictionary<string, string> { { "name", "my_image.png" } };
-var attachment = coll.NewAttachment(attachmentImagePath, metadata);
-
-string docId = "123";
-var insertArgs = new Dictionary<string, object>();
-insertArgs.Add(
-  "newDocument",
-  new { _id = docId, myAttachment = attachment });
-
-await ditto.Store.ExecuteAsync(
-  "INSERT INTO your_collection_name DOCUMENTS (:newDocument)",
-  insertArgs);
-
-var result = await ditto.Store.ExecuteAsync(
-  "SELECT * FROM your_collection_name WHERE _id = :docId",
-  new Dictionary<string, string> {{"docId", docId}});
-
-var attachmentToken = result.Items[0].Value["my_attachment"].AttachmentToken;
-using var fetcher = coll.FetchAttachment(attachmentToken, ev =>
-{
-    switch (ev)
-    {
-        case DittoAttachmentFetchEvent.Completed e:
-            // Do something with attachment
-            break;
-        default:
-            Console.WriteLine("Unable to fetch attachment");
-            break;
-    }
-});
-```
-  </Tab>
-  <Tab title="C++">
-```cpp
-string attachmentImagePath = Path.Combine(Directory.GetCurrentDirectory(), "attachment_test.png");
-
-var originalBytes = File.ReadAllBytes(attachmentImagePath);
-
-var metadata = new Dictionary<string, string> { { "name", "my_image.png" } };
-var attachment = coll.NewAttachment(attachmentImagePath, metadata);
-
-var docId = coll.Upsert(new Dictionary<string, object> { { "some", "string" }, { "my_attachment", attachment } });
-
-var doc = coll.FindById(docId).Exec();
-var attachmentToken = doc["my_attachment"].AttachmentToken;
-using var fetcher = coll.FetchAttachment(attachmentToken, ev =>
-{
-    switch (ev)
-    {
-        case DittoAttachmentFetchEvent.Completed e:
-            // Do something with attachment
-            break;
-        default:
-            Console.WriteLine("Unable to fetch attachment");
-            break;
-    }
-});
-```
-  </Tab>
-  <Tab title="Rust">
-```rust
-// To Implement
-```
-  </Tab>
-  <Tab title="Dart">
-```dart Dart (beta)
-// Coming Soon
-```
-  </Tab>
-</Tabs>
+</CodeGroup>
 
 
 

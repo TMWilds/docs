@@ -15,9 +15,8 @@ Following are the main features and qualities associated with the `_id` field:
 ## Auto-Generated Document Identifier
 
 When inserting a document, unless manually supplied, Ditto automatically generates and assigns the new document a 128‑bit Universally Unique Identifier (UUID) to the `_id` field.
-<Tabs>
-  <Tab title="Swift">
-```swift
+<CodeGroup>
+```swift Swift
 let result = await ditto.store.execute(
   query: "INSERT INTO cars DOCUMENTS (:newCar)",
   arguments: [
@@ -27,9 +26,8 @@ let result = await ditto.store.execute(
 // "507f191e810c19729de860ea"
 print(result.mutatedDocumentIDs()[0])
 ```
-  </Tab>
-  <Tab title="Kotlin">
-```js
+
+```kotlin Kotlin
 var result = ditto.store.execute(
   "INSERT INTO cars DOCUMENTS (:newCar)",
   mapOf("newCar" to mapOf("color" to "blue")))
@@ -37,9 +35,8 @@ var result = ditto.store.execute(
 // "507f191e810c19729de860ea"
 println(result.mutatedDocumentIDs().first())
 ```
-  </Tab>
-  <Tab title="JS">
-```JS
+
+```js JS
 const result = await ditto.store.execute(
   "INSERT INTO cars DOCUMENTS (:newCar)",
   { newCar: { color: 'blue' } });
@@ -47,9 +44,8 @@ const result = await ditto.store.execute(
 // "507f191e810c19729de860ea"
 console.log(result.mutatedDocumentIDs()[0])
 ```
-  </Tab>
-  <Tab title="Java">
-```Java
+
+```java Java
 DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
     "INSERT INTO cars DOCUMENTS (:newCar)",
     Collections.singletonMap("newCar", Collections.singletonMap("color", "blue")),
@@ -72,9 +68,8 @@ DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
 // "507f191e810c19729de860ea"
 System.out.println(result.mutatedDocumentIDs()[0]);
 ```
-  </Tab>
-  <Tab title="C#">
-```C#
+
+```csharp C#
 var insertArgs = new Dictionary<string, object>();
 insertArgs.Add("newCar", new { color = "blue" });
 
@@ -85,9 +80,8 @@ var result = await ditto.Store.ExecuteAsync(
 // "507f191e810c19729de860ea"
 result.MutatedDocumentIds.ForEach(id => Console.WriteLine(id));
 ```
-  </Tab>
-  <Tab title="C++">
-```cpp
+
+```cpp C++
 std::map<std::string, std::map<std::string, std::string>> args;
 args["newCar"] = {{"color", "blue"}};
 
@@ -98,9 +92,8 @@ auto result = ditto.get_store().execute(
 // "507f191e810c19729de860ea"
 std::cout << result.mutated_document_ids()[0].to_string();
 ```
-  </Tab>
-  <Tab title="Rust">
-```Rust
+
+```rust Rust
 use serde::Serialize;
 
 #[derive(Serialize)]
@@ -127,9 +120,8 @@ let result = ditto.store().execute(
 // "507f191e810c19729de860ea"
 println!("{}", result.mutated_document_ids()[0].to_string())
 ```
-  </Tab>
-  <Tab title="Dart">
-```Dart
+
+```dart Dart
 final result = await ditto.store.execute(
   "INSERT INTO cars DOCUMENTS (:newCar)",
   arguments: {
@@ -141,8 +133,7 @@ final result = await ditto.store.execute(
 // "507f191e810c19729de860ea"
 print(result.mutatedDocumentIDs.first);
 ```
-  </Tab>
-</Tabs>
+</CodeGroup>
 
 ## Custom Document Identifier
 
@@ -165,9 +156,8 @@ Following are a few key principles for handling IDs in Ditto:
 
 The following snippet demonstrates creating a new document assigned the string value `123`.
 
-<Tabs>
-  <Tab title="Swift">
-```swift
+<CodeGroup>
+```swift Swift
 let result = await ditto.store.execute(
   query: "INSERT INTO cars DOCUMENTS (:newCar)",
   arguments: [
@@ -177,9 +167,8 @@ let result = await ditto.store.execute(
 // "123"
 print(result.mutatedDocumentIDs()[0])
 ```
-  </Tab>
-  <Tab title="Kotlin">
-```js
+
+```kotlin Kotlin
 var result = ditto.store.execute(
   "INSERT INTO cars DOCUMENTS (:newCar)",
   mapOf("newCar" to mapOf("_id" to "123", "color" to "blue")))
@@ -187,9 +176,8 @@ var result = ditto.store.execute(
 // "507f191e810c19729de860ea"
 println(result.mutatedDocumentIDs().first())
 ```
-  </Tab>
-  <Tab title="JS">
-```JS
+
+```js JS
 const newCar = {
   _id: "123",
   color: "blue"
@@ -203,9 +191,8 @@ const result = await ditto.store.execute(`
 // "123"
 console.log(result.mutatedDocumentIDs()[0])
 ```
-  </Tab>
-  <Tab title="Java">
-```Java
+
+```java Java
 Map<String, String> newCar = new HashMap<>();
 newCar.put("_id", "123");
 newCar.put("color", "blue");
@@ -232,9 +219,8 @@ DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
 // "123"
 System.out.println(result.mutatedDocumentIDs()[0]);
 ```
-  </Tab>
-  <Tab title="C#">
-```C#
+
+```csharp C#
 var insertArgs = new Dictionary<string, object>();
 insertArgs.Add("newCar", new { _id = "123", color = "blue" });
 
@@ -245,9 +231,8 @@ var result = await ditto.Store.ExecuteAsync(
 // "123"
 result.MutatedDocumentIds.ForEach(id => Console.WriteLine(id));
 ```
-  </Tab>
-  <Tab title="C++">
-```cpp
+
+```cpp C++
 std::map<std::string, std::map<std::string, std::string>> args;
 args["newCar"] = {{"_id", "123"},{"color", "blue"}};
 
@@ -258,9 +243,8 @@ auto result = ditto.get_store().execute(
 // "123"
 std::cout << result.mutated_document_ids()[0].to_string();
 ```
-  </Tab>
-  <Tab title="Rust">
-```Rust
+
+```rust Rust
 use serde::Serialize;
 
 #[derive(Serialize)]
@@ -289,9 +273,8 @@ let result = ditto.store().execute(
 // "123"
 println!("{}", result.mutated_document_ids()[0].to_string())
 ```
-  </Tab>
-  <Tab title="Dart">
-```Dart
+
+```dart Dart
 final newCar = {
   "_id": "123",
   "color": "blue"
@@ -305,8 +288,7 @@ final result = await ditto.store.execute(
 // "123"
 print(result.mutatedDocumentIDs.first);
 ```
-  </Tab>
-</Tabs>
+</CodeGroup>
 
 ### Forming a Composite Key Identifier
 
@@ -319,9 +301,8 @@ The decision to opt for a composite key depends on your specific use case. Follo
 To form a composite key, set the `_id` to a JSON object when inserting a new document.
 
 The following snippet demonstrates combining the `vin` and `make` fields to form a composite key:
-<Tabs>
-  <Tab title="Swift">
-```swift
+<CodeGroup>
+```swift Swift
 let arguments = [
   newCar: [ "_id": [vin: "123", make: "Toyota"], "color": "blue"]
 ];
@@ -333,9 +314,8 @@ let result = await ditto.store.execute(
 // "{vin: "123", make: "Toyota"}"
 print(result.mutatedDocumentIDs()[0])
 ```
-  </Tab>
-  <Tab title="Kotlin">
-```Kotlin
+
+```kotlin Kotlin
 var result = ditto.store.execute(
   "INSERT INTO cars DOCUMENTS (:newCar)",
   mapOf(
@@ -350,9 +330,8 @@ var result = ditto.store.execute(
 // "{vin: "123", make: "Toyota"}"
 println(result.mutatedDocumentIDs().first())
 ```
-  </Tab>
-  <Tab title="JS">
-```JS
+
+```js JS
 const newCar = {
   _id: {
     vin: "123",
@@ -368,9 +347,8 @@ const result = await ditto.store.execute(`
 // "{vin: "123", make: "Toyota"}"
 console.log(result.mutatedDocumentIDs()[0])
 ```
-  </Tab>
-  <Tab title="Java">
-```Java
+
+```java Java
 Map<String, String> newCarId = new HashMap<>();
 newCarId.put("vin", "123");
 newCarId.put("make", "Toyota");
@@ -400,9 +378,8 @@ DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
 // "{vin: "123", make: "Toyota"}"
 System.out.println(result.mutatedDocumentIDs()[0]);
 ```
-  </Tab>
-  <Tab title="C#">
-```C#
+
+```csharp C#
 var newId = new { vin: "123", make: "Toyota"};
 var insertArgs = new Dictionary<string, object>();
 insertArgs.Add("newCar", new { _id = newId, color = "blue" });
@@ -415,9 +392,8 @@ var result = await ditto.Store.ExecuteAsync(
 result.MutatedDocumentIds.ForEach(id => Console.WriteLine(
   System.Text.Json.JsonSerializer.Serialize(id)));
 ```
-  </Tab>
-  <Tab title="C++">
-```cpp
+
+```cpp C++
 struct CarId {
   std::string vin;
   std::string make;
@@ -437,9 +413,8 @@ auto result = ditto.get_store().execute(
 // "{vin: "123", make: "Toyota"}"
 std::cout << result.mutated_document_ids()[0].to_string();
 ```
-  </Tab>
-  <Tab title="Rust">
-```Rust
+
+```rust Rust
 struct Args {
   newCar: Car,
 }
@@ -471,9 +446,8 @@ let result = ditto.store().execute(
 // "{vin: "123", make: "Toyota"}"
 println!("{}", result.mutated_document_ids()[0].to_string())
 ```
-  </Tab>
-  <Tab title="Dart">
-```Dart
+
+```dart Dart
 final newCar = {
   "_id": {
     "vin": "123",
@@ -490,8 +464,7 @@ final result = await ditto.execute(
 // "{vin: "123", make: "Toyota"}"
 print(result.mutatedDocumentIDs.first);
 ```
-  </Tab>
-</Tabs>
+</CodeGroup>
 
 ## Fetching a Document by \_id
 <CardGroup>

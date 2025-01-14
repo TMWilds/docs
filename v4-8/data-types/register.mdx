@@ -76,9 +76,8 @@ WHERE _id = '123abc'
 
 Since a `REGISTER` acts as a single object, to update just the `color`, you'd need to update the entire object by providing the entire set of nested key-value pairs, including the modified `color` , as follows:
 
-<Tabs>
-  <Tab title="Swift">
-```swift
+<CodeGroup>
+```swift Swift
 let newProperties = [
   "color": "blue",
   "sunroof": true,
@@ -89,122 +88,12 @@ await ditto.store.execute(
   "UPDATE cars SET properties = :newProperties WHERE _id = '123'",
   ["newProperties": newProperties]);
 ```
-  </Tab>
-  <Tab title="Kotlin">
-```Kotlin
+
+```kotlin Kotlin
 var result = ditto.store.execute(
   "INSERT INTO cars DOCUMENTS (:newCar)",
   mapOf("newProperties"
     to mapOf("color" to "blue", "sunroof" to true, "door_count" to 4)))
 ```
-
-```javascript JS
-const newProperties = {
-  color: 'blue',
-  sunroof: true,
-  door_count: 4
-}
-
-await ditto.store.execute(
-  "UPDATE cars SET properties = :newProperties WHERE _id = '123'",
-  {newProperties});
-```
-  </Tab>
-  <Tab title="Java">
-```Java
-Map<String, String> newProperties = new HashMap<>();
-newCar.put("color", "blue");
-newCar.put("sunroof", true);
-newCar.put("door_count", 4);
-
-DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
-  "UPDATE cars SET properties = :newProperties WHERE _id = '123'",
-  Collections.singletonMap("newProperties", newProperties),
-  new Continuation<>() {
-    @NonNull
-    @Override
-    public CoroutineContext getContext() {
-      return EmptyCoroutineContext.INSTANCE;
-    }
-
-    @Override
-    public void resumeWith(@NonNull Object o) {
-      if (o instanceof Result.Failure) {
-        // Handle failure
-      }
-    }
-  }
-);
-```
-  </Tab>
-  <Tab title="C#">
-```C#
-var args = new Dictionary<string, object>();
-args.Add("newProperties", new { color="blue", sunroof=true, doorCount=4});
-
-await ditto.Store.ExecuteAsync(
-  "UPDATE cars SET properties = :newProperties WHERE _id = '123'",
-  args);
-```
-  </Tab>
-  <Tab title="C++">
-```cpp
-struct Properties {
-  std::string color;
-  bool sunroof;
-  int door_count;
-};
-
-// ...
-
-std::map<std::string, Properties> args;
-args["newProperties"] = {"blue", true, 4};
-
-ditto.get_store().execute(
-  "UPDATE cars SET properties = :newProperties WHERE _id = '123'",
-  args);
-```
-  </Tab>
-  <Tab title="Rust">
-```Rust
-struct Properties {
-  color: String,
-  sunroof: bool,
-  door_count: i32
-}
-
-struct Args {
-  newProperties: Properties,
-}
-
-// ...
-
-let args = Args {
-  newProperties: Properties {
-    color: "blue".to_string(),
-    sunroof: true,
-    door_count: 4
-  }
-};
-
-await ditto.store().execute(
-  "UPDATE cars SET properties = :newProperties WHERE _id = '123'",
-  args);
-```
-  </Tab>
-  <Tab title="Dart">
-```Dart
-final newProperties = {
-  "color": "blue",
-  "sunroof": true,
-  "door_count": 4,
-};
-
-await ditto.store.execute(
-  "UPDATE cars SET properties = :newProperties WHERE _id = '123'",
-  arguments: {"newProperties": newProperties},
-);
-```
-  </Tab>
-</Tabs>
+</CodeGroup>
 

@@ -49,10 +49,8 @@ Include the Maven Central repository in your Gradle file, and then synchronize i
     <Step>
     From your project-level `build.gradle` file located in the app's root directory, ensure the `mavenCentral()` repository is included in the `repositories` section:
 
-    <Tabs>
-    <Tab title="Gradle">
-
-    ```none Bash
+    <CodeGroup>
+    ```gradle
     buildscript {
     repositories {
         mavenCentral()
@@ -62,8 +60,7 @@ Include the Maven Central repository in your Gradle file, and then synchronize i
     }
 }
     ```
-    </Tab>
-    </Tabs>
+    </CodeGroup>
     </Step>
     <Step>
     Synchronize your project with the Gradle file by clicking **File **> **Sync Project with Gradle Files**.
@@ -185,7 +182,7 @@ To use the `DittoSyncPermissions` helper class:
     <Step>
     Call the following in your Activity or Fragment's onCreate method:
 
-    ```kotlin
+    ```kotlin Kotlin
 fun checkPermissions() {
     val missing = DittoSyncPermissions(this).missingPermissions()
     if (missing.isNotEmpty()) {

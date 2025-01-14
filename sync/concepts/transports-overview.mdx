@@ -12,10 +12,10 @@ To enable all transports, call `transportConfig.enablePeerToPeer()`; otherwise,
 
 Following are the various transports Ditto uses to facilitate peer-to-peer communication across peers:
 
-- [Bluetooth Low Energy](/sync/concepts/transports-overview#gwI-u)
-- [Apple Wireless Direct Link](/sync/concepts/transports-overview#3mnDB)
-- [Wi-Fi Aware](/sync/concepts/transports-overview#x94k7)
-- [Local Area Network](/sync/concepts/transports-overview#d7kjX)
+- [Bluetooth Low Energy](#bluetooth-low-energy)
+- [Apple Wireless Direct Link](#apple-wireless-direct-link)
+- [Wi-Fi Aware](#wifi-aware)
+- [Local Area Network](#local-area-network)
 
 
 ## Transport Connections
@@ -123,11 +123,11 @@ The following distances, limitations, and capacities are approximations and vary
 
 Caution is advised when handling large binary data, such as a high-resolution image or video exceeding 50 megapixels; a deeply embedded document; or a large document.
 
-Instead of storing files exceeding 250kb directly within a document object, consider using an `ATTACHMENT` instead of a `MAP`. (See [ATTACHMENT](<./../../Data Types/ATTACHMENT.md>))
+Instead of storing files exceeding 250kb directly within a document object, consider using an `ATTACHMENT` instead of a `MAP`. (See [ATTACHMENT](/data-types/attachment.mdx))
 </Warning>
 
 <Info>
-Most devices manufactured during or after 2017 are equipped with Bluetooth LE version 5.0. 
+Most devices manufactured during or after 2017 are equipped with Bluetooth LE version 5.0.
 </Info>
 
 | **Bandwidth Capacity**                         | **Discoverability Range** | **Distance Durability**                                      |
@@ -188,7 +188,7 @@ The following specifications are approximations; the type of device and platform
 | **Bandwidth Capacity**                                             | **Discoverability Range** | **Distance Durability**   |
 | ------------------------------------------------------------------ | ------------------------- | ------------------------- |
 | - 2.4- to 5-GHz frequency range
-- 1 Gigabyte per 8‑second interval | 100- to 300-meter maximum | 100- to 300-meter maximum |
+- 1 Gigabyte per 8-second interval | 100- to 300-meter maximum | 100- to 300-meter maximum |
 
 ### Limitations
 
@@ -242,7 +242,7 @@ If network infrastructure is configured with *Client Isolation Mode* enabled, de
 Client Isolation Mode is a network security and privacy feature offered by most Wi-Fi routers and access points that prevents devices on the same Wi-Fi network from communicating directly.
 
 <Warning>
-To ensure that Ditto’s discovery protocol is working effectively, it is important to disable the Client Isolation Mode feature on the Wi-Fi router or access point that you are using for the LAN. For instructions, see the official documentation provided by the manufacturer.
+To ensure that Ditto's discovery protocol is working effectively, it is important to disable the Client Isolation Mode feature on the Wi-Fi router or access point that you are using for the LAN. For instructions, see the official documentation provided by the manufacturer.
 
 Note that the exact name of the feature may vary depending on the manufacturer and the specific model of the Wi-Fi router or access point; however, the term “isolation” is commonly included in the feature name.
 </Warning>

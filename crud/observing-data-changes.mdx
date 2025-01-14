@@ -14,102 +14,96 @@ Using the `registerObserver` method, set up an observer within the `store` names
 
 To associate arguments with your query add them as a parameter.
 
-<Tabs>
-    <Tab title="Swift">
-    ```swift
-    let observer = ditto.store.registerObserver(
-      query: "SELECT * FROM cars WHERE color = :color",
-      argumets: [ "color": "blue" ]){ result in /* handle change */ };
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```kotlin
-    ditto.store.registerObserver(
-      "SELECT * FROM cars WHERE color = :color",
-      mapOf("color" to "blue")) { result ->
-      /* handle change */ };
-    ```
-    </Tab>
-    <Tab title="JS">
-    ```javascript
-    const changeHandler = (result) => {
-      // handle change
+<CodeGroup>
+
+```swift Swift
+
+let observer = ditto.store.registerObserver(
+  query: "SELECT * FROM cars WHERE color = :color",
+  argumets: [ "color": "blue" ]){ result in /* handle change */ };
+```
+
+```kotlin Kotlin
+ditto.store.registerObserver(
+  "SELECT * FROM cars WHERE color = :color",
+  mapOf("color" to "blue")) { result ->
+  /* handle change */ };
+```
+
+```javascript JavaScript
+const changeHandler = (result) => {
+  // handle change
+}
+const observer = ditto.store.registerObserver(
+  "SELECT * FROM cars WHERE color = :color",
+  changeHandler,
+  { color: 'blue' });
+```
+
+```java Java
+DittoStoreObserver observer = ditto.store.registerObserver(
+    "SELECT * FROM cars WHERE color = :color",
+    Collections.singletonMap("color", "blue"),
+    result -> {
+        // handle change
     }
-    const observer = ditto.store.registerObserver(
-      "SELECT * FROM cars WHERE color = :color",
-      changeHandler,
-      { color: 'blue' });
-    ```
-    </Tab>
-    <Tab title="Java">
-    ```java
-    DittoStoreObserver observer = ditto.store.registerObserver(
-        "SELECT * FROM cars WHERE color = :color",
-        Collections.singletonMap("color", "blue"),
-        result -> {
-            // handle change
-        }
-    );
-    ```
-    </Tab>
-    <Tab title="C#">
-    ```csharp
-    // Without Arguments
-    var result = await ditto.Store.RegisterObserver(
-      "SELECT * FROM cars",
-      (result) => {
-        // handle change
-      });
+);
+```
 
-    // With Arguments
-    var result = ditto.Store.RegisterObserver(
-      "SELECT * FROM cars WHERE color = :color",
-      new Dictionary<string, object> { "color", "blue" },
-      (result) => {
-        // handle change
-      });
-    ```
-    </Tab>
-    <Tab title="C++">
-    ```cpp
-    auto observer = ditto.get_store().register_observer(
-      "SELECT * FROM cars",
-      {{"color", "blue"}}),
-      [&](QueryResult result) { /* handle change */ });
-    ```
-    </Tab>
-    <Tab title="Rust">
-    ```rust
-    struct Args {
-        color: String,
-    }
+```csharp C#
+// Without Arguments
+var result = await ditto.Store.RegisterObserver(
+  "SELECT * FROM cars",
+  (result) => {
+    // handle change
+  });
 
-    //...
+// With Arguments
+var result = ditto.Store.RegisterObserver(
+  "SELECT * FROM cars WHERE color = :color",
+  new Dictionary<string, object> { "color", "blue" },
+  (result) => {
+    // handle change
+  });
+```
 
-    let args = Args {
-        color: "blue".to_string(),
-    }
+```cpp C++
+auto observer = ditto.get_store().register_observer(
+  "SELECT * FROM cars",
+  {{"color", "blue"}}),
+  [&](QueryResult result) { /* handle change */ });
+```
 
-    let observer = ditto.store().register_observer(
-      "SELECT * from cars WHERE color = :color",
-      args,
-      move |result: QueryResult| {
-        // handle change
-      })
-    ```
-    </Tab>
-    <Tab title="Dart">
-    ```dart
-    final observer = ditto.store.registerObserver(
-      "SELECT * FROM cars WHERE color = :color",
-      arguments: { color: "blue" },
-      onChange: (queryResult) {
-        // handle change
-      },
-    );
-    ```
-    </Tab>
-</Tabs>
+```rust Rust
+struct Args {
+    color: String,
+}
+
+//...
+
+let args = Args {
+    color: "blue".to_string(),
+}
+
+let observer = ditto.store().register_observer(
+  "SELECT * from cars WHERE color = :color",
+  args,
+  move |result: QueryResult| {
+    // handle change
+  })
+```
+
+```dart Dart
+final observer = ditto.store.registerObserver(
+  "SELECT * FROM cars WHERE color = :color",
+  arguments: { color: "blue" },
+  onChange: (queryResult) {
+    // handle change
+  },
+);
+```
+
+</CodeGroup>
 
 ## Canceling a Store Observer
 
@@ -117,93 +111,77 @@ To cancel a store observer, call `cancel` on the observer object.
 
 Once canceled, the store observer will stop processing in the background and will no longer call the provided callback.
 
-<Tabs>
-    <Tab title="Swift">
-    ```swift
-    observer.cancel()
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```kotlin
-    observer.cancel()
-    ```
-    </Tab>
-    <Tab title="JS">
-    ```javascript
-    observer.cancel()
-    ```
-    </Tab>
-    <Tab title="Java">
-    ```java
-    observer.cancel();
-    ```
-    </Tab>
-    <Tab title="C#">
-    ```csharp
-    observer.Cancel()
-    ```
-    </Tab>
-    <Tab title="C++">
-    ```cpp
-    observer.cancel();
-    ```
-    </Tab>
-    <Tab title="Rust">
-    ```rust
-    observer.cancel()
-    ```
-    </Tab>
-    <Tab title="Dart">
-    ```dart
-    await observer.cancel();
-    ```
-    </Tab>
-</Tabs>
+<CodeGroup>
+
+```swift Swift
+
+observer.cancel()
+```
+
+```kotlin Kotlin
+observer.cancel()
+```
+
+```javascript JavaScript
+observer.cancel()
+```
+
+```java Java
+observer.cancel();
+```
+
+```csharp C#
+observer.Cancel()
+```
+
+```cpp C++
+observer.cancel();
+```
+
+```rust Rust
+observer.cancel()
+```
+
+```dart Dart
+await observer.cancel();
+```
+
+</CodeGroup>
 
 ## Accessing Store Observers
 
 To access store observers from the local Ditto store:
 
-<Tabs>
-    <Tab title="Swift">
-    ```swift
-    ditto.store.observers
-    ```
-    </Tab>
-    <Tab title="Kotlin">
-    ```kotlin
-    ditto.store.observers
-    ```
-    </Tab>
-    <Tab title="JS">
-    ```javascript
-    ditto.store.observers
-    ```
-    </Tab>
-    <Tab title="Java">
-    ```java
-    ditto.store.observers;
-    ```
-    </Tab>
-    <Tab title="C#">
-    ```csharp
-    ditto.Store.Observers
-    ```
-    </Tab>
-    <Tab title="C++">
-    ```cpp
-    ditto.get_store().observers()
-    ```
-    </Tab>
-    <Tab title="Rust">
-    ```rust
-    ditto.store().observers()
-    ```
-    </Tab>
-    <Tab title="Dart">
-    ```dart
-    // Coming Soon
-    ```
-    </Tab>
-</Tabs>
+<CodeGroup>
+
+```swift Swift
+
+ditto.store.observers
+```
+
+```kotlin Kotlin
+ditto.store.observers
+```
+
+```javascript JavaScript
+ditto.store.observers
+```
+
+```java Java
+ditto.store.observers;
+```
+
+```csharp C#
+ditto.Store.Observers
+```
+
+```cpp C++
+ditto.get_store().observers()
+```
+
+```rust Rust
+ditto.store().observers()
+```
+
+</CodeGroup>
 

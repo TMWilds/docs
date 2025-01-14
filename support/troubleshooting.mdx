@@ -8,7 +8,7 @@ iconType: solid
 Refer to any of the following to help you get back on track:
 
 <Info>
-    If you need technical support, submit a technical support request ticket. (See [Contact Us](<./../Contact Us.md>))
+    If you need technical support, submit a technical support request ticket. (See [Contact Us](/support/contact-us.mdx))
 </Info>
 
 <CardGroup>
@@ -39,9 +39,8 @@ system access and authentication background tasks that run during initialization
 are tracked. You want to begin gathering logs before Ditto is initialized in
 order to capture any potential issues with those two background tasks.
 
-<Tabs>
-  <Tab title="Swift">
-```swift
+<CodeGroup>
+```swift Swift
 DittoLogger.minimumLogLevel = .debug
 let ditto = Ditto(identity: .onlinePlayground(
     appID: "REPLACE_ME_WITH_YOUR_APP_ID",
@@ -53,9 +52,8 @@ do {
   print(err.localizedDescription)
 }
 ```
-  </Tab>
-  <Tab title="Kotlin">
-```Kotlin
+
+```kotlin Kotlin
 try {
     val androidDependencies = DefaultAndroidDittoDependencies(context)
     val identity = DittoIdentity.OnlinePlayground(
@@ -70,9 +68,8 @@ try {
     Log.e("Ditto error", e.message!!)
 }
 ```
-  </Tab>
-  <Tab title="JS">
-```JS
+
+```js JS
 import { init, Ditto, Logger } from "@dittolive/ditto"
 
 // Set the Ditto log level to Debug
@@ -87,9 +84,8 @@ const identity: Identity = {
 const ditto = new Ditto(identity, './your-ditto-application-data-path')
 ditto.startSync()
 ```
-  </Tab>
-  <Tab title="Java">
-```Java
+
+```java Java
 DittoDependencies androidDependencies = new DefaultAndroidDittoDependencies(this.context);
 
 // Set the Ditto min log level to Debug
@@ -104,9 +100,8 @@ try {
     //handle error
 }
 ```
-  </Tab>
-  <Tab title="C#">
-```C#
+
+```csharp C#
 try
 {
     DittoLogger.SetMinimumLogLevel(DittoLogLevel.Debug);
@@ -118,9 +113,8 @@ catch (DittoException ex)
     Console.WriteLine($"Ditto Error {ex.Message}");
 }
 ```
-  </Tab>
-  <Tab title="C++">
-```cpp
+
+```cpp C++
 try
 {
     DittoLogger.SetMinimumLogLevel(DittoLogLevel.Debug);
@@ -132,9 +126,8 @@ catch (DittoException ex)
     Console.WriteLine($"Ditto Error {ex.Message}");
 }
 ```
-  </Tab>
-  <Tab title="Rust">
-```Rust
+
+```rust Rust
 let ditto = Ditto::builder()
     // creates a `ditto_data` folder in the directory containing the executing process
     .with_root(Arc::new(PersistentRoot::from_current_exe()?))
@@ -157,8 +150,7 @@ let ditto = Ditto::builder()
 
 ditto.start_sync()?;
 ```
-  </Tab>
-</Tabs>
+</CodeGroup>
 
 ### Authentication
 
@@ -209,7 +201,7 @@ See if the following fixes your issue:
 [DEBUG] 2023-08-03T17:36:35.046Z: failed to connect to peer; error = Connect failed because a TLS stream couldn't be established: invalid peer certificate contents: invalid peer certificate: UnknownIssuer; remote_peer = MulticastRemotePeer(id: 10, announce Q2RLCGEYdpLwjFditto)
 ```
 
-If you see the above message, your device's locally cached certificate is invalid. The device needs to call `ditto.auth.logout()` and reconnect to the Internet to get a new certificate. Alternatively, you can clear the local cache by reinstalling the mobile application or clearing the local persistence directory.[**​**](https://docs.ditto.live/ios/common/troubleshooting#outdated-certificate)
+If you see the above message, your device's locally cached certificate is invalid. The device needs to call `ditto.auth.logout()` and reconnect to the Internet to get a new certificate. Alternatively, you can clear the local cache by reinstalling the mobile application or clearing the local persistence directory.[**​**](https://docs.ditto.live/ios/common/troubleshooting#outdated-certificate)
 
 #### Authentication server unavailable
 
@@ -221,9 +213,7 @@ Error attempting authentication with token: Could not connect to authentication 
 Error attempting authentication with token: Failed to authenticate: Internal server error; debug: Some("Ditto cloud failed to decode the response body.  This is most likely due to malformed JSON in the response: error decoding response body: expected value at line 1 column 1"); client info: None
 ```
 
-If you see either of the above messages, this is most likely a problem with your authentication webhook. There is a debugging level log line that will provide more information about the authentication webhook if you need more information.  
-
-Send a POST request with a JSON stringified body to your server to ensure that the AWS-hosted Big Peer servers located in U.S. regions successfully send POST requests to your authentication server.
+If you see either of the above messages, this is most likely a problem with your authentication webhook. There is a debugging level log line that will provide more information about the authentication webhook if you need more information. Send a POST request with a JSON stringified body to your server to ensure that the AWS-hosted Big Peer servers located in U.S. regions successfully send POST requests to your authentication server.
 
 ```shell Shell
 curl -x POST https://my.webhook.com
@@ -384,38 +374,31 @@ If you have problems with subscriptions or permssions, you can try the operation
 
 #### Query Parsing Errors
 
-<Tabs>
-  <Tab title="Swift">
-```swift
+<CodeGroup>
+```swift Swift
 ditto.store.collection("myCollection").find("").subscribe() // -> ParseError
 ```
-  </Tab>
-  <Tab title="Kotlin">
-```Kotlin
+
+```kotlin Kotlin
 ditto.store.collection("myCollection").find("").subscribe() // -> ParseError
 ```
-  </Tab>
-  <Tab title="JS">
-```JS
+
+```js JS
 ditto.store.collection("myCollection").find("").subscribe() // -> ParseError
 ```
-  </Tab>
-  <Tab title="C#">
-```C#
+
+```csharp C#
 ditto.store.collection("myCollection").find("").subscribe() // -> ParseError
 ```
-  </Tab>
-  <Tab title="C++">
-```cpp
+
+```cpp C++
 ditto.store.collection("myCollection").find("").subscribe() // -> ParseError
 ```
-  </Tab>
-  <Tab title="Rust">
-```Rust
+
+```rust Rust
 ditto.store.collection("myCollection").find("").subscribe() // -> ParseError
 ```
-  </Tab>
-</Tabs>
+</CodeGroup>
 
 
 `ParseError` can be printed in the debug logs when there is a problem with your query. For example, if you create a subscription in Swift that is the empty string, you will see a `ParseError` in the logs.
@@ -572,22 +555,22 @@ After you verify that your app is set up correctly, if connection issues continu
 
 Use profiling tools for your platform to better understand where the memory leak may be occurring.
 
-A common issue we see in reactive apps is a failure to dispose of resources as conditions change. Your app could create a large accumulation of publishers that infinitely grow. Every liveQuery and subscription in ditto must be explicitly stopped using the **stop** or **cancel** API. See [snycing data](https://legacydocs.ditto.live/javascript/common/concepts/syncing-data) for more information.
+A common issue we see in reactive apps is a failure to dispose of resources as conditions change. Your app could create a large accumulation of publishers that infinitely grow. Every liveQuery and subscription in ditto must be explicitly stopped using the **stop** or **cancel** API. See [snycing data](https://legacydocs.ditto.live/javascript/common/concepts/syncing-data) for more information.
 
 ### Debugging Blocked Transactions
 
 <Info>
-This section only discusses blocked transactions on native platforms (e.g. iOS, Android, Windows, Linux). Ditto in web browsers operates sufficiently differently and isn’t covered here.
+This section only discusses blocked transactions on native platforms (e.g. iOS, Android, Windows, Linux). Ditto in web browsers operates sufficiently differently and isn't covered here.
 </Info>
 
 Blocked write transactions will automatically retry until they succeed. A blocked write transaction will never crash. Howewever, blocked write transactions are a common cause for poor database performance. Long running blocks are generally bad since they mean that nothing else can be writing to the database during this time. This could manifest itself as one of many problems:
 
 - Unresponsive UI: an interaction might try to update a document, but is blocked by an existing write transaction
-- Slow sync: new updates cannot be integrated into the store, since they’re blocked by another write transaction
+- Slow sync: new updates cannot be integrated into the store, since they're blocked by another write transaction
 
 A blocked write transaction can hint that something is wrong with the application code, or at a deeper level in Ditto. This page contains some tips & tricks to help understand the situation.
 
-The process of unblocking is automatic and you don’t need to write any code to handle this. However, you can drastically reduce the chance of blocking transactions by making sure a device is only syncing the data it really needs.
+The process of unblocking is automatic and you don't need to write any code to handle this. However, you can drastically reduce the chance of blocking transactions by making sure a device is only syncing the data it really needs.
 
 #### Did your certificate expire and fail to refresh?
 
@@ -604,9 +587,9 @@ Send a POST request with a JSON stringified body to your server to ensure that t
 
 
 
-#### Verify that your webhook provider name is [correctly copied in the Ditto portal](https://legacydocs.ditto.live/javascript/common/security/authentication#login)
+#### Verify that your webhook provider name is [correctly copied in the Ditto portal](https://legacydocs.ditto.live/javascript/common/security/authentication#login)
 
-The provider name given to the Ditto Client must match a provider name in the Portal (e.g., **my-auth**).
+The provider name given to the Ditto Client must match a provider name in the Portal (e.g., **my-auth**).
 
 #### Is your AuthClient becoming garbage collected?
 
@@ -673,20 +656,20 @@ stopped using the `stop` or `cancel` API. See [snycing data](https://docs.ditto.
 ## Debugging Blocked Transactions
 
 <Info>
-This section only discusses blocked transactions on **native** platforms (e.g. iOS, Android, Windows, Linux). Ditto in web browsers operates sufficiently differently and isn’t covered here.
+This section only discusses blocked transactions on **native** platforms (e.g. iOS, Android, Windows, Linux). Ditto in web browsers operates sufficiently differently and isn't covered here.
 
 </Info>
 
 Blocked write transactions will automatically retry until they succeed. A blocked write transaction will never crash. Howewever, blocked write transactions are a common cause for poor database performance. Long running blocks are generally bad since they mean that nothing else can be writing to the database during this time. This could manifest itself as one of many problems:
 
 - Unresponsive UI: an interaction might try to update a document, but is blocked by an existing write transaction
-- Slow sync: new updates cannot be integrated into the store, since they’re blocked by another write transaction
+- Slow sync: new updates cannot be integrated into the store, since they're blocked by another write transaction
 
 A blocked write transaction can hint that something is wrong with the application code, or at a deeper level in Ditto. This page contains some tips & tricks to help understand the situation.
 
-The process of unblocking is automatic and you don’t need to write any code to handle this. However, you can drastically reduce the chance of blocking transactions by **making sure a device is only syncing the data it really needs**.
+The process of unblocking is automatic and you don't need to write any code to handle this. However, you can drastically reduce the chance of blocking transactions by **making sure a device is only syncing the data it really needs**.
 
-### What is a “blocked” transaction?
+### What is a "blocked" transaction?
 
 At any given time, there can be only one write transaction. Any subsequent attempts to open another write transaction will become blocked until the existing write transaction finishes.
 
@@ -694,7 +677,7 @@ At any given time, there can be only one write transaction. Any subsequent attem
 
 Read transactions operate differently to write transactions.
 
-Read transactions cannot be blocked and can run in parallel with write transactions. Read transactions don’t block each other, don’t block write transactions, and aren’t blocked by write transactions.
+Read transactions cannot be blocked and can run in parallel with write transactions. Read transactions don't block each other, don't block write transactions, and aren't blocked by write transactions.
 
 If a write transaction is blocked, Ditto will log a message with increasing severity every 10s.
 
@@ -706,9 +689,9 @@ If a write transaction is blocked, Ditto will log a message with increasing seve
 
 
 
-To see these logs in the database, it’s important to have a minimum log level set. Transactions that are blocked for over 2 minutes should always be visible in the logs.
+To see these logs in the database, it's important to have a minimum log level set. Transactions that are blocked for over 2 minutes should always be visible in the logs.
 
-If **INFO** level is used, then **INFO**, **WARN**, and **ERROR** messages will all be included in the logs. This means any write transactions blocking for more than 30s should always be visible in the logs.
+If **INFO** level is used, then **INFO**, **WARN**, and **ERROR** messages will all be included in the logs. This means any write transactions blocking for more than 30s should always be visible in the logs.
 
 ### Reading the Logs
 
@@ -718,21 +701,21 @@ If a write transaction is blocked, the device logs will look something like the 
 ![](https://archbee-image-uploads.s3.amazonaws.com/qoRkNxW5fJ81r_NqVpc8C/Nj9w-Qx0FQl4oVKWbPFnR_image.png)
 </Frame>
 
-As time progressed, Ditto complained more and more loudly (starting with **DEBUG** logs before eventually logging at **ERROR** level). Eventually the existing transaction finished and blocked transaction was was able to proceed.
+As time progressed, Ditto complained more and more loudly (starting with **DEBUG** logs before eventually logging at **ERROR** level). Eventually the existing transaction finished and blocked transaction was was able to proceed.
 
-The write transaction which was blocked was for a Ditto internal component. This is identified by **“originator=Internal”**.
+The write transaction which was blocked was for a Ditto internal component. This is identified by **"originator=Internal"**.
 
-The existing, long-running write transaction which was causing the block was a user call in the public SDK. This is identified by **“blocked\_by=User”**. So a user-level write transaction is blocking some internal workload. This is not *necessarily* a problem, as the internal system will catch up eventually.
+The existing, long-running write transaction which was causing the block was a user call in the public SDK. This is identified by **"blocked\_by=User"**. So a user-level write transaction is blocking some internal workload. This is not *necessarily* a problem, as the internal system will catch up eventually.
 
 ### Originators
 
-The three values you’ll see for **originator** and **blocked\_by** are:
+The three values you'll see for **originator** and **blocked\_by** are:
 
 | **Originator / Blocked By** | **Description**                                        |
 | --------------------------- | ------------------------------------------------------ |
-| “User"                      | Any user-level API which modifies data.                |
-| “Internal"                  | An internal job (presence data, DB maintenance, etc.). |
-| “Replication"               | Updating the store with data received via replication. |
+| "User"                      | Any user-level API which modifies data.                |
+| "Internal"                  | An internal job (presence data, DB maintenance, etc.). |
+| "Replication"               | Updating the store with data received via replication. |
 
 ## Causes of Blocked Transactions
 
@@ -742,9 +725,8 @@ This section presents a few examples blocked transaction scenarios, how they wou
 
 An application might block its own write transactions by performing multiple writes at the same time in different places. If one is slow (perhaps it does too much work, or perhaps it reaches out to external APIs, etc.) then the other write transactions will block until it finishes.
 
-<Tabs>
-  <Tab title="Swift">
-```swift
+<CodeGroup>
+```swift Swift
 // Thread/Queue 1 (starts first):
 {
    // Somewhere in the app, a long running write transaction exists
@@ -771,355 +753,11 @@ An application might block its own write transactions by performing multiple wri
     ])
 }
 ```
-  </Tab>
-  <Tab title="Kotlin">
-```Kotlin
+
+```kotlin Kotlin
 ```
-  </Tab>
-  <Tab title="JS">
-```JS
-// Thread/Queue 1 (starts first):
-{
-   // Somewhere in the app, a long running write transaction exists
-   ditto.store["people"].findByID(docID).update { mutableDoc in
-    // Most update tasks are quick, but a developer might
-    // doing something slow within the update block:
-    let apiData = getDataFromASlowExternalAPICall() // <-- !!!!
+</CodeGroup>
 
-    mutableDoc?["age"] = apiData.age
-    mutableDoc?["ownedCars"].set(DittoCounter())
-    mutableDoc?["ownedCars"].counter?.increment(by: apiData.count)
-   }
-}
+### Still stuck?
 
-// Thread/Queue 2 (starts second):
-{
-    // Somewhere else in the app, concurrently (e.g. background thread or queue)
-    // another write transaction tries to update a document.
-    //
-    // This will block until the "people" update block above completes.
-    let docID = try! ditto.store["settings"].upsert([
-        "_id": "abc123",
-    "preference": 31,
-    ])
-}
-```
-  </Tab>
-  <Tab title="Java">
-```Java
-```
-  </Tab>
-  <Tab title="C#">
-```C#
-// Thread/Queue 1 (starts first):
-{
-   // Somewhere in the app, a long running write transaction exists
-   ditto.store["people"].findByID(docID).update { mutableDoc in
-    // Most update tasks are quick, but a developer might
-    // doing something slow within the update block:
-    let apiData = getDataFromASlowExternalAPICall() // <-- !!!!
-
-    mutableDoc?["age"] = apiData.age
-    mutableDoc?["ownedCars"].set(DittoCounter())
-    mutableDoc?["ownedCars"].counter?.increment(by: apiData.count)
-   }
-}
-
-// Thread/Queue 2 (starts second):
-{
-    // Somewhere else in the app, concurrently (e.g. background thread or queue)
-    // another write transaction tries to update a document.
-    //
-    // This will block until the "people" update block above completes.
-    let docID = try! ditto.store["settings"].upsert([
-        "_id": "abc123",
-    "preference": 31,
-    ])
-}
-```
-  </Tab>
-  <Tab title="C++">
-```cpp
-// Thread/Queue 1 (starts first):
-{
-   // Somewhere in the app, a long running write transaction exists
-   ditto.store["people"].findByID(docID).update { mutableDoc in
-    // Most update tasks are quick, but a developer might
-    // doing something slow within the update block:
-    let apiData = getDataFromASlowExternalAPICall() // <-- !!!!
-
-    mutableDoc?["age"] = apiData.age
-    mutableDoc?["ownedCars"].set(DittoCounter())
-    mutableDoc?["ownedCars"].counter?.increment(by: apiData.count)
-   }
-}
-
-// Thread/Queue 2 (starts second):
-{
-    // Somewhere else in the app, concurrently (e.g. background thread or queue)
-    // another write transaction tries to update a document.
-    //
-    // This will block until the "people" update block above completes.
-    let docID = try! ditto.store["settings"].upsert([
-        "_id": "abc123",
-    "preference": 31,
-    ])
-}
-```
-  </Tab>
-</Tabs>
-
-In logs, this scenario will look like the following:
-
-**LOG\_LEVEL: Waiting for write transaction (elapsed: XXs), originator=User blocked\_by=User**
-
-Note that **“User”** is blocking **“User”**. This *could* be temporary, but it could also be a deadlock which is much worse. See below.
-
-### User deadlocks User
-
-<Tabs>
-  <Tab title="Swift">
-```swift
-// Start a write transaction:
-ditto.store["people"].findByID(docID).update { mutableDoc in
-    // Start a write transaction _within_ a write transacton.
-    // !! Deadlocks !!
-    let docID = try! ditto.store["settings"].upsert([
-        "_id": "abc123",
-        "preference": 31,
-    ])
-
-    // ...
-}
-```
-  </Tab>
-  <Tab title="Kotlin">
-```Kotlin
-```
-  </Tab>
-  <Tab title="JS">
-```JS
-// Start a write transaction:
-ditto.store["people"].findByID(docID).update { mutableDoc in
-    // Start a write transaction _within_ a write transacton.
-    // !! Deadlocks !!
-    let docID = try! ditto.store["settings"].upsert([
-        "_id": "abc123",
-        "preference": 31,
-    ])
-
-    // ...
-}
-```
-  </Tab>
-  <Tab title="Java">
-```Java
-```
-  </Tab>
-  <Tab title="C#">
-```C#
-// Start a write transaction:
-ditto.store["people"].findByID(docID).update { mutableDoc in
-    // Start a write transaction _within_ a write transacton.
-    // !! Deadlocks !!
-    let docID = try! ditto.store["settings"].upsert([
-        "_id": "abc123",
-        "preference": 31,
-    ])
-
-    // ...
-}
-```
-  </Tab>
-  <Tab title="C++">
-```cpp
-// Start a write transaction:
-ditto.store["people"].findByID(docID).update { mutableDoc in
-    // Start a write transaction _within_ a write transacton.
-    // !! Deadlocks !!
-    let docID = try! ditto.store["settings"].upsert([
-        "_id": "abc123",
-        "preference": 31,
-    ])
-
-    // ...
-}
-```
-  </Tab>
-</Tabs>
-
-You cannot start a write transaction within a write transaction. The result will be a deadlock which **never** resolves itself. This might manifest itself in the logs as:
-
-> LOG_LEVEL: Waiting for write transaction (elapsed: XXs), originator=User blocked_by=User
-
-Note that User blocking User doesn’t necessarily mean a deadlock. It might merely be a long running write transaction and this situation might be expected depending on the task. However, if the transaction never unblocks and the log messages at **ERROR** level continue forever - you have a strong indication that there’s a deadlock and should investigate the application code.
-
-### Replication blocks User
-<Tabs>
-  <Tab title="Swift">
-```swift
-// Somewhere in the app, a simple enough user write transaction is happening.
-// There's no other user write transaction happening concurrently in the
-// app, yet the update seems blocked or slow and UI might seems slugglish
-// or unresponsive.
-let docID = try! ditto.store["settings"].upsert([
-    "_id": "abc123",
-    "preference": 31,
-])
-```
-  </Tab>
-  <Tab title="Kotlin">
-```Kotlin
-```
-  </Tab>
-  <Tab title="JS">
-```JS
-// Somewhere in the app, a simple enough user write transaction is happening.
-// There's no other user write transaction happening concurrently in the
-// app, yet the update seems blocked or slow and UI might seems slugglish
-// or unresponsive.
-let docID = try! ditto.store["settings"].upsert([
-    "_id": "abc123",
-    "preference": 31,
-])
-```
-  </Tab>
-  <Tab title="Java">
-```Java
-```
-  </Tab>
-  <Tab title="C#">
-```C#
-// Somewhere in the app, a simple enough user write transaction is happening.
-// There's no other user write transaction happening concurrently in the
-// app, yet the update seems blocked or slow and UI might seems slugglish
-// or unresponsive.
-let docID = try! ditto.store["settings"].upsert([
-    "_id": "abc123",
-    "preference": 31,
-])
-```
-  </Tab>
-  <Tab title="C++">
-```cpp
-// Somewhere in the app, a simple enough user write transaction is happening.
-// There's no other user write transaction happening concurrently in the
-// app, yet the update seems blocked or slow and UI might seems slugglish
-// or unresponsive.
-let docID = try! ditto.store["settings"].upsert([
-    "_id": "abc123",
-    "preference": 31,
-])
-```
-  </Tab>
-</Tabs>
-
-From the application code, it might not be obvious what the problem is. By looking in the logs, you might get a hint. For instance:
-
-> LOG_LEVEL: Waiting for write transaction (elapsed: XXs), originator=User blocked_by=Replication
-
-Here we can see that replication is blocking our user’s write transaction. This might happen if we’ve just received a large amount of sync data from another peer. Most commonly, happens during initial sync (either with the Big Peer, or joining a mesh for the first time, or re-joining a mesh after an extended period away).
-
-This scenario is something to be aware of, but will resolve itself automatically once the sync is complete. The user transaction will eventually unblock and continue when replication has finished updating the store.
-
-### Replication blocks Replication
-
-If you see the following in logs, it’s an indication that one replication session with a remote peer is blocking another:
-
-> LOG_LEVEL: Waiting for write transaction (elapsed: XXs), originator=Replication blocked_by=Replication
-
-This can happen when the device has received large amounts of data from multiple peers **simultaneously** and must update the database with the changes it received from each. Ditto can only update the database with sync data from remote peers one at a time, so the other updates must wait their turn.
-
-This scenario is most likely to happen during a large initial sync - either with the Big Peer **at the same time** as with nearby devices, or just with **multiple** nearby devices when joining a mesh for the first time (or re-joining after an extended period away).
-
-This scenario is something to be aware of, but will resolve itself automatically once the sync is complete. You can drastically reduce the chance of this type of blocking transaction by **making sure each device is only syncing the data it really needs**.
-
-### User or Replication blocks Internal
-
-A long running write transaction might block an internal job. This scenario will be the least obvious to spot and it might not be obvious that it’s happening at all. It’s also the least likely to cause actual problems.[​](https://docs.ditto.live/ios/common/troubleshooting#user-deadlocks-user)
-
-<Tabs>
-  <Tab title="Swift">
-```swift
-// Somewhere in the app, a long running write transaction exists
-ditto.store["people"].findByID(docID).update { mutableDoc in
-    // Most update tasks are quick, but you might
-    // doing something slow within the update block
-    let apiData = getDataFromASlowExternalAPICall() // <-- !!!!
-
-    mutableDoc?["age"] = apiData.age
-    mutableDoc?["ownedCars"].set(DittoCounter())
-    mutableDoc?["ownedCars"].counter?.increment(by: apiData.count)
-}
-```
-  </Tab>
-  <Tab title="Kotlin">
-```Kotlin
-```
-  </Tab>
-  <Tab title="JS">
-```JS
-// Somewhere in the app, a long running write transaction exists
-ditto.store["people"].findByID(docID).update { mutableDoc in
-    // Most update tasks are quick, but you might
-    // doing something slow within the update block
-    let apiData = getDataFromASlowExternalAPICall() // <-- !!!!
-
-    mutableDoc?["age"] = apiData.age
-    mutableDoc?["ownedCars"].set(DittoCounter())
-    mutableDoc?["ownedCars"].counter?.increment(by: apiData.count)
-}
-```
-  </Tab>
-  <Tab title="Java">
-```Java
-```
-  </Tab>
-  <Tab title="C#">
-```C#
-// Somewhere in the app, a long running write transaction exists
-ditto.store["people"].findByID(docID).update { mutableDoc in
-    // Most update tasks are quick, but you might
-    // doing something slow within the update block
-    let apiData = getDataFromASlowExternalAPICall() // <-- !!!!
-
-    mutableDoc?["age"] = apiData.age
-    mutableDoc?["ownedCars"].set(DittoCounter())
-    mutableDoc?["ownedCars"].counter?.increment(by: apiData.count)
-}
-```
-  </Tab>
-  <Tab title="C++">
-```cpp
-// Somewhere in the app, a long running write transaction exists
-ditto.store["people"].findByID(docID).update { mutableDoc in
-    // Most update tasks are quick, but you might
-    // doing something slow within the update block
-    let apiData = getDataFromASlowExternalAPICall() // <-- !!!!
-
-    mutableDoc?["age"] = apiData.age
-    mutableDoc?["ownedCars"].set(DittoCounter())
-    mutableDoc?["ownedCars"].counter?.increment(by: apiData.count)
-}
-```
-  </Tab>
-</Tabs>
-
-In logs, you might see the following:
-
-> LOG_LEVEL: Waiting for write transaction (elapsed: XXs), originator=Internal blocked_by=User
-
-or:
-
-> LOG_LEVEL: Waiting for write transaction (elapsed: XXs), originator=Internal blocked_by=Replication
-
-That is, something is blocking **Internal**.
-
-If you observe slow and unreliable Ditto Bus connections, an inaccurate presence viewer, or slow and unreliable multi-hop data replication, a Write transaction may be preventing the internal mesh presence component to persist data in regular 30-second intervals.
-
-Once the blocking Write transaction is complete, the observed issue should resolve itself automatically.
-
-## Still stuck?
-
-If you continue to have problems, please contact us via [Human Support](https://docs.ditto.live/support/troubleshooting#YXVys6OkQR6-OxSB3JXvC).
-
+If you're still stuck, please contact Ditto support.

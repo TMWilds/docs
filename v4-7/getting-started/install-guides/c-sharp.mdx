@@ -38,19 +38,19 @@ Using either a compatible package manager, the .NET CLI, or by adding a referenc
 If using a package manager other than NuGet, the official package manager for .NET, the command syntax to install Ditto may differ from the following snippet. For more information, see the official Nuget documentation > <a href="https://www.nuget.org/packages/Ditto/" target="_blank">Ditto .NET Standard.</a>
 </Info>
 
-<Tabs>
-<Tab title="NuGet Package Manager">
-> Install-Package Ditto -Version 4.7.2
-</Tab>
+<CodeGroup>
+```bash
+Install-Package Ditto -Version 4.7.2
+```
 
-<Tab title=".NET CLI">
-> dotnet add package Ditto --version 4.7.2
-</Tab>
+```bash
+dotnet add package Ditto --version 4.7.2
+```
 
-<Tab title="CSProj XML">
-> \<PackageReference Include="Ditto" Version="4.7.2" />
-</Tab>
-</Tabs>
+```xml
+<PackageReference Include="Ditto" Version="4.7.2" />
+```
+</CodeGroup>
 
 <Info>
 For the official .NET standard for Ditto, see the official NuGet reference at Packages > <a href="https://www.nuget.org/packages/Ditto/" target="_blank">Ditto</a>.
@@ -201,7 +201,7 @@ Setting to a specified API level or lower helps avoids unnecessary permissions r
 
 Once you’ve installed the Ditto SDK, set the debug level you want Ditto to log messages for, create a new Ditto identity, and set up Ditto exception handling for data sync operations:
 
-```csharp
+```csharp C#
 try
 {
     DittoLogger.SetMinimumLogLevel(DittoLogLevel.Debug);

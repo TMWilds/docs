@@ -54,7 +54,7 @@ An SDK can sync in any of the following ways:
 - Locally with Small Peers
 - With both at the same time, acting as a bridge for devices without internet access.
 
-For more on Big Peer, see: [Cloud Platform Overview](https://docs.ditto.live/v4-8/sync/concepts/#k51Z-KnUJnM0ge8aqKhba)
+For more on Big Peer, see: [Cloud Platform Overview](/cloud/overview)
 
 ## Bluetooth Low Energy
 
@@ -113,7 +113,7 @@ A LAN is an interconnected network made up of devices that are physically near e
 Peers use _WebSocket_ connections to enable realtime, bidirectional sync between Small Peers and the optional cloud deployment, the _Big Peer._
 
 <Info>
-Before you can establish a connection with the Big Peer using a WebSocket, you need to specify an IP/PORT. (See [Customizing Transports Configurations](https://docs.ditto.live/v4-8/sync/customizing-transport-configurations))
+Before you can establish a connection with the Big Peer using a WebSocket, you need to specify an IP/PORT. (See [Customizing Transports Configurations](../customizing-transport-configurations))
 </Info>
 
 The defining attributes of a WebSocket include:
@@ -180,7 +180,7 @@ For example, if peers **A**, **B**, and **C** in the following graphic are subsc
 Independent of the internet, Ditto syncs data among peers by establishing sessions and forming a mesh network using all available network transports on a device. In this process, discovered peers create a _presence graph_ by advertising and forming connections.
 
 <Info>
-For more information, see [Presence Operations](https://docs.ditto.live/v4-8/sync/concepts/undefined#rbWw3) and [Using Mesh Presence](https://docs.ditto.live/v4-8/sync/using-mesh-presence).
+For more information, see [Using Mesh Presence](../using-mesh-presence).
 </Info>
 
 Much like a conventional city map with roads, the presence graph is like a guide for peers, helping them determine the shortest and fastest paths to route updates from point A to B.
@@ -273,7 +273,7 @@ If you create a new `TransportConfig,` it has three main sections:
 - `connect`
 - `listen`
 
-Most apps only require configuring the `peerToPeer` and WebSocket settings. For instructions, see [Customizing Transports Configurations](<./../Advanced Customizations/Customizing Transports Configurations.md>).
+Most apps only require configuring the `peerToPeer` and WebSocket settings. For instructions, see [Customizing Transports Configurations](../advanced-customizations/customizing-transports-configurations).
 
 <Warning>
 Use the `listen` parameters designated for scenarios, like web browser clients operating on fully offline networks, only when explicitly instructed by Ditto support.

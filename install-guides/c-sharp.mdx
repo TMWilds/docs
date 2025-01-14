@@ -9,16 +9,16 @@ To install the C# SDK:
 
 <Steps>
 <Step>
-Confirm that you meet the minimum requirements. ([Prerequisites]())
+Confirm that you meet the minimum requirements. ([Prerequisites](#prerequisites))
 </Step>
 <Step>
-Install the Ditto SDK. ([Installing Dependencies]())
+Install the Ditto SDK. ([Installing Dependencies](#installing-dependencies))
 </Step>
 <Step>
-Set up your app permissions. ([Configuring Permissions]())
+Set up your app permissions. ([Configuring Permissions](#configuring-permissions))
 </Step>
 <Step>
-Add Ditto to your app. ([Initializing Ditto]())
+Add Ditto to your app. ([Initializing Ditto](#initializing-ditto))
 </Step>
 </Steps>
 
@@ -38,19 +38,19 @@ Using either a compatible package manager, the .NET CLI, or by adding a referenc
 If using a package manager other than NuGet, the official package manager for .NET, the command syntax to install Ditto may differ from the following snippet. For more information, see the official Nuget documentation > <a href="https://www.nuget.org/packages/Ditto/" target="_blank">Ditto .NET Standard.</a>
 </Info>
 
-<Tabs>
-<Tab title="NuGet Package Manager">
-> Install-Package Ditto -Version 4.7.2
-</Tab>
+<CodeGroup>
+```shell:NuGet Package Manager
+Install-Package Ditto -Version 4.7.2
+```
 
-<Tab title=".NET CLI">
-> dotnet add package Ditto --version 4.7.2
-</Tab>
+```shell:.NET CLI
+dotnet add package Ditto --version 4.7.2
+```
 
-<Tab title="CSProj XML">
-> \<PackageReference Include="Ditto" Version="4.7.2" />
-</Tab>
-</Tabs>
+```xml:CSProj XML
+<PackageReference Include="Ditto" Version="4.7.2" />
+```
+</CodeGroup>
 
 <Info>
 For the official .NET standard for Ditto, see the official NuGet reference at Packages > <a href="https://www.nuget.org/packages/Ditto/" target="_blank">Ditto</a>.
@@ -62,7 +62,9 @@ To set up your environment for your target platform:
 
 <Tabs>
 <Tab title="iOS Target">
-For apps targeting iOS; for example, MAUI, once you've added the Ditto package dependency, configure permissions and ensure your app continues syncing while running in the background, including when the end-user device is locked, by enabling background modes.
+// For apps targeting iOS; for example, MAUI, once you've added the Ditto package dependency, 
+// configure permissions and ensure your app continues syncing while running in the background, 
+// including when the end-user device is locked, by enabling background modes.
 
 <Steps>
 <Step>
@@ -72,7 +74,7 @@ Open the `Info.Plist` file for your project.
 <Step>
 Add the following key-value pairs, and then, if desired, modify each string value:
 
-```xml
+```xml XML
 <key>NSBluetoothAlwaysUsageDescription</key>
 <string>Uses Bluetooth to connect and sync with nearby devices</string>
 <key>NSLocalNetworkUsageDescription</key>
@@ -87,7 +89,7 @@ Add the following key-value pairs, and then, if desired, modify each string valu
 <Step>
 Enable Bluetooth Background Modes:
 
-```xml
+```xml XML
 <key>UIBackgroundModes</key>
 <array>
 <string>bluetooth-central</string>
@@ -113,7 +115,7 @@ Add the necessary permissions to ensure your app has the permissions required by
 For instructions on how to modify the following configuration for permissions requests; for example, prevent your app from requesting unnecessary permissions on newer OS versions or ensure compatibility with both older and newer OS versions, see [Customizing Permissions]().
 </Info>
 
-```xml
+```xml XML
 <manifest
 xmlns:tools="http://schemas.android.com/tools"
 xmlns:android="http://schemas.android.com/apk/res/android">
@@ -145,6 +147,7 @@ tools:targetApi="tiramisu" />
 ```
 </Step>
 </Steps>
+
 ## Customizing Permissions
 
 To modify the behavior of permission requests for the Android target:
@@ -201,7 +204,7 @@ Setting to a specified API level or lower helps avoids unnecessary permissions r
 
 Once you’ve installed the Ditto SDK, set the debug level you want Ditto to log messages for, create a new Ditto identity, and set up Ditto exception handling for data sync operations:
 
-```csharp
+```csharp C#
 try
 {
     DittoLogger.SetMinimumLogLevel(DittoLogLevel.Debug);

@@ -22,38 +22,31 @@ Include the Maven Central repository in your Gradle file, and then synchronize i
     <Step>
     From your project-level `build.gradle` file located in the app's root directory, ensure the `mavenCentral()` repository is included in the `repositories` section:
 
-    <Tabs>
-    <Tab title="Gradle">
-
-    ```none
+    <CodeGroup>
+    ```gradle
     allprojects {
         repositories {
             mavenCentral()
         }
     }
     ```
-    </Tab>
-    </Tabs>
+    </CodeGroup>
     </Step>
     <Step>
     Synchronize your project with the Gradle file by clicking **File **> **Sync Project with Gradle Files**.
     </Step>
-
 </Steps>
 
 # Adding the Ditto SDK Dependency
 
 Add the Ditto SDK to your app’s `build.gradle` file in the `dependencies` block with the appropriate version:
 
-<Tabs>
-<Tab title="build.gradle">
-
-```none
+<CodeGroup>
+```gradle
 implementation "live.ditto:ditto:4.8.1"
 ```
+</CodeGroup>
 
-</Tab>
-</Tabs>
 ## Configuring Permissions
 
 The Android operating system limits access to some device functionality for end-user control and privacy. In order to use this functionality, configure your app to declare and request permissions from end users at runtime:
@@ -73,13 +66,34 @@ Android requires certain permissions to be explicitly requested by the app to ac
 
 The Ditto SDK's AndroidManifest.xml includes all of the necessary permissions for enabling its mesh network capabilities. These permissions will automatically be merged with your app's permissions, so you should be aware of them.
 
-<Tabs>
-<Tab title="AndroidManifest.xml">
+<CodeGroup>
+```xml
+1<uses-permission android:name="android.permission.BLUETOOTH" 
+2 android:maxSdkVersion="30" /> 
+3<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" 
+4 android:maxSdkVersion="30" /> 
+5<uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" 
+6 tools:targetApi="s" /> 
+7<uses-permission android:name="android.permission.BLUETOOTH_CONNECT" 
+8 tools:targetApi="s" /> 
+9<uses-permission android:name="android.permission.BLUETOOTH_SCAN" 
+10 android:usesPermissionFlags="neverForLocation" 
+11 tools:targetApi="s" /> 
+12<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" 
+13 android:maxSdkVersion="32" /> 
+14<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" 
+15 android:maxSdkVersion="30" /> 
+16<uses-permission android:name="android.permission.INTERNET" /> 
+17<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> 
+18<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> 
+19<uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" /> 
+20<uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" /> 
+21<uses-permission android:name="android.permission.CHANGE_WIFI_STATE" /> 
+22<uses-permission android:name="android.permission.NEARBY_WIFI_DEVICES" 
+23 android:usesPermissionFlags="neverForLocation" 
+24 tools:targetApi="tiramisu" />
 ```
-1<uses-permission android:name\="android.permission.BLUETOOTH" 2 android:maxSdkVersion\="30" /> 3<uses-permission android:name\="android.permission.BLUETOOTH\_ADMIN" 4 android:maxSdkVersion\="30" /> 5<uses-permission android:name\="android.permission.BLUETOOTH\_ADVERTISE" 6 tools:targetApi\="s" /> 7<uses-permission android:name\="android.permission.BLUETOOTH\_CONNECT" 8 tools:targetApi\="s" /> 9<uses-permission android:name\="android.permission.BLUETOOTH\_SCAN" 10 android:usesPermissionFlags\="neverForLocation" 11 tools:targetApi\="s" /> 12<uses-permission android:name\="android.permission.ACCESS\_FINE\_LOCATION" 13 android:maxSdkVersion\="32" /> 14<uses-permission android:name\="android.permission.ACCESS\_COARSE\_LOCATION" 15 android:maxSdkVersion\="30" /> 16<uses-permission android:name\="android.permission.INTERNET" /> 17<uses-permission android:name\="android.permission.ACCESS\_WIFI\_STATE" /> 18<uses-permission android:name\="android.permission.ACCESS\_NETWORK\_STATE" /> 19<uses-permission android:name\="android.permission.CHANGE\_NETWORK\_STATE" /> 20<uses-permission android:name\="android.permission.CHANGE\_WIFI\_MULTICAST\_STATE" /> 21<uses-permission android:name\="android.permission.CHANGE\_WIFI\_STATE" /> 22<uses-permission android:name\="android.permission.NEARBY\_WIFI\_DEVICES" 23 android:usesPermissionFlags\="neverForLocation" 24 tools:targetApi\="tiramisu" />
-```
-</Tab>
-</Tabs>
+</CodeGroup>
 
 Some of these permissions have an `android:maxSdkVersion` attribute which means they are not used on devices running newer versions of Android. This is a best practice to respect users' privacy when those permissions are not necessary.
 
@@ -95,16 +109,11 @@ Open the AndroidManifest.xml located in the app/src/main directory of your proje
 
 `Within the same <manifest> tag, just before the <application> tag, add the relevant permissions you want to configure (location example):`
 
-<Tabs>
-<Tab title="AndroidManifest.xml">
+<CodeGroup>
+```xml
+// ... manifest content ...
 ```
-
-1<uses-permission android:name\="android.permission.ACCESS_FINE_LOCATION" 2 tools:remove\="android:maxSdkVersion" /> 3<uses-permission android:name\="android.permission.ACCESS_COARSE_LOCATION" 4 tools:remove\="android:maxSdkVersion" />
-
-```
-</Tab>
-</Tabs>
-Note the additional tools:remove attribute. This tells the manifest merger to selectively remove the android:maxSdkVersion behavior from the associated permissions, changing them to apply to all Android versions.
+</CodeGroup>
 </Step>
 </Steps>
 
@@ -126,23 +135,19 @@ To use the DittoSyncPermissions helper class:
 
 Import the DittoSyncPermissions helper class in the main activity of your app:
 
-<Tabs>
-<Tab title="Kotlin">
-```
-
+<CodeGroup>
+```kotlin Kotlin
 import live.ditto.transports.DittoSyncPermissions
 ```
-</Tab>
-</Tabs>
+</CodeGroup>
 </Step>
 
 <Step>
 
 Call the following in your Activity or Fragment's onCreate method:
 
-<Tabs>
-<Tab title="Kotlin">
-```
+<CodeGroup>
+```kotlin Kotlin
 fun requestPermissions() {
     val missing = DittoSyncPermissions(this).missingPermissions()
     if (missing.isNotEmpty()) {
@@ -150,8 +155,7 @@ fun requestPermissions() {
     }
 }
 ```
-</Tab>
-</Tabs>
+</CodeGroup>
 </Step>
 
 <Step>
@@ -159,13 +163,11 @@ Refresh permissions after permissions are granted.
 
 On Android, after granting permissions, Ditto may not immediately recognize the change, causing a delay in syncing. To address this, whenever a relevant permission changes, call refreshPermissions() to quickly check and start syncing with the new permissions. This can be done in the onRequestPermissionsResult() activity lifecycle method:
 
-<Tabs>
-<Tab title="Kotlin">
-```
+<CodeGroup>
+```kotlin Kotlin
 private val requestPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { this.ditto.refreshPermissions() } override fun onCreate(savedInstanceState: Bundle?) { }
 ```
-</Tab>
-</Tabs>
+</CodeGroup>
 </Step>
 </Steps>
 
@@ -191,7 +193,7 @@ To ensure your app maintains a single Ditto instance throughout its lifetime and
 
 </Warning>
 
-```kotlin
+```kotlin Kotlin
 try {
     DittoLogger.minimumLogLevel = DittoLogLevel.DEBUG
     val androidDependencies = DefaultAndroidDittoDependencies(applicationContext)

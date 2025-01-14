@@ -89,41 +89,29 @@ To verify that you’ve set up your environment correctly, install and run the R
 
 From a terminal, navigate to the folder containing your React Native project, and then, using your preferred package manager, run the Ditto package:
 
-<Tabs>
-<Tab title="Yarn">
-
+<CodeGroup>
 ```none
 yarn add @dittolive/ditto
 ```
-</Tab>
-
-<Tab title="npm">
 
 ```bash
 npm install @dittolive/ditto
 ```
-</Tab>
-</Tabs>
+</CodeGroup>
 
 ### Installing Dependencies
 
 From the root of your project, install project dependencies based on the `package.json` file:
 
-<Tabs>
-<Tab title="Yarn">
-
+<CodeGroup>
 ```none
 yarn install
 ```
-</Tab>
-
-<Tab title="npm">
 
 ```none
 npm install
 ```
-</Tab>
-</Tabs>
+</CodeGroup>
 
 ### Configuring Permissions
 
@@ -213,14 +201,11 @@ Add the Ditto SDK as a dependency:
 1. Open the module-level `build.gradle` located in the `android/app` directory.
 2. Add the following line into the `dependencies` block located at the bottom of the file:
 
-<Tabs>
-<Tab title="">
-
+<CodeGroup>
 ```none
 implementation "live.ditto:ditto:4.8.1"
 ```
-</Tab>
-</Tabs>
+</CodeGroup>
 </Step>
 
 <Step>
@@ -230,9 +215,7 @@ Android permissions
 <Step>
 If using <a href="https://reactnative.dev/docs/the-new-architecture/landing-page" target="_blank">React Native's Legacy Architecture</a>, you must add the following code snippet to the module-level `build.gradle` located in the `android/app` directory:
 
-<Tabs>
-<Tab title="">
-
+<CodeGroup>
 ```none
 android {
     packagingOptions {
@@ -244,8 +227,7 @@ android {
     // Rest of the file
 }
 ```
-</Tab>
-</Tabs>
+</CodeGroup>
 
 <Info>
 If you encounter other issues, see [Troubleshooting JSI Bindings Error]().
@@ -255,14 +237,11 @@ If you encounter other issues, see [Troubleshooting JSI Bindings Error]().
 
 <Step>
 Start the app in Metro:
-<Tabs>
-<Tab title="">
-
+<CodeGroup>
 ```
 yarn start
 ```
-</Tab>
-</Tabs>
+</CodeGroup>
 </Step>
 </Steps>
 
@@ -270,22 +249,17 @@ yarn start
 
 Within the top-most scope of your app, import the Ditto package with the necessary modules and components from the Ditto's SDK library:
 
-<Tabs>
-<Tab title="">
-
-```javascript
+<CodeGroup>
+```javascript JS
 import {Ditto} from '@dittolive/ditto';
 ```
-</Tab>
-</Tabs>
+</CodeGroup>
 
 ### Handling Permissions
 
 Within your default React component (`App`), use this helper function to request permissions if developing for the Android target:
 
-<Tabs>
-<Tab title="">
-
+<CodeGroup>
 ```typescript
 import {useEffect} from 'react';
 import {PermissionsAndroid} from 'react-native';
@@ -315,8 +289,7 @@ export default function App() {
 
 }
 ```
-</Tab>
-</Tabs>
+</CodeGroup>
 
 ## Configuring Sync
 Using an asynchronous function, let's say, `startSync()`, do the following:
@@ -354,10 +327,8 @@ For more information, see [Cloud Authentication](<./../Authentication & Authoriz
 
 Use an online playground identity for development. You can find authentication details for your app on the <a href="https://portal.ditto.live" target="_blank">Ditto Portal.</a> Use these to set up your identity:
 
-<Tabs>
-<Tab title="">
-
-```javascript
+<CodeGroup>
+```javascript JS
 import type {Identity} from '@dittolive/ditto';
 
 const identity = {
@@ -366,17 +337,14 @@ const identity = {
   token: '<your-online-playground-token>',
 };
 ```
-</Tab>
-</Tabs>
+</CodeGroup>
 
 #### onlineWithAuthentication
 
 Use the `onlineWithAuthentication` identity when developing a production app for deployment.
 
-<Tabs>
-<Tab title="">
-
-```javascript
+<CodeGroup>
+```javascript JS
 const identity = {
   type: 'onlineWithAuthentication',
   appID: '<your-app-id>',
@@ -397,17 +365,14 @@ const identity = {
   },
 };
 ```
-</Tab>
-</Tabs>
+</CodeGroup>
 
 ### Creating a New Instance of Ditto
 
 Within a `try` statement, instantiate a new `Ditto` object with the identity you’ve specified:
 
-<Tabs>
-<Tab title="">
-
-```javascript
+<CodeGroup>
+```javascript JS
 import {Ditto, DittoError} from '@dittolive/ditto';
 
 try {
@@ -419,8 +384,7 @@ try {
   throw error
 }
 ```
-</Tab>
-</Tabs>
+</CodeGroup>
 
 ### Setting Transport Configurations
 
@@ -434,10 +398,8 @@ Configure peer-to-peer transport settings so that all desired transport types av
 <Step>
 Specify how you want Ditto to handle which transports to sync data across the mesh.
 
-<Tabs>
-<Tab title="">
-
-```javascript
+<CodeGroup>
+```javascript JS
 import {TransportConfig} from '@dittolive/ditto';
 import {Platform} from 'react-native';
 
@@ -453,8 +415,7 @@ if (Platform.OS === 'ios') {
 
 ditto.setTransportConfig(transportsConfig);
 ```
-</Tab>
-</Tabs>
+</CodeGroup>
 </Step>
 </Steps>
 
@@ -464,10 +425,8 @@ Create the logic that performs sync and data operations in your app, including r
 
 For example, the following snippet defines a document object (`document`), creates a subscription for the `Cars` collection, executes database operations and logs the results, registers an observer for watching changes in the `Cars` collection:
 
-<Tabs>
-<Tab title="">
-
-```javascript
+<CodeGroup>
+```javascript JS
 ditto.sync.registerSubscription(`SELECT * FROM cars`);
 
 const document = {
@@ -496,23 +455,18 @@ ditto.store.registerObserver(`SELECT * FROM cars`, (response) => {
 
   // save state or other use cases
 });
-
 ```
-</Tab>
-</Tabs>
+</CodeGroup>
 
 ### Starting the Sync Process
 
 To start syncing with other peers in the mesh:
 
-<Tabs>
-<Tab title="">
-
-```javascript
+<CodeGroup>
+```javascript JS
 ditto.startSync();
 ```
-</Tab>
-</Tabs>
+</CodeGroup>
 
 ## Enabling Small Peer Info
 
@@ -522,17 +476,14 @@ Once enabled, collected details are available within the Ditto portal. For more 
 
 You can configure `smallPeerInfo` directly on the Ditto instance.
 
-<Tabs>
-<Tab title="">
-
-```javascript
+<CodeGroup>
+```javascript JS
 ditto.smallPeerInfo.isEnabled = true;
 await ditto.smallPeerInfo.getSyncScope();
 await ditto.smallPeerInfo.setSyncScope('BigPeerOnly');
 ditto.smallPeerInfo.metadata = { test: 'metadata' };
 ```
-</Tab>
-</Tabs>
+</CodeGroup>
 
 ## Setting Up Presence
 
@@ -540,32 +491,26 @@ Monitor remote peers in the logs or using Ditto’s Presence Viewer app. For mor
 
 To set up presence observations:
 
-<Tabs>
-<Tab title="">
-
-```javascript
+<CodeGroup>
+```javascript JS
 // This closure is called every time the mesh of
 // connected Ditto peers changes:
 ditto.presence.observe((graph) => {
   console.log('Peers: ', graph.remotePeers);
 });
 ```
-</Tab>
-</Tabs>
+</CodeGroup>
 
 ## Setting Logs to Debug Level
 Capture database debug logs by setting the Ditto log level to Debug mode. That way, any potential issues are tracked.
 
 To set the minimum log level to `Debug`:
 
-<Tabs>
-<Tab title="">
-
-```javascript
+<CodeGroup>
+```javascript JS
 Logger.minimumLogLevel = 'Debug';
 ```
-</Tab>
-</Tabs>
+</CodeGroup>
 
 ## Troubleshooting JSI Bindings Error
 When using the Ditto SDK for React Native in the iOS simulator, you may encounter issues related to the JSI bindings not being installed for the DittoRNSDK module when using the Hermes JavaScript engine.
@@ -576,27 +521,21 @@ To resolve the issue, modify your project settings and dependencies:
 <Step>
 From the `ios/Podfile` file in your project, set the minimum deployment target for iOS:
 
-<Tabs>
-<Tab title="">
-
+<CodeGroup>
 ```none
 platform :ios, 14
 ```
-</Tab>
-</Tabs>
+</CodeGroup>
 </Step>
 
 <Step>
 From the `ios` directory in your project, update CocoaPods dependencies:
 
-<Tabs>
-<Tab title="">
-
+<CodeGroup>
 ```none
 pod install
 ```
-</Tab>
-</Tabs>
+</CodeGroup>
 </Step>
 
 <Step>

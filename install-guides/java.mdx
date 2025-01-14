@@ -135,7 +135,7 @@ To use the `DittoSyncPermissions` helper class:
 <Step>
 Import the `DittoSyncPermissions` helper class in the main activity of your app:
 
-```java
+```java Java
 import live.ditto.transports.DittoSyncPermissions;
 ```
 </Step>
@@ -143,7 +143,7 @@ import live.ditto.transports.DittoSyncPermissions;
 <Step>
 Call the following in your `Activity` or Fragment's `onCreate` method:
 
-```java
+```java Java
 void requestPermissions() {
    DittoSyncPermissions permissions = new DittoSyncPermissions(this);
    String[] missing = permissions.missingPermissions(permissions.requiredPermissions());
@@ -159,7 +159,7 @@ Refresh permissions after permissions are granted.
 
 On Android, after permissions are granted, Ditto may not immediately recognize the change, causing a delay in syncing. To address this, whenever a relevant permission changes, call `refreshPermissions()` on your Ditto instance to quickly check and start syncing with the new permissions.  This can be done in the `onRequestPermissionsResult()` activity lifecycle method:
 
-```java
+```java Java
 @Override
 public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
    super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -191,7 +191,7 @@ Add Ditto to your application  by placing it in your `Application.onCreate` meth
 To ensure your app maintains a single Ditto instance throughout its lifetime and prevents it from going out of scope or getting garbage collected, place Ditto in the Application-level `Context` instead of the `Context` from any activity where you initially instantiated the Ditto instance.
 </Warning>
 
-```java
+```java Java
 DittoLogger.setMinimumLogLevel(DittoLogLevel.DEBUG);
 DittoDependencies androidDependencies = new DefaultAndroidDittoDependencies(this.context);
 DittoIdentity identity = new DittoIdentity.OnlinePlayground(

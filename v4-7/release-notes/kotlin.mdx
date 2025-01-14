@@ -40,64 +40,55 @@ This command should be run using the `ditto.store.execute(...)` command within y
 </Warning>
 
 
-<Tabs>
-  <Tab title="Swift">
-    ```swift
-    let result = await ditto.store.execute(query: "ALTER SYSTEM SET tcp_server_bind_mdns_server_port TO 1234")
-    ```
-  </Tab>
-  <Tab title="Kotlin">
-    ```kotlin
-    val result = ditto.store.execute("ALTER SYSTEM SET tcp_server_bind_mdns_server_port TO 1234")
-    ```
-  </Tab>
-  <Tab title="JS">
-    ```javascript
-    const result = await ditto.store.execute("ALTER SYSTEM SET tcp_server_bind_mdns_server_port TO 1234");
-    ```
-  </Tab>
-  <Tab title="Java">
-    ```java
-    DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
-        "ALTER SYSTEM SET tcp_server_bind_mdns_server_port TO 1234",
-        new Continuation<>() {
-            @NonNull
-            @Override
-            public CoroutineContext getContext() {
-                return EmptyCoroutineContext.INSTANCE;
-            }
+<CodeGroup>
+```swift Swift
+let result = await ditto.store.execute(query: "ALTER SYSTEM SET tcp_server_bind_mdns_server_port TO 1234")
+```
 
-            @Override
-            public void resumeWith(@NonNull Object o) {
-                if (o instanceof Result.Failure) {
-                    // Handle failure
-                }
+```kotlin Kotlin
+val result = ditto.store.execute("ALTER SYSTEM SET tcp_server_bind_mdns_server_port TO 1234")
+```
+
+```javascript JS
+const result = await ditto.store.execute("ALTER SYSTEM SET tcp_server_bind_mdns_server_port TO 1234");
+```
+
+```java Java
+DittoQueryResult result = (DittoQueryResult) ditto.store.execute(
+    "ALTER SYSTEM SET tcp_server_bind_mdns_server_port TO 1234",
+    new Continuation<>() {
+        @NonNull
+        @Override
+        public CoroutineContext getContext() {
+            return EmptyCoroutineContext.INSTANCE;
+        }
+
+        @Override
+        public void resumeWith(@NonNull Object o) {
+            if (o instanceof Result.Failure) {
+                // Handle failure
             }
         }
-    );
-    ```
-  </Tab>
-  <Tab title="C#">
-    ```csharp
-    var result = await ditto.Store.ExecuteAsync("ALTER SYSTEM SET tcp_server_bind_mdns_server_port TO 1234");
-    ```
-  </Tab>
-  <Tab title="C++">
-    ```cpp
-    auto result = ditto.get_store().execute("ALTER SYSTEM SET tcp_server_bind_mdns_server_port TO 1234").get();
-    ```
-  </Tab>
-  <Tab title="Rust">
-    ```rust
-    let result = ditto.store().execute("ALTER SYSTEM SET tcp_server_bind_mdns_server_port TO 1234", None);
-    ```
-  </Tab>
-  <Tab title="Dart">
-    ```dart
-    final result = await ditto.store.execute("ALTER SYSTEM SET tcp_server_bind_mdns_server_port TO 1234");
-    ```
-  </Tab>
-</Tabs>
+    }
+);
+```
+
+```csharp C#
+var result = await ditto.Store.ExecuteAsync("ALTER SYSTEM SET tcp_server_bind_mdns_server_port TO 1234");
+```
+
+```cpp C++
+auto result = ditto.get_store().execute("ALTER SYSTEM SET tcp_server_bind_mdns_server_port TO 1234").get();
+```
+
+```rust Rust
+let result = ditto.store().execute("ALTER SYSTEM SET tcp_server_bind_mdns_server_port TO 1234", None);
+```
+
+```dart Dart
+final result = await ditto.store.execute("ALTER SYSTEM SET tcp_server_bind_mdns_server_port TO 1234");
+```
+</CodeGroup>
 
 
 ### FIXED: A finalizer issue that was causing crashes when closing sync subscriptions (#13849, #13732, #13738)

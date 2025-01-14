@@ -9,16 +9,16 @@ To install the Ditto SDK and start syncing offline:
 
 <Steps>
   <Step>
-   Confirm that you meet the minimum requirements. ([Prerequisites](install-guides/swift#HHTe7))
+   Confirm that you meet the minimum requirements. ([Prerequisites](#prerequisites))
   </Step>
   <Step>
-  Install the necessary dependencies. ([Installing Package Dependencies](install-guides/swift#g0ESg))
+  Install the necessary dependencies. ([Installing Package Dependencies](#installing-package-dependencies))
   </Step>
   <Step>
-Set up your app permissions. ([Configuring Permissions](install-guides/swift#kX-Je))
+Set up your app permissions. ([Configuring Permissions](#configuring-permissions))
   </Step>
   <Step>
-[Authenticate with the Big Peer and then start syncing offline. ([Integrating and Initializing Sync](install-guides/swift#XNaBO))
+[Authenticate with the Big Peer and then start syncing offline. ([Integrating and Initializing Sync](#integrating-and-initializing-sync))
   </Step>
 
 </Steps>
@@ -51,8 +51,8 @@ Using Xcode or CocoaPods, add the necessary dependencies:
       2. Select **dittoswiftpackage** from the list.
       3. Click **Dependency Rule** and select the version of Ditto you want to use:
 
-      - If building a production-level app, see [Developing for Production](install-guides/swift#BPHYO).
-      - If testing Ditto with Apple Vision Pro devices, see [Exploring with visionOS beta](install-guides/swift#tMt7R).
+      - If building a production-level app, see [Developing for Production](#developing-for-production).
+      - If testing Ditto with Apple Vision Pro devices, see [Exploring with visionOS beta](#exploring-with-visionos-beta).
       4. Click **Add Package**.
 
       <Frame>
@@ -182,22 +182,35 @@ For instructions on configuring permissions for your app, see [Cloud Authenticat
 
 From your project's Info.plistfile, add the following key-value pairs, which display as dismissable prompts to your end users explaining why the app requires certain permissions.
 
-<Tabs>
-<Tab title="From Info Tab">
-
+<CodeGroup>
+```swift From Info Tab
+Key: NSBluetoothAlwaysUsageDescription
+Type: String
+Value: Uses Bluetooth to connect and sync with nearby devices
+Key: NSBluetoothPeripheralUsageDescription
+Type: String
+Value: Uses Bluetooth to connect and sync with nearby devices
+Key: NSLocalNetworkUsageDescription
+Type: String
+Value: Uses WiFi to connect and sync with nearby devices
+Key: NSBonjourServices
+Type: Array
+Value: Item0: "_http-alt._tcp." (String)
 ```
-Key: NSBluetoothAlwaysUsageDescription Type: String Value: Uses Bluetooth to connect and sync with nearby devices Key: NSBluetoothPeripheralUsageDescription Type: String Value: Uses Bluetooth to connect and sync with nearby devices Key: NSLocalNetworkUsageDescription Type: String Value: Uses WiFi to connect and sync with nearby devices Key: NSBonjourServices Type: Array Value: Item0: "\_http-alt.\_tcp." (String)
-```
 
-</Tab>
-<Tab title="From Source Code">
-
+```xml From Source Code
+<key>NSBluetoothAlwaysUsageDescription</key>
+<string>Uses Bluetooth to connect and sync with nearby devices</string>
+<key>NSBluetoothPeripheralUsageDescription</key>
+<string>Uses Bluetooth to connect and sync with nearby devices</string>
+<key>NSLocalNetworkUsageDescription</key>
+<string>Uses WiFi to connect and sync with nearby devices</string>
+<key>NSBonjourServices</key>
+<array>
+  <string>_http-alt._tcp.</string>
+</array>
 ```
-1<key\>NSBluetoothAlwaysUsageDescription</key\> 2<string\>Uses Bluetooth to connect and sync with nearby devices</string\> 3<key\>NSBluetoothPeripheralUsageDescription</key\> 4<string\>Uses Bluetooth to connect and sync with nearby devices</string\> 5<key\>NSLocalNetworkUsageDescription</key\> 6<string\>Uses WiFi to connect and sync with nearby devices</string\> 7<key\>NSBonjourServices</key\> 8<array\> 9 <string\>\_http-alt.\_tcp.</string\> 10</array\>
-```
-
-</Tab>
-</Tabs>
+</CodeGroup>
 
 </Step>
 
@@ -228,7 +241,7 @@ From Xcode, ensure your app continues to sync while it runs in the background, a
 
 If enabling the Data Protection entitlement, allow access after the end user has unlocked their device for the first time after a system restart by setting the entitlement to NSFileProtectionCompleteUntilFirstUserAuthentication.
 
-For more information, see the official Apple documentation for [Data Protection Entitlement](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_developer_default-data-protection "Data Protection Entitlement").
+For more information, see the official Apple documentation for [Data Protection Entitlement](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_developer_default-data-protection).
 
 # Integrating and Initializing Sync
 
@@ -237,8 +250,6 @@ Once you've set up your environment, import the Ditto SDK in your codebase and o
 <Note>
 Unless you have a specialized use case, such as a government app, you must connect to the internet at least once before you can sync offline with other peers.
 </Note>
-
-For more information, contact Ditto. (See [Contact Us](install-guides/#n4CiVTbQAL1SmgjNO8aM8))
 
 <Steps>
 <Step>
@@ -251,10 +262,10 @@ From the top-most scope of your app's codebase, add the following to set up auth
 Replace YOUR_APP_ID and YOUR_PLAYGROUND_TOKEN with your access credentials available from the portal.
 
 <Info>
-For instructions on how to obtain your access credentials, see [Getting Playground Token Credentials](install-guides/#U214QhYYMCxbV9jnamRFH)
+For instructions on how to obtain your access credentials, see [Getting Playground Token Credentials](../cloud/portal/getting-playground-token-credentials)
 </Info>
 
-```
+```swift Swift
 let ditto = Ditto(identity: .onlinePlayground( appID: "YOUR\_APP\_ID", token: "YOUR\_PLAYGROUND\_TOKEN" )) do { try ditto.startSync() } catch (let err) { print(err.localizedDescription) }
 ```
 

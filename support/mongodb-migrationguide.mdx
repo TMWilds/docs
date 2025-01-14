@@ -78,15 +78,13 @@ Now that Realm is removed, it’s time to install Ditto. Follow our installation
 
 Next, you’ll set up Ditto in your app by initializing the Ditto service with your API keys. This will allow your app to start syncing data between devices using Ditto’s real-time peer-to-peer capabilities.
 
-<Tabs>
-    <Tab title="Swift">
-```swift
+<CodeGroup>
+```swift Swift
 let ditto = Ditto(identity: .onlinePlayground(appID: "YOUR_DITTO_APP_ID", token: "YOUR_PLAYGROUND_TOKEN"))
 ditto.startSync()
 ```
-    </Tab>
-    <Tab title="Kotlin">
-```kotlin
+
+```kotlin Kotlin
 private val ditto: Ditto? by lazy {
       try {
           val androidDependencies = DefaultAndroidDittoDependencies(context)
@@ -104,8 +102,7 @@ private val ditto: Ditto? by lazy {
       }
   }
 ```
-    </Tab>
-</Tabs>
+</CodeGroup>
 
 Ditto is distributed by default, meaning it will automatically connect to, and sync data across your nearby devices. In order to solely rely on device-to-cloud sync, you can <a href="https://docs.ditto.live/sync/customizing-transport-configurations#OyUOQ" target="_blank">disable local sync</a> by turning off LAN, peer-to-peer Wi-Fi, and Bluetooth transports.
 
@@ -117,18 +114,16 @@ Make sure to review your data types, relationships, and primary keys, and update
 
 Before (Realm model):
 
-<Tabs>
-    <Tab title="Swift">
-```swift
+<CodeGroup>
+```swift Swift
 final class Todo: Object, ObjectKeyIdentifiable {
     @Persisted(primaryKey: true) var _id: ObjectId
     @Persisted var title = ""
     @Persisted var completed = false
 }
 ```
-    </Tab>
-    <Tab title="Kotlin">
-```kotlin
+
+```kotlin Kotlin
 class Todo() : RealmObject {
     @PrimaryKey
     var _id: ObjectId = ObjectId()
@@ -136,23 +131,20 @@ class Todo() : RealmObject {
     var completed: Boolean = false
 }
 ```
-    </Tab>
-</Tabs>
+</CodeGroup>
 
 After (Ditto model):
-<Tabs>
-    <Tab title="Swift">
-```swift
+<CodeGroup>
+```swift Swift
 final class Todo: Codable {
-	var _id = UUID()
+    var _id = UUID()
     var title = ""
     var isCompleted = false
-	var isDeleted = false
+    var isDeleted = false
 }
 ```
-    </Tab>
-    <Tab title="Kotlin">
-```kotlin
+
+```kotlin Kotlin
 data class Todo(
     val _id: String,
     val title: String,
@@ -160,8 +152,7 @@ data class Todo(
     val isDeleted: Boolean = false
 )
 ```
-    </Tab>
-</Tabs>
+</CodeGroup>
 
 
 
@@ -177,21 +168,18 @@ We also recommend you make yourself familiar with [REGISTER](https://docs.ditto.
 
 You can replace Realm's sync logic with Ditto subscriptions to keep data in sync between your devices in real-time.
 
-<Tabs>
-    <Tab title="Swift">
-```swift
+<CodeGroup>
+```swift Swift
 let query = "SELECT * FROM todos"
 var subscription = try ditto.sync.registerSubscription(query: query)
 ```
-    </Tab>
-    <Tab title="Kotlin">
-```kotlin
+
+```kotlin Kotlin
 val todosSubscription = ditto.sync.registerSubscription(
     query = "SELECT * FROM COLLECTION todos"
 )
 ```
-    </Tab>
-</Tabs>
+</CodeGroup>
 
 
 - In order for Ditto to sync data between client devices and Big Peer you will need to register a subscription for each collection you would like to sync.
@@ -205,18 +193,16 @@ Now, update the create, read, update, and delete (CRUD) operations in your app. 
 #### **Create**
 
 When adding new items, use the execute method on the `ditto.store` object to insert your data. This ensures new records are synced efficiently across peers in real-time.
-<Tabs>
-    <Tab title="Swift">
-```swift
+<CodeGroup>
+```swift Swift
 func addTodo(title: String) {
     let newTodo = Todo(title: title)
     ditto.store.execute(query: "INSERT INTO todos DOCUMENTS (:todo)",
 		    			arguments: ["todo": newTodo])
 }
 ```
-    </Tab>
-    <Tab title="Kotlin">
-```kotlin
+
+```kotlin Kotlin
 suspend fun addTodo(title: String) {
     val newTodo = Todo(
         _id = UUID.randomUUID().toString(),
@@ -230,8 +216,7 @@ suspend fun addTodo(title: String) {
         )
 }
 ```
-    </Tab>
-</Tabs>
+</CodeGroup>
 
 
 
@@ -247,9 +232,8 @@ When reading data in Ditto, the primary method is to set up an <a href="https://
 
 This allows your app to respond to data changes in real-time by syncing updates across all connected devices.
 
-<Tabs>
-    <Tab title="Swift">
-```swift
+<CodeGroup>
+```swift Swift
 private func observeTodos() {
     return ditto.store.registerObserver(
         query: "SELECT * FROM todos WHERE isDeleted = :isDeleted",
@@ -258,9 +242,8 @@ private func observeTodos() {
 	}
 }
 ```
-    </Tab>
-    <Tab title="Kotlin">
-```kotlin
+
+```kotlin Kotlin
 suspend fun observeTodos(): Flow<List<Todo>> {
 	return ditto.store.registerObserverAsFlow(
 			query = "SELECT * FROM todos WHERE isDeleted = :isDeleted",
@@ -270,8 +253,7 @@ suspend fun observeTodos(): Flow<List<Todo>> {
 		  )
 }
 ```
-    </Tab>
-</Tabs>
+</CodeGroup>
 
 
 
@@ -283,9 +265,8 @@ In addition to real-time observations, Ditto allows for **one-time reads**. Thes
 
 When updating data, use UPDATE on the `ditto.store` object. Ditto lets you sync the minimum data needed, ensuring that all peers converge on the same version of the data across the network.
 
-<Tabs>
-    <Tab title="Swift">
-```swift
+<CodeGroup>
+```swift Swift
 func update(_ todo: Todo) {
     ditto.store.execute(
         query: "UPDATE todos SET isCompleted = :isCompleted WHERE _id = :_id",
@@ -293,9 +274,8 @@ func update(_ todo: Todo) {
     )
 }
 ```
-    </Tab>
-    <Tab title="Kotlin">
-```kotlin
+
+```kotlin Kotlin
 suspend fun toggleIsComplete(todo: Todo) {
     dittoStoreManager.executeQuery(
         dittoQuery = "UPDATE todos SET completed = :isCompleted WHERE _id = :_id",
@@ -306,16 +286,14 @@ suspend fun toggleIsComplete(todo: Todo) {
     )
 }
 ```
-    </Tab>
-</Tabs>
+</CodeGroup>
 
 #### **Delete**
 
 In a distributed data system like Ditto, deletion follows a “<a href="https://docs.ditto.live/crud/delete#bPsqW" target="_blank">soft delete</a>” pattern. This means that when you mark an item as deleted, it’s not immediately removed from the collection or local storage. Instead, the item is flagged as deleted to ensure that other devices in the network remain in sync. To fully remove the item and free up space, you’ll need to evict these “soft deleted” items. For more details, see the section on <a href="https://docs.ditto.live/crud/delete#-BLNB" target="_blank">Evictions</a>.
 
-<Tabs>
-    <Tab title="Swift">
-```swift
+<CodeGroup>
+```swift Swift
 func delete(_ todo: Todo) {
     ditto.store.execute(
         query: "UPDATE todos SET isDeleted = :isDeleted WHERE _id = :_id",
@@ -323,9 +301,8 @@ func delete(_ todo: Todo) {
     )
 }
 ```
-    </Tab>
-    <Tab title="Kotlin">
-```kotlin
+
+```kotlin Kotlin
 suspend fun deleteTodo(todo: Todo) {
       ditto.store.execute(
           dittoQuery = """UPDATE todos
@@ -338,8 +315,7 @@ suspend fun deleteTodo(todo: Todo) {
       )
   }
 ```
-    </Tab>
-</Tabs>
+</CodeGroup>
 
 
 ### 8. Ensure your Views Respond to Updates
@@ -356,7 +332,7 @@ For more on evictions and deletion, refer to Ditto’s documentation: [Evictions
 
 ### 10. Authentication and Authorization
 
-A production application must have robust auth system in place. Ditto lets you rebuild your Atlas Device Sync authentication and authorization flow in this document: [Migrating Authentication and Authorization from Atlas Device Sync to Ditto](<./Migrating Authentication and Authorization from Atlas Device Sync to Ditto.md>)
+A production application must have robust auth system in place. Ditto lets you rebuild your Atlas Device Sync authentication and authorization flow in this document: [Migrating Authentication and Authorization from Atlas Device Sync to Ditto](migrating-authentication-and-authorization-from-atlas-device-sync-to-ditto)
 
 
 ## Additional Resources
